@@ -1,0 +1,37 @@
+.stylish-select .header_top .SSContainerDivWrapper,.stylish-select .quality .SSContainerDivWrapper {margin:0;padding:0;width:100%;position:absolute;top:23px!important;left:0!important;z-index:2;}
+.stylish-select .header_top ul.newList,.stylish-select .quality ul.newList {margin:0;padding:0;list-style:none;color:#000;background:#fff;border:1px solid #ccc;overflow:auto;width: 99%}
+.stylish-select .header_top ul.newList *,.stylish-select .quality ul.newList * {margin:0;padding:0;display:block!important;float:none;border: none}
+.stylish-select .header_top ul.newList a,.stylish-select .quality ul.newList a {color: #000;text-decoration:none;display:block;padding:0px 8px;line-height:28px;}
+.stylish-select .header_top .newListSelected,.stylish-select .quality .newListSelected{width:124px;color:#000;height:20px;padding:3px 0 0 9px;float:left;border:1px solid #dfdfdf;background:#fff url(../images/select-arrow.png) no-repeat right 9px;margin-top:6px;position:relative;border-radius:3px;behavior:url(..commom/js/PIE.htc);z-index:13;}
+.stylish-select .header_top .selectedTxt,.stylish-select .quality .selectedTxt{width:110px;overflow:hidden;height:16px;padding:0 13px 0 0;line-height:16px;}
+.stylish-select  .header_top .newListHover,.stylish-select  .quality .newListHover {background:#ccc!important;color:#000!important;cursor:pointer;}
+
+.stylish-select .quality .newListSelected {width:44px;}
+.stylish-select .quality .selectedTxt {width:30px;}
+
+.stylish-select .drop1 .SSContainerDivWrapper {margin:0;padding:0;width:99.8%;position:absolute;top:31px!important;left:0px !important;z-index:2; background: #fff;border:1px solid #dfdfdf;}
+.stylish-select .drop1 ul.newList {margin:0;padding:0;list-style:none;background: none;border:none; overflow: auto;overflow-x: hidden;max-height: 200px!important; width:100%!important;}
+.stylish-select .drop1 ul.newList * {float: left;margin:0;padding:0;border:none; width:100%!important; }
+.stylish-select .drop1 ul.newList a {display:block;text-decoration:none;padding: 0 4% 0 5%; width:91%!important; font: 13px/31px 'open sans';color: #6a737e;background:#fff;text-align:left;}
+.stylish-select .drop1 .newListSelected {float:left;width:100%;height:31px;padding:0;background:#fff url(../images/drop-arrow-gray.png) no-repeat right center;border:1px solid #dfdfdf;border-radius:3px;position:relative;behavior:url(../PIE.htc);z-index:10;}
+.stylish-select .drop1 .selectedTxt {width:88%;overflow:hidden;height:31px;padding: 0 8% 0 4%; font: 13px/31px 'open sans';color: #6a737e;text-align:left;}
+.stylish-select .drop1 .newListHover {background:#ccc!important;color: #fff!important}
+
+.stylish-select .select_box .drop1 .newListSelected{background-color: #f2f2f2;height: 34px}
+
+.fieldbox .newListSelected{width:100%;color:#b3b3b3;height:30px;padding:3px 0 0 0px;float:left;border:1px solid #dfdfdf;background:#fff ;position:relative;border-radius:4px;behavior:url(..commom/js/PIE.htc);z-index:10; text-indent: 9px;}
+.fieldbox .newListSelected .selectedTxt{width:100%;overflow:hidden;height:30px;padding:0;line-height:30px;}
+.fieldbox ul.newList{width: 99%;padding:0; margin:0; background:#fff;border:1px solid #dfdfdf;
+}
+.fieldbox ul.newList *{margin:0;padding:0;display:block!important;float:none;border: none; color: #b3b3b3; }
+.fieldbox .newListSelected  .newListHover {background:#ccc!important;color:#fff!important;cursor:pointer;}
+.fieldbox ul.newList li a{padding:5px 0;}
+
+.stylish-select .drop2 .SSContainerDivWrapper {margin:0;padding:0;width:99.8%;position:absolute;top:31px!important;left:0px !important;z-index:2; background: #fff;border:1px solid #dfdfdf;}
+/*.stylish-select .drop2 ul.newList {margin:0;padding:0;list-style:none;background: none;border:none; overflow: auto;overflow-x: hidden;max-height: 200px!important; width:100%!important;}*/
+.stylish-select .drop2 ul.newList {margin:0;padding:0;list-style:none;background: none;border:none; max-height: 200px!important; width:100%!important;}
+.stylish-select .drop2 ul.newList * {float: left;margin:0;padding:0;border:none; width:100%!important; }
+.stylish-select .drop2 ul.newList a {display:block;text-decoration:none;padding: 0 4% 0 5%; width:91%!important; font: 13px/31px 'open sans';color: #6a737e;background:#fff;text-align:left;}
+.stylish-select .drop2 .newListSelected {float:left;width:100%;height:31px;padding:0;background:#fff url(../images/drop-arrow-gray.png) no-repeat right center;border:1px solid #dfdfdf;border-radius:3px;position:relative;behavior:url(../PIE.htc);z-index:10;}
+.stylish-select .drop2 .selectedTxt {width:88%;overflow:hidden;height:31px;padding: 0 8% 0 4%; font: 13px/31px 'open sans';color: #6a737e;text-align:left;}
+.stylish-select .drop2 .newListHover {background:#ccc!important;color: #fff!important}

@@ -1,0 +1,150 @@
+Done By Sathish On 17-12-2014
+ALTER TABLE  `tbl_configurations` DROP  `configurationLicense` ;
+
+
+Done By Vipin Tomar On 05-11-2014
+ALTER TABLE `tbl_order` ADD `orderCustomerComment` TEXT NOT NULL AFTER `orderShippingPhone`; 
+
+Done By Vipin Tomar on 03-11-2014
+ALTER TABLE `tbl_coupons` ADD `couponMinimumPurchaseAmount` DECIMAL( 10, 2 ) NOT NULL AFTER `couponDiscountVariable`; 
+ALTER TABLE `tbl_order` ADD `orderCouponDiscount` DECIMAL( 10, 2 ) NOT NULL AFTER `orderCustomerComment`;
+
+Done By Vipin TOmar On 31-10-2014
+ALTER TABLE `tbl_coupons` CHANGE `couponStartDate` `couponStartDate` DATE NOT NULL ,
+CHANGE `couponEndDate` `couponEndDate` DATE NOT NULL;
+ALTER TABLE  `tbl_order` ADD  `orderCustomerComment` TEXT NOT NULL AFTER  `orderShippingPhone`;
+
+Done By Vipin Tomar On 09-10-2014
+ALTER TABLE `tbl_users` DROP `userAddDate` ,
+DROP `userModifyDate` ;
+
+ALTER TABLE `tbl_users` CHANGE `userDateOfBirth` `userDateOfBirth` DATETIME NOT NULL ,
+CHANGE `userDateAdded` `userDateAdded` DATETIME NOT NULL ,
+CHANGE `userDateModified` `userDateModified` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ;
+
+
+ALTER TABLE `tbl_users` CHANGE `userDateModified` `userDateModified` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+ALTER TABLE `tbl_reviews` ENGINE = InnoDB;
+ALTER TABLE `tbl_reviews` ADD INDEX ( `fkDealID` ) ;
+ALTER TABLE `tbl_reviews` ADD INDEX ( `fkUserID` ) ;
+ALTER TABLE `tbl_reviews` ADD FOREIGN KEY ( `fkUserID` ) REFERENCES `tbl_users` (
+`pkUserID`
+) ON DELETE CASCADE ;
+ALTER TABLE `tbl_deals` ENGINE = InnoDB;
+ALTER TABLE `tbl_reviews` ADD FOREIGN KEY ( `fkDealID` ) REFERENCES `tbl_deals` (
+`pkDealID`
+) ON DELETE CASCADE ;
+
+
+Done By Vipin Tomar On 08-10-2014
+CREATE TABLE `tbl_state` (
+`pkStateID` INT( 11 ) NOT NULL AUTO_INCREMENT ,
+`stateName` VARCHAR( 255 ) NOT NULL ,
+`fkCountryID` INT( 11 ) NOT NULL ,
+`stateStatus` ENUM( '0', '1', '2' ) NOT NULL COMMENT '0=>Inactive, 1=>Active,2=>Deleted',
+`stateDateAdded` DATETIME NOT NULL ,
+`stateDateModified` TIMESTAMP NOT NULL ,
+PRIMARY KEY ( `pkStateID` )
+) ENGINE = MYISAM ;
+
+CREATE TABLE `tbl_country` (
+`pkCountryID` INT( 11 ) NOT NULL AUTO_INCREMENT ,
+`countryName` VARCHAR( 255 ) NOT NULL ,
+`countryStatus` ENUM( '0', '1', '2' ) NOT NULL COMMENT '0=>Inactive,1=>active,2=>deleted',
+`countryDateAdded` DATETIME NOT NULL ,
+`countryDateModified` TIMESTAMP NOT NULL ,
+PRIMARY KEY ( `pkCountryID` )
+) ENGINE = MYISAM ;
+ALTER TABLE `tbl_state` ADD INDEX ( `fkCountryID` );
+ALTER TABLE `tbl_state` ENGINE = InnoDB;
+ALTER TABLE `tbl_country` ENGINE = InnoDB;
+ALTER TABLE `tbl_state` ADD FOREIGN KEY ( `fkCountryID` ) REFERENCES `tbl_country` (
+`pkCountryID`
+) ON DELETE CASCADE ;
+ALTER TABLE `tbl_cities` ENGINE = InnoDB;
+ALTER TABLE `tbl_cities` ADD `fkStateID` INT( 11 ) NOT NULL AFTER `cityName` ;
+ALTER TABLE `tbl_cities` ADD INDEX ( `fkStateID` ) ;
+ALTER TABLE `tbl_cities` ADD FOREIGN KEY ( `fkStateID` ) REFERENCES `tbl_state` (
+`pkStateID`
+) ON DELETE CASCADE ;
+
+
+Done by vipin tomar on 06-10-2014
+INSERT INTO `tbl_email_templates` (
+`pkEmailID` ,
+`emailTitle` ,
+`emailFromName` ,
+`emailFromEmail` ,
+`emailSubject` ,
+`emailContent` ,
+`emailDateAdded` ,
+`emailDateUpdated`
+)
+VALUES (
+'5', 'Customer Account Created By Admin', 'Admin', 'admin@admin.com', 'Your account created successfully.', 'Dear {to_name},<br /> Your account has been created successfully.<br /> Website Link: <a href=''{site_url}''>{site_url}</a><br/> Your login email address: {login_email}<br/> Your login password: {login_password}<br/> <br /> Regards<br /> Promosol', '2014-10-06 12:06:16',
+CURRENT_TIMESTAMP
+);
+ALTER TABLE `tbl_users` ADD `userDateAdded` DATETIME NOT NULL AFTER `userAccountActivationToken`;
+ALTER TABLE `tbl_users` CHANGE `userDateAdded` `userDateAdded` TIMESTAMP NOT NULL;
+ALTER TABLE `tbl_users` ADD `userDateModified` DATETIME NOT NULL AFTER `userDateAdded`;
+   
+Done By Vipin On 23-09-2014
+ALTER TABLE `tbl_reviews` CHANGE `reviewStatus` `reviewStatus` ENUM( '0', '1' ) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL COMMENT '0=>Approved, 1=>Unapproved';
+
+Done by Vipin Tomar on 22-09-2014
+ALTER TABLE `tbl_reviews` CHANGE `reviewStatus` `reviewStatus` ENUM( '0', '1', '2' ) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL COMMENT '0=>Approved, 1=>Unapproved, 2=>Deleted';
+ALTER TABLE `tbl_admin_access_log` ADD FOREIGN KEY ( `fkAdminID` ) REFERENCES `tbl_users_login` (
+`pkUserLoginID`
+) ON DELETE CASCADE ;
+
+
+ALTER TABLE `tbl_password_reset` ADD FOREIGN KEY ( `fkUserID` ) REFERENCES `tbl_users_login` (
+`pkUserLoginID`
+) ON DELETE CASCADE ;
+
+ALTER TABLE `tbl_users` ENGINE = InnoDB;
+
+ALTER TABLE `tbl_users` DROP `userPassword` ;
+
+
+
+Done By Vipin Tomar On 18-09-2014
+ALTER TABLE `tbl_reviews` ADD `nickname` VARCHAR( 255 ) NOT NULL AFTER `fkUserID`;
+ALTER TABLE `tbl_reviews` ADD `reviewSubject` VARCHAR( 255 ) NOT NULL AFTER `nickname`;
+
+Done By Vipin Tomar On 03-Sep-2014
+ALTER TABLE `tbl_categories` ADD `categorySlug` VARCHAR( 255 ) NOT NULL AFTER `categoryName`;
+ 
+Done By Vipin on 29 August 2014
+ALTER TABLE `tbl_cms` ADD `cmsIsPage` ENUM( '0', '1' ) NOT NULL AFTER `cmsBannerAvailable`;
+ 
+
+Done By Vipin on 28 August 2014
+ALTER TABLE `tbl_cms` ADD `cmsBannerAvailable` ENUM( '0', '1' ) NOT NULL COMMENT '''0''=>No, ''1''=>Yes' AFTER `cmsMetaDescription`;
+ALTER TABLE `tbl_cms` ADD `cmsContentAvailable` ENUM( '0', '1' ) NOT NULL COMMENT '''0''=>No, ''1''=>Yes' AFTER `cmsMetaDescription`;
+  
+Done by Vipin on 27 August 2014
+ALTER TABLE `tbl_configurations` ADD `configurationEmail` VARCHAR( 255 ) NOT NULL AFTER `configurationContact` ;
+ALTER TABLE `tbl_banner_slider` ADD `fkCmsID` INT( 11 ) NOT NULL AFTER `bannerOrder`;
+
+Done by Deepak on 26 August 2014.
+ALTER TABLE  `tbl_configurations` ADD  `configurationPageLimit` INT NOT NULL COMMENT  'Admin Paging Limit' AFTER  `configurationSocialLink6`;
+
+ALTER TABLE `tbl_categories` ADD `categoryImage` VARCHAR( 255 ) NOT NULL AFTER `categoryName` ;
+
+CREATE TABLE  `tbl_cities` (
+`pkCityID` INT NOT NULL AUTO_INCREMENT ,
+`cityName` VARCHAR( 255 ) NOT NULL ,
+`cityStatus` TINYINT( 1 ) NOT NULL ,
+`cityDateAdded` DATETIME NOT NULL ,
+`cityDateModified` DATETIME NOT NULL ,
+PRIMARY KEY (  `pkCityID` )
+) ENGINE = MYISAM ;
+
+INSERT INTO `tbl_cities` (`pkCityID`, `cityName`, `cityStatus`, `cityDateAdded`, `cityDateModified`) VALUES (NULL, 'Aba', '1', '2014-08-26 13:17:22', '2014-08-26 13:17:25');
+
+=====================================================================================================================================
+
+ALTER TABLE `tbl_deals` ADD `fkUserID` INT( 11 ) NOT NULL AFTER `dealName`;
+ALTER TABLE `tbl_deals` ADD `dealID` VARCHAR( 255 ) NOT NULL AFTER `dealName`;
+

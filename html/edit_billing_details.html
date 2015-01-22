@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<head>
+	<title>Deals Website</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" type="text/css" href="common/css/jquery.bxslider.css"/>
+	<link rel="stylesheet" type="text/css" href="common/css/css3.css"/>
+	<link rel="stylesheet" type="text/css" href="common/css/custom-select.css"/>
+	<link rel="stylesheet" type="text/css" href="common/css/owl.carousel.css"/>
+	<link rel="stylesheet" type="text/css" href="common/css/layout.css" media="all"/>
+	<link rel="stylesheet" type="text/css" href="common/css/css3.css" media="all"/>
+	<link rel="stylesheet" type="text/css" href="common/css/responsive.css" media="all"/>
+	<link rel="stylesheet" type="text/css" href="common/chosen/chosen.css"/>
+	<link rel="stylesheet" type="text/css" href="common/css/jquery.fancybox.css"/>
+	
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+	<script type="text/javascript" src="common/js/html5shiv.js"></script>
+	<script type="text/javascript" src="common/js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="common/js/custom-select.js"></script>
+	<script type="text/javascript" src="common/js/jquery.bxslider.min.js"></script>
+	<script type="text/javascript" src="common/js/owl.carousel.js"></script>
+	<script type="text/javascript" src="common/js/custom.js"></script>
+	<script type="text/javascript" src="common/chosen/chosen.jquery.js"></script>
+	<script type="text/javascript" src="common/js/jquery.fancybox.js"></script>
+	
+</head>
+<body>
+ <header class="header">
+        <div class="header_top">
+            <div class="layout">
+                <div class="top-menu">
+                    <ul>
+                        <li class="ico-hm"><a href="#">Home</a></li>
+                        <li class="ico-ac"><a href="#">My Account</a></li>
+                        <li class="ico-sh"><a href="#">Shopping Cart</a></li>
+                        <li class="ico-ch"><a href="#">Checkout</a></li>
+                        <li><select class="select-cat">
+                                <option value="1">A cappella</option>
+                                <option value="test">Acid Jazz</option>
+                                <option value="3">Big Band</option>
+                                <option value="4">Big Beat</option>
+                            </select></li>
+                        <li><a href="#" class="log-btn">Login</a></li>
+                        <li><a href="#" class="cre-btn">Create a account</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="header_midle">
+            <div class="layout">
+                <a href="#" class="logo"><img src="common/images/brand.png" alt=""></a>
+                <div class="search_sec">
+                    <input type="text" class="sea-inp"/>
+                    <input type="submit" value=""/>
+                </div>
+            </div>
+        </div>
+        <div class="mobile_menu"><a href="#">menu</a></div>
+        <div class="menu">
+            <div class="layout">
+                <ul>
+                    <li class="grn-lft"><a href="#">travel deals</a></li>
+                    <li><a href="#">Food Deals</a></li>
+                    <li><a href="#">Fashion Deals</a></li>
+                    <li><a href="#">Gadgets Deals</a></li>
+                    <li><a href="#">Home Deals</a></li>
+                    <li><a href="#">Featured Deals</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <div class="clear"></div>
+	<div class="breadcrumb">
+		<div class="layout">
+			<ul>
+				<li>
+					<a href="#">home</a>&raquo;
+				</li>
+				<li class="active">
+					edit billing details
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="body_container edit_details">
+		<div class="layout">
+			<div class="edit_billing_details">
+				<h3 class="head">Edit Billing Details</h3>
+
+				<div class="boxes">
+					<div class="requiredheading">
+						<h3><a href="#" class="texth">Billing Address</a><span class="req">* Required Fields</span></h3>
+
+					</div>
+					<div class="pdeatails_box">
+						<div class="simplebox">
+							<div class="fieldbox">
+								<label><span>*</span>Address Line 1</label>
+								<input type="text" value="1254 st, Brookhollw,  South Avenue" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;"  />
+
+							</div>
+							<div class="fieldbox">
+								<label><span>*</span>Address Line 1</label>
+								<input type="text" value="1254 st, Brookhollw,  South Avenue" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;"  />
+							</div>
+							<div class="fieldbox">
+								<label><span>*</span>Country</label>
+							
+							<div class="countryclass">
+								<select data-placeholder="Date" class="chosen-select" style="width:100%;" name="frmSdist" id="frmSdist">
+										<option value="">India</option>
+										<option value="">Iraq</option>
+										<option value="">Iran</option>
+										<option value="">Poland</option>
+										<option value="">Europe</option>
+										<option value="">India</option>
+										<option value="">Iraq</option>
+										
+									</select>
+								
+							</div>
+							</div>
+
+							<div class="fieldbox">
+								<label><span>*</span>Postal Code or Zip Code</label>
+								<input type="text" value="1254558" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;"  />
+							</div>
+							
+							<div class="fieldbox">
+								<label><span>*</span>Phone</label>
+								<input type="text" value="1254558" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;"  />
+							</div>
+							
+						</div>
+
+					</div>
+
+				</div>
+			
+
+				<div class="boxes">
+					<div class="requiredheading">
+						<h3><a href="#" class="texth">Shipping Address</a><span class="req">* Required Fields</span></h3>
+
+					</div>
+					<div class="pdeatails_box">
+						
+						<div class="simplebox">
+							<div class="fieldbox">
+							
+							<label class="samecheckbox"> <input type="checkbox" /> Same as billing address</label>
+							</div>	
+							
+						</div>
+						<div class="simplebox">
+							<div class="fieldbox">
+								<label><span>*</span>Address Line 1</label>
+								<input type="text" value="1254 st, Brookhollw,  South Avenue" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;"  />
+
+							</div>
+							<div class="fieldbox">
+								<label><span>*</span>Address Line 1</label>
+								<input type="text" value="1254 st, Brookhollw,  South Avenue" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;"  />
+							</div>
+							<div class="fieldbox">
+								<label><span>*</span>Country</label>
+							
+							<div class="countryclass">
+								<select data-placeholder="Date" class="chosen-select" style="width:100%;" name="frmSdist" id="frmSdist">
+										<option value="">India</option>
+										<option value="">Iraq</option>
+										<option value="">Iran</option>
+										<option value="">Poland</option>
+										<option value="">Europe</option>
+										<option value="">India</option>
+										<option value="">Iraq</option>
+										
+									</select>
+								
+							</div>
+							</div>
+
+							<div class="fieldbox">
+								<label><span>*</span>Postal Code or Zip Code</label>
+								<input type="text" value="1254558" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;"  />
+							</div>
+							
+							<div class="fieldbox">
+								<label><span>*</span>Phone</label>
+								<input type="text" value="1254558" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;"  />
+							</div>
+							
+						</div>
+
+					</div>
+
+				</div>
+			
+					<div class="simplebox">
+					<a class="nextbutton" href="#">Save</a>
+
+				</div>
+
+			</div>
+
+<ul>
+		<li><a class="fancybox" href="#inline1">Inline</a></li>
+	</ul>
+
+	<div id="inline1" style="width:400px;display: none;">
+		<h3>Etiam quis mi eu elit</h3>
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis mi eu elit tempor facilisis id et neque. Nulla sit amet sem sapien. Vestibulum imperdiet porta ante ac ornare. Nulla et lorem eu nibh adipiscing ultricies nec at lacus. Cras laoreet ultricies sem, at blandit mi eleifend aliquam. Nunc enim ipsum, vehicula non pretium varius, cursus ac tortor. Vivamus fringilla congue laoreet. Quisque ultrices sodales orci, quis rhoncus justo auctor in. Phasellus dui eros, bibendum eu feugiat ornare, faucibus eu mi. Nunc aliquet tempus sem, id aliquam diam varius ac. Maecenas nisl nunc, molestie vitae eleifend vel, iaculis sed magna. Aenean tempus lacus vitae orci posuere porttitor eget non felis. Donec lectus elit, aliquam nec eleifend sit amet, vestibulum sed nunc.
+		</p>
+	</div>
+
+		</div>
+	</div>
+	<div class="clear"></div>
+	<footer class="footer">
+		<div class="layout">
+			<div class="footer_top">
+				<div class="footer_col">
+					<h3>Information </h3>
+					<ul>
+						<li>
+							<a href="#">About Us</a>
+						</li>
+						<li>
+							<a href="#">Delivery Information</a>
+						</li>
+						<li>
+							<a href="#">Privacy Policy</a>
+						</li>
+						<li>
+							<a href="#">Terms & Conditions</a>
+						</li>
+						<li>
+							<a href="#">Sitemap</a>
+						</li>
+						<li>
+							<a href="#">Contact Us</a>
+						</li>
+					</ul>
+				</div>
+				<div class="footer_col">
+					<h3>Deals </h3>
+					<ul>
+						<li>
+							<a href="#">Travel</a>
+						</li>
+						<li>
+							<a href="#">Food</a>
+						</li>
+						<li>
+							<a href="#">Fashion</a>
+						</li>
+						<li>
+							<a href="#">Gadgets</a>
+						</li>
+						<li>
+							<a href="#">Home</a>
+						</li>
+						<li>
+							<a href="#">Featured</a>
+						</li>
+					</ul>
+				</div>
+				<div class="footer_col">
+					<h3>Payment Options </h3>
+					<ul>
+						<li>
+							<figure><img src="common/images/visa1.png" alt=""/>
+							</figure>
+							<figure><img src="common/images/visa2.png" alt=""/>
+							</figure>
+						</li>
+						<li>
+							<figure><img src="common/images/visa3.png" alt=""/>
+							</figure>
+							<figure><img src="common/images/visa4.png" alt=""/>
+							</figure>
+						</li>
+					</ul>
+				</div>
+				<div class="footer_col last">
+					<h3>About Awoofde</h3>
+					<ul>
+						<li>
+							Duis at nisl quis quam condimentum pulvinar. Quisque euismod convallis eros, quis lacinia enim rhoncus sed.
+						</li>
+						<li>
+							<span class="phone_icon">Phone: +01 888 (000) 1234</span>
+						</li>
+						<li>
+							<span class="email_icon"><a href="#">Email: awoofde@gmail.com</a></span>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="footer_bottom">
+			<div class="layout">
+				<p>
+					Copyright &#169; 2014 Promosol. All rights reserved.
+				</p>
+				<ul>
+					<li>
+						<a href="#"><img src="common/images/f_icon1.png" alt=""/></a>
+					</li>
+					<li>
+						<a href="#"><img src="common/images/f_icon2.png" alt=""/></a>
+					</li>
+					<li>
+						<a href="#"><img src="common/images/f_icon3.png" alt=""/></a>
+					</li>
+					<li>
+						<a href="#"><img src="common/images/f_icon4.png" alt=""/></a>
+					</li>
+					<li>
+						<a href="#"><img src="common/images/f_icon5.png" alt=""/></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</footer>
+	<script type="text/javascript">
+		var config = {
+			'.chosen-select' : {},
+			'.chosen-select-deselect' : {
+				allow_single_deselect : true
+			},
+			'.chosen-select-no-single' : {
+				disable_search_threshold : 0
+			},
+			'.chosen-select-no-results' : {
+				no_results_text : 'Oops, nothing found!'
+			},
+			'.chosen-select-width' : {
+				width : "95%"
+			}
+		}
+		for (var selector in config) {
+			$(selector).chosen(config[selector]);
+		};
+		
+		$('.fancybox').fancybox();
+		
+		
+	</script>
+	<div class="gotop"></div>
+</body>
+</html>
