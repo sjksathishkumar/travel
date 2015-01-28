@@ -37,8 +37,10 @@ class Configurations extends CActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('configurationContact,configurationEmail,configurationSocialLink1,configurationSocialLink2,configurationSocialLink3,configurationSocialLink4,configurationSocialLink5,configurationSocialLink6,configurationPageLimit,configurationDateModified', 'safe'),
-            array('configurationContact,configurationEmail,configurationSocialLink1,configurationSocialLink2,configurationSocialLink3,configurationSocialLink4,configurationSocialLink5,configurationSocialLink6,configurationPageLimit,configurationDateModified', 'required'),
+            array('configurationContact,configurationEmail,configurationSocialLink1,configurationSocialLink2,configurationSocialLink3,configurationSocialLink4,configurationSocialLink5,configurationSocialLink6,configurationPageLimit,configurationDateModified,logoAltTag,logoStatus,logoImage', 'safe'),
+            array('configurationContact,configurationEmail,configurationSocialLink1,configurationSocialLink2,configurationSocialLink3,configurationSocialLink4,configurationSocialLink5,configurationSocialLink6,configurationPageLimit,configurationDateModified,logoAltTag,logoStatus', 'required'),
+            array('logoImage', 'file', 'allowEmpty' => true, 'on' => 'update_logo'),
+            array('logoImage', 'EImageValidator', 'types' => "gif, jpg, png,jpeg", 'maxSize' => (2 * 1024 * 1024), 'width' => 117, 'height' => 138, 'allowEmpty' => true, 'on'=>'update_logo'),
             array('configurationEmail', 'email','message'=>"The email isn't correct"),
         );
     }
@@ -70,6 +72,9 @@ class Configurations extends CActiveRecord
             'configurationSocialLink5' => 'Pinterest Link',
             'configurationSocialLink6' => 'Skype Link',
             'configurationPageLimit' => 'Admin Record Limit',
+            'logoImage' => 'Logo Image',
+            'logoAltTag' => 'Logo Alt Tag',
+            'logoStatus' => 'Logo Status',
         );
     }
 

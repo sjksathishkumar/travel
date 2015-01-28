@@ -2,6 +2,7 @@
 // DATABASE TABLES DEFINED
 define('TABLE_USERS_LOGIN', 'tbl_users_login');
 define('TABLE_BANNERS', 'tbl_banner_slider');
+define('TABLE_MASCOTS', 'tbl_mascots');
 define('TABLE_CONFIGURATIONS', 'tbl_configurations');
 define('TABLE_CMS', 'tbl_cms');
 define('TABLE_EMAIL_TEMPLATES', 'tbl_email_templates');
@@ -20,4 +21,5 @@ define('TABLE_STATE','tbl_state');
 define('TABLE_ORDER','tbl_order');
 define('TABLE_ORDER_ITEM','tbl_order_item');
 define('TABLE_COUPONS','tbl_coupons');
+define('TABLE_FAQS', 'tbl_faqs');
 ?>

@@ -58,10 +58,22 @@ class ConfigurationsController extends Controller
 	public function actionIndex()
 	{
 		$model=$this->loadModel(1);
+		$model->scenario = 'update_logo';
 		if(isset($_POST['Configurations']))
 		{
 			$model->attributes=$_POST['Configurations'];
 			if($model->validate()){
+				if (isset($_FILES['Configurations'])) {
+						$oldFile = $model->logoImage; 
+						if(empty($_FILES['Configurations']['name']['logoImage'])){
+							$model->logoImage = $oldFile;
+						}
+						else
+						{
+							$model->logoImage=CUploadedFile::getInstance($model,'logoImage');
+							$model->logoImage->saveAs(LOGO_PATH.$model->logoImage);	
+						}
+				    }
 				if($model->save()){
 					Yii::app()->user->setFlash('editConfigurationSuccess',true);
 					$this->redirect(array('index'));

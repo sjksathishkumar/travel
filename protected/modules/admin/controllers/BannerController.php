@@ -64,6 +64,18 @@ class BannerController extends Controller
 	}
 
 	/**
+	 * Displays a particular model.
+	 * @param integer $id the ID of the model to be displayed
+	 */
+	public function actionViewMascot($id)
+	{
+		$this->render('viewmascot',array(
+			'model'=>$this->loadMascotModel($id),
+		));
+	}
+
+
+	/**
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
@@ -148,6 +160,36 @@ class BannerController extends Controller
 	}
 
 	/**
+	 * Updates a particular model.
+	 * If update is successful, the browser will be redirected to the 'view' page.
+	 * @param integer $id the ID of the model to be updated
+	 */
+	public function actionUpdateMascot($id)
+	{
+		$model=$this->loadMascotModel($id);
+		$model->scenario = 'update_mascot';
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
+		
+		if(isset($_POST['Mascots']))
+		{
+			$model->attributes=$_POST['Mascots'];
+			$model->mascotDateModified = date('Y-m-d H:i:s');
+			if($model->validate()){
+				$model->mascotImage=CUploadedFile::getInstance($model,'mascotImage');
+				if($model->save()){					
+					$model->mascotImage->saveAs(MASCOTS_PATH.$model->mascotImage);								
+					Yii::app()->user->setFlash('editMascotSuccess',true);
+					$this->redirect(array('index'));
+				}
+			}
+		}
+		$this->render('updatemascot',array(
+			'model'=>$model,'type'=>'edit'
+		));
+	}
+
+	/**
 	 * Deletes a particular model.
 	 * If deletion is successful, the browser will be redirected to the 'admin' page.
 	 * @param integer $id the ID of the model to be deleted
@@ -167,13 +209,14 @@ class BannerController extends Controller
 	public function actionIndex()
 	{
 		$model=new Banner('search');
-		$model->unsetAttributes();  // clear any default values
+		$mascot = new Mascots();
+		$model->unsetAttributes();  // clear any default array_values(input)
 		if(isset($_GET['Banner'])){			
 			$model->attributes=$_GET['Banner'];
 		}
 
 		$this->render('index',array(
-			'model'=>$model,
+			'model'=>$model, 'mascot'=>$mascot,
 		));
 	}
 	
@@ -187,6 +230,21 @@ class BannerController extends Controller
 	public function loadModel($id)
 	{
 		$model=Banner::model()->findByPk($id);
+		if($model===null)
+			throw new CHttpException(404,'The requested page does not exist.');
+		return $model;
+	}
+
+	/**
+	 * Returns the data model based on the primary key given in the GET variable.
+	 * If the data model is not found, an HTTP exception will be raised.
+	 * @param integer $id the ID of the model to be loaded
+	 * @return Banner the loaded model
+	 * @throws CHttpException
+	 */
+	public function loadMascotModel($id)
+	{
+		$model=Mascots::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;

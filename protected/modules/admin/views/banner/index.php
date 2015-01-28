@@ -5,20 +5,20 @@
 
 <div class="page-header">
 	<div class="pull-left">
-		<h1>Manage Banners</h1>
+		<h1>Manage Home Page</h1>
 	</div>
 </div>
 <div class="breadcrumbs">
 	<ul>
 		<li><?php echo CHtml::link('Home',array('/admin')); ?><i class="icon-angle-right"></i></li>
-		<li><?php echo CHtml::link('Banner Manager',array('#')); ?></li>
+		<li><?php echo CHtml::link('Manage Home Page',array('#')); ?></li>
 	</ul>
 	<div class="close-bread"><?php echo CHtml::link('<i class="icon-remove"></i>',array('#')); ?></div>
 </div>
 <!-- Setting up flash success/error message -->
 <div class="clear"></div>
 <div class="breadcrumbs" id="breadcrumbs-msg">
-	<?php  if( (Yii::app()->User->hasFlash('addBannerSuccess')) || (Yii::app()->User->hasFlash('editBannerSuccess')) || (Yii::app()->User->hasFlash('deleteBannerSuccess'))){ ?>
+	<?php  if( (Yii::app()->User->hasFlash('addBannerSuccess')) || (Yii::app()->User->hasFlash('editBannerSuccess')) || (Yii::app()->User->hasFlash('deleteBannerSuccess')) || (Yii::app()->User->hasFlash('editMascotSuccess'))){ ?>
 		<ul>
 			<?php
 				if(Yii::app()->User->getFlash('addBannerSuccess'))
@@ -27,6 +27,9 @@
 				}else if(Yii::app()->User->getFlash('editBannerSuccess'))
 				{
 					echo '<li><span class="readcrum_without_link_success">'.EDIT_BANNER_SUCCESS.'</li>';
+				}else if(Yii::app()->User->getFlash('editMascotSuccess'))
+				{
+					echo '<li><span class="readcrum_without_link_success">'.EDIT_MASCOT_SUCCESS.'</li>';
 				}else if(Yii::app()->User->getFlash('deleteBannerSuccess'))
 				{
 					echo '<li><span class="readcrum_without_link_success">'.DELETE_BANNER_SUCCESS.'</li>';
@@ -67,7 +70,7 @@
 	<div class="span12">
 		<div class="box box-color box-bordered">
 			<div class="box-title">
-				<h3><i class="icon-table"></i>Banners Summary</h3>
+				<h3><i class="icon-table"></i>Manage Banners</h3>
 			</div>
 			<div class="box-content nopadding">
 				<form action="" name='banners-grid-list-form' id='banners-grid-list-form'>					
@@ -161,6 +164,76 @@
 		</div>
 	</div>
 </div>
+
+<div class="row-fluid">
+	<div class="span12">
+		<div class="box box-color box-bordered">
+			<div class="box-title">
+				<h3><i class="icon-table"></i>Manage Mascots</h3>
+			</div>
+			<div class="box-content nopadding">
+				<form action="" name='mascots-grid-list-form' id='mascots-grid-list-form'>					
+					<?php $this->widget('zii.widgets.grid.CGridView', array(
+						'id'=>'mascots-grid',
+						'itemsCssClass' => 'table table-hover table-nomargin table-bordered', 
+						'dataProvider'=>$mascot->search(),
+						//'filter'=>$model,
+						
+						'columns'=>array(
+							array(
+								'header'=> 'Sr. No.',
+								'class'=>'IndexColumn',								
+								'htmlOptions'=>array('style'=>'text-align:center'),
+							),						
+							array('name'=>'mascotName',								
+								'htmlOptions'=>array('style'=>'text-align:center'),
+							),							
+							array('name'=>'mascotAltTag',								
+								'htmlOptions'=>array('style'=>'text-align:center'),
+							),
+							array('name'=>'mascotDateModified',								
+								'htmlOptions'=>array('style'=>'text-align:center'),
+							),
+							array('name'=>'mascotStatus',
+								'type' => 'raw',
+								'value'=>'CommonFunctions::statusFurmate($data->mascotStatus)',
+								'htmlOptions'=>array('style'=>'text-align:center'),
+							),
+							array(
+								'header'=>'Action',
+								'class'=>'CButtonColumn',
+								'htmlOptions'=>array('style'=>'width:10%;text-align:center;'),
+								'template'=>"{view}{update}",
+								'buttons' => array(
+									'update'=>array(
+										'label' => '<i class="icon-edit"></i>',
+										'url' => 'CController::createUrl("/admin/banner/updatemascot", array("id"=>$data->mascotID))',
+                                        'imageUrl' => false,
+                                        'options' => array(
+                                        'class' => 'edit btn',
+                                        'title' => 'Update',
+                                        ),
+									),
+									'view'=>array(
+										'label' => '<i class="icon-search"></i>',
+										'url' => 'CController::createUrl("/admin/banner/viewmascot", array("id"=>$data->mascotID))',
+                                        'imageUrl' => false,
+                                        'options' => array(
+                                        'class' => 'view btn',
+                                        'title' => 'View',
+                                        ),
+									),
+								),
+								'afterDelete'=>'function(link,success,data){if(success){fun_deleteMsg()}}',
+							),
+						),
+					));?>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
 <script type="text/javascript">
 	/**
 	*  For delete message

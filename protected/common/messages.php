@@ -20,8 +20,13 @@
         
         //ADMIN BANNER MANAGEMENT
         define('ADD_BANNER_SUCCESS', 'Banner added successfully.');
-        define('EDIT_BANNER_SUCCESS', 'Banner edited successfully.');
+        define('EDIT_BANNER_SUCCESS', 'Banner Updated successfully.');
         define('DELETE_BANNER_SUCCESS', 'Banner deleted successfully.');
+
+        //ADMIN MASCOT MANAGEMENT
+        define('ADD_MASCOT_SUCCESS', 'Mascot added successfully.');
+        define('EDIT_MASCOT_SUCCESS', 'Mascot Updated successfully.');
+        define('DELETE_MASCOT_SUCCESS', 'Mascot deleted successfully.');
         
         //ADMIN USER MANAGEMENT(Jobseekers)
         define('ADD_JOBSEEKER_SUCCESS', 'Jobseeker added successfully.');
@@ -99,4 +104,9 @@
         define('ADD_COUPON_SUCCESS','Coupon added successfully.');
         define('UPDATE_COUPON_SUCCESS','Coupon updated successfully.');
         define('DELETE_COUPON_SUCCESS','Coupon deleted successfully.');
+
+        //ADMIN FAQ MANAGEMENT
+        define('ADD_FAQ_SUCCESS', 'FAQ added successfully.');
+        define('EDIT_FAQ_SUCCESS', 'FAQ edited successfully.');
+        define('DELETE_FAQ_SUCCESS', 'FAQ deleted successfully.');
 ?>

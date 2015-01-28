@@ -19,9 +19,7 @@
  * @subpackage Transport
  * @author Chris Corbyn
  */
-class Swift_Transport_StreamBuffer
-  extends Swift_ByteStream_AbstractFilterableInputStream
-  implements Swift_Transport_IoBuffer
+class Swift_Transport_StreamBuffer extends Swift_ByteStream_AbstractFilterableInputStream implements Swift_Transport_IoBuffer
 {
   
   /** A primary socket */

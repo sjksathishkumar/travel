@@ -6,6 +6,8 @@
     */
     define('UPLOAD_FOLDER', DS.'uploads'.DS);
     define('BANNERS_FOLDER', 'banners'.DS);
+    define('MASCOTS_FOLDER', 'mascots'.DS);
+    define('LOGO_FOLDER', 'logo'.DS);
     define('DEAL_FOLDER', 'deals'.DS);
     define('DOCUMENTS_FOLDER', 'documents'.DS);
     define('COMPANY_LOGOS_FOLDER', 'company_logos'.DS);
@@ -18,7 +20,9 @@
     */
     
     define('UPLOAD_DIR_PATH', realpath(Yii::app()->basePath).UPLOAD_FOLDER);                                                    //Main Upload Directory Path
-    define('BANNERS_PATH', UPLOAD_DIR_PATH.BANNERS_FOLDER);     
+    define('BANNERS_PATH', UPLOAD_DIR_PATH.BANNERS_FOLDER);  
+    define('MASCOTS_PATH', UPLOAD_DIR_PATH.MASCOTS_FOLDER);     
+    define('LOGO_PATH', UPLOAD_DIR_PATH.LOGO_FOLDER);     
     define('DEAL_IMAGES_PATH', UPLOAD_DIR_PATH.DEAL_FOLDER);                                                                     //Banners Path
     define('DOCUMENTS_PATH', UPLOAD_DIR_PATH.DOCUMENTS_FOLDER);                                                                 //Candidates Documents Path
     define('COMPANY_LOGOS_PATH', UPLOAD_DIR_PATH.COMPANY_LOGOS_FOLDER);                                                         //Company Logos Path

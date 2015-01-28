@@ -8,8 +8,7 @@
 		<div class="box box-color box-bordered">
 			<div class="box-title">
 				<h3>
-					<i class="icon-table"></i>
-					<?php if(isset($type)):?>Edit Banner<?php else:?>Add New Banner<?php endif;?>
+					<i class="icon-table"></i><?php if(isset($type)):?>Edit Banner<?php else:?>Add New Banner<?php endif;?>
 				</h3>
 			</div>
 			<div class="box-content nopadding">
