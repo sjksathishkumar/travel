@@ -75,7 +75,7 @@ class EmailTemplateController extends Controller
 		if(isset($_POST['EmailTemplate']))
 		{
 			$model->attributes=$_POST['EmailTemplate'];
-			$model->emailDateAdded = date('Y-m-d H:i:s');
+			$model->emailDateUpdated = date('Y-m-d H:i:s');
 			if($model->validate()){
 				$model->save();
 				Yii::app()->user->setFlash('updateEmailTemplateSuccess',true);

@@ -22,4 +22,5 @@ define('TABLE_ORDER','tbl_order');
 define('TABLE_ORDER_ITEM','tbl_order_item');
 define('TABLE_COUPONS','tbl_coupons');
 define('TABLE_FAQS', 'tbl_faqs');
+define('TABLE_FAQS_CATEGORIES', 'tbl_faqs_categories');
 ?>

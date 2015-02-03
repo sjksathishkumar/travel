@@ -6,7 +6,7 @@ class FaqsCategoriesController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='main';
+	public $layout='../layouts/main';
 	public $varAction='settings';		//variable to make menu as active in layout
 
 	/**
@@ -45,7 +45,7 @@ class FaqsCategoriesController extends Controller
 				'actions'=>array('admin','delete'),
 				'users'=>array('admin'),
 			),
-			array('deny',  // deny all users
+			array('allow',  // deny all users
 				'users'=>array('*'),
 			),
 		);
@@ -57,8 +57,11 @@ class FaqsCategoriesController extends Controller
 	 */
 	public function actionView($id)
 	{
+		$model = $this->loadModel($id);
+		$model->faqCategoryStatus = CommonFunctions::statusName($model->faqCategoryStatus);
+		$model->faqCategoryIsMount = CommonFunctions::statusName($model->faqCategoryIsMount);
 		$this->render('view',array(
-			'model'=>$this->loadModel($id),
+			'model'=>$model,
 		));
 	}
 
@@ -76,8 +79,11 @@ class FaqsCategoriesController extends Controller
 		if(isset($_POST['FaqsCategories']))
 		{
 			$model->attributes=$_POST['FaqsCategories'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->pkCategoryID));
+			$model->faqCategoryDateAdded = date('Y-m-d H:i:s');
+			if($model->save()){
+				Yii::app()->user->setFlash('addCategorySuccess',true);
+				$this->redirect(array('index'));
+			}
 		}
 
 		$this->render('create',array(
@@ -100,8 +106,10 @@ class FaqsCategoriesController extends Controller
 		if(isset($_POST['FaqsCategories']))
 		{
 			$model->attributes=$_POST['FaqsCategories'];
+			$model->faqCategoryDateModified = date('Y-m-d H:i:s');
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->pkCategoryID));
+				Yii::app()->user->setFlash('updateCategorySuccess',true);
+				$this->redirect(array('index'));
 		}
 
 		$this->render('update',array(
@@ -116,8 +124,17 @@ class FaqsCategoriesController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
-
+		$model=FaqsCategories::model()->findByPk($id);
+				
+				if($model->faqCategoryIsMount == '1')
+				{
+				    throw new CHttpException(400, "Category is Mounted to Questions. So Can't Delete now.");
+				}
+				else
+				{	
+					$model->delete();
+				}
+		
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
@@ -128,10 +145,20 @@ class FaqsCategoriesController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('FaqsCategories');
+		$model=new FaqsCategories('search');
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['FaqsCategories'])){
+			$model->attributes=$_GET['FaqsCategories'];
+			//$modelOther->attributes=$_GET['Cms'];
+		}
+		$this->render('index',array(
+			'model'=>$model,
+		));
+
+		/*$dataProvider=new CActiveDataProvider('FaqsCategories');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
-		));
+		));*/
 	}
 
 	/**
@@ -174,6 +201,42 @@ class FaqsCategoriesController extends Controller
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
+		}
+	}
+
+	/**
+	 * Performs the Group Action change.
+	 */
+
+	public function actionChangeStatus(){
+		if(isset($_POST['faqCategoryStatus']) && $_POST['faqCategoryStatus']==1){
+			$row = FaqsCategories::model()->updateByPk($_POST['faq-category-grid_c1'], array('faqCategoryStatus' =>1,'faqCategoryDateModified'=>date('Y-m-d H:i:s')));
+			echo "activated";
+		}else if(isset($_POST['faqCategoryStatus']) && $_POST['faqCategoryStatus']==0){
+			$row = FaqsCategories::model()->updateByPk($_POST['faq-category-grid_c1'], array('faqCategoryStatus' =>0,'faqCategoryDateModified'=>date('Y-m-d H:i:s')));
+			echo "inactivated";
+		}else if(isset($_POST['faqCategoryStatus']) && $_POST['faqCategoryStatus']==2){
+			$faqID = $_POST['faq-category-grid_c1']; 
+			static $error = 'false';
+			foreach ($faqID as $id ) {
+				$model=FaqsCategories::model()->findByPk($id);
+				
+				if($model->faqCategoryIsMount == '1')
+				{
+				    $error = 'true';
+				}
+				else
+				{	
+					$row = FaqsCategories::model()->deleteByPk($id);
+				}
+			}
+			if($error == 'true'){
+				echo "error";
+			}
+			else{
+
+				echo "Deleted";
+			}
 		}
 	}
 }

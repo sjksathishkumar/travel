@@ -1,4 +1,5 @@
 <?php
+
         //ADMIN INVALID LOGIN
         define('INVALID_LOGIN_ERROR', 'Oh! Did you really think that? Please login.');
 
@@ -6,7 +7,7 @@
         define('RECOVERY_PASS_ERROR', 'Email Address does not exist.');
         define('RECOVERY_PASS_SUCCESS', 'We have just sent an email with reset password link. Please check your email.');
         define('RESET_PASS_ERROR', "Error : Please contact Admin to reset your password.");
-        define('RESET_PASS_SUCCESS', 'Your password has been changed successfully. <span class="msgLink"><a href="'.Yii::app()->params['siteURL'].'/Travelogini/admin"><strong>LOGIN</strong></a></span> here.');
+        define('RESET_PASS_SUCCESS', 'Your password has been changed successfully.');
         
         //ADMIN EDIT PROFILE MESSAGES
         define('EDIT_PROFILE_SUCCESS', 'Your profile has been updated successfully.');
@@ -109,4 +110,9 @@
         define('ADD_FAQ_SUCCESS', 'FAQ added successfully.');
         define('EDIT_FAQ_SUCCESS', 'FAQ edited successfully.');
         define('DELETE_FAQ_SUCCESS', 'FAQ deleted successfully.');
+
+        //ADMIN FAQ CATEGORY MANAGEMENT
+        define('ADD_FAQ_CATEGORY_SUCCESS', 'FAQ Category added successfully.');
+        define('EDIT_FAQ_CATEGORY_SUCCESS', 'FAQ Category edited successfully.');
+        define('DELETE_FAQ_CATEGORY_SUCCESS', 'FAQ Category deleted successfully.');
 ?>

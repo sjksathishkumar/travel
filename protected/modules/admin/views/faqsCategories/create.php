@@ -1,18 +1,26 @@
 <?php
-/* @var $this FaqsCategoriesController */
-/* @var $model FaqsCategories */
-
-$this->breadcrumbs=array(
-	'Faqs Categories'=>array('index'),
-	'Create',
-);
-
-$this->menu=array(
-	array('label'=>'List FaqsCategories', 'url'=>array('index')),
-	array('label'=>'Manage FaqsCategories', 'url'=>array('admin')),
-);
+/* @var $this BannerController */
+/* @var $model Banner */
 ?>
-
-<h1>Create FaqsCategories</h1>
-
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<div class="page-header">
+	<div class="pull-left">
+	    <h1>Add New Category</h1>
+	</div>
+</div>
+<div class="breadcrumbs">
+	<ul>
+            <li><?php echo CHtml::link('Home',array('/admin')); ?><i class="icon-angle-right"></i></li>
+            <li><?php echo CHtml::link('FAQ Categories',array('faqsCategories/index')); ?><i class="icon-angle-right"></i></li>
+            <li><a href="#">Add Category</a></li>
+	</ul>
+	<div class="close-bread">
+	    <?php echo CHtml::link('<i class="icon-remove"></i>',array('#')); ?>
+	</div>
+</div>
+<div class="row-fluid">
+	<div class="span12">
+            <div class="box box box-color box-bordered">
+                <?php $this->renderPartial('_form', array('model'=>$model)); ?>
+            </div>
+	</div>
+</div>

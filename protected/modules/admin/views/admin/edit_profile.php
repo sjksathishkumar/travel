@@ -22,9 +22,6 @@
                 }else if(Yii::app()->User->getFlash('editProfileError'))
                 {
                     echo '<li><span class="readcrum_without_link_error">'.EDIT_PROFILE_ERROR.'</li>';
-                }else if(Yii::app()->User->getFlash('editProfileEmailError'))
-                {
-                    echo '<li><span class="readcrum_without_link_error">'.EMAIL_EXIST_ERROR.'</li>';
                 }
           ?>						
       </ul>

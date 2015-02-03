@@ -6,7 +6,7 @@
         'htmlOptions' => array('class' => 'form-validate', 'style' => 'padding-bottom:20px;',)));
     if (Yii::app()->User->hasFlash('successMessage'))
     {
-        echo '<div class="successMessage">' . RESET_PASS_SUCCESS . '</div>';
+        echo '<div class="successMessage">' . RESET_PASS_SUCCESS . '<br><span class="msgLink"><a href="'.Yii::app()->request->baseUrl.'/admin"><strong>LOGIN</strong></a></span> here.</div>';       
     }
     else if (Yii::app()->User->hasFlash('errorMessage'))
     {

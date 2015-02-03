@@ -217,7 +217,7 @@
                                     <?php echo CHtml::link('Membership Plan',array('/admin/emailTemplate'), array()); ?>
                                 </li>
                                 <li>
-                                    <?php echo CHtml::link('FAQ\'s',array('/admin/emailTemplate'), array()); ?>
+                                    <?php echo CHtml::link('FAQ\'s',array('/admin/faqs/index'), array()); ?>
                                 </li>
                                 <li>
                                     <?php echo CHtml::link('Manage Gift Cards',array('/admin/emailTemplate'), array()); ?>

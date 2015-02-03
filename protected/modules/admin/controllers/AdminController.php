@@ -207,9 +207,9 @@ class AdminController extends Controller
 		if(isset($_POST['Admin'])){
 			$model->attributes = $_POST['Admin'];
 			$validate = $model->validate();
-			$arrExistEmail = Admin::model()->findAll(array('condition'=>'userEmail=:userEmail AND pkUserLoginID<>:userID', 
-			'params'=>array(':userEmail'=>trim($_POST['Admin']['userEmail']), ':userID'=>$model->pkUserLoginID)));
-			if(count($arrExistEmail) == 0){
+			//$arrExistEmail = Admin::model()->findAll(array('condition'=>'userEmail=:userEmail AND pkUserLoginID<>:userID', 
+			//'params'=>array(':userEmail'=>trim($_POST['Admin']['userEmail']), ':userID'=>$model->pkUserLoginID)));
+			//if(count($arrExistEmail) == 0){
 				if($_POST['Admin']['userPassword'] != '' || $_POST['Admin']['retype_password'] != '')
 				{
 					if(strcmp($_POST['Admin']['userPassword'],$_POST['Admin']['retype_password']) == 0){
@@ -224,7 +224,7 @@ class AdminController extends Controller
 				}
 				if($validate && $validate1){
 					$model->userDateModified=date('Y-m-d h:i:s');
-					$model->userEmail=trim($_POST['Admin']['userEmail']);
+					//$model->userEmail=trim($_POST['Admin']['userEmail']);
 					if($model->save()){
 						Yii::app()->user->setFlash('editProfileSuccess',true);
 					}else{
@@ -233,9 +233,9 @@ class AdminController extends Controller
 				}else{
 					Yii::app()->user->setFlash('editProfileError',true);
 				}
-			}else if(count($arrExistEmail) > 0){
+			/*}else if(count($arrExistEmail) > 0){
 				Yii::app()->user->setFlash('editProfileEmailError',true);
-			}
+			}*/
 		}
 		$this->render('edit_profile',array('model'=>$model));
 	}

@@ -28,6 +28,12 @@ function toggleSubCheckboxes(ID)
 		$('div.mod'+ID+'_attr').find('input[type="checkbox"]').prop('checked', false);
 	}
 }
+
+function deletFile()
+{
+    $('#delete-file').attr("value", "");
+    
+}
 $(document).ready(function(){
     $('#resetVal').click(function(){
         $('.select2-me').select2('val','');

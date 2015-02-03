@@ -8,7 +8,7 @@
  * @property string $faqQuestion
  * @property string $faqAnswer
  * @property integer $faqDisplayOrder
- * @property integer $fkTopicID
+ * @property integer $fkCategoryID
  * @property string $faqStatus
  * @property string $faqDateAdded
  * @property string $faqDateModified
@@ -20,7 +20,7 @@ class Faqs extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'tbl_faqs';
+		return TABLE_FAQS;
 	}
 
 	/**
@@ -31,12 +31,16 @@ class Faqs extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('faqQuestion, faqAnswer, faqDisplayOrder, fkTopicID, faqStatus, faqDateAdded, faqDateModified', 'required'),
-			array('faqDisplayOrder, fkTopicID', 'numerical', 'integerOnly'=>true),
+			array('faqQuestion, faqAnswer, faqDisplayOrder, fkCategoryID, faqDateAdded', 'required', 'on'=>'add_faq' ),
+			array('faqQuestion, faqAnswer, faqDisplayOrder, fkCategoryID', 'required', 'on'=>'update_faq' ),
+			array('faqDisplayOrder, fkCategoryID', 'numerical', 'integerOnly'=>true),
 			array('faqStatus', 'length', 'max'=>1),
+			array('faqAttachment', 'file', 'allowEmpty' => true, 'on' => 'add_faq,update_faq'),
+			array('faqAttachment', 'EImageValidator', 'types' => "gif, jpg, png,jpeg, pdf, doc, docx",'allowEmpty' => true, 'on'=>'add_faq,update_faq'),
+
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('pkFaqID, faqQuestion, faqAnswer, faqDisplayOrder, fkTopicID, faqStatus, faqDateAdded, faqDateModified', 'safe', 'on'=>'search'),
+			array('pkFaqID, faqQuestion, faqAnswer, faqDisplayOrder, fkCategoryID, faqStatus, faqAttachment, faqHelpTopics, faqDateAdded, faqDateModified', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -58,13 +62,15 @@ class Faqs extends CActiveRecord
 	{
 		return array(
 			'pkFaqID' => 'Pk Faq',
-			'faqQuestion' => 'Faq Question',
-			'faqAnswer' => 'Faq Answer',
-			'faqDisplayOrder' => 'Faq Display Order',
-			'fkTopicID' => 'Fk Topic',
-			'faqStatus' => 'Faq Status',
-			'faqDateAdded' => 'Faq Date Added',
-			'faqDateModified' => 'Faq Date Modified',
+			'faqQuestion' => 'Question',
+			'faqAnswer' => 'Answer',
+			'faqDisplayOrder' => 'Display Order',
+			'fkCategoryID' => 'Category',
+			'faqStatus' => 'Status',
+			'faqAttachment' => 'Attachment',
+			'faqHelpTopics' => 'Help Topics',
+			'faqDateAdded' => 'Added',
+			'faqDateModified' => 'Modified',
 		);
 	}
 
@@ -90,13 +96,23 @@ class Faqs extends CActiveRecord
 		$criteria->compare('faqQuestion',$this->faqQuestion,true);
 		$criteria->compare('faqAnswer',$this->faqAnswer,true);
 		$criteria->compare('faqDisplayOrder',$this->faqDisplayOrder);
-		$criteria->compare('fkTopicID',$this->fkTopicID);
+		$criteria->compare('fkCategoryID',$this->fkCategoryID);
+		$criteria->compare('faqAttachment',$this->faqAttachment);
+		$criteria->compare('faqHelpTopics',$this->faqHelpTopics);
 		$criteria->compare('faqStatus',$this->faqStatus,true);
 		$criteria->compare('faqDateAdded',$this->faqDateAdded,true);
 		$criteria->compare('faqDateModified',$this->faqDateModified,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+			'sort' => array(
+			    'defaultOrder' => array(
+			        'cmsDateAdded' => true,
+			    ),
+			),
+			'pagination' => array(
+			    'pageSize' => UtilityHtml::pageSettings(),
+			),
 		));
 	}
 
@@ -110,4 +126,6 @@ class Faqs extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+
 }

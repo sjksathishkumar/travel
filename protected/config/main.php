@@ -24,7 +24,17 @@ elseif ($_SERVER['HTTP_HOST'] == 'dev.iworklab.com')
     $varSiteUrl = "http://dev.iworklab.com/Travelogini/";
     $varUploadFilesUrl = $varSiteUrl . "uploads/";
 }
-
+else
+{
+    $arrConfig['dbHost'] = 'localhost';
+    $arrConfig['dbName'] = 'travelogini';
+    $arrConfig['dbUser'] = 'sandbox';
+    $arrConfig['dbPass'] = 'vinove';
+    $varSiteTitle = "Travelogini";
+    $varAdminEmail = 'sathish.kumar1@mail.vinove.com';
+    $varSiteUrl = "http://i.vinove.com/travelogini/";
+    $varUploadFilesUrl = $varSiteUrl . "uploads/";
+}
 
 
 // uncomment the following to define a path alias

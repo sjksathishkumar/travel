@@ -13,6 +13,14 @@
 	<?php echo CHtml::encode($data->faqCategoryName); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('faqCategoryStatus')); ?>:</b>
+	<?php echo CHtml::encode($data->faqCategoryStatus); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('faqCategoryIsMount')); ?>:</b>
+	<?php echo CHtml::encode($data->faqCategoryIsMount); ?>
+	<br />
+
 	<b><?php echo CHtml::encode($data->getAttributeLabel('faqCategoryDateAdded')); ?>:</b>
 	<?php echo CHtml::encode($data->faqCategoryDateAdded); ?>
 	<br />

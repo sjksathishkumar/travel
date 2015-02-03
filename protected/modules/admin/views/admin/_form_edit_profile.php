@@ -30,16 +30,6 @@
 				 
 			      </div>
 		     </div>
-		   
-		     <div class="control-group">
-			  <?php echo $form->labelEx($model,'userEmail',array('class'=>'control-label','for'=>'textfield')); ?>
-			      <div class="email controls">
-				  <?php echo $form->textField($model,'userEmail',array('class'=>'input-xlarge','data-rule-required'=>'true','data-rule-email'=>'true')); ?>	
-				 
-			      </div>
-		     </div>
-                    
-		     <div class="note"><strong>Note :</strong> <span class="required">*</span> Indicates mandatory fields.</div>
 		     <div class="form-actions">  
 			  <?php echo CHtml::submitButton('Submit',array('class'=>'btn btn-primary','title'=>'Submit','alt'=>'Submit')); ?>
 			  <?php echo CHtml::link('Cancel',array('admin/'),array('class'=>'btn','title'=>'Cancel','alt'=>'Cancel')); ?>  

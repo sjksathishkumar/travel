@@ -19,7 +19,7 @@ class FaqsCategories extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'tbl_faqs_categories';
+		return TABLE_FAQS_CATEGORIES;
 	}
 
 	/**
@@ -30,11 +30,11 @@ class FaqsCategories extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('faqCategoryName, faqCategoryDateAdded, faqCategoryDateModified', 'required'),
+			array('faqCategoryName,faqCategoryStatus,faqCategoryIsMount', 'required'),
 			array('faqCategoryName', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('pkCategoryID, faqCategoryName, faqCategoryDateAdded, faqCategoryDateModified', 'safe', 'on'=>'search'),
+			array('pkCategoryID, faqCategoryName, faqCategoryStatus, faqCategoryDateAdded, faqCategoryDateModified', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -46,7 +46,7 @@ class FaqsCategories extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'tblFaqsTopics' => array(self::HAS_MANY, 'TblFaqsTopics', 'fkCategoryID'),
+			//'tblFaqsTopics' => array(self::HAS_MANY, 'TblFaqsTopics', 'fkCategoryID'),
 		);
 	}
 
@@ -57,9 +57,11 @@ class FaqsCategories extends CActiveRecord
 	{
 		return array(
 			'pkCategoryID' => 'Pk Category',
-			'faqCategoryName' => 'Faq Category Name',
+			'faqCategoryName' => 'Category Name',
+			'faqCategoryStatus' => 'Status',
+			'faqCategoryIsMount' => 'Mount',
 			'faqCategoryDateAdded' => 'Faq Category Date Added',
-			'faqCategoryDateModified' => 'Faq Category Date Modified',
+			'faqCategoryDateModified' => 'Date Modified',
 		);
 	}
 
@@ -83,11 +85,21 @@ class FaqsCategories extends CActiveRecord
 
 		$criteria->compare('pkCategoryID',$this->pkCategoryID);
 		$criteria->compare('faqCategoryName',$this->faqCategoryName,true);
+		$criteria->compare('faqCategoryStatus',$this->faqCategoryStatus,true);
+		$criteria->compare('faqCategoryIsMount',$this->faqCategoryIsMount,true);
 		$criteria->compare('faqCategoryDateAdded',$this->faqCategoryDateAdded,true);
 		$criteria->compare('faqCategoryDateModified',$this->faqCategoryDateModified,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+			'sort' => array(
+			    'defaultOrder' => array(
+			        'cmsDateAdded' => true,
+			    ),
+			),
+			'pagination' => array(
+			    'pageSize' => UtilityHtml::pageSettings(),
+			),
 		));
 	}
 
@@ -101,4 +113,21 @@ class FaqsCategories extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	/** 
+	    *   get Category Name 
+		*   @param int $id.
+	**/
+    public function getCategoryName($id) 
+    {
+            $categoryName= Yii::app()->db->createCommand()
+                    ->select('faqCategoryName')
+                    ->where('pkCategoryID=:pkCategoryID', array(':pkCategoryID' => $id))
+                   
+                    ->from(TABLE_FAQS_CATEGORIES)
+                    ->queryAll();
+        
+        return $categoryName['0']['faqCategoryName'];;
+    }
+
 }
