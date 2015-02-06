@@ -47,7 +47,25 @@
 						<div class="controls">
 							<?php echo $form->dropDownList($model, 'fkCategoryID',CHtml::listData(FaqsCategories::model()->findAll(array("condition"=>"faqCategoryStatus =  1")), 'pkCategoryID', 'faqCategoryName'), array('empty'=>'- Select State -', 'data-rule-required' => 'true', 'class' => 'input-xlarge select2-me')); ?>			
 						</div>
-						
+						<?php  
+
+							$config = array();
+							$this->widget('application.extensions.fancybox.EFancyBox', array('target'=>'#getaction','config'=>$config));
+							echo CHtml::link('Create Category',array('faqs/addAjaxCategory'),array('id'=>'getaction'));
+							//$this->widget('application.extensions.fancybox.EFancyBox', array());
+
+						//echo CHtml::ajaxLink('Create Category',Yii::app()->createUrl('fancy'),array('type'=>'POST', 'update'=>'#preview', 'complete'=>'afterAjax'));
+
+						 ?>
+						<?
+						//add FancyBox files, either use widget or do manually.
+						//have used widget for ease of explanation.  Manually would be a 'lighter' approach
+						//$this->widget('application.modules.admin.extensions.fancybox.EFancyBox', array());
+						 
+						//create an ajax link which will call fancybox AFTER the ajax call completes
+						//echo CHtml::ajaxLink('NameOfLink',Yii::app()->createUrl('fancy'),
+						     //array('type'=>'POST', 'update'=>'#preview', 'complete'=>'afterAjax'));
+						?>
 					</div>
 					<div class="control-group">
 						<?php echo $form->labelEx($model,'faqDisplayOrder',array('class'=>'control-label','for'=>'textfield')); ?>

@@ -261,4 +261,92 @@ class FaqsController extends Controller
 		}
 		return implode("||",$topic);;
 	}
+
+	public function actionaddAjaxCategory(){
+		
+		//echo "Test"; die();
+		$model=new FaqsCategories;
+
+		// Uncomment the following line if AJAX validation is needed
+		 $this->performAjaxValidation($model);
+				
+			/*if(isset($_POST['ajax']) && $_POST['ajax']==='ajax-faqs-categories-add')
+	        {
+	                echo CActiveForm::validate($model);
+	                Yii::app()->end();
+	        }*/
+
+	        if (isset($_POST['ajax']) && $_POST['ajax'] === 'ajax-faqs-categories-add') {
+	            echo "<pre>";
+	            print_r($_POST['ajax']); die();
+	            echo CActiveForm::validate($model);
+	            Yii::app()->end();
+	        }
+
+			if(isset($_POST['FaqsCategories']))
+			{
+				$model->attributes=$_POST['FaqsCategories'];
+				$model->faqCategoryDateAdded = date('Y-m-d H:i:s');
+				/*echo "<pre>";
+				print_r($model->attributes); die();*/
+				//if($model->validate()){
+					if($model->save()){
+						//Yii::app()->user->setFlash('addCategorySuccess',true);
+						$this->redirect(array('faqs/create'));
+					}
+				//}
+				/*else
+				{*/
+					//echo "Validation faild"; die();
+					//$output = $this->renderPartial('_ajax_form', array(), true,true)
+					// you need set layout to false for render only your form
+					//Yii::app()->clientScript->render($output);
+					// where you need remove jquery for prevent double initiation's jquery script
+					// it's not worked example!!!
+					//preg_replace('@<script type="text/javascript" src="jquery.js"></script>@mi', '', $output);
+					// well, we may output
+					//echo $output;
+					// $this->renderPartial('_ajax_form',array('model'=>$model),false,true);
+				/*	if(Yii::app()->request->getIsAjaxRequest()){
+		          		 $this->renderPartial('_ajax_form',array('model'=>$model),false,true);
+		          	}
+				}*/
+			}
+			if(Yii::app()->request->getIsAjaxRequest()){
+				/*$cs = Yii::app()->clientScript;
+		        $cs->reset();
+		        $cs->scriptMap = array(
+		            'jquery.js' => false, // prevent produce jquery.js in additional javascript data
+		            'jquery.min.js' => false,
+		        );*/
+				//echo "ajax call"; die();
+          		 echo $this->renderPartial('_ajax_form',array('model'=>$model),false,true);
+          	}
+          	else{
+          		//echo "normal form"; die();
+          		/*$cs = Yii::app()->clientScript;
+		        $cs->reset();
+		        $cs->scriptMap = array(
+		            'jquery.js' => false, // prevent produce jquery.js in additional javascript data
+		            'jquery.min.js' => false,
+		        );
+*/
+          		$this->render('_ajax_form',array('model'=>$model));
+             }
+          	/*else{d
+          		echo "ajaxcall";
+          		die();
+          		//Yii::app()->clientScript->scriptMap['*.js'] = false;
+        		$this->render('_ajax_form',array('model'=>$model),false,true);
+
+				//$output = $this->renderPartial('_ajax_form', array('model'=>$model), true)
+				// you need set layout to false for render only your form
+				//Yii::app()->clientScript->render($output);
+				// where you need remove jquery for prevent double initiation's jquery script
+				// it's not worked example!!!
+				//preg_replace('@<script type="text/javascript" src="jquery.js"></script>@mi', '', $output);
+				// well, we may output
+				//echo $output;
+          	}*/
+	}
 }
