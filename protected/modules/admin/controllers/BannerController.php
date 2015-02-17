@@ -91,13 +91,11 @@ class BannerController extends Controller
 			$model->attributes=$_POST['Banner'];
 			$model->bannerDateAdded = date('Y-m-d H:i:s');
 			$model->bannerDateModified = date('Y-m-d H:i:s');
-			if($model->fkCmsID=='1'){
-				$model->scenario = 'slider_banner_add';
-			}else{
-				$model->scenario = 'other_banner_add';
-			}
-			$model->bannerImage=CUploadedFile::getInstance($model,'bannerImage');
+			$model->scenario = 'slider_banner_add';
+			
+			$_FILES['Banner']['name']['bannerImage']=CommonFunctions::addFileTimeStamp($_FILES['Banner']['name']['bannerImage']);
 			if($model->validate()){
+			$model->bannerImage=CUploadedFile::getInstance($model,'bannerImage');
 				if($model->save()){
 					$model->bannerImage->saveAs(BANNERS_PATH.$model->bannerImage);
 					Yii::app()->user->setFlash('addBannerSuccess',true);
@@ -118,8 +116,6 @@ class BannerController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
-		//echo $id;
-		//die;
 		$model=$this->loadModel($id);		
 		$model->scenario = 'update_banner';
 		// Uncomment the following line if AJAX validation is needed
@@ -128,18 +124,16 @@ class BannerController extends Controller
 		{			
 			$model->attributes=$_POST['Banner'];
 			$model->bannerDateModified = date('Y-m-d H:i:s');	
-			if($model->fkCmsID=='1'){
-				$model->scenario = 'slider_banner_update';
-			}else{
-				$model->scenario = 'other_banner_update';
-			}
-					
+			$model->scenario = 'slider_banner_update';
 			
-			if($_FILES['Banner']['name']['bannerImage']){			
+			$oldFile = Yii::app()->basePath.'/../'.UPLOAD_FOLDER.BANNERS_FOLDER. $model->bannerImage;
+			if($_FILES['Banner']['name']['bannerImage']){
+				$_FILES['Banner']['name']['bannerImage']=CommonFunctions::addFileTimeStamp($_FILES['Banner']['name']['bannerImage']);			
 				if($model->validate()){
 					$model->bannerImage=CUploadedFile::getInstance($model,'bannerImage');
 					if($model->save()){					
-						$model->bannerImage->saveAs(BANNERS_PATH.$model->bannerImage);								
+						$model->bannerImage->saveAs(BANNERS_PATH.$model->bannerImage);	
+						unlink($oldFile);							
 						Yii::app()->user->setFlash('editBannerSuccess',true);
 						$this->redirect(array('index'));
 					}
@@ -167,20 +161,40 @@ class BannerController extends Controller
 	public function actionUpdateMascot($id)
 	{
 		$model=$this->loadMascotModel($id);
-		$model->scenario = 'update_mascot';
+		if($model->attributes['mascotID'] == '5')
+		{
+			$model->scenario = 'update_mascot_wishgini';
+		}
+		else{
+			$model->scenario = 'update_mascot';
+		}
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 		
 		if(isset($_POST['Mascots']))
 		{
 			$model->attributes=$_POST['Mascots'];
+			$model->mascotName = ucfirst($model->mascotName); 
+			echo $model->mascotName;
 			$model->mascotDateModified = date('Y-m-d H:i:s');
-			if($model->validate()){
-				$model->mascotImage=CUploadedFile::getInstance($model,'mascotImage');
-				if($model->save()){					
-					$model->mascotImage->saveAs(MASCOTS_PATH.$model->mascotImage);								
-					Yii::app()->user->setFlash('editMascotSuccess',true);
-					$this->redirect(array('index'));
+			$oldFile = Yii::app()->basePath.'/../'.UPLOAD_FOLDER.MASCOTS_FOLDER. $model->mascotImage;
+			if($_FILES['Mascots']['name']['mascotImage']){
+				$_FILES['Mascots']['name']['mascotImage']=CommonFunctions::addFileTimeStamp($_FILES['Mascots']['name']['mascotImage']);			
+				if($model->validate()){
+					$model->mascotImage=CUploadedFile::getInstance($model,'mascotImage');
+					if($model->save()){					
+						$model->mascotImage->saveAs(MASCOTS_PATH.$model->mascotImage);	
+						unlink($oldFile);							
+						Yii::app()->user->setFlash('editMascotSuccess',true);
+						$this->redirect(array('index'));
+					}
+				}
+			}else{
+				if($model->validate()){
+					if($model->save()){					
+						Yii::app()->user->setFlash('editMascotSuccess',true);
+						$this->redirect(array('index'));
+					}
 				}
 			}
 		}
@@ -196,7 +210,13 @@ class BannerController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+		//echo "delete action called";
+		$model = $this->loadModel($id);
+		$deleteFile = Yii::app()->basePath.'/../'.UPLOAD_FOLDER.BANNERS_FOLDER. $model->bannerImage;
+		if($model->delete())
+		{
+			unlink($deleteFile); 
+		}
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
@@ -271,7 +291,12 @@ class BannerController extends Controller
 			$row = Banner::model()->updateByPk($_POST['banners-grid_c1'], array('bannerStatus' =>0,'bannerDateModified'=>date('Y-m-d H:i:s')));
 			echo "inactivated";
 		}else if(isset($_POST['banners-status']) && $_POST['banners-status']==2){
-			$row = Banner::model()->deleteByPk($_POST['banners-grid_c1']);
+			$bannerID = $_POST['banners-grid_c1']; 
+			foreach ($bannerID as $id ) {
+				$model=Banner::model()->findByPk($id);
+				Banner::model()->deleteByPk($id);
+				unlink(Yii::app()->basePath.'/../'.UPLOAD_FOLDER.BANNERS_FOLDER. $model->bannerImage);
+			}
 			echo "deleted";
 		}
 	}

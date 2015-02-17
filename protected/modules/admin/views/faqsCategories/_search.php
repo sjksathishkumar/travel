@@ -36,14 +36,6 @@
 						</div>
 					</div>
 				</div>
-				<div class="span4">
-					<div class="control-group">
-						<?php echo $form->label($model,'faqCategoryIsMount',array('class'=>'control-label')); ?>
-						<div class="controls">
-							<?php echo $form->dropDownList($model,'faqCategoryIsMount',array(''=>'Select','0'=>'Un Mount','1'=>'Mounted'),array('class'=>'select2-me input-large')); ?>
-						</div>
-					</div>
-				</div>
 				<div class="row-fluid">
 					<div class="form-actions span12  search">
 						<?php echo CHtml::submitButton('Search',array('class'=>'btn btn-primary','title'=>'Search','alt'=>'Search')); ?>

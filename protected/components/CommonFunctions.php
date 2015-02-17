@@ -267,7 +267,7 @@ class CommonFunctions
     {
         $returnVal = "";
         $arrFile = explode('.', $value);
-        $arrFile[0] = $arrFile[0] . '_' . time();
+        $arrFile[0] = $arrFile[0] . '-' . time();
         $returnVal = implode('.', $arrFile);
         return $returnVal;
     }

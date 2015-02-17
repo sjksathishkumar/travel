@@ -1,3 +1,11 @@
+<?php
+$baseUrl = Yii::app()->baseUrl;
+$cs = Yii::app()->getClientScript();
+
+$cs->registerScriptFile($baseUrl . '/assets/backend/ckeditor/ckeditor.js');
+$cs->registerScriptFile($baseUrl . '/assets/backend/fck_editor/js/sample.js');
+$cs->registerCssFile($baseUrl . '/assets/backend/fck_editor/css/sample.css');
+?>
 <div class="row-fluid">
    <div class="span12">
         <div class="box box-color box-bordered">
@@ -34,38 +42,32 @@
 					<div class="control-group">
 						<?php echo $form->labelEx($model,'faqAnswer',array('class'=>'control-label','for'=>'textfield')); ?>
 						<div class="controls">
-							<?php   $this->widget('application.extensions.ckeditor.CKEditor', array('model'=>$model,
-																								'attribute'=>'faqAnswer',
-																								'language'=>'english',
-																								'editorTemplate'=>'full',
-																								)
-											 );?>
+							<div>
+							    <?php echo $form->textArea($model, 'faqAnswer', array('id' => 'editor1')); ?>
+							    <script type="text/javascript">
+							        CKEDITOR.replace( 'editor1',
+							        {
+							            filebrowserBrowseUrl :'<?php echo $baseUrl; ?>/assets/backend/fck_editor/ckeditor/filemanager/browser/default/browser.html?Connector=http://<?php echo $_SERVER['SERVER_NAME']; ?>/travelogini_new/assets/backend/fck_editor/ckeditor/filemanager/connectors/php/connector.php',
+							            filebrowserImageBrowseUrl : '<?php echo $baseUrl; ?>/assets/backend/fck_editor/ckeditor/filemanager/browser/default/browser.html?Type=Image&Connector=http://<?php echo $_SERVER['SERVER_NAME']; ?>/travelogini_new/assets/backend/fck_editor/ckeditor/filemanager/connectors/php/connector.php',
+							            filebrowserFlashBrowseUrl :'<?php echo $baseUrl; ?>/assets/backend/fck_editor/ckeditor/filemanager/browser/default/browser.html?Type=Flash&Connector=http://<?php echo $_SERVER['SERVER_NAME']; ?>/travelogini_new/assets/backend/fck_editor/ckeditor/filemanager/connectors/php/connector.php',
+							            filebrowserUploadUrl  :'<?php echo $baseUrl; ?>/assets/backend/fck_editor/ckeditor/filemanager/connectors/php/upload.php?Type=File',
+							            filebrowserImageUploadUrl : '<?php echo $baseUrl; ?>/assets/backend/fck_editor/ckeditor/filemanager/connectors/php/upload.php?Type=Image',
+							            filebrowserFlashUploadUrl : '<?php echo $baseUrl; ?>/assets/backend/fck_editor/ckeditor/filemanager/connectors/php/upload.php?Type=Flash'
+							        });	
+							    </script> 
+							</div>
 						</div>
 					</div>
 					<div class="control-group">
 						<?php echo $form->labelEx($model,'fkCategoryID',array('class'=>'control-label','for'=>'textfield')); ?>
 						<div class="controls">
-							<?php echo $form->dropDownList($model, 'fkCategoryID',CHtml::listData(FaqsCategories::model()->findAll(array("condition"=>"faqCategoryStatus =  1")), 'pkCategoryID', 'faqCategoryName'), array('empty'=>'- Select State -', 'data-rule-required' => 'true', 'class' => 'input-xlarge select2-me')); ?>			
+							<?php 
+								echo $form->dropDownList($model, 'fkCategoryID',CHtml::listData(FaqsCategories::model()->findAll(array("condition"=>"faqCategoryStatus =  1")), 'pkCategoryID', 'faqCategoryName'), array('empty'=>'- Select State -', 'data-rule-required' => 'true', 'class' => 'input-xlarge select2-me'));   
+								$config = array();
+								$this->widget('application.extensions.fancybox.EFancyBox', array('target'=>'#getaction','config'=>$config));
+								echo "&emsp;&emsp;&emsp;".CHtml::link('Create Category',array('faqs/addAjaxCategory'),array('id'=>'getaction','class'=>'btn btn-primary','alt'=>'Create Category'));
+							?>
 						</div>
-						<?php  
-
-							$config = array();
-							$this->widget('application.extensions.fancybox.EFancyBox', array('target'=>'#getaction','config'=>$config));
-							echo CHtml::link('Create Category',array('faqs/addAjaxCategory'),array('id'=>'getaction'));
-							//$this->widget('application.extensions.fancybox.EFancyBox', array());
-
-						//echo CHtml::ajaxLink('Create Category',Yii::app()->createUrl('fancy'),array('type'=>'POST', 'update'=>'#preview', 'complete'=>'afterAjax'));
-
-						 ?>
-						<?
-						//add FancyBox files, either use widget or do manually.
-						//have used widget for ease of explanation.  Manually would be a 'lighter' approach
-						//$this->widget('application.modules.admin.extensions.fancybox.EFancyBox', array());
-						 
-						//create an ajax link which will call fancybox AFTER the ajax call completes
-						//echo CHtml::ajaxLink('NameOfLink',Yii::app()->createUrl('fancy'),
-						     //array('type'=>'POST', 'update'=>'#preview', 'complete'=>'afterAjax'));
-						?>
 					</div>
 					<div class="control-group">
 						<?php echo $form->labelEx($model,'faqDisplayOrder',array('class'=>'control-label','for'=>'textfield')); ?>

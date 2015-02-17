@@ -37,19 +37,19 @@ class Banner extends CActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('bannerTitle, bannerAltTag, bannerOrder,fkCmsID, bannerStatus', 'required'),
+            array('bannerTitle, bannerAltTag, bannerOrder, bannerTagLine, bannerStatus', 'required'),
             
             array('bannerImage', 'file', 'allowEmpty' => false, 'on' => 'add_banner, slider_banner_add, other_banner_add'),
             array('bannerImage', 'file', 'allowEmpty' => true, 'on' => 'update_banner, slider_banner_update,other_banner_update'),
             
-            array('bannerImage', 'EImageValidator', 'types' => "gif, jpg, png,jpeg", 'maxSize' => (2 * 1024 * 1024), 'width' => 1600, 'height' => 445, 'allowEmpty' => true, 'on'=>'slider_banner_update,slider_banner_add'),
-            array('bannerImage', 'EImageValidator', 'types' => "gif, jpg, png,jpeg", 'maxSize' => (2 * 1024 * 1024), 'width' => 711, 'height' => 216, 'allowEmpty' => true, 'on'=>'other_banner_update,other_banner_add'),
+            array('bannerImage', 'EImageValidator', 'types' => "gif, jpg, png,jpeg", 'maxSize' => (2 * 1024 * 1024), 'width' => 1920, 'height' => 620, 'allowEmpty' => true, 'on'=>'slider_banner_update,slider_banner_add'),
+            //array('bannerImage', 'EImageValidator', 'types' => "gif, jpg, png,jpeg", 'maxSize' => (2 * 1024 * 1024), 'width' => 1920, 'height' => 620, 'allowEmpty' => true, 'on'=>'other_banner_update,other_banner_add'),
             
             array('bannerOrder', 'numerical', 'integerOnly' => true, 'min' => 0, 'message' => 'Banner Order must be nummeric'),
             array('bannerOrder', 'length', 'min' => 1, 'max' => 2),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('pkBannerID, bannerTitle, bannerImage, bannerAltTag,fkCmsID, bannerStatus, bannerDateAdded, bannerDateModified', 'safe', 'on' => 'search'),
+            array('pkBannerID, bannerTitle, bannerImage, bannerTagLine, bannerAltTag, bannerStatus, bannerDateAdded, bannerDateModified', 'safe', 'on' => 'search'),
         );
     }
 
@@ -74,9 +74,9 @@ class Banner extends CActiveRecord
             'pkBannerID' => 'Sr. No.',
             'bannerTitle' => 'Title',
             'bannerImage' => 'Banner Image',
+            'bannerTagLine' => 'Banner Text',
             'bannerAltTag' => 'Alt Tag',
             'bannerStatus' => 'Status',
-            'fkCmsID'=>'Page Name',
             'bannerDateAdded' => 'Date Added',
             'bannerDateModified' => 'Date Modified',
             'bannerdateAddedStart' => 'Date Added From',
@@ -108,7 +108,7 @@ class Banner extends CActiveRecord
         //$criteria->compare('pkBannerID',$this->pkBannerID);
         $criteria->compare('bannerTitle', $this->bannerTitle, true);
         //$criteria->compare('bannerImage',$this->bannerImage,true);
-        $criteria->compare('fkCmsID',$this->fkCmsID,true);
+        //$criteria->compare('fkCmsID',$this->fkCmsID,true);
         $criteria->compare('bannerStatus', $this->bannerStatus, true);
         if ($this->bannerdateAddedStart != '')
         {//echo $this->bannerdateAddedStart;die;
@@ -154,7 +154,7 @@ class Banner extends CActiveRecord
             $bannerDetails = Yii::app()->db->createCommand()
                     ->select('B.bannerTitle,B.bannerImage,B.bannerAltTag')
                     ->from(TABLE_BANNERS.' B')
-                    ->join(TABLE_CMS.' C','B.fkCmsID = C.pkCmsID')
+                    //->join(TABLE_CMS.' C','B.fkCmsID = C.pkCmsID')
                     ->where('C.cmsSlug=:cmsSlug AND B.bannerStatus=:bannerStatus', array(':cmsSlug'=>$slug,':bannerStatus'=>'1'))
                     ->queryRow();
         }

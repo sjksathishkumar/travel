@@ -32,6 +32,8 @@ function toggleSubCheckboxes(ID)
 function deletFile()
 {
     $('#delete-file').attr("value", "");
+    $('#delete-file').hide();
+    $('#delete-file-button').hide();
     
 }
 $(document).ready(function(){
@@ -81,3 +83,19 @@ $(function() {
         alert(checkSiblings(container));
     });
 });*/
+
+
+/*
+This function is used to validate empty field while add new faq category from faqs/_ajax_form.php
+*/
+
+function categoryvalidation(){
+    var catName =jQuery("#FaqsCategories_faqCategoryName").val();
+    success=true;
+    if(catName==''){
+        success=false;
+        jQuery('#output').html('Category Name cannot be blank.').show();
+    }
+    if(!success)
+            return success;
+}

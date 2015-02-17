@@ -13,6 +13,10 @@
 	<?php echo CHtml::encode($data->bannerTitle); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('bannerTagLine')); ?>:</b>
+	<?php echo CHtml::encode($data->bannerTagLine); ?>
+	<br />
+
 	<b><?php echo CHtml::encode($data->getAttributeLabel('bannerImage')); ?>:</b>
 	<?php echo CHtml::encode($data->bannerImage); ?>
 	<br />

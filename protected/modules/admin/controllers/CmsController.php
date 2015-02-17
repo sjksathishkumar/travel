@@ -58,7 +58,7 @@ class CmsController extends Controller
 	public function actionView($id = 0)
 	{
 		$model = $this->loadModel($id);
-		$model->cmsContent = strip_tags($model->cmsContent);
+		//$model->cmsContent = strip_tags($model->cmsContent);
 		$model->cmsStatus = CommonFunctions::statusName($model->cmsStatus);
 		$this->render('view',array(
 			'model'=>$model,
@@ -98,9 +98,9 @@ class CmsController extends Controller
 	{
 		$model=$this->loadModel($id);
 		// Uncomment the following line if AJAX validation is needed
-		if($model->cmsContentAvailable){
+		//if($model->cmsContentAvailable){
 			$model->scenario = 'cms_update';
-		}
+		//}
 		$model->cmsDateModified = date('Y-m-d H:i:s');
 		if(isset($_POST['Cms']))
 		{

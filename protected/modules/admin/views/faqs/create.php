@@ -17,6 +17,23 @@
 	    <?php echo CHtml::link('<i class="icon-remove"></i>',array('#')); ?>
 	</div>
 </div>
+<!-- Setting up flash success/error message -->
+<div class="clear"></div>
+<div class="breadcrumbs" id="breadcrumbs-msg">
+<?php  if((Yii::app()->User->hasFlash('addCategorySuccess')) || (Yii::app()->User->hasFlash('updateCategorySuccess')) ){ ?>
+	<ul>
+          <?php
+                if(Yii::app()->User->getFlash('addCategorySuccess'))
+                {
+                    echo '<li><span class="readcrum_without_link_success">'.ADD_FAQ_CATEGORY_SUCCESS.'</li>';
+                }
+                elseif (Yii::app()->User->getFlash('updateCategorySuccess')) {
+                	echo '<li><span class="readcrum_without_link_success">'.EDIT_FAQ_CATEGORY_SUCCESS.'</li>';
+                }
+          ?>						
+      </ul>
+<?php } ?>
+</div>
 <div class="row-fluid">
 	<div class="span12">
             <div class="box box box-color box-bordered">

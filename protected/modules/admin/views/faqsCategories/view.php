@@ -1,13 +1,13 @@
 <div class="page-header">
 	<div class="pull-left">
-		<h1>View FQA Category</h1>
+		<h1>View FAQ Category</h1>
 	</div>
 </div>
 <div class="breadcrumbs">
 	<ul>
 		<li><?php echo CHtml::link('Home',array('/admin')); ?><i class="icon-angle-right"></i></li>
-		<li><?php echo CHtml::link('FQA Categories',array('faqsCategories/index')); ?><i class="icon-angle-right"></i></li>
-		<li><a href="#">View FQA Category</a></li>
+		<li><?php echo CHtml::link('FAQ Categories',array('faqsCategories/index')); ?><i class="icon-angle-right"></i></li>
+		<li><a href="#">View FAQ Category</a></li>
 	</ul>
 	<div class="close-bread"><a href="#"><i class="icon-remove"></i></a></div>
 </div>
@@ -25,7 +25,7 @@
 					'attributes'=>array(
 						'faqCategoryName',
 						'faqCategoryStatus',
-						'faqCategoryIsMount',
+						//'faqCategoryIsMount',
 						'faqCategoryDateAdded',
 						'faqCategoryDateModified',
 					),

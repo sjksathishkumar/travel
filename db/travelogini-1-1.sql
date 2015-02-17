@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 06, 2015 at 04:31 PM
--- Server version: 5.5.41-0ubuntu0.14.04.1
+-- Generation Time: Jan 22, 2015 at 06:00 PM
+-- Server version: 5.5.40-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `tbl_admin_access_log` (
   `adminAccessLogoutTime` datetime NOT NULL,
   PRIMARY KEY (`pkAdminAccessID`),
   KEY `fkAdminID` (`fkAdminID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=189 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=155 ;
 
 --
 -- Dumping data for table `tbl_admin_access_log`
@@ -70,41 +70,7 @@ INSERT INTO `tbl_admin_access_log` (`pkAdminAccessID`, `fkAdminID`, `adminAccess
 (151, 3, '127.0.0.1', '2015-01-21 17:20:52', '2015-01-21 18:51:10'),
 (152, 3, '127.0.0.1', '2015-01-22 10:31:31', '0000-00-00 00:00:00'),
 (153, 3, '127.0.0.1', '2015-01-22 14:30:38', '2015-01-22 17:45:33'),
-(154, 3, '127.0.0.1', '2015-01-22 17:53:09', '0000-00-00 00:00:00'),
-(155, 3, '127.0.0.1', '2015-01-23 10:41:15', '2015-01-23 10:42:11'),
-(156, 3, '127.0.0.1', '2015-01-23 11:40:34', '0000-00-00 00:00:00'),
-(157, 3, '127.0.0.1', '2015-01-23 11:51:09', '0000-00-00 00:00:00'),
-(158, 3, '127.0.0.1', '2015-01-23 14:26:46', '0000-00-00 00:00:00'),
-(159, 3, '127.0.0.1', '2015-01-23 16:14:26', '0000-00-00 00:00:00'),
-(160, 3, '127.0.0.1', '2015-01-27 11:02:48', '2015-01-27 14:50:22'),
-(161, 3, '127.0.0.1', '2015-01-28 10:17:41', '0000-00-00 00:00:00'),
-(162, 3, '127.0.0.1', '2015-01-28 13:24:53', '0000-00-00 00:00:00'),
-(163, 3, '127.0.0.1', '2015-01-28 14:56:20', '0000-00-00 00:00:00'),
-(164, 3, '127.0.0.1', '2015-01-28 16:36:14', '0000-00-00 00:00:00'),
-(165, 3, '127.0.0.1', '2015-01-29 12:37:56', '0000-00-00 00:00:00'),
-(166, 3, '127.0.0.1', '2015-01-29 13:13:47', '2015-01-29 13:21:24'),
-(167, 3, '127.0.0.1', '2015-01-29 13:21:56', '0000-00-00 00:00:00'),
-(168, 3, '127.0.0.1', '2015-01-29 14:47:28', '0000-00-00 00:00:00'),
-(169, 3, '127.0.0.1', '2015-01-29 18:25:31', '0000-00-00 00:00:00'),
-(170, 3, '127.0.0.1', '2015-01-30 15:55:08', '0000-00-00 00:00:00'),
-(171, 3, '127.0.0.1', '2015-02-02 10:52:59', '0000-00-00 00:00:00'),
-(172, 3, '127.0.0.1', '2015-02-03 10:09:49', '0000-00-00 00:00:00'),
-(173, 3, '127.0.0.1', '2015-02-03 15:13:25', '0000-00-00 00:00:00'),
-(174, 3, '127.0.0.1', '2015-02-03 16:29:18', '0000-00-00 00:00:00'),
-(175, 3, '127.0.0.1', '2015-02-03 17:43:19', '0000-00-00 00:00:00'),
-(176, 3, '127.0.0.1', '2015-02-03 19:16:31', '0000-00-00 00:00:00'),
-(177, 3, '127.0.0.1', '2015-02-04 10:40:42', '0000-00-00 00:00:00'),
-(178, 3, '127.0.0.1', '2015-02-04 12:37:42', '0000-00-00 00:00:00'),
-(179, 3, '127.0.0.1', '2015-02-04 13:03:30', '0000-00-00 00:00:00'),
-(180, 3, '127.0.0.1', '2015-02-04 17:18:37', '0000-00-00 00:00:00'),
-(181, 3, '127.0.0.1', '2015-02-05 10:23:41', '2015-02-05 10:31:54'),
-(182, 3, '127.0.0.1', '2015-02-05 10:32:51', '0000-00-00 00:00:00'),
-(183, 3, '127.0.0.1', '2015-02-05 10:34:19', '0000-00-00 00:00:00'),
-(184, 3, '127.0.0.1', '2015-02-05 10:44:39', '0000-00-00 00:00:00'),
-(185, 3, '127.0.0.1', '2015-02-05 12:10:56', '0000-00-00 00:00:00'),
-(186, 3, '127.0.0.1', '2015-02-05 15:47:32', '0000-00-00 00:00:00'),
-(187, 3, '127.0.0.1', '2015-02-06 10:24:29', '0000-00-00 00:00:00'),
-(188, 3, '127.0.0.1', '2015-02-06 16:09:29', '0000-00-00 00:00:00');
+(154, 3, '127.0.0.1', '2015-01-22 17:53:09', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -131,9 +97,9 @@ CREATE TABLE IF NOT EXISTS `tbl_banner_slider` (
 --
 
 INSERT INTO `tbl_banner_slider` (`pkBannerID`, `bannerTitle`, `bannerTagLine`, `bannerImage`, `bannerAltTag`, `bannerOrder`, `fkCmsID`, `bannerStatus`, `bannerDateAdded`, `bannerDateModified`) VALUES
-(4, 'Deal Banner2', '', 'Banner10_1600x445.jpg', 'Deal Banner2', 1, 1, '1', '2014-08-26 11:20:16', '2015-01-23 06:28:53'),
-(5, 'Deal Banner Title 3', '', 'EN_EditorialBanner11.jpg', 'Deal Banner Alt3', 2, 1, '1', '2014-08-26 11:20:42', '2015-01-29 10:09:46'),
-(6, 'Banner3', '', 'Zumba banner.jpg', 'Banner3', 4, 1, '0', '2014-08-27 20:22:18', '2015-01-29 10:10:12'),
+(4, 'Deal Banner2', '', 'banner.jpg', 'Deal Banner2', 1, 1, '1', '2014-08-26 11:20:16', '2014-09-09 08:47:48'),
+(5, 'Deal Banner Title 3', '', 'banner.jpg', 'Deal Banner Alt3', 2, 1, '1', '2014-08-26 11:20:42', '2014-09-09 08:47:48'),
+(6, 'Banner3', '', 'banner.jpg', 'Banner3', 4, 1, '1', '2014-08-27 20:22:18', '2014-09-09 08:47:48'),
 (7, 'Search Page Banner', '', 'search-page-banner.png', 'Search Page Banner', 3, 8, '1', '2014-08-28 14:59:50', '2014-09-09 08:47:48');
 
 -- --------------------------------------------------------
@@ -231,12 +197,12 @@ CREATE TABLE IF NOT EXISTS `tbl_cms` (
 --
 
 INSERT INTO `tbl_cms` (`pkCmsID`, `cmsDisplayTitle`, `cmsPageTitle`, `cmsSlug`, `cmsContent`, `cmsMetaTitle`, `cmsMetaKeywords`, `cmsMetaDescription`, `cmsContentAvailable`, `cmsBannerAvailable`, `cmsIsPage`, `cmsStatus`, `cmsDateAdded`, `cmsDateModified`) VALUES
-(1, 'Home', 'Home', 'home', 'Home', 'Home', 'Home', 'Home', '0', '1', '0', '0', '2014-08-28 00:00:00', '2015-01-29 09:29:11'),
+(1, 'Home', 'Home', 'home', 'Home', 'Home', 'Home', 'Home', '0', '1', '0', '1', '2014-08-28 00:00:00', '2014-09-08 13:02:52'),
 (2, 'About Us', 'About Us', 'about-us', '<p>\r\n	About Us</p>\r\n', 'About Us', 'About Us', 'About Us', '1', '0', '1', '1', '2014-06-11 15:33:46', '2015-01-22 09:10:52'),
 (3, 'Terms & Conditions', 'Terms & Conditions', 'terms-conditions', '<p>\r\n    Terms &amp; Conditions</p>\r\n', 'Terms & Conditions', 'Terms & Conditions', 'Terms & Conditions', '1', '0', '1', '1', '2014-06-11 17:59:58', '2014-09-08 13:02:52'),
 (4, 'Home', 'Home', 'home', '<p>\r\n	Home page information</p>\r\n', 'home', 'home', 'home description', '1', '0', '1', '1', '2014-06-11 18:02:50', '2015-01-22 07:00:22'),
 (5, 'Privacy Policy', 'Privacy Policy', 'privacy-policy', '<p>\r\n	Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nam cursus. Morbi ut mi. Nullam enim leo, egestas id, condimentum at, laoreet mattis, massa. Sed eleifend nonummy diam. Praesent mauris ante, elementum et, bibendum at, posuere sit amet, nibh. Duis tincidunt lectus quis dui viverra vestibulum. Suspendisse vulputate aliquam dui. Nulla elementum dui ut augue. Aliquam vehicula mi at mauris. Maecenas placerat, nisl at consequat rhoncus, sem nunc gravida justo, quis eleifend arcu velit quis lacus. Morbi magna magna, tincidunt a, mattis non, imperdiet vitae, tellus. Sed odio est, auctor ac, sollicitudin in, consequat vitae, orci. Fusce id felis. Vivamus sollicitudin metus eget eros.</p>\r\n<h4 class="cms_heading">\r\n	Information we collect</h4>\r\n<p>\r\n	Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nam cursus. Morbi ut mi. Nullam enim leo, egestas id, condimentum at, laoreet mattis, massa. Sed eleifend nonummy diam. Praesent mauris ante, elementum et, bibendum at, posuere sit amet, nibh. Duis tincidunt lectus quis dui viverra vestibulum. Suspendisse vulputate aliquam dui. Nulla elementum dui ut augue. Aliquam vehicula mi at mauris. Maecenas placerat, nisl at consequat rhoncus, sem nunc gravida justo, quis eleifend arcu velit quis lacus. Morbi magna magna, tincidunt a, mattis non, imperdiet vitae, tellus. Sed odio est, auctor ac, sollicitudin in, consequat vitae, orci. Fusce id felis. Vivamus sollicitudin metus eget eros. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nam cursus. Morbi ut mi. Nullam enim leo, egestas id, condimentum at, laoreet mattis, massa. Sed eleifend nonummy diam. Praesent mauris ante, elementum et, bibendum at, posuere sit amet, nibh. Duis tincidunt lectus quis dui viverra vestibulum. Suspendisse vulputate aliquam dui. Nulla elementum dui ut augue. Aliquam vehicula mi at mauris.</p>\r\n<h4 class="cms_heading">\r\n	Personally Identifiable Information</h4>\r\n<p>\r\n	Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nam cursus. Morbi ut mi. Nullam enim leo, egestas id, condimentum at, laoreet mattis, massa. Sed eleifend nonummy diam. Praesent mauris ante, elementum et, bibendum at, posuere sit amet, nibh. Duis tincidunt lectus quis dui viverra vestibulum. Suspendisse vulputate aliquam dui. Nulla elementum dui ut augue. Aliquam vehicula mi at mauris.</p>\r\n', 'Privacy Policy', 'Privacy Policy', 'Privacy Policy', '1', '0', '1', '1', '2014-08-28 00:00:00', '2015-01-22 06:54:17'),
-(6, 'Sitemap', 'Sitemap', 'sitemap', '<p>\r\n Sitemap</p>\r\n', 'Sitemap', 'Sitemap', 'Sitemap', '1', '0', '1', '0', '2014-08-28 00:00:00', '2015-01-29 10:55:21'),
+(6, 'Sitemap', 'Sitemap', 'sitemap', '<p>\r\n Sitemap</p>\r\n', 'Sitemap', 'Sitemap', 'Sitemap', '1', '0', '1', '1', '2014-08-28 00:00:00', '2015-01-22 06:54:17'),
 (7, 'Contact Us', 'Contact Us', 'contact-us', '<ul class="contact_inner">\r\n	<li>\r\n		<figure><img alt="" src="http://dev.iworklab.com/promosol/images/contact_img1.jpg" /> </figure>\r\n		<div class="contact_detail">\r\n			<h3>\r\n				Customer Service &amp; Support:</h3>\r\n			<p>\r\n				Email us at <a class="mailto" href="mailto:support@xxxxxxx.com">support@xxxxxxx.com</a> or Call us at 07877321321 (Monday - Friday), 10am to 6pm</p>\r\n		</div>\r\n	</li>\r\n	<li>\r\n		<figure><img alt="" src="http://dev.iworklab.com/promosol/images/contact_img2.jpg" /> </figure>\r\n		<div class="contact_detail">\r\n			<h3>\r\n				Business Opportunities &amp; Sales Enquiries:</h3>\r\n			<p>\r\n				Do get in touch with us at <a class="mailto" href="mailto:support@xxxxxxx.com">sales@xxxxxxx.com</a> Our representatives will contact you shortly to help you through.</p>\r\n		</div>\r\n	</li>\r\n	<li class="last">\r\n		<figure><img alt="" src="http://dev.iworklab.com/promosol/images/contact_img3.jpg" /> </figure>\r\n		<div class="contact_detail">\r\n			<h3>\r\n				Our Official Coordinates:</h3>\r\n			<p>\r\n				Plot No. 426, Brokslow - Phase 3, Lagos, Nigeria</p>\r\n			<p>\r\n				Tel: XXXXXXXXXX</p>\r\n			<p>\r\n				E-mail : <a class="mailto" href="mailto:support@xxxxxxx.com">support@xxxxxxx.com</a></p>\r\n		</div>\r\n	</li>\r\n</ul>\r\n', 'Contact Us', 'Contact Us', 'Contact Us', '1', '0', '1', '0', '2014-08-28 00:00:00', '2015-01-22 06:42:56'),
 (8, 'Search Page', 'Search Page', 'search', 'Fashion industry is always looking for the latest trend to absorb it and then spread it to the rest of the world. This behaviour is also common in web design. So, when the worlds of fashion and Internet collide, we can expect to see websites that blend together the latest visual and technological trends. ', 'Search Page', 'Search Page', 'Search Page', '1', '1', '0', '1', '2014-08-29 00:00:00', '2014-09-08 13:02:52'),
 (9, 'Home', 'Home', 'home', '', 'home', 'home\r\n\r\n', 'home', '0', '0', '0', '1', '2015-01-22 12:28:58', '2015-01-22 06:58:58');
@@ -257,9 +223,6 @@ CREATE TABLE IF NOT EXISTS `tbl_configurations` (
   `configurationSocialLink4` varchar(255) NOT NULL COMMENT 'Google+ Link',
   `configurationSocialLink5` varchar(255) NOT NULL COMMENT 'Pinterest Link',
   `configurationSocialLink6` varchar(255) NOT NULL COMMENT 'Skype Link',
-  `logoImage` varchar(250) NOT NULL,
-  `logoAltTag` varchar(250) NOT NULL,
-  `logoStatus` enum('1','0') NOT NULL,
   `configurationPageLimit` int(11) NOT NULL COMMENT 'Admin Paging Limit',
   `configurationDateModified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`pkConfigurationID`)
@@ -269,8 +232,8 @@ CREATE TABLE IF NOT EXISTS `tbl_configurations` (
 -- Dumping data for table `tbl_configurations`
 --
 
-INSERT INTO `tbl_configurations` (`pkConfigurationID`, `configurationContact`, `configurationEmail`, `configurationSocialLink1`, `configurationSocialLink2`, `configurationSocialLink3`, `configurationSocialLink4`, `configurationSocialLink5`, `configurationSocialLink6`, `logoImage`, `logoAltTag`, `logoStatus`, `configurationPageLimit`, `configurationDateModified`) VALUES
-(1, '+01 888 (000) 1234', 'admin@travelogini.com', 'http://www.facebook.com', 'http://www.twitter.com', 'http://www.linkedin.com', 'http://plus.google.com', 'http://www.pinterest.com', 'http://skype.com', 'Banner10_1600x445.jpg', 'travelogini', '1', 5, '2015-01-28 05:39:21');
+INSERT INTO `tbl_configurations` (`pkConfigurationID`, `configurationContact`, `configurationEmail`, `configurationSocialLink1`, `configurationSocialLink2`, `configurationSocialLink3`, `configurationSocialLink4`, `configurationSocialLink5`, `configurationSocialLink6`, `configurationPageLimit`, `configurationDateModified`) VALUES
+(1, '+01 888 (000) 1234', 'awoofde@gmail.com', 'http://www.facebook.com', 'http://www.twitter.com', 'http://www.linkedin.com', 'http://plus.google.com', 'http://www.pinterest.com', 'http://skype.com', 5, '2014-09-09 07:30:39');
 
 -- --------------------------------------------------------
 
@@ -461,73 +424,7 @@ INSERT INTO `tbl_email_templates` (`pkEmailID`, `emailTitle`, `emailFromName`, `
 (6, 'Payment Confirmation', 'Travelogini-Payments', 'info@travelogini.com', 'Payment Confirmation', '<p>\r\n	Dear {to_name},<br />\r\n	Your account has been created successfully.<br />\r\n	Website Link: <a href="{site_url}">{site_url}</a><br />\r\n	Your login email address: {login_email}<br />\r\n	Your login password: {login_password}<br />\r\n	<br />\r\n	Regards<br />\r\n	Travelogini</p>\r\n', '2015-01-22 15:15:01', '2015-01-22 09:44:08'),
 (7, 'Booking Confirmation', 'Admin', 'info@travelogini.com', 'Booking Confirmation', '<p>\n	Dear {to_name},<br />\n	Your account has been activated successfully.<br />\n	Website Link: <a href="{site_url}">{site_url}</a><br />\n	<br />\n	Regards<br />\n	Travelogini</p>\n', '2015-01-22 15:18:44', '2015-01-22 09:49:17'),
 (8, 'Special Offers', 'Special Offers', 'info@travelogini.com', 'Special Offers', '<p>\r\n	Dear {to_name},<br />\r\n	Your account has been activated successfully.<br />\r\n	Website Link: <a href="{site_url}">{site_url}</a><br />\r\n	<br />\r\n	Regards<br />\r\n	Travelogini</p>\r\n', '2015-01-22 15:19:48', '2015-01-22 09:49:48'),
-(9, 'Gift Card', 'Gift Card', 'info@travelogini.com', 'Gift Card', '<p>\r\n	Dear {to_name},<br />\r\n	To activating your account please click on the below link.<br />\r\n	<a href="{account_activation_link}" target="_blank">{account_activation_link}</a><br />\r\n	<br />\r\n	Regards</p>\r\n<p>\r\n	Travelogini</p>\r\n', '2015-01-28 17:02:31', '2015-01-28 11:33:19');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_faqs`
---
-
-CREATE TABLE IF NOT EXISTS `tbl_faqs` (
-  `pkFaqID` int(11) NOT NULL AUTO_INCREMENT,
-  `faqQuestion` text NOT NULL,
-  `faqAnswer` text NOT NULL,
-  `faqDisplayOrder` int(5) NOT NULL,
-  `fkCategoryID` int(25) NOT NULL,
-  `faqAttachment` varchar(255) NOT NULL,
-  `faqHelpTopics` varchar(255) NOT NULL,
-  `faqStatus` enum('0','1') NOT NULL DEFAULT '1' COMMENT '0=Inactive 1=Active',
-  `faqDateAdded` datetime NOT NULL,
-  `faqDateModified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`pkFaqID`),
-  UNIQUE KEY `faqDisplayOrder` (`faqDisplayOrder`),
-  KEY `fkTopicID` (`fkCategoryID`),
-  KEY `fkTopicID_2` (`fkCategoryID`),
-  KEY `fkCategoryID` (`fkCategoryID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
-
---
--- Dumping data for table `tbl_faqs`
---
-
-INSERT INTO `tbl_faqs` (`pkFaqID`, `faqQuestion`, `faqAnswer`, `faqDisplayOrder`, `fkCategoryID`, `faqAttachment`, `faqHelpTopics`, `faqStatus`, `faqDateAdded`, `faqDateModified`) VALUES
-(17, 'tested', '<p>\r\n	tested</p>\r\n', 86, 12, '', '9', '1', '2015-02-02 13:14:46', '2015-02-03 06:18:44'),
-(9, 'test', '<p>\r\n	test</p>\r\n', 5, 12, '', '', '1', '2015-01-30 19:06:42', '2015-02-02 05:24:52'),
-(10, 'monday', '<p>\r\n	monday</p>\r\n', 8, 2, '', '', '1', '2015-02-02 11:28:52', '2015-02-02 05:58:52'),
-(11, 'TUESDAY', '<p>\r\n	TUESDAY</p>\r\n', 15, 12, '', '', '1', '2015-02-02 11:50:54', '2015-02-02 06:20:55'),
-(12, 'DASFASDF', '<p>\r\n	ASDFASDF</p>\r\n', 36, 2, '', '', '1', '2015-02-02 11:52:35', '2015-02-02 06:22:35'),
-(18, 'test array', '<p>\r\n	test array</p>\r\n', 102, 2, '', '10,11,12,6', '1', '2015-02-02 17:42:31', '2015-02-02 12:12:31'),
-(6, 'How Can I register on Etaai ebsite', 'It is very simple, just click on sign up page and fill all desired information. click on submit done!! after this process you just have to click on the activation link given by etaai on your email id.', 9, 12, '', '', '1', '2014-12-23 07:06:29', '2015-01-30 13:35:47'),
-(19, 'sathish array', '<p>\r\n	array</p>\r\n', 1020, 2, 'pixel.png', '17,10,11', '1', '2015-02-02 17:52:28', '2015-02-03 06:20:40');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_faqs_categories`
---
-
-CREATE TABLE IF NOT EXISTS `tbl_faqs_categories` (
-  `pkCategoryID` int(25) NOT NULL AUTO_INCREMENT,
-  `faqCategoryName` varchar(255) NOT NULL,
-  `faqCategoryStatus` enum('1','0') NOT NULL DEFAULT '1',
-  `faqCategoryIsMount` enum('0','1') NOT NULL DEFAULT '0',
-  `faqCategoryDateAdded` datetime NOT NULL,
-  `faqCategoryDateModified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`pkCategoryID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
-
---
--- Dumping data for table `tbl_faqs_categories`
---
-
-INSERT INTO `tbl_faqs_categories` (`pkCategoryID`, `faqCategoryName`, `faqCategoryStatus`, `faqCategoryIsMount`, `faqCategoryDateAdded`, `faqCategoryDateModified`) VALUES
-(2, 'sathish', '1', '1', '0000-00-00 00:00:00', '2015-01-30 10:53:05'),
-(4, 'mumbai', '0', '1', '2015-01-29 00:00:00', '2015-01-30 12:52:22'),
-(12, 'TEST', '1', '1', '2015-01-30 11:20:21', '2015-01-30 13:13:51'),
-(13, 'ajaxtest', '1', '0', '2015-02-04 18:07:56', '2015-02-04 12:37:56'),
-(14, 'ajaxsathish', '1', '0', '2015-02-04 18:29:08', '2015-02-04 12:59:08'),
-(15, 'todaytest', '1', '0', '2015-02-05 13:11:51', '2015-02-05 07:41:51');
+(9, 'Gift Card', 'Gift Card', 'info@travelogini.com', 'Gift Card', '<p>\r\n	Dear {to_name},<br />\r\n	To activating your account please click on the below link.<br />\r\n	<a href="{account_activation_link}" target="_blank">{account_activation_link}</a><br />\r\n	<br />\r\n	Regards</p>\r\n<p>\r\n	Travelogini</p>\r\n', '2015-01-22 15:20:39', '2015-01-22 09:50:39');
 
 -- --------------------------------------------------------
 
@@ -543,31 +440,6 @@ CREATE TABLE IF NOT EXISTS `tbl_locations` (
   `locationAddDate` datetime NOT NULL,
   PRIMARY KEY (`pklocationID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_mascots`
---
-
-CREATE TABLE IF NOT EXISTS `tbl_mascots` (
-  `mascotID` int(25) NOT NULL AUTO_INCREMENT,
-  `mascotName` varchar(250) NOT NULL,
-  `mascotImage` varchar(250) NOT NULL,
-  `mascotAltTag` varchar(250) NOT NULL,
-  `mascotStatus` enum('0','1') NOT NULL,
-  `mascotDateAdded` datetime NOT NULL,
-  `mascotDateModified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`mascotID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
-
---
--- Dumping data for table `tbl_mascots`
---
-
-INSERT INTO `tbl_mascots` (`mascotID`, `mascotName`, `mascotImage`, `mascotAltTag`, `mascotStatus`, `mascotDateAdded`, `mascotDateModified`) VALUES
-(1, 'Sathishkumar', 'IMG_0241.JPG', 'kumar', '1', '2015-01-23 10:26:35', '2015-01-27 07:18:45'),
-(2, 'home', 'Banner10_1600x445.jpg', 'home update', '1', '2015-01-23 07:40:38', '2015-01-23 12:48:49');
 
 -- --------------------------------------------------------
 
@@ -707,31 +579,14 @@ CREATE TABLE IF NOT EXISTS `tbl_password_reset` (
   `passResetDateAdded` datetime NOT NULL,
   PRIMARY KEY (`pkPassResetID`),
   KEY `fkUserID` (`fkUserID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `tbl_password_reset`
 --
 
 INSERT INTO `tbl_password_reset` (`pkPassResetID`, `fkUserID`, `passResetToken`, `passResetCreated`, `passResetExpires`, `passResetStatus`, `passResetDateAdded`) VALUES
-(8, 3, 'QP5EKYDQ0A1422507198', 1422507198, 1422507241, '0', '2015-01-29 10:23:18'),
-(9, 3, '9BC403GPVM1422507885', 1422507885, 1422508215, '0', '2015-01-29 10:34:45'),
-(10, 3, 'Y6FT4PHWYR1422507985', 1422507985, 1422508215, '0', '2015-01-29 10:36:25'),
-(11, 3, 'SMNTEUSCXC1422508188', 1422508188, 1422508215, '0', '2015-01-29 10:39:48'),
-(12, 3, 'MFZZPGAD4G1422508907', 1422508907, 1422508935, '0', '2015-01-29 10:51:47'),
-(13, 3, 'Z9U3YYASQF1422509510', 1422509510, 1422509528, '0', '2015-01-29 11:01:50'),
-(14, 3, 'UYII10VVHR1422509581', 1422509581, 1422509595, '0', '2015-01-29 11:03:01'),
-(15, 3, 'RRF7JKNOBP1422509746', 1422509746, 1422509764, '0', '2015-01-29 11:05:46'),
-(16, 3, 'IFUPS5VNW61422510518', 1422510518, 1422510535, '0', '2015-01-29 11:18:38'),
-(17, 3, '4NUV11BTTJ1422510583', 1422510583, 1422510599, '0', '2015-01-29 11:19:43'),
-(18, 3, 'I3C6MO9U3T1422511058', 1422511058, 1422511075, '0', '2015-01-29 11:27:38'),
-(19, 3, 'ISWVRHUJL61422511124', 1422511124, 1422511139, '0', '2015-01-29 11:28:44'),
-(20, 3, 'CGS6J4BUD21422511299', 1422511299, 1422511317, '0', '2015-01-29 11:31:39'),
-(21, 3, '3ROM8D7HBJ1422512170', 1422512170, 1422512191, '0', '2015-01-29 11:46:10'),
-(22, 3, 'AA7LVU9HYH1422513058', 1422513058, 1422513073, '0', '2015-01-29 12:00:58'),
-(23, 3, 'NNWJE9TRAI1422513994', 1422513994, 1422514012, '0', '2015-01-29 12:16:34'),
-(24, 3, 'EYVG7V26LU1422514143', 1422514143, 1422514162, '0', '2015-01-29 12:19:03'),
-(25, 3, '3D2916OS4F1422514260', 1422514260, 1422514274, '0', '2015-01-29 12:21:00');
+(1, 3, '0U1UM7E35L1421928949', 1421928949, 0, '1', '2015-01-22 17:45:49');
 
 -- --------------------------------------------------------
 
@@ -867,7 +722,7 @@ CREATE TABLE IF NOT EXISTS `tbl_users_login` (
 --
 
 INSERT INTO `tbl_users_login` (`pkUserLoginID`, `userEmail`, `userPassword`, `userType`, `userDateModified`) VALUES
-(3, 'sathish.kumar1@mail.vinove.com', 'f654fb63f75721ac69cd01f7bd14aaa6', 'A', '2015-01-28 19:52:55'),
+(3, 'sathish.kumar1@mail.vinove.com', 'f654fb63f75721ac69cd01f7bd14aaa6', 'A', '2014-12-24 06:23:15'),
 (4, 'test@test.com', 'f654fb63f75721ac69cd01f7bd14aaa6', 'C', '2014-12-16 11:33:00'),
 (5, 'sathish.kumar1@mail.vinove.com', 'f654fb63f75721ac69cd01f7bd14aaa6', 'C', '2015-01-05 05:45:41');
 

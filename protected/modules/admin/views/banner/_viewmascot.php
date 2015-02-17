@@ -21,10 +21,6 @@
 	<?php echo CHtml::encode($data->mascotAltTag); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('mascotStatus')); ?>:</b>
-	<?php echo CHtml::encode($data->mascotStatus); ?>
-	<br />
-
 	<b><?php echo CHtml::encode($data->getAttributeLabel('mascotDateAdded')); ?>:</b>
 	<?php echo CHtml::encode($data->mascotDateAdded); ?>
 	<br />

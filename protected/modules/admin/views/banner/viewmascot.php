@@ -33,13 +33,13 @@
 						array(        
 							'name'=>'mascotImage',
 							'type'=>'raw',
-							'value'=>CHtml::image(Yii::app()->params['siteUploadFilesURL'].MASCOTS_FOLDER.$model->mascotImage,$model->mascotAltTag,array('width'=>500,'height'=>100)),
+							'value'=>CHtml::image(Yii::app()->baseUrl.UPLOAD_FOLDER.MASCOTS_FOLDER.$model->mascotImage,$model->mascotAltTag,array('width'=>163,'height'=>163)),
 						),
 						'mascotAltTag',
-						array(
+						/*array(
 							'name'=>'mascotStatus',
 							'value'=>CommonFunctions::statusName($model->mascotStatus)
-							),
+							),*/
 						'mascotDateAdded',
 						'mascotDateModified',
 					),

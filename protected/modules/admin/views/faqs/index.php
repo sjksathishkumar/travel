@@ -45,6 +45,7 @@ $('.search-form form').submit(function(){
 <div class="row-fluid">
     <div class="span12 margin_top20">
 	    <?php echo CHtml::link('Add Question','create',array('class'=>'btn btn-primary')); ?>
+	    <?php echo CHtml::link('Manage FAQ Categories',array('faqsCategories/index'),array('class'=>'btn btn-primary')); ?>
 	    <?php echo CHtml::link('Search','#',array('class'=>'search-button btn btn-inverse')); ?>
 	 </div>
 </div>
@@ -214,6 +215,6 @@ $('.search-form form').submit(function(){
     */
    $('#resetVal').live('click', function(e){
         $(':input','#_search-form').not(':button,:submit,:hidden,.btn').val('');
-        $.fn.yiiGridView.update('faq-grid', {url:'<?php echo CController::createUrl("/admin/cms"); ?>'});
+        $.fn.yiiGridView.update('faq-grid', {url:'<?php echo CController::createUrl("/admin/faqs"); ?>'});
     });
 </script>

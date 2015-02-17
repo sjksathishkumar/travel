@@ -1,3 +1,7 @@
-<div class="wrapper">
-<h1><?php echo CHtml::link(CHtml::image(Yii::app()->request->baseUrl.'/images/brand.png','',array('class'=>'retina-ready')).Yii::app()->params['SiteTitle'],Yii::app()->request->baseUrl);?></h1>
+<div class="wrapper" align="center">
+<?php 
+	$socalLinks = Configurations::model()->getSocialMediaLinks();
+	echo CHtml::image(Yii::app()->baseUrl.UPLOAD_FOLDER.LOGO_FOLDER.$socalLinks['logoImage'],$socalLinks['logoAltTag']); 
+?>
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+</div>

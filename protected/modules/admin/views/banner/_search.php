@@ -30,17 +30,6 @@
 				</div>
 				<div class="span4">
 					<div class="control-group">
-						<?php echo $form->label($model,'fkCmsID',array('class'=>'control-label')); ?>
-						<div class="controls">
-							<?php 
-							$criteria = new CDbCriteria;
-							$criteria->condition = 'cmsStatus = "1" AND cmsBannerAvailable="1"';
-							echo $form->dropDownList($model,'fkCmsID',CHtml::listData(Cms::model()->findAll($criteria), 'pkCmsID', 'cmsDisplayTitle'),array('empty'=>'-Select Page-','data-rule-required'=>'true','class'=>'select2-me input-xlarge'));?>     
-						</div>
-					</div>
-				</div>
-				<div class="span4">
-					<div class="control-group">
 						<?php echo $form->label($model,'bannerStatus',array('class'=>'control-label')); ?>
 						<div class="controls">
 							<?php echo $form->dropDownList($model,'bannerStatus',array(''=>'Select','0'=>'Inactive','1'=>'Active'),array('class'=>'select2-me input-large')); ?>

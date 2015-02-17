@@ -20,7 +20,7 @@
 			)); ?>
 		<div class="row-fluid">
 			<div class="wide form">
-				<div class="span4">
+				<div class="span6">
 					<div class="control-group">
 						<?php echo $form->label($model,'faqQuestion',array('class'=>'control-label')); ?>						                           
 						<div class="controls">
@@ -28,7 +28,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="span4">
+				<div class="span6">
 					<div class="control-group">
 						<?php echo $form->label($model,'faqAnswer',array('class'=>'control-label')); ?>						                           
 						<div class="controls">
@@ -36,11 +36,21 @@
 						</div>
 					</div>
 				</div>
-				<div class="span4">
-					<div class="control-group">
-						<?php echo $form->label($model,'faqStatus',array('class'=>'control-label')); ?>
-						<div class="controls">
-							<?php echo $form->dropDownList($model,'faqStatus',array(''=>'Select','0'=>'Inactive','1'=>'Active'),array('class'=>'select2-me input-large')); ?>
+				<div class="row-fluid">
+					<div class="span6">
+					    <div class="control-group">
+					       <?php echo $form->label($model,'fkCategoryID',array('class'=>'control-label')); ?>
+					        <div class="controls">
+					        	<?php echo $form->dropDownList($model, 'fkCategoryID',CHtml::listData(FaqsCategories::model()->findAll(array("condition"=>"faqCategoryStatus =  1")), 'pkCategoryID', 'faqCategoryName'), array('empty'=>'- Select State -', 'class' => 'input-xlarge select2-me')); ?>			
+					        </div>
+					    </div>
+					</div>
+					<div class="span6">
+						<div class="control-group">
+							<?php echo $form->label($model,'faqStatus',array('class'=>'control-label')); ?>
+							<div class="controls">
+								<?php echo $form->dropDownList($model,'faqStatus',array(''=>'Select','0'=>'Inactive','1'=>'Active'),array('class'=>'select2-me input-xlarge')); ?>
+							</div>
 						</div>
 					</div>
 				</div>

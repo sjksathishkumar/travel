@@ -43,7 +43,7 @@ class AdminController extends Controller
 			       $this->redirect(array('dashboard'));
 			       //$this->redirect(Yii::app()->request->urlReferrer);
 			    }else{
-				Yii::app()->user->setFlash('recoveryError',true);
+				Yii::app()->user->setFlash('invalid_login',true);
 			    }
 			}
 			// display the login form
@@ -90,6 +90,7 @@ class AdminController extends Controller
 	*/
 	public function actionRecovery()
 	{
+
 		$url=Yii::app()->params['siteURL'];
 		$this->pageTitle = Yii::app()->params['SiteTitle']. "Password Recovery";
 		$model = new Admin();

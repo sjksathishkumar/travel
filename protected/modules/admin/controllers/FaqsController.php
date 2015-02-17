@@ -62,7 +62,13 @@ class FaqsController extends Controller
 		$model->faqAnswer = strip_tags($model->faqAnswer);
 		$categoryModel =  FaqsCategories::model()->findByPk($model->attributes['fkCategoryID']);
 		$model->fkCategoryID = $categoryModel->attributes['faqCategoryName'];
-		$model->faqHelpTopics=$this->getHelpTopics($id);
+		if(empty($model->faqHelpTopics))
+		{
+			$model->faqHelpTopics = '---'; 
+		}
+		else{	
+			$model->faqHelpTopics=$this->getHelpTopics($id);
+		}
 		$this->render('view',array(
 			'model'=>$model,
 		));
@@ -81,12 +87,20 @@ class FaqsController extends Controller
 		if(isset($_POST['Faqs']))
 		{
 			$model->attributes=$_POST['Faqs'];
+			$model->faqQuestion = ucfirst($model->faqQuestion);
 			$model->faqDateAdded = date('Y-m-d H:i:s');
-			$model->faqHelpTopics = implode(",",$_POST['Faqs']['faqHelpTopics']);
+			if($model->faqHelpTopics)
+			{
+				$model->faqHelpTopics = implode(",",$_POST['Faqs']['faqHelpTopics']);
+			}
+			else{
+				$model->faqHelpTopics = '';	
+			}
 			$categoryModel =  FaqsCategories::model()->findByPk($model->attributes['fkCategoryID']);
 			$categoryModel->faqCategoryIsMount = '1';
 			$categoryModel->save();
-			if($_FILES['Faqs']['name']['faqAttachment']){			
+			if($_FILES['Faqs']['name']['faqAttachment']){
+				$_FILES['Faqs']['name']['faqAttachment']=CommonFunctions::addFileTimeStamp($_FILES['Faqs']['name']['faqAttachment']);			
 				if($model->validate()){
 					$model->faqAttachment=CUploadedFile::getInstance($model,'faqAttachment');
 					if($model->save()){					
@@ -120,36 +134,63 @@ class FaqsController extends Controller
 		$model=$this->loadModel($id);
 		$model->scenario = 'update_faq';
 		$model->faqHelpTopics=explode(',',$model->faqHelpTopics);
+		$fileStatus = $model->faqAttachment ;
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 		if(isset($_POST['Faqs']))
 		{
 			$model->attributes=$_POST['Faqs'];
 			$model->faqDateModified = date('Y-m-d H:i:s');
-			$model->faqHelpTopics = implode(",",$_POST['Faqs']['faqHelpTopics']);
+			if($_POST['Faqs']['faqHelpTopics'] != '')
+			{
+				$model->faqHelpTopics = implode(",",$_POST['Faqs']['faqHelpTopics']);
+			}
+			else
+			{
+				$model->faqHelpTopics = '';	
+			}
 			$categoryModel =  FaqsCategories::model()->findByPk($model->attributes['fkCategoryID']);
 			$categoryModel->faqCategoryIsMount = '1';
 			$categoryModel->save();
+			$oldFile = Yii::app()->basePath.'/../'.UPLOAD_FOLDER.FAQ_FOLDER. $model->faqAttachment;
 
 			if($_FILES['Faqs']['name']['faqAttachment']){	
+				$_FILES['Faqs']['name']['faqAttachment']=CommonFunctions::addFileTimeStamp($_FILES['Faqs']['name']['faqAttachment']);
 				if($model->validate()){
 					$model->faqAttachment=CUploadedFile::getInstance($model,'faqAttachment');
 					if($model->save()){					
-						$model->faqAttachment->saveAs(FAQ_PATH.$model->faqAttachment);								
+						$model->faqAttachment->saveAs(FAQ_PATH.$model->faqAttachment);	
+						if(!empty($fileStatus))
+						{
+							unlink($oldFile);							
+						}
+						
 						Yii::app()->user->setFlash('updateFAQSuccess',true);
 						$this->redirect(array('index'));
 					}
 				}
 
 			}else{
-				if($model->validate()){
-					$model->faqAttachment = $_POST['Faqs']['faqAttachment'];			
-					if($model->save()){		
-						Yii::app()->user->setFlash('updateFAQSuccess',true);
-						$this->redirect(array('index'));
+				if($_POST['Faqs']['faqAttachment'] == '')
+				{
+					if($model->validate()){
+						$model->faqAttachment = $_POST['Faqs']['faqAttachment'];			
+						if($model->save()){	
+							unlink($oldFile);	
+							Yii::app()->user->setFlash('updateFAQSuccess',true);
+							$this->redirect(array('index'));
+						}
 					}
 				}
-
+				else{
+					if($model->validate()){
+						$model->faqAttachment = $_POST['Faqs']['faqAttachment'];			
+						if($model->save()){		
+							Yii::app()->user->setFlash('updateFAQSuccess',true);
+							$this->redirect(array('index'));
+						}
+					}
+				}
 			}
 		}
 		$this->render('update',array(
@@ -165,8 +206,11 @@ class FaqsController extends Controller
 	public function actionDelete($id)
 	{
 		$model=Faqs::model()->findByPk($id);
-
-		$model->delete();
+		$deleteFile = Yii::app()->basePath.'/../'.UPLOAD_FOLDER.FAQ_FOLDER. $model->faqAttachment;
+		if($model->delete())
+		{
+			unlink($deleteFile); 
+		}
 				
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
@@ -253,100 +297,54 @@ class FaqsController extends Controller
 	 */
 
 	public function getHelpTopics($id){
+		$getAllId = Faqs::model()->findAll(array("condition"=>"pkFaqID !=  $id"));
+		$count = count($getAllId); 
+		
+		for ($i=0; $i < $count ; $i++) { 
+			$allId[] = $getAllId[$i]['pkFaqID'];
+		}
 		$model=Faqs::model()->findByPk($id);
 		$topicArray=explode(',',$model->faqHelpTopics);
+		$result = array_diff($allId, $topicArray);
 		foreach ($topicArray as $topicID) {
-			$test=Faqs::model()->findByPk($topicID);
-			$topic[$topicID] = $test->faqQuestion;
+			if (in_array($topicID, $allId)) {
+			 	$test=Faqs::model()->findByPk($topicID);
+			 	$topic[$topicID] = $test->faqQuestion;
+			}
 		}
 		return implode("||",$topic);;
 	}
 
+	/**
+	 * Used to Add FAQ Category while Add New FAQ.
+	*/
+
 	public function actionaddAjaxCategory(){
-		
-		//echo "Test"; die();
 		$model=new FaqsCategories;
-
 		// Uncomment the following line if AJAX validation is needed
-		 $this->performAjaxValidation($model);
-				
-			/*if(isset($_POST['ajax']) && $_POST['ajax']==='ajax-faqs-categories-add')
-	        {
-	                echo CActiveForm::validate($model);
-	                Yii::app()->end();
-	        }*/
+		$this->performAjaxValidation($model);
+        
+        if (isset($_POST['ajax']) && $_POST['ajax'] === 'ajax-faqs-categories-add') {
+            echo "<pre>";
+            print_r($_POST['ajax']); die();
+            echo CActiveForm::validate($model);
+            Yii::app()->end();
+        }
 
-	        if (isset($_POST['ajax']) && $_POST['ajax'] === 'ajax-faqs-categories-add') {
-	            echo "<pre>";
-	            print_r($_POST['ajax']); die();
-	            echo CActiveForm::validate($model);
-	            Yii::app()->end();
-	        }
-
-			if(isset($_POST['FaqsCategories']))
-			{
-				$model->attributes=$_POST['FaqsCategories'];
-				$model->faqCategoryDateAdded = date('Y-m-d H:i:s');
-				/*echo "<pre>";
-				print_r($model->attributes); die();*/
-				//if($model->validate()){
+		if(isset($_POST['FaqsCategories']))
+		{
+			$model->attributes=$_POST['FaqsCategories'];
+			$model->faqCategoryDateAdded = date('Y-m-d H:i:s');
 					if($model->save()){
-						//Yii::app()->user->setFlash('addCategorySuccess',true);
-						$this->redirect(array('faqs/create'));
-					}
-				//}
-				/*else
-				{*/
-					//echo "Validation faild"; die();
-					//$output = $this->renderPartial('_ajax_form', array(), true,true)
-					// you need set layout to false for render only your form
-					//Yii::app()->clientScript->render($output);
-					// where you need remove jquery for prevent double initiation's jquery script
-					// it's not worked example!!!
-					//preg_replace('@<script type="text/javascript" src="jquery.js"></script>@mi', '', $output);
-					// well, we may output
-					//echo $output;
-					// $this->renderPartial('_ajax_form',array('model'=>$model),false,true);
-				/*	if(Yii::app()->request->getIsAjaxRequest()){
-		          		 $this->renderPartial('_ajax_form',array('model'=>$model),false,true);
-		          	}
-				}*/
-			}
-			if(Yii::app()->request->getIsAjaxRequest()){
-				/*$cs = Yii::app()->clientScript;
-		        $cs->reset();
-		        $cs->scriptMap = array(
-		            'jquery.js' => false, // prevent produce jquery.js in additional javascript data
-		            'jquery.min.js' => false,
-		        );*/
-				//echo "ajax call"; die();
-          		 echo $this->renderPartial('_ajax_form',array('model'=>$model),false,true);
-          	}
-          	else{
-          		//echo "normal form"; die();
-          		/*$cs = Yii::app()->clientScript;
-		        $cs->reset();
-		        $cs->scriptMap = array(
-		            'jquery.js' => false, // prevent produce jquery.js in additional javascript data
-		            'jquery.min.js' => false,
-		        );
-*/
-          		$this->render('_ajax_form',array('model'=>$model));
-             }
-          	/*else{d
-          		echo "ajaxcall";
-          		die();
-          		//Yii::app()->clientScript->scriptMap['*.js'] = false;
-        		$this->render('_ajax_form',array('model'=>$model),false,true);
-
-				//$output = $this->renderPartial('_ajax_form', array('model'=>$model), true)
-				// you need set layout to false for render only your form
-				//Yii::app()->clientScript->render($output);
-				// where you need remove jquery for prevent double initiation's jquery script
-				// it's not worked example!!!
-				//preg_replace('@<script type="text/javascript" src="jquery.js"></script>@mi', '', $output);
-				// well, we may output
-				//echo $output;
-          	}*/
+					Yii::app()->user->setFlash('addCategorySuccess',true);
+					$this->redirect(array('faqs/create'));
+				}
+		}
+		if(Yii::app()->request->getIsAjaxRequest()){
+      		 echo $this->renderPartial('_ajax_form',array('model'=>$model),false,true);
+      	}
+      	else{
+      		$this->render('_ajax_form',array('model'=>$model));
+        }
 	}
 }

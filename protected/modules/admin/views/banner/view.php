@@ -29,24 +29,20 @@
 				<?php $this->widget('zii.widgets.CDetailView', array(
 					'data'=>$model,
 					'attributes'=>array(
-						array(
-							'name'=>'pkBannerID',
-						),
+						
 						'bannerTitle',
+						'bannerTagLine',
 						array(        
 							'name'=>'bannerImage',
 							'type'=>'raw',
-							'value'=>CHtml::image(Yii::app()->params['siteUploadFilesURL'].BANNERS_FOLDER.$model->bannerImage,$model->bannerAltTag,array('width'=>500,'height'=>100)),
+							'value'=>CHtml::image(Yii::app()->baseUrl.UPLOAD_FOLDER.BANNERS_FOLDER.$model->bannerImage,$model->bannerAltTag,array('width'=>1120,'height'=>620)),
 						),
 						'bannerAltTag',
-						array(
-							'name'=>'fkCmsID',
-							'value'=>Cms::model()->findByPk($model->fkCmsID)->cmsDisplayTitle,
-							),
 						array(
 							'name'=>'bannerStatus',
 							'value'=>CommonFunctions::statusName($model->bannerStatus)
 							),
+						'bannerOrder',
 						'bannerDateAdded',
 						'bannerDateModified',
 					),

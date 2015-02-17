@@ -29,9 +29,10 @@ class Mascots extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('mascotName, mascotImage, mascotAltTag, mascotStatus, mascotDateAdded, mascotDateModified', 'required'),
-			array('mascotImage', 'file', 'allowEmpty' => false, 'on' => 'add_mascot, update_mascot '),
-			array('mascotImage', 'EImageValidator', 'types' => "gif, jpg, png,jpeg", 'maxSize' => (2 * 1024 * 1024), 'width' => 1600, 'height' => 445, 'allowEmpty' => false, 'on'=>'update_mascot'),
+			array('mascotName, mascotAltTag, mascotStatus, mascotDateAdded, mascotDateModified', 'required'),
+			array('mascotImage', 'file', 'allowEmpty' => true, 'on' => 'add_mascot, update_mascot '),
+			array('mascotImage', 'EImageValidator', 'types' => "gif, jpg, png,jpeg", 'maxSize' => (2 * 1024 * 1024), 'width' => 163, 'height' => 163, 'allowEmpty' => true, 'on'=>'update_mascot'),
+			array('mascotImage', 'EImageValidator', 'types' => "gif, jpg, png,jpeg", 'maxSize' => (2 * 1024 * 1024), 'width' => 195, 'height' => 195, 'allowEmpty' => true, 'on'=>'update_mascot_wishgini'),
 			array('mascotName, mascotAltTag', 'length', 'max'=>250),
 			array('mascotStatus', 'length', 'max'=>1),
 			// The following rule is used by search().

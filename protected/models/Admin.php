@@ -41,7 +41,8 @@ class Admin extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('userEmail, userPassword', 'required', 'on'=>'admin_login'),						//Admin 
+			array('userEmail, userPassword', 'required', 'on'=>'admin_login','except' =>'recover_pass'),
+			array('userEmail', 'required', 'on'=>'recover_pass','except' =>'admin_login'),						//Admin 
 			array('userPassword,retype_password', 'required','on' =>'reset_pass'),						//Admin Reset Password Rules
 			array('retype_password', 'compare', 'compareAttribute'=>'userPassword','on' =>'reset_pass'),
 			array('userEmail', 'required','on' =>'edit_admin_profile'),							// Edit Admin 

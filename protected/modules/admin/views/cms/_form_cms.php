@@ -1,3 +1,14 @@
+<?php
+/* @var $this CmsController */
+/* @var $model Cms */
+/* @var $form CActiveForm */
+$baseUrl = Yii::app()->baseUrl;
+$cs = Yii::app()->getClientScript();
+
+$cs->registerScriptFile($baseUrl . '/assets/backend/ckeditor/ckeditor.js');
+$cs->registerScriptFile($baseUrl . '/assets/backend/fck_editor/js/sample.js');
+$cs->registerCssFile($baseUrl . '/assets/backend/fck_editor/css/sample.css');
+?>
 <div class="row-fluid">
    <div class="span12">
         <div class="box box-color box-bordered">
@@ -42,20 +53,27 @@
 							<?php echo $form->textField($model,'cmsSlug',array('size'=>60,'maxlength'=>255,'data-rule-required'=>'true','class'=>'input-xxlarge')); ?>
 						</div>
 					</div>
-					<?php if($model->cmsContentAvailable){ ?>
-						<div class="control-group">
-							<?php echo $form->labelEx($model,'cmsContent',array('class'=>'control-label','for'=>'textfield')); ?>
-							<div class="controls">
-								<?php   $this->widget('application.extensions.ckeditor.CKEditor', array('model'=>$model,
-																									'attribute'=>'cmsContent',
-																									'language'=>'english',
-																									'editorTemplate'=>'full',
-																									)
-												 );?>
+					
+					<div class="control-group">
+						<?php echo $form->labelEx($model,'cmsContent',array('class'=>'control-label','for'=>'textfield')); ?>
+						<div class="controls">
+							<div>
+							    <?php echo $form->textArea($model, 'cmsContent', array('id' => 'editor1')); ?>
+							    <script type="text/javascript">
+							        CKEDITOR.replace( 'editor1',
+							        {
+							            filebrowserBrowseUrl :'<?php echo $baseUrl; ?>/assets/backend/fck_editor/ckeditor/filemanager/browser/default/browser.html?Connector=http://<?php echo $_SERVER['SERVER_NAME']; ?>/travelogini_new/assets/backend/fck_editor/ckeditor/filemanager/connectors/php/connector.php',
+							            filebrowserImageBrowseUrl : '<?php echo $baseUrl; ?>/assets/backend/fck_editor/ckeditor/filemanager/browser/default/browser.html?Type=Image&Connector=http://<?php echo $_SERVER['SERVER_NAME']; ?>/travelogini_new/assets/backend/fck_editor/ckeditor/filemanager/connectors/php/connector.php',
+							            filebrowserFlashBrowseUrl :'<?php echo $baseUrl; ?>/assets/backend/fck_editor/ckeditor/filemanager/browser/default/browser.html?Type=Flash&Connector=http://<?php echo $_SERVER['SERVER_NAME']; ?>/travelogini_new/assets/backend/fck_editor/ckeditor/filemanager/connectors/php/connector.php',
+							            filebrowserUploadUrl  :'<?php echo $baseUrl; ?>/assets/backend/fck_editor/ckeditor/filemanager/connectors/php/upload.php?Type=File',
+							            filebrowserImageUploadUrl : '<?php echo $baseUrl; ?>/assets/backend/fck_editor/ckeditor/filemanager/connectors/php/upload.php?Type=Image',
+							            filebrowserFlashUploadUrl : '<?php echo $baseUrl; ?>/assets/backend/fck_editor/ckeditor/filemanager/connectors/php/upload.php?Type=Flash'
+							        });	
+							    </script> 
 							</div>
 						</div>
-					<?php } ?>
-					
+					</div>
+										
 					<div class="control-group">
 						<?php echo $form->labelEx($model,'cmsMetaTitle',array('class'=>'control-label','for'=>'textfield')); ?>
 						<div class="controls">
@@ -81,7 +99,6 @@
 						<?php echo $form->labelEx($model,'cmsStatus',array('class'=>'control-label','for'=>'textfield')); ?>
 						<div class="controls">
 							<?php echo $form->dropDownList($model,'cmsStatus',array(''=>'Select','1'=>'Active','0'=>'Inactive'),array('data-rule-required'=>'true','class'=>'input-xlarge select2-me')); ?>
-							<?php /*<input type="checkbox" class="icheck-me">*/?>
 						</div>
 					</div>
 

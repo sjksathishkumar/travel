@@ -37,7 +37,7 @@ class Faqs extends CActiveRecord
 			array('faqStatus', 'length', 'max'=>1),
 			array('faqAttachment', 'file', 'allowEmpty' => true, 'on' => 'add_faq,update_faq'),
 			array('faqAttachment', 'EImageValidator', 'types' => "gif, jpg, png,jpeg, pdf, doc, docx",'allowEmpty' => true, 'on'=>'add_faq,update_faq'),
-
+			array('faqDisplayOrder', 'unique','attributeName' => 'faqDisplayOrder','message'=>'Dispaly Order already in Use !'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('pkFaqID, faqQuestion, faqAnswer, faqDisplayOrder, fkCategoryID, faqStatus, faqAttachment, faqHelpTopics, faqDateAdded, faqDateModified', 'safe', 'on'=>'search'),

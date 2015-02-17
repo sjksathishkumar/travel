@@ -267,16 +267,16 @@
                                 <?php echo CHtml::link('Manage CMS', array('cms/')); ?>
                             </li>
                             <li>
-                                <?php echo CHtml::link('Add Banner', array('banner/add')); ?>
+                                <?php echo CHtml::link('Manage Banner', array('banner/')); ?>
                             </li>
                             <li>
-                                <?php echo CHtml::link('Add Category', array('category/create')); ?>
+                                <?php echo CHtml::link('Add FAQ', array('faqs/create')); ?>
                             </li>
                             <li>
-                                <?php echo CHtml::link('Add Deal', array('deals/create')); ?>
+                                <?php echo CHtml::link('Settings', array('configurations/')); ?>
                             </li>
                             <li>
-                                <?php echo CHtml::link('Create Customer', array('customers/create')); ?>
+                                <?php echo CHtml::link('Notifications', array('emailTemplate/')); ?>
                             </li>
                         </ul>
                     </div>

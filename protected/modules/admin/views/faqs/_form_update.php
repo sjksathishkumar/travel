@@ -1,3 +1,11 @@
+<?php
+$baseUrl = Yii::app()->baseUrl;
+$cs = Yii::app()->getClientScript();
+
+$cs->registerScriptFile($baseUrl . '/assets/backend/ckeditor/ckeditor.js');
+$cs->registerScriptFile($baseUrl . '/assets/backend/fck_editor/js/sample.js');
+$cs->registerCssFile($baseUrl . '/assets/backend/fck_editor/css/sample.css');
+?>
 <div class="row-fluid">
    <div class="span12">
         <div class="box box-color box-bordered">
@@ -35,12 +43,20 @@
 					<div class="control-group">
 						<?php echo $form->labelEx($model,'faqAnswer',array('class'=>'control-label','for'=>'textfield')); ?>
 					<div class="controls">
-						<?php   $this->widget('application.extensions.ckeditor.CKEditor', array('model'=>$model,
-																							'attribute'=>'faqAnswer',
-																							'language'=>'english',
-																							'editorTemplate'=>'full',
-																							)
-										 );?>
+						<div>
+						    <?php echo $form->textArea($model, 'faqAnswer', array('id' => 'editor1')); ?>
+						    <script type="text/javascript">
+						        CKEDITOR.replace( 'editor1',
+						        {
+						            filebrowserBrowseUrl :'<?php echo $baseUrl; ?>/assets/backend/fck_editor/ckeditor/filemanager/browser/default/browser.html?Connector=http://<?php echo $_SERVER['SERVER_NAME']; ?>/travelogini_new/assets/backend/fck_editor/ckeditor/filemanager/connectors/php/connector.php',
+						            filebrowserImageBrowseUrl : '<?php echo $baseUrl; ?>/assets/backend/fck_editor/ckeditor/filemanager/browser/default/browser.html?Type=Image&Connector=http://<?php echo $_SERVER['SERVER_NAME']; ?>/travelogini_new/assets/backend/fck_editor/ckeditor/filemanager/connectors/php/connector.php',
+						            filebrowserFlashBrowseUrl :'<?php echo $baseUrl; ?>/assets/backend/fck_editor/ckeditor/filemanager/browser/default/browser.html?Type=Flash&Connector=http://<?php echo $_SERVER['SERVER_NAME']; ?>/travelogini_new/assets/backend/fck_editor/ckeditor/filemanager/connectors/php/connector.php',
+						            filebrowserUploadUrl  :'<?php echo $baseUrl; ?>/assets/backend/fck_editor/ckeditor/filemanager/connectors/php/upload.php?Type=File',
+						            filebrowserImageUploadUrl : '<?php echo $baseUrl; ?>/assets/backend/fck_editor/ckeditor/filemanager/connectors/php/upload.php?Type=Image',
+						            filebrowserFlashUploadUrl : '<?php echo $baseUrl; ?>/assets/backend/fck_editor/ckeditor/filemanager/connectors/php/upload.php?Type=Flash'
+						        });	
+						    </script> 
+						</div>
 					</div>
 					</div>
 					<div class="control-group">
@@ -64,36 +80,55 @@
 			        <div class="control-group">
 			            <?php echo $form->labelEx($model,'faqAttachment',array('class'=>'control-label','for'=>'textfield')); ?>
 			            <div class="controls">
-			              <?php echo $form->textField($model,'faqAttachment',array('id'=>'delete-file','class'=>'input-xxlarge','readonly'=>true)); ?>     
-			              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo CHtml::button('Delete File',array('class'=>'btn',"onclick" => "{deletFile();}")); ?>
-			              <br>  <br>OR  <br><br>
-	                        <div class="fileupload fileupload-new first" data-provides="fileupload">
-	                            <span>
-	                                <span class="btn btn-file">
-	                                    <span class="fileupload-new">Update file</span>
-	                                    <span class="fileupload-exists">Change</span>
-	                                    <?php echo CHtml::fileField('Faqs[faqAttachment]','',array('accept'=>'image/*','class'=>'dealImages'));?>
-	                                </span>
-	                                <span class="fileupload-preview"></span>
-	                                <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
-	                            </span>
-	                        </div>
-	                        <?php echo '<span class="required">( Please add image and Documents Only. )</span>';?>
+			            	<?php 
+			            		if($model->faqAttachment)
+			            		{
+			            			echo $form->textField($model,'faqAttachment',array('id'=>'delete-file','class'=>'input-xxlarge','readonly'=>true)); 	
+			            			echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+			            			echo CHtml::button('Delete File',array('class'=>'btn btn-primary',"onclick" => "{deletFile();}", "id"=>"delete-file-button"));
+			            			echo "<br><br>";
+			            		?>
+			            		<div class="fileupload fileupload-new first" data-provides="fileupload">
+			            		    <span>
+			            		        <span class="btn btn-file">
+			            		            <span class="fileupload-new">Upload file</span>
+			            		            <span class="fileupload-exists">Change</span>
+			            		            <?php echo CHtml::fileField('Faqs[faqAttachment]','',array('accept'=>'image/*','class'=>'dealImages'));?>
+			            		        </span>
+			            		        <span class="fileupload-preview"></span>
+			            		        <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
+			            		    </span>
+			            		</div>
+			            		<?php
+			            			echo '<span>( Please add image and Documents Only. )</span>';
+			            		}
+			            		else
+			            		{
+			            		?>
+		                        <div class="fileupload fileupload-new first" data-provides="fileupload">
+		                            <span>
+		                                <span class="btn btn-file">
+		                                    <span class="fileupload-new">Upload file</span>
+		                                    <span class="fileupload-exists">Change</span>
+		                                    <?php echo CHtml::fileField('Faqs[faqAttachment]','',array('accept'=>'image/*','class'=>'dealImages'));?>
+		                                </span>
+		                                <span class="fileupload-preview"></span>
+		                                <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
+		                            </span>
+		                        </div>
+		                        <?php
+		                        	echo '<span>( Please add image and Documents Only. )</span>';
+			            		}
+			            	 ?>
 	                        <?php echo $form->error($model, 'faqAttachment'); ?>
-	                    
 			            </div>
 			        </div>
 			        <div class="control-group">
 						<?php echo $form->labelEx($model,'faqHelpTopics',array('class'=>'control-label','for'=>'textfield')); ?>
 						<div class="controls">
         					<?php 
-        							/*$criteria=new CDbCriteria;
-								  	$criteria->condition = ('pkFaqID ='.$model->faqHelpTopics);
-								  	$test = CHtml::listData(Faqs::model()->findAll(),'pkFaqID','faqQuestion');
-								    $selected = CHtml::listData(Faqs::model()->findAll($criteria),'pkFaqID','faqQuestion');
-								    echo CHtml::checkBoxList('$model', $selected, $test);*/
-        							echo $form->checkBoxList($model,'faqHelpTopics', CHtml::listData(Faqs::model()->findAll(array("condition"=>"pkFaqID !=  $model->pkFaqID")), 'pkFaqID', 'faqQuestion'), array('separator'=>'','template'=>'{input}{label}<br>')); 
-        						?>
+        						echo $form->checkBoxList($model,'faqHelpTopics', CHtml::listData(Faqs::model()->findAll(array("condition"=>"pkFaqID !=  $model->pkFaqID")), 'pkFaqID', 'faqQuestion'), array('separator'=>'','template'=>'{input}{label}<br>','class'=>'input_faq')); 
+        					?>
 						</div>
 					</div>
 			        <div class="control-group">

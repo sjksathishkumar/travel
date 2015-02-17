@@ -65,20 +65,6 @@
                     </div>
                 </div>
                 <div class="control-group">
-                    <?php echo $form->labelEx($model, 'configurationSocialLink5', array('class' => 'control-label', 'for' => 'textfield')); ?>
-                    <div class="controls">
-                        <?php echo $form->textField($model, 'configurationSocialLink5', array('class' => 'input-xlarge', 'data-rule-required' => 'true')); ?>
-                        <?php echo $form->error($model, 'configurationSocialLink5'); ?>
-                    </div>
-                </div>
-                <div class="control-group">
-                    <?php echo $form->labelEx($model, 'configurationSocialLink6', array('class' => 'control-label', 'for' => 'textfield')); ?>
-                    <div class="controls">
-                        <?php echo $form->textField($model, 'configurationSocialLink6', array('class' => 'input-xlarge', 'data-rule-required' => 'true')); ?>
-                        <?php echo $form->error($model, 'configurationSocialLink6'); ?>
-                    </div>
-                </div>
-                <div class="control-group">
                     <?php echo $form->labelEx($model, 'configurationPageLimit', array('class' => 'control-label', 'for' => 'textfield')); ?>
                     <div class="controls">
                         <?php echo $form->dropDownList($model, 'configurationPageLimit', Yii::app()->params['adminRecordLimit'], array('empty' => '-Select Limit-', 'class' => 'span3 select2-me', 'data-rule-required' => 'true',)); ?>
@@ -107,14 +93,14 @@
                                 <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
                             </span>
                         </div>
-                        <?php echo '<span class="required">( Please add logo image of 117X138 )</span>';?>
+                        <?php echo '<span class="required">( Logo image must be 117X138 Pixel)</span>';?>
                         <?php echo $form->error($model, 'logoImage'); ?>
                     </div>
                 </div>
                 <div class="control-group">
                     <?php echo $form->labelEx($model, 'logoImage<em></em>', array('class' => 'control-label', 'for' => 'textfield')); ?>
                     <div class="controls">
-                    <?php echo CHtml::image(Yii::app()->params['siteUploadFilesURL'].LOGO_FOLDER.$model->logoImage,$model->logoAltTag,array('width'=>500,'height'=>100)); ?>
+                    <?php echo CHtml::image(Yii::app()->baseUrl.UPLOAD_FOLDER.LOGO_FOLDER.$model->logoImage,$model->logoAltTag,array('width'=>117,'height'=>138)); ?>
                     </div>
                 </div>     
                 <div class="control-group">
@@ -123,14 +109,7 @@
                     <?php echo $form->textField($model, 'logoAltTag', array('class' => 'input-xlarge', 'data-rule-required' => 'true')); ?>
                     <?php echo $form->error($model, 'logoAltTag'); ?>
                     </div>
-                </div>            
-                <div class="control-group">
-                    <?php echo $form->labelEx($model, 'logoStatus', array('class' => 'control-label', 'for' => 'textfield')); ?>
-                    <div class="controls">
-                        <?php echo $form->dropDownList($model,'logoStatus',array('' => 'Select','0'=>'Inactive','1'=>'Active'),array('data-rule-required'=>'true','class'=>'select2-me input-xlarge'));?>     
-                        <?php echo $form->error($model, 'logoStatus'); ?>
-                    </div>
-                </div>
+                </div>  
                 <div class="note"><strong>Note :</strong> <span class="required">*</span> Indicates mandatory fields.</div>
                 <div class="form-actions">
                     <?php echo CHtml::submitButton('Submit', array('class' => 'btn btn-primary','title'=>'Submit','alt'=>'Submit')); ?>

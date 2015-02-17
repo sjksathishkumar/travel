@@ -1,3 +1,11 @@
+<?php
+$baseUrl = Yii::app()->baseUrl;
+$cs = Yii::app()->getClientScript();
+
+$cs->registerScriptFile($baseUrl . '/assets/backend/ckeditor/ckeditor.js');
+$cs->registerScriptFile($baseUrl . '/assets/backend/fck_editor/js/sample.js');
+$cs->registerCssFile($baseUrl . '/assets/backend/fck_editor/css/sample.css');
+?>
 <div class="page-header">
 	<div class="pull-left">
 		<h1>Update Email Template</h1>
@@ -56,12 +64,20 @@
 				<div class="control-group">
 					<?php echo $form->labelEx($model,'emailContent',array('class'=>'control-label','for'=>'textfield')); ?>
 					<div class="controls">
-						<?php   $this->widget('application.extensions.ckeditor.CKEditor', array('model'=>$model,
-																							'attribute'=>'emailContent',
-																							'language'=>'english',
-																							'editorTemplate'=>'full',
-																							)
-										 );?>
+						<div>
+						    <?php echo $form->textArea($model, 'emailContent', array('id' => 'editor1')); ?>
+						    <script type="text/javascript">
+						        CKEDITOR.replace( 'editor1',
+						        {
+						            filebrowserBrowseUrl :'<?php echo $baseUrl; ?>/assets/backend/fck_editor/ckeditor/filemanager/browser/default/browser.html?Connector=http://<?php echo $_SERVER['SERVER_NAME']; ?>/travelogini_new/assets/backend/fck_editor/ckeditor/filemanager/connectors/php/connector.php',
+						            filebrowserImageBrowseUrl : '<?php echo $baseUrl; ?>/assets/backend/fck_editor/ckeditor/filemanager/browser/default/browser.html?Type=Image&Connector=http://<?php echo $_SERVER['SERVER_NAME']; ?>/travelogini_new/assets/backend/fck_editor/ckeditor/filemanager/connectors/php/connector.php',
+						            filebrowserFlashBrowseUrl :'<?php echo $baseUrl; ?>/assets/backend/fck_editor/ckeditor/filemanager/browser/default/browser.html?Type=Flash&Connector=http://<?php echo $_SERVER['SERVER_NAME']; ?>/travelogini_new/assets/backend/fck_editor/ckeditor/filemanager/connectors/php/connector.php',
+						            filebrowserUploadUrl  :'<?php echo $baseUrl; ?>/assets/backend/fck_editor/ckeditor/filemanager/connectors/php/upload.php?Type=File',
+						            filebrowserImageUploadUrl : '<?php echo $baseUrl; ?>/assets/backend/fck_editor/ckeditor/filemanager/connectors/php/upload.php?Type=Image',
+						            filebrowserFlashUploadUrl : '<?php echo $baseUrl; ?>/assets/backend/fck_editor/ckeditor/filemanager/connectors/php/upload.php?Type=Flash'
+						        });	
+						    </script> 
+						</div>
 						<?php echo $form->error($model, 'emailContent'); ?>
 					</div>
 				</div>

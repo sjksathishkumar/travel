@@ -45,6 +45,7 @@ $('.search-form form').submit(function(){
 <div class="row-fluid">
     <div class="span12 margin_top20">
 	    <?php echo CHtml::link('Add Category','create',array('class'=>'btn btn-primary')); ?>
+	    <?php echo CHtml::link('Manage FAQ Questions',array('faqs/index'),array('class'=>'btn btn-primary')); ?>
 	    <?php echo CHtml::link('Search','#',array('class'=>'search-button btn btn-inverse')); ?>
 	 </div>
 </div>
@@ -95,11 +96,11 @@ $('.search-form form').submit(function(){
 					              'value'=>'CommonFunctions::statusFurmate($data->faqCategoryStatus)',
 					              'htmlOptions'=>array('style'=>'text-align:center'),
 							),
-							array('name'=>'faqCategoryIsMount',
+							/*array('name'=>'faqCategoryIsMount',
 					         	  'type' => 'raw',
 					              'value'=>'CommonFunctions::statusFurmate($data->faqCategoryIsMount)',
 					              'htmlOptions'=>array('style'=>'text-align:center'),
-							),
+							),*/
 							array(
 								'header'=>'Action',
 								'class'=>'CButtonColumn',
@@ -215,6 +216,6 @@ $('.search-form form').submit(function(){
     */
    $('#resetVal').live('click', function(e){
         $(':input','#_search-form').not(':button,:submit,:hidden,.btn').val('');
-        $.fn.yiiGridView.update('faq-category-grid', {url:'<?php echo CController::createUrl("/admin/cms"); ?>'});
+        $.fn.yiiGridView.update('faq-category-grid', {url:'<?php echo CController::createUrl("/admin/faqsCategories"); ?>'});
     });
 </script>

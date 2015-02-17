@@ -100,7 +100,6 @@ class Cms extends CActiveRecord
         $criteria->compare('cmsMetaTitle', $this->cmsMetaTitle, true);
         $criteria->compare('cmsMetaKeywords', $this->cmsMetaKeywords, true);
         $criteria->compare('cmsMetaDescription', $this->cmsMetaDescription, true);
-        $criteria->compare('cmsIsPage', '1', true);
         $criteria->compare('cmsStatus', $this->cmsStatus, true);
         $criteria->compare('cmsDateAdded', $this->cmsDateAdded, true);
         $criteria->compare('cmsDateModified', $this->cmsDateModified, true);
@@ -143,7 +142,6 @@ class Cms extends CActiveRecord
         $criteria->compare('cmsMetaTitle', $this->cmsMetaTitle, true);
         $criteria->compare('cmsMetaKeywords', $this->cmsMetaKeywords, true);
         $criteria->compare('cmsMetaDescription', $this->cmsMetaDescription, true);
-        $criteria->compare('cmsIsPage', '0', true);
         $criteria->compare('cmsStatus', $this->cmsStatus, true);
         $criteria->compare('cmsDateAdded', $this->cmsDateAdded, true);
         $criteria->compare('cmsDateModified', $this->cmsDateModified, true);

@@ -1,163 +1,282 @@
-<?php $siteUrl = Yii::app()->baseUrl;?>
-<div class="slider-outer">
-    <ul class="bxslider">
-        <?php foreach($data['bannerModel'] as $banner) {?>
-            <li><?php echo CHtml::image($siteUrl.UPLOAD_FOLDER.BANNERS_FOLDER.$banner->bannerImage,$banner->bannerAltTag,array('title'=>$banner->bannerTitle));?></li>
-        <?php }?>
-    </ul>
-    <div class="slider-text">
-        <div class="layout">
-            <div class="top-content">
-                <h2 class="deal-h">BIG <span>deals</span></h2>
-                <h2 class="brnd-h">BIG <span>brands</span></h2>
-                <?php $this->widget('application.components.front.mainSearch');?>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="clear"></div>
-<div class="body_container">
-    <div class="layout">
-        <?php if(count($data['featuredDeals'])>0){?>
-        <div class="box-style">
-            <div class="owl-carousel">
-                <?php foreach ($data['featuredDeals'] as $featuredDeal) {?>
-                    <div class="item">
-                        <div class="img-box">
-                            <?php echo CHtml::image($siteUrl.UPLOAD_FOLDER.DEAL_FOLDER.'284X177/'.$featuredDeal['dealImagePath'],$featuredDeal['dealImageAlt'],array('title'=>$featuredDeal['dealImageAlt']));?>
-                            <span class="feature">
-                                <?php echo CHtml::image($siteUrl.'/images/feature-img.png','featured',array('title'=>'featured'));?>
-                            </span>
-                            <?php if($featuredDeal['dealDiscount']){?><span class="offer"><?php echo $featuredDeal['dealDiscount'];?>% Off</span><?php }?>
-                            <span class="bot-bg">
-                                <?php echo CHtml::image($siteUrl.UPLOAD_FOLDER.CATEGORIES_FOLDER.$featuredDeal['categoryImage'],$featuredDeal['categoryName'],array('alt'=>$featuredDeal['categoryName']));?>
-                                <?php echo $featuredDeal['categoryName'];?>
-                            </span>
-                        </div>
-                        <div class="txt-box">
-                            <h2><?php echo $featuredDeal['dealName'];?></h2>
-                            <p><?php if(strlen($featuredDeal['dealDescription'])>70){echo substr($featuredDeal['dealDescription'],0,70)."...";}else{echo $featuredDeal['dealDescription'];}?></p>
-                            <span class="map-ico"><?php if(strlen($featuredDeal['dealAddress'])>30){echo substr($featuredDeal['dealAddress'],0,30)."...";}else{echo $featuredDeal['dealAddress']; }?></span>
-                            <span class="clck-ico"><?php echo ($featuredDeal['dealEndDate']-time())*1000;?></span>
-                            <?php echo Chtml::link('<span>BUY NOW</span>',$siteUrl.'/deals/'.$featuredDeal['pkDealID'],array('class'=>'buy-btn-grn','title'=>'BUY NOW','alt'=>'BUY NOW'));?>
-                        </div>
-                        <div class="hover-eff">
-                            <p><?php echo $featuredDeal['dealDescription'];?></p>
+<?php
+    $varBaseUrl = Yii::app()->baseUrl;
+        /*echo "<pre>";
+        print_r($data['cms']['0']['cmsPageTitle']);
+        die();*/
+?>
+  <!-- Top Slider Part Start From Here -->
+    <div class="main-slider-outer">
+        <div class="top-slider">        
+            <div id="top-slider" class="owl-carousel">
+                <?php foreach($data['bannerModel'] as $banner) {?>
+                <div class="item">
+                <?php echo CHtml::image($varBaseUrl.UPLOAD_FOLDER.BANNERS_FOLDER.$banner->bannerImage,$banner->bannerAltTag,array('title'=>$banner->bannerTitle));?></li>
+                <div class="container">
+                        <div class="slider-text-outer">
+                            <div class="slider-text-left"></div>
+                            <div class="slider-text">
+                                <?php echo $banner->bannerTagLine; ?>
+                            </div>
+                            <div class="slider-text-right"></div>
                         </div>
                     </div>
+                </div>
                 <?php }?>
-            </div>
-            <div class="box-title">
-                <span>featured deals</span>
-            </div>
-            <div class="slider-btn">
-                <?php echo CHtml::link('view all',$siteUrl.'/category/featured',array('class'=>'view-btn','title'=>'view all'));?>
-            </div>
-        </div>
-        <?php }?>
-        <div class="box-style">
-            <div class="owl-carousel">
-                <div class="item">
-                    <div class="img-box">
-                        <img src="<?php echo $siteUrl;?>/images/feature-img-4.png" alt="">
-                        <span class="feature"><img src="<?php echo $siteUrl;?>/images/feature-img.png" alt=""></span>
-                        <span class="offer">78% Off</span>
-                        <span class="bot-bg"><img src="<?php echo $siteUrl;?>/images/plane-ico.png" alt=""> Travel</span>
-                    </div>
-                    <div class="txt-box">
-                        <h2>Jewels of the Middle East America</h2>
-                        <p>If you have the flexibility to leave at a moment's notice, last minute travel deals.</p>
-                        <span class="map-ico">Seattle, LA, Vegas + 3 Locations</span>
-                        <span class="clck-ico">48 Hours: 50 Mins: 30 Secs</span>
-                        <a href="#" class="buy-btn-grn" title="BUY NOW"><span>BUY NOW</span></a>
-                    </div>
-                    <div class="hover-eff">
-                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-                        <p>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum.</p>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="img-box">
-                        <img src="<?php echo $siteUrl;?>/images/feature-img-4.png" alt="">
-                        <span class="feature"><img src="<?php echo $siteUrl;?>/images/feature-img.png" alt=""></span>
-                        <span class="offer">78% Off</span>
-                        <span class="bot-bg"><img src="<?php echo $siteUrl;?>/images/plane-ico.png" alt=""> Travel</span>
-                    </div>
-                    <div class="txt-box">
-                        <h2>Jewels of the Middle East America</h2>
-                        <p>If you have the flexibility to leave at a moment's notice, last minute travel deals.</p>
-                        <span class="map-ico">Seattle, LA, Vegas + 3 Locations</span>
-                        <span class="clck-ico">48 Hours: 50 Mins: 30 Secs</span>
-                        <a href="#" class="buy-btn-grn" title="BUY NOW"><span>BUY NOW</span></a>
-                    </div>
-                    <div class="hover-eff">
-                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-                        <p>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum.</p>
-                    </div>
-                </div>
-                <div class="item last">
-                    <div class="img-box">
-                        <img src="<?php echo $siteUrl;?>/images/feature-img-4.png" alt="">
-                        <span class="feature"><img src="<?php echo $siteUrl;?>/images/feature-img.png" alt=""></span>
-                        <span class="offer">78% Off</span>
-                        <span class="bot-bg"><img src="<?php echo $siteUrl;?>/images/plane-ico.png" alt=""> Travel</span>
-                    </div>
-                    <div class="txt-box">
-                        <h2>Jewels of the Middle East America</h2>
-                        <p>If you have the flexibility to leave at a moment's notice, last minute travel deals.</p>
-                        <span class="map-ico">Seattle, LA, Vegas + 3 Locations</span>
-                        <span class="clck-ico">48 Hours: 50 Mins: 30 Secs</span>
-                        <a href="#" class="buy-btn-grn" title="BUY NOW"><span>BUY NOW</span></a>
-                    </div>
-                    <div class="hover-eff">
-                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-                        <p>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="box-title">
-                <span>Most Popular</span>
-            </div>
-            <div class="slider-btn">
-               <a href="#" class="view-btn" title="view all">view all</a>
-            </div>
+                
+              </div>
         </div>
         
-        <div class="box-style blue-bg-mar">
-            <?php if(count($data['otherDeals'])>0){?>
-                <div class="owl-carousel">
-                    
-                    <?php foreach ($data['otherDeals'] as $otherDeal) {?>
-                        <div class="item">
-                            <div class="img-box">
-                                <?php echo CHtml::image($siteUrl.UPLOAD_FOLDER.DEAL_FOLDER.'284X177/'.$otherDeal['dealImagePath'],$otherDeal['dealImageAlt'],array('title'=>$otherDeal['dealImageAlt']));?>
-                                <?php if($otherDeal['dealDiscount']){?><span class="offer"><?php echo $otherDeal['dealDiscount'];?>% Off</span><?php }?>
-                                <span class="bot-bg">
-                                    <?php echo CHtml::image($siteUrl.UPLOAD_FOLDER.CATEGORIES_FOLDER.$otherDeal['categoryImage'],$otherDeal['categoryName'],array('alt'=>$otherDeal['categoryName']));?>
-                                    <?php echo $otherDeal['categoryName'];?>
-                                </span>
+        
+            <div class="container">
+            <div class="services-outer">
+                <ul>
+                    <li>                        
+                        <div class="service-img">
+                            <?php echo CHtml::image($varBaseUrl.UPLOAD_FOLDER.MASCOTS_FOLDER.$data['mascots']['0']['mascotImage'],$data['mascots']['0']['mascotAltTag']); ?>
+                        </div>
+                        <div class="service-box">
+                            <a href="" class="service-title">
+                                <?php echo $data['mascots']['0']['mascotName']; ?>                                                                 
+                            </a>
+                            <div class="title-arrow"></div> 
+                        </div>
+                    </li>
+                    <li>
+                        <div class="service-img">
+                            <?php echo CHtml::image($varBaseUrl.UPLOAD_FOLDER.MASCOTS_FOLDER.$data['mascots']['1']['mascotImage'],$data['mascots']['1']['mascotAltTag']); ?>
+                        </div>
+                        <div class="service-box">
+                            <a href=""  class="service-title">
+                                <?php echo $data['mascots']['1']['mascotName']; ?>
+                            </a>
+                            <div class="title-arrow"></div> 
+                        </div>
+                    </li>
+                    <li>
+                        <div class="service-img">
+                            <?php echo CHtml::image($varBaseUrl.UPLOAD_FOLDER.MASCOTS_FOLDER.$data['mascots']['2']['mascotImage'],$data['mascots']['2']['mascotAltTag']); ?>
+                        </div>
+                        <div class="service-box">
+                            <a href=""  class="service-title">
+                                <?php echo $data['mascots']['2']['mascotName']; ?>
+                            </a>
+                            <div class="title-arrow"></div> 
+                        </div>
+                    </li>
+                    <li>
+                        <div class="service-img">
+                            <?php echo CHtml::image($varBaseUrl.UPLOAD_FOLDER.MASCOTS_FOLDER.$data['mascots']['3']['mascotImage'],$data['mascots']['3']['mascotAltTag']); ?>
+                        </div>
+                        <div class="service-box">
+                            <a href=""  class="service-title">
+                                <?php echo $data['mascots']['3']['mascotName']; ?>
+                            </a>
+                            <div class="title-arrow"></div> 
+                        </div>
+                    </li>
+                    <li>
+                        <div class="service-img">
+                            <?php echo CHtml::image($varBaseUrl.UPLOAD_FOLDER.MASCOTS_FOLDER.$data['mascots']['4']['mascotImage'],$data['mascots']['4']['mascotAltTag']); ?>
+                        </div>
+                        <div class="service-box">
+                            <a href=""  class="service-title">
+                                <?php echo $data['mascots']['4']['mascotName']; ?>
+                            </a>
+                            <div class="title-arrow"></div> 
+                        </div>
+                    </li>
+                </ul>
+            </div>          
+        </div>
+    </div>  
+    <!-- Top Slider Part End Here --> 
+
+    <!--- Body Container Part Start From Here -->
+    <div class="body-container-outer">
+    <div class="outer-img">
+                <?php echo CHtml::image($varBaseUrl . "/images/outerdesign.png"); ?>
+    </div>
+    <div class="container">
+        <div class="body-container">
+            
+            <div class="body-top-box">
+                <div class="about-travelogini">
+                    <div class="about-outer-travelogini">
+                        <div class="about-left"><?php echo CHtml::image($varBaseUrl . "/images/design-left.png"); ?></div>
+                        <div class="travelogini-heading"><?php echo $data['cms']['0']['cmsPageTitle']; ?></div>
+                        <div class="about-right"><?php echo CHtml::image($varBaseUrl . "/images/design-right.png"); ?></div>      
+                    </div>
+                    <p><?php echo $data['cms']['0']['cmsContent']; ?></p>
+                </div>
+                
+                <div class="body-left-box">
+                    <div class="title"> Special Deals</div>
+                    <div id="special-deals">
+                        <div id="special-deals-slider" class="owl-carousel">                  
+                            <div class="item border0">
+                                <div class="offer-img">
+                                    <?php echo CHtml::image($varBaseUrl . "/images/buraj.jpg", "Buraj", array('title' => 'Buraj')); ?>
+                                    <div class="best-offer">
+                                        Best Offer
+                                    </div>
+                                    <div class="enjoy-holiday">
+                                        Enjoy Your Holiday
+                                    </div>
+                                </div>
+                                <h3 class="city-trip">
+                                    Dubai Holiday Trip Get Rs. 2500/ off on any hotel.
+                                </h3>
+                                <div class="offer-time">
+                                    4N / 5D Starting @ Rs 7779
+                                </div>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                    Cras et mauris eu tellus venentis dapibus vel a turpis. Nulla facilisi.</p>
+                                    
+                            <a class="view-detail" href=""> View Details </a>       
                             </div>
-                            <div class="txt-box">
-                                <h2><?php echo $otherDeal['dealName'];?></h2>
-                                <p><?php if(strlen($otherDeal['dealDescription'])>70){echo substr($otherDeal['dealDescription'],0,70)."...";}else{echo $otherDeal['dealDescription'];}?></p>
-                                <span class="map-ico"><?php if(strlen($otherDeal['dealAddress'])>30){echo substr($otherDeal['dealAddress'],0,30)."...";}else{echo $otherDeal['dealAddress']; }?></span>
-                                <span class="clck-ico"><?php echo ($otherDeal['dealEndDate']-time())*1000;?></span>
-                                <?php echo Chtml::link('<span>BUY NOW</span>',$siteUrl.'/deals/'.$otherDeal['pkDealID'],array('class'=>'buy-btn-grn','title'=>'BUY NOW'));?>
+                            <div class="item">
+                                <div class="offer-img">
+                                    <?php echo CHtml::image($varBaseUrl . "/images/buraj.jpg", "Buraj", array('title' => 'Buraj')); ?>
+                                    <div class="best-offer">
+                                        Best Offer
+                                    </div>
+                                    <div class="enjoy-holiday">
+                                        Enjoy Your Holiday
+                                    </div>
+                                </div>
+                                <h3 class="city-trip">
+                                    Dubai Holiday Trip Get Rs. 2500/ off on any hotel.
+                                </h3>
+                                <div class="offer-time">
+                                    4N / 5D Starting @ Rs 7779
+                                </div>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                    Cras et mauris eu tellus venentis dapibus vel a turpis. Nulla facilisi.</p>
+                                <a class="view-detail" href=""> View Details </a>
                             </div>
-                            <div class="hover-eff">
-                                <p><?php echo $otherDeal['dealDescription'];?></p>
+                            <div class="item">
+                                <div class="offer-img">
+                                    <?php echo CHtml::image($varBaseUrl . "/images/buraj.jpg", "Buraj", array('title' => 'Buraj')); ?>
+                                    <div class="best-offer">
+                                        Best Offer
+                                    </div>
+                                    <div class="enjoy-holiday">
+                                        Enjoy Your Holiday
+                                    </div>
+                                </div>
+                                <h3 class="city-trip">
+                                    Dubai Holiday Trip Get Rs. 2500/ off on any hotel.
+                                </h3>
+                                <div class="offer-time">
+                                    4N / 5D Starting @ Rs 7779
+                                </div>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                    Cras et mauris eu tellus venentis dapibus vel a turpis. Nulla facilisi.</p>
+                                <a class="view-detail" href=""> View Details </a>
+                            </div>
+                            <div class="item">
+                                <div class="offer-img">
+                                    <?php echo CHtml::image($varBaseUrl . "/images/buraj.jpg", "Buraj", array('title' => 'Buraj')); ?>
+                                    <div class="best-offer">
+                                        Best Offer
+                                    </div>
+                                    <div class="enjoy-holiday">
+                                        Enjoy Your Holiday
+                                    </div>
+                                </div>
+                                <h3 class="city-trip">
+                                    Dubai Holiday Trip Get Rs. 2500/ off on any hotel.
+                                </h3>
+                                <div class="offer-time">
+                                    4N / 5D Starting @ Rs 7779
+                                </div>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                    Cras et mauris eu tellus venentis dapibus vel a turpis. Nulla facilisi.</p>
+                                <a class="view-detail" href=""> View Details </a>
+                            </div>
+                            <div class="item">
+                                <div class="offer-img">
+                                    <?php echo CHtml::image($varBaseUrl . "/images/buraj.jpg", "Buraj", array('title' => 'Buraj')); ?>
+                                    <div class="best-offer">
+                                        Best Offer
+                                    </div>
+                                    <div class="enjoy-holiday">
+                                        Enjoy Your Holiday
+                                    </div>
+                                </div>
+                                <h3 class="city-trip">
+                                    Dubai Holiday Trip Get Rs. 2500/ off on any hotel.
+                                </h3>
+                                <div class="offer-time">
+                                    4N / 5D Starting @ Rs 7779
+                                </div>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                    Cras et mauris eu tellus venentis dapibus vel a turpis. Nulla facilisi.</p>
+                                <a class="view-detail" href=""> View Details </a>
                             </div>
                         </div>
-                    <?php }?>
+                    </div>
                 </div>
-            <?php }?>
-            <div class="box-title">
-                <span>other deals</span>
-            </div>
-            <div class="slider-btn">
-                <?php if(count($data['otherDeals'])>0){?><?php echo CHtml::link('view all',$siteUrl.'/category/other',array('class'=>'view-btn','title'=>'view all'));?><?php }?>
+                
+                <div class="body-right-box">
+                    <div class="title"> Featured Hotels</div>
+                    <div class="featured-hotels">
+                        <ul>
+                            <li>
+                                <div class="fhotels-leftbox">
+                                    <?php echo CHtml::image($varBaseUrl . "/images/oberoi-hotel1.jpg", "Oberoi", array('title' => 'Oberoi')); ?>
+                                    <div class="best-offer">
+                                        Best Offer
+                                    </div>
+                                    <div class="enjoy-holiday">
+                                        Enjoy Your Holiday
+                                    </div>
+                                </div>
+                                <div class="fhotels-rightbox">
+                                    <h4 class="hotel-name">Oberoi Hotel</h4>
+                                    <div class="offer-package">Exclusive International Packages</div>
+                                    <p>Book now and get discount</p>
+                                    <a class="view-detail" href=""> View Details </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="fhotels-leftbox">
+                                    <?php echo CHtml::image($varBaseUrl . "/images/oberoi-hotel1.jpg", "Oberoi", array('title' => 'Oberoi')); ?>
+                                    <div class="best-offer">
+                                        Best Offer
+                                    </div>
+                                    <div class="enjoy-holiday">
+                                        Enjoy Your Holiday
+                                    </div>
+                                </div>
+                                <div class="fhotels-rightbox">
+                                    <h4 class="hotel-name">Oberoi Hotel</h4>
+                                    <div class="offer-package">Exclusive International Packages</div>
+                                    <p>Book now and get discount</p>
+                                    <a class="view-detail" href=""> View Details </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="fhotels-leftbox">
+                                    <?php echo CHtml::image($varBaseUrl . "/images/oberoi-hotel1.jpg", "Oberoi", array('title' => 'Oberoi')); ?>
+                                    <div class="best-offer">
+                                        Best Offer
+                                    </div>
+                                    <div class="enjoy-holiday">
+                                        Enjoy Your Holiday
+                                    </div>
+                                </div>
+                                <div class="fhotels-rightbox">
+                                    <h4 class="hotel-name">Oberoi Hotel</h4>
+                                    <div class="offer-package">Exclusive International Packages</div>
+                                    <p>Book now and get discount</p>
+                                    <a class="view-detail" href=""> View Details </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
-        <?php $this->widget('application.components.front.newsletterSubscriptionForm');?>
     </div>
-</div>
+    </div>

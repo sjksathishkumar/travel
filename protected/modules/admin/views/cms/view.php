@@ -26,7 +26,7 @@
 						'cmsDisplayTitle',
 						'cmsPageTitle',
 						'cmsSlug',
-						'cmsContent',
+						'cmsContent:html',
 						'cmsMetaTitle',
 						'cmsMetaKeywords',
 						'cmsMetaDescription',

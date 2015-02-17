@@ -37,6 +37,13 @@
 					</div>
 				</div>
 				<div class="control-group">
+					<?php echo $form->labelEx($model,'bannerTagLine',array('class'=>'control-label','for'=>'textfield')); ?>
+					<div class="controls">
+						<?php echo $form->textField($model,'bannerTagLine',array('class'=>'input-xlarge','data-rule-required'=>'true')); ?>	
+						<?php echo $form->error($model, 'bannerTagLine'); ?>
+					</div>
+				</div>
+				<div class="control-group">
 					<?php echo $form->labelEx($model,'bannerAltTag',array('class'=>'control-label','for'=>'textfield')); ?>
 					<div class="controls">
 						<?php echo $form->textField($model,'bannerAltTag',array('class'=>'input-xlarge','data-rule-required'=>'true')); ?>	
@@ -64,16 +71,16 @@
                                 </span>
                                 <span class="fileupload-preview"></span>
                                 <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
+                            </span>
+                        </div>
+                        <?php echo '<span class="required">( Banner size should be 1920X620 Pixels. )</span>';?>
+                        <?php echo $form->error($model, 'bannerImage'); ?>
                                 <?php
                                 if (isset($model->bannerImage))
                                 {
-                                    echo Chtml::image(Yii::app()->params['siteUploadFilesURL'] . BANNERS_FOLDER . $model->bannerImage);
+                                    echo CHtml::image(Yii::app()->baseUrl.UPLOAD_FOLDER.BANNERS_FOLDER.$model->bannerImage,$model->bannerAltTag,array('width'=>1020,'height'=>620)); 
                                 }
                                 ?>
-                            </span>
-                        </div>
-                        <?php echo '<span class="required">( Please add image of 1600X445 for home page and 711X216 for other pages. )</span>';?>
-                        <?php echo $form->error($model, 'bannerImage'); ?>
                     </div>
                 </div>
 				<div class="control-group">
@@ -83,16 +90,6 @@
 						<?php echo $form->error($model, 'bannerOrder'); ?>
 					</div>
 				</div>	
-				<div class="control-group">
-					<?php echo $form->labelEx($model,'fkCmsID',array('class'=>'control-label','for'=>'textfield')); ?>
-					<div class="controls">
-						<?php 
-						$criteria = new CDbCriteria;
-						$criteria->condition = 'cmsStatus = "1" AND cmsBannerAvailable="1"';
-						echo $form->dropDownList($model,'fkCmsID',CHtml::listData(Cms::model()->findAll($criteria), 'pkCmsID', 'cmsDisplayTitle'),array('empty'=>'-Select Page-','data-rule-required'=>'true','class'=>'select2-me input-xlarge'));?>     
-						<?php echo $form->error($model, 'fkCmsID'); ?>
-					</div>
-				</div>
 				<div class="control-group">
 					<?php echo $form->labelEx($model,'bannerStatus',array('class'=>'control-label','for'=>'textfield')); ?>
 					<div class="controls">

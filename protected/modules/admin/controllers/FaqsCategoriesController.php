@@ -128,7 +128,13 @@ class FaqsCategoriesController extends Controller
 				
 				if($model->faqCategoryIsMount == '1')
 				{
-				    throw new CHttpException(400, "Category is Mounted to Questions. So Can't Delete now.");
+					if(Faqs::model()->findAll(array("condition"=>"fkCategoryID =  $id")))
+					{
+						throw new CHttpException(400, "Category is Mounted to Questions. So Can't Delete now.");
+					}
+					else{
+						$model->delete();
+					}
 				}
 				else
 				{	
@@ -149,16 +155,10 @@ class FaqsCategoriesController extends Controller
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['FaqsCategories'])){
 			$model->attributes=$_GET['FaqsCategories'];
-			//$modelOther->attributes=$_GET['Cms'];
 		}
 		$this->render('index',array(
 			'model'=>$model,
 		));
-
-		/*$dataProvider=new CActiveDataProvider('FaqsCategories');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));*/
 	}
 
 	/**
