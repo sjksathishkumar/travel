@@ -1,0 +1,20 @@
+.off-big-img,.off-big-img h6{-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";}
+.log-btn,.cre-btn,.search_sec,.input-slide,.btn-slide,.slider-btn .view-btn,.buy-btn-grn,.cupan_sec input[type="submit"],.shop_details input[type="text"],.cupan_sec input[type="text"],.checkout_btn,.total_price,.short-pagination{border-radius:3px; -webkit-border-radius:3px;;-o-border-radius:3px; -moz-border-radius:3px;position:relative;behavior:url(common/js/PIE.htc);outline:none;}
+.breadcrumb,.review_form li textarea,.review_form li input[type="text"],.qty .drop1,.checkout_form li input[type="text"],.checkout_form li input[type="submit"]{border-radius:4px; -webkit-border-radius:4px;;-o-border-radius:4px;; -moz-border-radius:4px;position:relative;behavior:url(common/js/PIE.htc);}
+.bg-slide{border-radius:0px 0px 3px 3px; -webkit-border-radius:0px 0px 3px 3px;;-o-border-radius:0px 0px 3px 3px;; -moz-border-radius:0px 0px 3px 3px;position:relative;behavior:url(common/js/PIE.htc);}
+.subs-input{border-radius:3px 0px 0px 3px; -webkit-border-radius:3px 0px 0px 3px;;-o-border-radius:3px 0px 0px 3px;; -moz-border-radius:3px 0px 0px 3px;position:relative;behavior:url(common/js/PIE.htc);}
+.subs-btn{border-radius:0px 3px 3px 0px; -webkit-border-radius:0px 3px 3px 0px;;-o-border-radius:0px 3px 3px 0px;; -moz-border-radius:0px 3px 3px 0px;position:relative;behavior:url(common/js/PIE.htc);}
+
+.closebutton, .editbutton, .sendpayinstt, .nextbutton{border-radius:3px; -webkit-border-radius:3px;;-o-border-radius:3px;; -moz-border-radius:3px;position:relative;behavior:url(common/js/PIE.htc);
+}
+
+.accountinfo_box, .myorder_box, .myreward_box, .mywalletbox, .pdeatails_box{border-radius:0px 0px 3px 3px; -webkit-border-radius:0px 0px 3px 3px;;-o-border-radius:0px 0px 3px 3px;; -moz-border-radius:0px 0px 3px 3px;position:relative;behavior:url(common/js/PIE.htc);
+}
+.fieldbox input, .sendpaypopup input.phonenumber,.user-reg-popup input.input-box, textarea.commentshistory{border-radius:4px; -webkit-border-radius:4px;;-o-border-radius:4px;; -moz-border-radius:4px;position:relative;behavior:url(common/js/PIE.htc);
+}
+.firsttd{border-radius:0px 0px 0px 7px; -webkit-border-radius:0px 0px 0px 7px;-o-border-radius:0px 0px 0px 7px; -moz-border-radius:0px 0px 0px 7px;position:relative;behavior:url(common/js/PIE.htc);
+
+}
+.lasttd{border-radius: 0px 0px 7px 0px ; -webkit-border-radius:0px 0px 7px 0px;-o-border-radius:0px 0px 7px 0px; -moz-border-radius:0px 0px 7px 0px;position:relative;behavior:url(common/js/PIE.htc);
+
+}
