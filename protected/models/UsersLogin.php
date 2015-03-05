@@ -8,7 +8,7 @@
  * @property string $userEmail
  * @property string $userPassword
  * @property string $userType
- * @property string $userDateModified
+ * @property string $customerDateModified
  */
 class UsersLogin extends CActiveRecord
 {
@@ -33,7 +33,7 @@ class UsersLogin extends CActiveRecord
             array('userEmail,userType', 'required','except'=>'user-update-password-profile-form'),
             array('userPassword,repassword', 'required','on'=>'create_user_from_admin'),
             array('userPassword', 'compare', 'compareAttribute'=>'repassword','except'=>'user-update-password-profile-form'),
-            array('pkUserLoginID,userEmail, userPassword, repassword,userType,userDateModified', 'safe'),
+            array('pkUserLoginID,userEmail, userPassword, repassword,userType,customerDateModified', 'safe'),
             array('userPassword', 'compare', 'compareAttribute'=>'repeatPassword','on'=>'user-update-password-profile-form', 'message'=>"Passwords don't match"),     
         );
     }
@@ -59,7 +59,7 @@ class UsersLogin extends CActiveRecord
             'userEmail' => 'Email Address',
             'userPassword' => 'Password',
             'userType' => 'User Type',
-            'userDateModified' => 'Date Modified',
+            'customerDateModified' => 'Date Modified',
             'repassword'=>'Re-Enter Password',
         );
     }
@@ -82,7 +82,7 @@ class UsersLogin extends CActiveRecord
         $criteria->compare('userEmail', $this->userEmail, true);
         $criteria->compare('userPassword',$this->userPassword,true);
         $criteria->compare('userType',$this->userType,true);
-        $criteria->compare('userDateModified', $this->userDateModified, true);
+        $criteria->compare('customerDateModified', $this->customerDateModified, true);
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,
                 ));
@@ -102,13 +102,18 @@ class UsersLogin extends CActiveRecord
     /*
     * This method is used to login user.
     */
-    public function getCustomerDetails($arrPost = array())
+    public function getMemberDetails($arrPost = array())
     {
+        if(strpos($arrPost['memberEmail'], '@') !== false){
+            $loginField = 't.userEmail= "'.$arrPost['memberEmail'];
+        }else{
+           //Otherwise we search using the username
+            $loginField = 't.userName= "'.$arrPost['memberEmail'];
+        }
         $criteria=new CDbCriteria;
-        $criteria->join='LEFT JOIN '.TABLE_USERS.' AS U ON t.pkUserLoginID=U.fkUserLoginID';
-        $criteria->condition='t.userEmail= "'. $arrPost['customerEmail'].'" AND t.userPassword = "'.md5($arrPost['customerPassword']).'" AND t.userType = "C" AND U.userStatus = "1"';
+        $criteria->join='LEFT JOIN '.TABLE_CUSTOMERS.' AS U ON t.pkUserLoginID=U.fkUserLoginID';
+        $criteria->condition=$loginField.'" AND t.userPassword = "'.md5($arrPost['memberPassword']).'" AND t.userType = "C" AND U.customerStatus = "1"';
         $customerDetails = $this->find($criteria);
-
         return $customerDetails;
     }
 

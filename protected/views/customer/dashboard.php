@@ -41,13 +41,13 @@
 								<h3>Contact Information</h3>
 
 								<p>
-									<?php echo $data['customersDetails']->userFirstName; echo " ".$data['customersDetails']->userLastName;?>
+									<?php echo $data['customersDetails']->customerFirstName; echo " ".$data['customersDetails']->customerLastName;?>
 								</p>
 								<p>
 									<?php echo $data['customersDetails']->userEmail;?>
 								</p>
 								<p>
-									<?php echo $data['customersDetails']->userPhone;?>
+									<?php echo $data['customersDetails']->customerMobile;?>
 								</p>
 							</div>
 
@@ -55,7 +55,7 @@
 								<h3>Shipping Information</h3>
 
 								<p>
-									<?php echo $data['customersDetails']->userFirstName; echo " ".$data['customersDetails']->userLastName;?>
+									<?php echo $data['customersDetails']->customerFirstName; echo " ".$data['customersDetails']->customerLastName;?>
 								</p>
 								<p>
 									<?php echo $data['customersDetails']->userShippingAddress1;?>
@@ -84,13 +84,13 @@
 								<h3>Billing Information</h3>
 
 								<p>
-									<?php echo $data['customersDetails']->userFirstName; echo " ".$data['customersDetails']->userLastName;?>
+									<?php echo $data['customersDetails']->customerFirstName; echo " ".$data['customersDetails']->customerLastName;?>
 								</p>
 								<p>
-									<?php echo $data['customersDetails']->userBillingAddress1;?>
+									<?php echo $data['customersDetails']->customerAddress;?>
 								</p>
 								<p>
-									<?php echo $data['customersDetails']->userBillingAddress2;?>
+									<?php echo $data['customersDetails']->customerAddress2;?>
 								</p>
 								<p>
 									<?php echo $data['customersDetails']->billingCity->cityName;?>
@@ -102,7 +102,7 @@
 									<?php echo $data['customersDetails']->billingCountry->countryName;?>
 								</p>
 								<p>
-									<?php echo $data['customersDetails']->userBillingZip;?>
+									<?php echo $data['customersDetails']->customerZip;?>
 								</p>
 								<p>
 									<?php echo $data['customersDetails']->userBillingPhone;?>

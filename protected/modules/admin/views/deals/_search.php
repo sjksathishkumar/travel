@@ -61,8 +61,8 @@
 		                            <div class="controls">
 		                                <?php 
 		                            	$criteria = new CDbCriteria;
-										$criteria->condition = 'userStatus != "2"';
-		                            	echo $form->dropDownList($model,'fkUserID',CHtml::listData(Users::model()->findAll($criteria),'pkUserID', 'userFirstName'),array('class'=>'select2-me input-large','empty'=>'-Select User-'))?>
+										$criteria->condition = 'customerStatus != "2"';
+		                            	echo $form->dropDownList($model,'fkUserID',CHtml::listData(Users::model()->findAll($criteria),'pkCustomerID', 'customerFirstName'),array('class'=>'select2-me input-large','empty'=>'-Select User-'))?>
 		                            </div>
 		                        </div>
 		                    </div>

@@ -15,22 +15,22 @@ class CustomerController extends Controller {
         $loginModel->userEmail = $model->userEmail;
         $loginModel->userPassword = md5($_POST['userPassword']);
         $loginModel->userType = 'C';
-        $loginModel->userDateModified = date('Y-m-d H:i:s');
+        $loginModel->customerDateModified = date('Y-m-d H:i:s');
 
         if ($model->validate()) {
             if ($loginModel->save(false)) {
 
                 /* Save */
                 //$model->userPassword = md5($model->userPassword);
-                $model->userAccountActivationToken = base64_encode(uniqid(microtime()));
+                $model->customerAccountActivationToken = base64_encode(uniqid(microtime()));
                 $model->fkUserLoginID = $loginModel->pkUserLoginID;
                 $model->save();
 
                 /* generate and send Email */
                 $varMailTo = trim($model->userEmail);
-                $activationLink = $url = Yii::app()->params['siteURL'] . "customer/activateAccount?userID=" . base64_encode($model->pkUserID) . "&token=" . $model->userAccountActivationToken;
+                $activationLink = $url = Yii::app()->params['siteURL'] . "customer/activateAccount?userID=" . base64_encode($model->pkCustomerID) . "&token=" . $model->customerAccountActivationToken;
                 $varKeywordContent = array('{to_name}', '{account_activation_link}');
-                $varKeywordValueContent = array(ucfirst($model->userFirstName), $activationLink);
+                $varKeywordValueContent = array(ucfirst($model->customerFirstName), $activationLink);
                 CommonFunctions::sendMail('3', $varMailTo, $varKeywordContent, $varKeywordValueContent, '', '', '', '');
 
 
@@ -55,22 +55,22 @@ class CustomerController extends Controller {
         $loginModel->userEmail = $model->userEmail;
         $loginModel->userPassword = md5($_POST['UsersLogin']['userPassword']);
         $loginModel->userType = 'C';
-        $loginModel->userDateModified = date('Y-m-d H:i:s');
+        $loginModel->customerDateModified = date('Y-m-d H:i:s');
 
         if ($model->validate()) {
             if ($loginModel->save(false)) {
 
                 /* Save */
                 //$model->userPassword = md5($model->userPassword);
-                $model->userAccountActivationToken = base64_encode(uniqid(microtime()));
+                $model->customerAccountActivationToken = base64_encode(uniqid(microtime()));
                 $model->fkUserLoginID = $loginModel->pkUserLoginID;
                 $model->save();
 
                 /* generate and send Email */
                 $varMailTo = trim($model->userEmail);
-                $activationLink = $url = Yii::app()->params['siteURL'] . "customer/activateAccount?userID=" . base64_encode($model->pkUserID) . "&token=" . $model->userAccountActivationToken;
+                $activationLink = $url = Yii::app()->params['siteURL'] . "customer/activateAccount?userID=" . base64_encode($model->pkCustomerID) . "&token=" . $model->customerAccountActivationToken;
                 $varKeywordContent = array('{to_name}', '{account_activation_link}');
-                $varKeywordValueContent = array(ucfirst($model->userFirstName), $activationLink);
+                $varKeywordValueContent = array(ucfirst($model->customerFirstName), $activationLink);
                 CommonFunctions::sendMail('3', $varMailTo, $varKeywordContent, $varKeywordValueContent, '', '', '', '');
                 Yii::app()->user->setFlash('registration_verification_message', 'We have just sent you a verification mail. Please check your email and complete the registration.');
                 $this->redirect(array('/checkout'));
@@ -88,16 +88,16 @@ class CustomerController extends Controller {
 
     public function actionActivateAccount() {
         if (isset($_GET['userID']) && isset($_GET['token'])) {
-            $userModel = Users::model()->findByAttributes(array('pkUserID' => base64_decode($_GET['userID']), 'userAccountActivationToken' => $_GET['token'], 'userStatus' => '0'));
+            $userModel = Users::model()->findByAttributes(array('pkCustomerID' => base64_decode($_GET['userID']), 'customerAccountActivationToken' => $_GET['token'], 'customerStatus' => '0'));
             if ($userModel) {
-                $userModel->userStatus = 1;
+                $userModel->customerStatus = 1;
                 $userModel->save();
 
                 /* generate and send Email */
                 $varMailTo = trim($userModel->userEmail);
                 $varSiteUrl = Yii::app()->params['siteURL'];
                 $varKeywordContent = array('{to_name}', '{site_url}');
-                $varKeywordValueContent = array(ucfirst($userModel->userFirstName), $varSiteUrl);
+                $varKeywordValueContent = array(ucfirst($userModel->customerFirstName), $varSiteUrl);
                 CommonFunctions::sendMail('4', $varMailTo, $varKeywordContent, $varKeywordValueContent, '', '', '', '');
                 $this->render('/checkout/registration-verification', array('message' => 'Congratulation,Your account has been verified successfully.'));
             } else {
@@ -112,7 +112,7 @@ class CustomerController extends Controller {
 
     public function actionAjaxlogin() {
         $modelUsersLogin = new UsersLogin;
-        if (isset($_POST['customerEmail']) && isset($_POST['customerPassword'])) {
+        if (isset($_POST['userEmail']) && isset($_POST['customerPassword'])) {
             $customerDetails = $modelUsersLogin->getCustomerDetails($_POST);
             if (count($customerDetails) > 0) {
                 $customerDetails->login($userType = 'C');
@@ -130,7 +130,7 @@ class CustomerController extends Controller {
     public function actionLogin() {
         $model = new Users;
         $modelUsersLogin = new UsersLogin;
-        if (isset($_POST['customerEmail']) && isset($_POST['customerPassword'])) {
+        if (isset($_POST['userEmail']) && isset($_POST['customerPassword'])) {
             $customerDetails = $modelUsersLogin->getCustomerDetails($_POST);
             if (count($customerDetails) > 0) {
                 $customerDetails->login($userType = 'C');
@@ -206,13 +206,13 @@ class CustomerController extends Controller {
                 $id = Yii::app()->user->userId;
                 $model = Users::model()->findByPk($id);
                 $loginModel = UsersLogin::model()->findByPk($model->fkUserLoginID);
-                $model->userDateOfBirth = date('d-m-Y',strtotime($model->userDateOfBirth));
+                $model->customerDateOfBirth = date('d-m-Y',strtotime($model->customerDateOfBirth));
                 $oldPassword = $loginModel->userPassword;
                 $model->scenario = 'update_user_front_end';
                 if(isset($_POST['Users']) && isset($_POST['UsersLogin'])){
                   $model->attributes = $_POST['Users'];
-                  $model->userDateOfBirth = date('Y-m-d',strtotime($_POST['Users']['userDateOfBirth']));
-                  $model->userDateModified = date('Y-m-d H:i:s');
+                  $model->customerDateOfBirth = date('Y-m-d',strtotime($_POST['Users']['customerDateOfBirth']));
+                  $model->customerDateModified = date('Y-m-d H:i:s');
                   $loginModel->attributes = $_POST['UsersLogin'];
                   if($model->validate() & $loginModel->validate()){
                     $model->update(false);
@@ -226,16 +226,12 @@ class CustomerController extends Controller {
                     Yii::app()->user->setFlash('updateAccountSuccess',true);
                       $this->redirect(array('dashboard'));
                   }else{
-                      $model->billingStateOptions = CHtml::listData(State::model()->findAll('fkCountryID=:fkCountryID',array(':fkCountryID'=>(int) $_POST['Users']['userBillingCountry'])),'pkStateID', 'stateName');
-                      $model->billingCityOptions = CHtml::listData(City::model()->findAll('fkStateID=:fkStateID',array(':fkStateID'=>(int) $_POST['Users']['userBillingState'])),'pkCityID', 'cityName');
-                      $model->shippingStateOptions = CHtml::listData(State::model()->findAll('fkCountryID=:fkCountryID',array(':fkCountryID'=>(int) $_POST['Users']['userShippingCountry'])),'pkStateID', 'stateName');
-                      $model->shippingCityOptions = CHtml::listData(City::model()->findAll('fkStateID=:fkStateID',array(':fkStateID'=>(int) $_POST['Users']['userShippingState'])),'pkCityID', 'cityName');
+                      $model->stateOptions = CHtml::listData(State::model()->findAll('fkCountryID=:fkCountryID',array(':fkCountryID'=>(int) $_POST['Users']['customerCountry'])),'pkStateID', 'stateName');
+                      $model->cityOptions = CHtml::listData(City::model()->findAll('fkStateID=:fkStateID',array(':fkStateID'=>(int) $_POST['Users']['customerState'])),'pkCityID', 'cityName');    
                   } 
                 }else{
-                  $model->billingStateOptions = CHtml::listData(State::model()->findAll('fkCountryID=:fkCountryID',array(':fkCountryID'=>$model->userBillingCountry)),'pkStateID', 'stateName');
-                  $model->billingCityOptions = CHtml::listData(City::model()->findAll('fkStateID=:fkStateID',array(':fkStateID'=>$model->userBillingState)),'pkCityID', 'cityName');
-                  $model->shippingStateOptions = CHtml::listData(State::model()->findAll('fkCountryID=:fkCountryID',array(':fkCountryID'=>$model->userShippingCountry)),'pkStateID', 'stateName');
-                  $model->shippingCityOptions = CHtml::listData(City::model()->findAll('fkStateID=:fkStateID',array(':fkStateID'=>$model->userShippingState)),'pkCityID', 'cityName');
+                  $model->stateOptions = CHtml::listData(State::model()->findAll('fkCountryID=:fkCountryID',array(':fkCountryID'=>$model->customerCountry)),'pkStateID', 'stateName');
+                  $model->cityOptions = CHtml::listData(City::model()->findAll('fkStateID=:fkStateID',array(':fkStateID'=>$model->customerState)),'pkCityID', 'cityName');
                   $loginModel->userPassword = '';
                 }
                 $this->render('editPersonal',array(

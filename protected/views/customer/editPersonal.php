@@ -33,13 +33,13 @@
 						<div class="simplebox">
 							<div class="fieldbox">
 								<label><span>*</span>First Name</label>
-								<?php echo $form->textField($model,'userFirstName',array('class'=>'input-xlarge','data-rule-required'=>'true')); ?>	
-								<?php echo $form->error($model, 'userFirstName'); ?>
+								<?php echo $form->textField($model,'customerFirstName',array('class'=>'input-xlarge','data-rule-required'=>'true')); ?>	
+								<?php echo $form->error($model, 'customerFirstName'); ?>
 							</div>
 							<div class="fieldbox">
 								<label><span>*</span>Last Name</label>
-								<?php echo $form->textField($model,'userLastName',array('class'=>'input-xlarge','data-rule-required'=>'true')); ?>	
-								<?php echo $form->error($model, 'userLastName'); ?>
+								<?php echo $form->textField($model,'customerLastName',array('class'=>'input-xlarge','data-rule-required'=>'true')); ?>	
+								<?php echo $form->error($model, 'customerLastName'); ?>
 							</div>
 							<div class="fieldbox">
 								<label><span>*</span>Email Address</label>
@@ -49,18 +49,18 @@
 							</div>
 							<div class="fieldbox">
 								<label><span>*</span>Gender</label>
-                                <?php echo $form->dropDownList($model,'userGender',array('Male'=>'Male','Female'=>'Female'),array('empty'=>'- Select Gender -','class'=>'select-cat','input-xlarge','data-rule-required'=>'true')); ?>	
-								<?php echo $form->error($model, 'userGender'); ?>
+                                <?php echo $form->dropDownList($model,'customerGender',array('Male'=>'Male','Female'=>'Female'),array('empty'=>'- Select Gender -','class'=>'select-cat','input-xlarge','data-rule-required'=>'true')); ?>	
+								<?php echo $form->error($model, 'customerGender'); ?>
 							</div>
 							<div class="fieldbox">
                                 <label><span>*</span> Date Of Birth</label>
 								<?php
 								      $this->widget('zii.widgets.jui.CJuiDatePicker',array(
                                         	'model'=>$model,
-                                            'name'=> "Users[userDateOfBirth]",
-                                            'id' => 'Users_userDateOfBirth',
-                                            'value' => $model->userDateOfBirth,
-                                            'attribute' => 'userDateOfBirth',
+                                            'name'=> "Users[customerDateOfBirth]",
+                                            'id' => 'Users_customerDateOfBirth',
+                                            'value' => $model->customerDateOfBirth,
+                                            'attribute' => 'customerDateOfBirth',
                                             'options'=>array(
                                                 'showAnim'=>'fold',
                                                 'dateFormat'=>'dd-mm-yy',//Date format 'mm/dd/yy','yy-mm-dd','d M, y','d MM,
@@ -68,18 +68,18 @@
                                                 'changeYear'=>true,
                                                 'yearRange'=>'1900:2099',
                                                 'maxDate' => 'today',      // maximum date
-                                                //'setDate' => $model->userDateOfBirth,
+                                                //'setDate' => $model->customerDateOfBirth,
                                                 //'altFormat' => 'dd-mm-yy',
                                             ),  
                                         ));
 
                                 ?>
-                                <?php echo $form->error($model, 'userDateOfBirth'); ?>
+                                <?php echo $form->error($model, 'customerDateOfBirth'); ?>
 							</div>
 							<div class="fieldbox">
 								<label><span>*</span>Mobile</label>
-								<?php echo $form->textField($model,'userPhone',array('class'=>'input-xlarge','data-rule-required'=>'true')); ?>	
-								<?php echo $form->error($model, 'userPhone'); ?>
+								<?php echo $form->textField($model,'customerMobile',array('class'=>'input-xlarge','data-rule-required'=>'true')); ?>	
+								<?php echo $form->error($model, 'customerMobile'); ?>
 							</div>
 						</div>
 					</div>
@@ -118,13 +118,13 @@
 										<div class="simplebox">
 											<div class="fieldbox">
 												<label><span>*</span>Address Line 1</label>
-				                                <?php echo $form->textField($model,'userBillingAddress1',array('class'=>'input-xlarge','data-rule-required'=>'true','id'=>'userBillingAddress1')); ?>	
-				                                <?php echo $form->error($model, 'userBillingAddress1'); ?>
+				                                <?php echo $form->textField($model,'customerAddress',array('class'=>'input-xlarge','data-rule-required'=>'true','id'=>'customerAddress')); ?>	
+				                                <?php echo $form->error($model, 'customerAddress'); ?>
 											</div>
 											<div class="fieldbox">
 												<label><span>*</span>Address Line 1</label>
-												<?php echo $form->textField($model,'userBillingAddress2',array('class'=>'input-xlarge','data-rule-required'=>'true','id'=>'userBillingAddress2')); ?>	
-												<?php echo $form->error($model, 'userBillingAddress2'); ?>
+												<?php echo $form->textField($model,'customerAddress2',array('class'=>'input-xlarge','data-rule-required'=>'true','id'=>'customerAddress2')); ?>	
+												<?php echo $form->error($model, 'customerAddress2'); ?>
 											</div>
 											<div class="fieldbox">
 												<label><span>*</span>Phone</label>
@@ -134,16 +134,16 @@
 											<div class="fieldbox">
 												<label><span>*</span>Country</label>
 												<div class="countryclass">
-														<?php echo $form->dropDownList($model, 'userBillingCountry',CHtml::listData(Country::model()->findAll(), 'pkCountryID', 'countryName'),
+														<?php echo $form->dropDownList($model, 'customerCountry',CHtml::listData(Country::model()->findAll(), 'pkCountryID', 'countryName'),
 																								array(
 																									'empty'=>'- Select Country -',
-																									'id'=>'userBillingCountry',
+																									'id'=>'customerCountry',
 																									'class'=>'input-xlarge select2-me countryclass select-cat',
 																									'data-rule-required'=>'true',
 																									'onchange' => 'getBstate(this.value)',
 																								)
 																							); ?>	
-														<?php echo $form->error($model, 'userBillingCountry'); ?>
+														<?php echo $form->error($model, 'customerCountry'); ?>
 												</div>
 											</div>
 
@@ -151,15 +151,15 @@
 												<label><span>*</span>State</label>
 											
 												<div class="countryclass">
-													<?php echo $form->dropDownList($model,'userBillingState',$model->billingStateOptions,
+													<?php echo $form->dropDownList($model,'customerState',$model->stateOptions,
 																						array(
 																							'empty'=>'- Select State -',
 																							'class'=>'input-xlarge select2-me countryclass select-cat',
 																							'data-rule-required'=>'true',
-																							'id'=>'userBillingState',
+																							'id'=>'customerState',
 																							'onchange' => 'getBcity(this.value)',
 																						)); ?>	
-													<?php echo $form->error($model, 'userBillingState'); ?>
+													<?php echo $form->error($model, 'customerState'); ?>
 													
 												</div>
 											</div>
@@ -168,15 +168,15 @@
 												<label><span>*</span>City</label>
 											
 												<div class="countryclass">
-													<?php echo $form->dropDownList($model,'userBillingCity',$model->billingCityOptions,array('empty'=>'- Select City -','class'=>'input-xlarge select2-me countryclass  select-cat','data-rule-required'=>'true','id'=>'userBillingCity')); ?>	
-													<?php echo $form->error($model, 'userBillingCity'); ?>
+													<?php echo $form->dropDownList($model,'customerCity',$model->cityOptions,array('empty'=>'- Select City -','class'=>'input-xlarge select2-me countryclass  select-cat','data-rule-required'=>'true','id'=>'customerCity')); ?>	
+													<?php echo $form->error($model, 'customerCity'); ?>
 												</div>
 											</div>
 
 											<div class="fieldbox">
 												<label><span>*</span>Postal Code or Zip Code</label>
-												<?php echo $form->textField($model,'userBillingZip',array('class'=>'input-xlarge','data-rule-required'=>'true','id'=>'userBillingZip')); ?>	
-												<?php echo $form->error($model, 'userBillingZip'); ?>
+												<?php echo $form->textField($model,'customerZip',array('class'=>'input-xlarge','data-rule-required'=>'true','id'=>'customerZip')); ?>	
+												<?php echo $form->error($model, 'customerZip'); ?>
 											</div>								
 										</div>
 

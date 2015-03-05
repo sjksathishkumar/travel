@@ -28,17 +28,16 @@
 				<?php $this->widget('zii.widgets.CDetailView', array(
 					'data'=>$model,
 					'attributes'=>array(
+						'customerUniqueID',
+						'customerFirstName',
+						'customerLastName',
+						'customerUserName',
+						'customerEmail',
+						'customerMobile',
+						'customerGender',
 						array(
-							'name'=>'pkUserID',
-						),
-						'userFirstName',
-						'userLastName',
-						'userEmail',
-						'userPhone',
-						'userGender',
-						array(
-								'name'=>'userDateOfBirth',
-								'value'=>date('Y-m-d',strtotime($model->userDateOfBirth)) == '1970-01-01'?'-':date('Y-m-d',strtotime($model->userDateOfBirth)),
+								'name'=>'customerDateOfBirth',
+								'value'=>date('Y-m-d',strtotime($model->customerDateOfBirth)) == '1970-01-01'?'-':date('Y-m-d',strtotime($model->customerDateOfBirth)),
 							),
 					),
 				)); ?>
@@ -58,55 +57,30 @@
 			</div>
 
 			<div class="box-title">
-				<h3><i class="icon-table"></i>Billing Address</h3>
+				<h3><i class="icon-table"></i>Other Information</h3>
 			</div>
 			<div class="box-content nopadding">
 				<?php $this->widget('zii.widgets.CDetailView', array(
 					'data'=>$model,
 					'attributes'=>array(
-						'userBillingAddress1',
-						'userBillingAddress2',
+						'customerStatus',
+						'customerSubscriptionPlan',
+						'customerAddress',
 						array(
-							'name'=>'userBillingCountry',
+							'name'=>'customerCountry',
 							'value'=>$model->billingCountry->countryName,
 						),
 						array(
-							'name'=>'userBillingState',
+							'name'=>'customerState',
 							'value'=>$model->billingState->stateName,
 						),
 						array(
-							'name'=>'userBillingCity',
+							'name'=>'customerCity',
 							'value'=>$model->billingCity->cityName,
 						),
-						'userBillingZip',
-						'userBillingPhone',
-					),
-				)); ?>
-			</div>
-
-			<div class="box-title">
-				<h3><i class="icon-table"></i>Shipping Address</h3>
-			</div>
-			<div class="box-content nopadding">
-				<?php $this->widget('zii.widgets.CDetailView', array(
-					'data'=>$model,
-					'attributes'=>array(
-						'userShippingAddress1',
-						'userShippingAddress2',
-						array(
-							'name'=>'userShippingCountry',
-							'value'=>$model->shippingCountry->countryName,
-						),
-						array(
-							'name'=>'userShippingState',
-							'value'=>$model->shippingState->stateName,
-						),
-						array(
-							'name'=>'userShippingCity',
-							'value'=>$model->shippingCity->cityName,
-						),
-						'userShippingZip',
-						'userShippingPhone',
+						'customerZip',
+						'eWalletBalance',
+						'wishginiBalance',
 					),
 				)); ?>
 			</div>

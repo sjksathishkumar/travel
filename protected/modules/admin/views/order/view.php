@@ -52,7 +52,7 @@
 							<div class="box-content">
 								<table id="yw0" class="detail-view">
 									<tr class="odd"><th>Customer Name:</th><td><?php echo $model->orderCustomerFirstName.' '.$model->orderCustomerLastName;?></td></tr>
-									<tr class="even"><th>Email:</th><td><?php echo $model->orderCustomerEmail;?></td></tr>
+									<tr class="even"><th>Email:</th><td><?php echo $model->orderuserEmail;?></td></tr>
 								</table>
 							</div>
 						</div>

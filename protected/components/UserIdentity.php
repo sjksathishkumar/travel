@@ -36,8 +36,10 @@ class UserIdentity extends CUserIdentity
 				$userModel = Users::model()->findByAttributes(array('fkUserLoginID'=>$record->pkUserLoginID));
 				$this->setState('isCustomer',1);
 			    $this->setState('userLoginId',$record->pkUserLoginID);
-			    $this->setState('userId',$userModel->pkUserID);
-			    $this->setState('username', $record->userEmail);
+			    $this->setState('userId',$userModel->pkCustomerID);
+			    $this->setState('userEmail', $record->userEmail);
+			    $this->setState('userFirstName',$userModel->customerFirstName);
+			    $this->setState('userPlan',$userModel->customerSubscriptionPlan);
 			    $this->errorCode=self::ERROR_NONE;
 			}
 			return $this->errorCode==self::ERROR_NONE;

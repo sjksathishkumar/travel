@@ -109,7 +109,7 @@ $('.search-form form').submit(function(){
                             ),
                             array(
                                 'name' => 'fkUserID',
-                                'value' => 'Users::model()->findByPk($data->fkUserID)?Users::model()->findByPk($data->fkUserID)->userFirstName:"--"',
+                                'value' => 'Users::model()->findByPk($data->fkUserID)?Users::model()->findByPk($data->fkUserID)->customerFirstName:"--"',
                                 'htmlOptions' => array('style' => 'text-align:center'),
                             ),
                             array(

@@ -5,8 +5,8 @@
  */
 class Order extends CActiveRecord {
 
-    public $billingStateOptions="";
-    public $billingCityOptions="";
+    public $stateOptions="";
+    public $cityOptions="";
     public $shippingStateOptions="";
     public $shippingCityOptions="";
     /**
@@ -23,10 +23,10 @@ class Order extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('fkCustomerID,orderCustomerFirstName,orderCustomerLastName,orderCustomerEmail,orderCustomerPhone,orderBillingAddress1,orderBillingAddress2,orderBillingCountry,orderBillingState,orderBillingCity,orderBillingZipcode,orderBillingPhone,orderShippingAddress1,orderShippingAddress2,orderShippingCountry,orderShippingState,orderShippingCity,orderShippingZipcode,orderShippingPhone,orderStatus,orderDateAdded,orderDateUpdated', 'required','on'=>'addOrder'),
+            array('fkCustomerID,orderCustomerFirstName,orderCustomerLastName,orderuserEmail,orderCustomerPhone,orderBillingAddress1,orderBillingAddress2,orderBillingCountry,orderBillingState,orderBillingCity,orderBillingZipcode,orderBillingPhone,orderShippingAddress1,orderShippingAddress2,orderShippingCountry,orderShippingState,orderShippingCity,orderShippingZipcode,orderShippingPhone,orderStatus,orderDateAdded,orderDateUpdated', 'required','on'=>'addOrder'),
             array('orderBillingAddress1,orderBillingAddress2,orderBillingCountry,orderBillingState,orderBillingCity,orderBillingZipcode,orderBillingPhone','required','on'=>'ajaxEditBilling'),
             array('orderShippingAddress1,orderShippingAddress2,orderShippingCountry,orderShippingState,orderShippingCity,orderShippingZipcode,orderShippingPhone','required','on'=>'ajaxEditShipping'),
-            array('fkCustomerID,orderCustomerFirstName,orderCustomerLastName,orderCustomerEmail,orderCustomerPhone,orderBillingAddress1,orderBillingAddress2,orderBillingCountry,orderBillingState,orderBillingCity,orderBillingZipcode,orderBillingPhone,orderShippingAddress1,orderShippingAddress2,orderShippingCountry,orderShippingState,orderShippingCity,orderShippingZipcode,orderShippingPhone,orderStatus,orderDateAdded,orderDateUpdated,orderCustomerComment', 'safe', 'on' => 'search'),
+            array('fkCustomerID,orderCustomerFirstName,orderCustomerLastName,orderuserEmail,orderCustomerPhone,orderBillingAddress1,orderBillingAddress2,orderBillingCountry,orderBillingState,orderBillingCity,orderBillingZipcode,orderBillingPhone,orderShippingAddress1,orderShippingAddress2,orderShippingCountry,orderShippingState,orderShippingCity,orderShippingZipcode,orderShippingPhone,orderStatus,orderDateAdded,orderDateUpdated,orderCustomerComment', 'safe', 'on' => 'search'),
         );
     }
 
@@ -57,7 +57,7 @@ class Order extends CActiveRecord {
             'fkCustomerID'=>'Customer ID',
             'orderCustomerFirstName' => 'Customer First Name',
             'orderCustomerLastName' =>'Customer Last Name',
-            'orderCustomerEmail'=>'Customer Email Address',
+            'orderuserEmail'=>'Customer Email Address',
             'orderCustomerPhone'=>'Customer Phone',
             'orderBillingAddress1'=>'Billing Address1',
             'orderBillingAddress2'=>'Billing Address2',
@@ -104,7 +104,7 @@ class Order extends CActiveRecord {
         $criteria->compare('fkCustomerID', $this->fkCustomerID, true);
         $criteria->compare('orderCustomerFirstName', $this->orderCustomerFirstName, true);
         $criteria->compare('orderCustomerLastName', $this->orderCustomerLastName, true);
-        $criteria->compare('orderCustomerEmail', $this->orderCustomerEmail, true);
+        $criteria->compare('orderuserEmail', $this->orderuserEmail, true);
         $criteria->compare('orderCustomerPhone', $this->orderCustomerPhone, true);
         $criteria->compare('orderBillingAddress1', $this->orderBillingAddress1, true);
         $criteria->compare('orderBillingAddress2', $this->orderBillingAddress2, true);

@@ -71,7 +71,7 @@
 	display:inline-block;
 	vertical-align:bottom;
 	text-align:center;	
-	background:url(../images/checked.png) no-repeat center center transparent;
+	background:url(../../images/checked.png) no-repeat center center transparent;
 	color:#333;
 	width:18px;
 	height:23px;
@@ -81,14 +81,14 @@
 	overflow:hidden;
 }
 .checkradios-radio{
-background:url(../images/checked.png) no-repeat center center transparent;
+background:url(../../images/checked.png) no-repeat center center transparent;
 }
 
 .checkradios-checkbox.unchecked {
-	background:url(../images/unchecked.png) no-repeat center center;
+	background:url(../../images/unchecked.png) no-repeat center center;
 }
 .checkradios-radio.unchecked{
-background:url(../images/unchecked.png) no-repeat center center;
+background:url(../../images/unchecked.png) no-repeat center center;
 }
 
 .checkradios-radio{

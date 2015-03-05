@@ -5,16 +5,14 @@
  */
 class Users extends CActiveRecord
 {
-	public $billingStateOptions="";
-	public $billingCityOptions="";
-	public $shippingStateOptions="";
-	public $shippingCityOptions="";
+	public $stateOptions="";
+	public $cityOptions="";
         /**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return TABLE_USERS;
+		return TABLE_CUSTOMERS;
 	}
 
 	/**
@@ -25,17 +23,23 @@ class Users extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('pkUserID,fkUserLoginID,userFirstName,userLastName,userEmail,userPhone,userGender,', 'safe'),
-			array('userFirstName,userLastName,userEmail,userPhone,userGender', 'required','on'=>'front_end_user_registration_ajax'),
-			array('userFirstName,userLastName,userEmail,userGender', 'required','on'=>'front_end_user_registration'),
+			array('pkCustomerID,fkUserLoginID,customerUniqueID,customerFirstName,customerLastName,customerEmail,customerMobile,customerGender,eWalletBalance,wishginiBalance', 'safe'),
+			//array('customerFirstName,customerLastName,customerEmail,customerMobile,customerGender', 'required','on'=>'front_end_user_registration_ajax'),
+			//array('customerFirstName,customerLastName,customerEmail,customerGender', 'required','on'=>'front_end_user_registration'),
 			/*Adding new customer from admin*/
-			array('userFirstName,userLastName,userEmail,userGender,userPhone', 'required','on'=>'add_user_from_admin,update_user_from_admin'),
-			array('userFirstName,userLastName,userEmail,userGender,userPhone', 'required','on'=>'add_user_from_admin,update_user_front_end'),
-			array('userDateOfBirth,userStatus,userBillingAddress1,userBillingAddress2,userBillingCity,userBillingState,userBillingCountry,userBillingZip,userBillingPhone,userShippingAddress1,userShippingAddress2,userShippingCity,userShippingState,userShippingCountry,userShippingZip,userShippingPhone', 'required','on'=>'update_user_from_admin'),
-			array('userEmail','unique', 'message'=>'This email address already exists.','on'=>'front_end_user_registration, front_end_user_registration_ajax,add_user_from_admin,update_user_from_admin'),
-			array('userEmail', 'email'),
+			array('customerFirstName,customerLastName,customerUserName,customerEmail,customerGender,customerMobile,customerSubscriptionPlan,eWalletBalance,wishginiBalance', 'required','on'=>'update_user_from_admin'),
+			array('customerFirstName,customerLastName,customerEmail,customerGender,customerMobile', 'required','on'=>'update_user_front_end'),
+			array('customerDateOfBirth,customerStatus,customerSubscriptionPlan,customerAddress,customerCity,customerState,customerCountry,customerZip,eWalletBalance,wishginiBalance', 'required','on'=>'update_user_from_admin'),
+			array('customerEmail','unique', 'message'=>'This email address already exists.','on'=>'front_end_user_registration, front_end_user_registration_ajax,update_user_from_admin'),
+			array('customerUserName','unique', 'message'=>'This Username already exists.','on'=>'update_user_from_admin'),
+			array('customerEmail', 'email'),
+			array('customerZip', 'numerical', 'integerOnly' => true, 'min' => 0, 'message' => 'ZIP must be nummeric'),
+			array('customerMobile', 'numerical', 'integerOnly' => true, 'min' => 0, 'message' => 'Mobile must be nummeric'),
+			array('eWalletBalance', 'numerical', 'integerOnly' => false, 'min' => 0, 'message' => 'eWallet Balance must be nummeric'),
+			array('wishginiBalance', 'numerical', 'integerOnly' => false, 'min' => 0, 'message' => 'wishgini Balance must be nummeric'),
 			/* Validate Personal Update Details Form */
-			array('userFirstName,userLastName,userEmail,userGender,userDateOfBirth', 'required','on'=>'user-update-profile-form'),
+			array('customerFirstName,customerLastName,customerEmail,customerGender,customerDateOfBirth', 'required','on'=>'user-update-profile-form'),
+			array('customerFirstName,customerLastName,customerEmail,customerStatus,customerSpecialOfferSubscription,customerSubscriptionPlan', 'required','on'=>'search'),
 		);
 	}
 
@@ -45,13 +49,10 @@ class Users extends CActiveRecord
 	public function relations()
 	{
 		return array(
-			'billingCountry'=>array(self::BELONGS_TO, 'Country','userBillingCountry'),
-			'billingState'=>array(self::BELONGS_TO, 'State','userBillingState'),
-			'billingCity'=>array(self::BELONGS_TO, 'City','userBillingCity'),
-			'shippingCountry'=>array(self::BELONGS_TO, 'Country','userShippingCountry'),
-			'shippingState'=>array(self::BELONGS_TO, 'State','userShippingState'),
-			'shippingCity'=>array(self::BELONGS_TO, 'City','userShippingCity'),
-                        'userLogin'=>array(self::BELONGS_TO, 'User','fkUserLoginID'),
+			'billingCountry'=>array(self::BELONGS_TO, 'Country','customerCountry'),
+			'billingState'=>array(self::BELONGS_TO, 'State','customerState'),
+			'billingCity'=>array(self::BELONGS_TO, 'City','customerCity'),
+            'userLogin'=>array(self::BELONGS_TO, 'User','fkUserLoginID'),
 		);
 	}
 
@@ -61,29 +62,27 @@ class Users extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'pkUserID' => 'Sr. No.',
+			'pkCustomerID' => 'Sr. No.',
 			'fkUserLoginID' => 'Login ID',
-			'userFirstName' => 'First Name',
-			'userLastName' => 'Last Name',
-			'userEmail' => 'Email Address',
+			'customerUniqueID' => 'Customer ID',
+			'customerFirstName' => 'First Name',
+			'customerLastName' => 'Last Name',
+			'customerUserName' => 'User Name',
+			'customerEmail' => 'Email Address',
 			'userPassword' => 'Password',
-			'userPhone' => 'Phone',
-			'userGender' => 'Gender',
-			'userDateOfBirth'=>'Date Of Birth',
-			'userBillingAddress1'=>'Address1',
-			'userBillingAddress2'=>'Address2',
-			'userBillingCity'=>'City',
-			'userBillingState'=>'State',
-			'userBillingCountry'=>'Country',
-			'userBillingZip'=>'Zip',
-			'userBillingPhone'=>'Phone',
-			'userShippingAddress1'=>'Address1',
-			'userShippingAddress2'=>'Address2',
-			'userShippingCity'=>'City',
-			'userShippingState'=>'State',
-			'userShippingCountry'=>'Country',
-			'userShippingZip'=>'Zip',
-			'userShippingPhone'=>'Phone',
+			'customerMobile' => 'Mobile',
+			'customerGender' => 'Gender',
+			'customerDateOfBirth'=>'Date Of Birth',
+			'customerAddress'=>'Address1',
+			'customerCity'=>'City',
+			'customerState'=>'State',
+			'customerCountry'=>'Country',
+			'customerZip'=>'Zip',
+			'customerSubscriptionPlan' => 'Subscription Plan',
+			'customerStatus' => 'Status',
+			'customerSpecialOfferSubscription' => 'Offer Subscription',
+			'eWalletBalance' => 'eWallet Balance',
+			'wishginiBalance' => 'Wishgini Balance'
 		);
 	}
 
@@ -103,15 +102,26 @@ class Users extends CActiveRecord
 	{
 		// @todo Please modify the following code to remove attributes that should not be searched.
 		$criteria=new CDbCriteria;
-		$criteria->with = array('billingCountry','billingState','billingCity','shippingCountry','shippingState','shippingCity');
-		$criteria->compare('pkUserID',$this->pkUserID);
+		$criteria->with = array('billingCountry','billingState','billingCity');
+		$criteria->compare('pkCustomerID',$this->pkCustomerID);
 		$criteria->compare('fkUserLoginID',$this->fkUserLoginID,true);
-		$criteria->compare('userFirstName',$this->userFirstName,true);
-		$criteria->compare('userEmail',$this->userEmail,true);
+		$criteria->compare('customerFirstName',$this->customerFirstName,true);
+		$criteria->compare('customerEmail',$this->customerEmail,true);
+		$criteria->compare('customerStatus',$this->customerStatus,true);
+		$criteria->compare('customerSubscriptionPlan',$this->customerSubscriptionPlan,true);
+		$criteria->compare('customerSpecialOfferSubscription',$this->customerSpecialOfferSubscription,true);
 
 		
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+			'sort' => array(
+			    'defaultOrder' => array(
+			        'cmsDateAdded' => true,
+			    ),
+			),
+			'pagination' => array(
+			    'pageSize' => UtilityHtml::pageSettings(),
+			),
 		));
 	}
 
@@ -128,15 +138,15 @@ class Users extends CActiveRecord
 
 	public function getFullname()
     {
-            return $this->userFirstName.' '.$this->userLastName;
+            return $this->customerFirstName.' '.$this->customerLastName;
     }
 
     public function getUserDetails($userID){
     	$criteria=new CDbCriteria;
 
-    	$criteria->with=array('billingCountry','billingState','billingCity','shippingCountry','shippingState','shippingCity');
+    	$criteria->with=array('billingCountry','billingState','billingCity');
 
-    	$criteria->condition='pkUserID= "'. $userID.'"';
+    	$criteria->condition='pkCustomerID= "'. $userID.'"';
         
         $customerDetails = Users::model()->find($criteria);
 

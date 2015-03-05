@@ -26,7 +26,7 @@
                     <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
                     <ul class="checkout_form">
                         <li>
-                            <?php echo CHtml::textField('customerEmail','',array('placeholder'=>'Email:','class'=>'requiredField emailField'));?>
+                            <?php echo CHtml::textField('userEmail','',array('placeholder'=>'Email:','class'=>'requiredField emailField'));?>
                         </li>
                         <li>
                             <?php echo CHtml::passwordField('customerPassword','',array('placeholder'=>'Password:','class'=>'requiredField'));?>
@@ -56,20 +56,20 @@
                 <ul class="checkout_form">
                     <li>
                         <span>
-                            <?php echo $form->textField($model,'userFirstName',array('placeholder'=>'First Name:','class'=>'requiredField'));?>
-                            <?php echo $form->error($model,'userFirstName');?>
+                            <?php echo $form->textField($model,'customerFirstName',array('placeholder'=>'First Name:','class'=>'requiredField'));?>
+                            <?php echo $form->error($model,'customerFirstName');?>
                         </span>
                         <span class="right">
-                            <?php echo $form->textField($model,'userLastName',array('placeholder'=>'Last Name:','class'=>'requiredField'));?>
-                            <?php echo $form->error($model,'userLastName');?>
+                            <?php echo $form->textField($model,'customerLastName',array('placeholder'=>'Last Name:','class'=>'requiredField'));?>
+                            <?php echo $form->error($model,'customerLastName');?>
                         </span>
                     </li>
                     <li>
                         <div class="select_box">
                             <div class="drop1">
-                                <?php echo $form->dropDownList($model,'userGender',array('1'=>'Male','2'=>'Female'),array('empty'=>'Select Gender','class'=>'select-cat requiredField validate-error-msg'));?>
-                                <?php echo $form->error($model,'userGender');?>
-                                <div id="userGender-error" class="validate-error-msg"></div>
+                                <?php echo $form->dropDownList($model,'customerGender',array('1'=>'Male','2'=>'Female'),array('empty'=>'Select Gender','class'=>'select-cat requiredField validate-error-msg'));?>
+                                <?php echo $form->error($model,'customerGender');?>
+                                <div id="customerGender-error" class="validate-error-msg"></div>
                             </div>
                         </div>
                         <span class="right">

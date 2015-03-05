@@ -23,7 +23,7 @@
 		                           <?php echo $form->label($model,'fkCustomerID',array('class'=>'control-label')); ?>
 		                            <div class="controls">
 		                                <?php echo $form->dropDownList($model,'fkCustomerID',
-		                                					CHtml::listData(Users::model()->findAllByAttributes(array('userStatus'=>array('0','1'))),'pkUserID','fullname'),
+		                                					CHtml::listData(Users::model()->findAllByAttributes(array('customerStatus'=>array('0','1'))),'pkCustomerID','fullname'),
 		                                					array('class'=>'select2-me input-large','empty'=>'-Select Customer-')); ?>
 		                            </div>
 		                        </div>

@@ -164,7 +164,7 @@ class AdminController extends Controller
 							$retype_password = md5($_POST['Admin']['retype_password']);
 							$varTokenExpiry = time();
 							if($model->validate()){								
-								if($model->updateByPk($adminID,array('userPassword'=>$password,'userDateModified'=>date('Y-m-d H:i:s')))) //updating member password
+								if($model->updateByPk($adminID,array('userPassword'=>$password,'customerDateModified'=>date('Y-m-d H:i:s')))) //updating member password
 								{									
 									/* updating member reset password tokens expiry */
 									$TBL_ResetPasswordToken->updateAll(array('passResetExpires'=>$varTokenExpiry,'passResetStatus'=>'0'),'fkUserID='.$adminID.' AND passResetExpires=0');
@@ -224,7 +224,7 @@ class AdminController extends Controller
 					$validate1 = 1;
 				}
 				if($validate && $validate1){
-					$model->userDateModified=date('Y-m-d h:i:s');
+					$model->customerDateModified=date('Y-m-d h:i:s');
 					//$model->userEmail=trim($_POST['Admin']['userEmail']);
 					if($model->save()){
 						Yii::app()->user->setFlash('editProfileSuccess',true);

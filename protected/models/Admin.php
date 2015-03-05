@@ -7,9 +7,9 @@
  * @property integer $pkUserLoginID
  * @property string $userEmail
  * @property string $userPassword
- * @property string $userStatus
+ * @property string $customerStatus
  * @property string $userType
- * @property string $userDateModified
+ * @property string $customerDateModified
  *
  * The followings are the available model relations:
  * @property TblEmployers[] $tblEmployers
@@ -46,7 +46,7 @@ class Admin extends CActiveRecord
 			array('userPassword,retype_password', 'required','on' =>'reset_pass'),						//Admin Reset Password Rules
 			array('retype_password', 'compare', 'compareAttribute'=>'userPassword','on' =>'reset_pass'),
 			array('userEmail', 'required','on' =>'edit_admin_profile'),							// Edit Admin 
-			array('pkUserLoginID, userEmail, userPassword, userDateModified', 'safe', 'on'=>'search'),
+			array('pkUserLoginID, userEmail, userPassword, customerDateModified', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -71,7 +71,7 @@ class Admin extends CActiveRecord
 			'pkUserLoginID' => '#',
 			'userEmail' => 'Email',
 			'userPassword' => 'User Password',
-			'userDateModified' => 'Date Modified',
+			'customerDateModified' => 'Date Modified',
 			'retype_password'=>'Re-Type Password'
 		);
 	}

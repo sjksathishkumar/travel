@@ -20,11 +20,11 @@
 						<div class="wide form">
 							<div class="span4">
 		                        <div class="control-group">
-		                           <?php echo $form->label($model,'CustomerEmail',array('class'=>'control-label')); ?>
+		                           <?php echo $form->label($model,'userEmail',array('class'=>'control-label')); ?>
 		                            <div class="controls">
 		                                <?php 
 		                                $criteria = new CDbCriteria;
-										$criteria->condition = 'userStatus != "2" AND pkUserID != "1"';
+										$criteria->condition = 'customerStatus != "2" AND pkCustomerID != "1"';
 		                                echo $form->dropDownList($model,'fkUserID',CHtml::listData(Users::model()->findAll($criteria),'fkUserLoginID', 'userEmail'),array('empty'=>'--Select Customer--','maxlength'=>100,'class'=>'select2-me input-large')); ?>
 		                            </div>
 		                        </div>

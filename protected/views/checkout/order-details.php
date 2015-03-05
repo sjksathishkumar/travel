@@ -37,7 +37,7 @@
 						<div class="pdeatails_box">
 							<div class="date_status">
 								<p class="cont_discription">
-									<strong>Customer Name :</strong><span><?php echo $user->userFirstName.'&nbsp;'.$user->userLastName;?></span>
+									<strong>Customer Name :</strong><span><?php echo $user->customerFirstName.'&nbsp;'.$user->customerLastName;?></span>
 								</p>
 								<p class="cont_discription">
 									<strong>Customer Email :</strong><span><?php echo $user->userEmail;?></span>

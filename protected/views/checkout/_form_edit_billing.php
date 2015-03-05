@@ -39,7 +39,7 @@
          <div class="simplebox input-row">
             <div class="divleft"><?php echo $form->labelEx($model,'orderBillingState',array('class'=>'control-label','for'=>'textfield')); ?></div>
             <div class="divright drop2">
-                <?php echo $form->dropDownList($model,'orderBillingState',$model->billingStateOptions,
+                <?php echo $form->dropDownList($model,'orderBillingState',$model->stateOptions,
                                                     array(
                                                         'empty'=>'- Select State -',
                                                         'class'=>'select-cat requiredField',
@@ -53,7 +53,7 @@
         <div class="simplebox input-row">
             <div class="divleft"><?php echo $form->labelEx($model,'orderBillingCity',array('class'=>'control-label','for'=>'textfield')); ?></div>
             <div class="divright drop2">
-                <?php echo $form->dropDownList($model,'orderBillingCity',$model->billingCityOptions,array('empty'=>'- Select City -','class'=>'select-cat requiredField','data-rule-required'=>'true','id'=>'orderbillingcity')); ?>   
+                <?php echo $form->dropDownList($model,'orderBillingCity',$model->cityOptions,array('empty'=>'- Select City -','class'=>'select-cat requiredField','data-rule-required'=>'true','id'=>'orderbillingcity')); ?>   
                 <?php echo $form->error($model, 'orderBillingCity'); ?>
             </div>
         </div>

@@ -24,11 +24,11 @@
 						<div class="simplebox">
 							<div class="fieldbox">
 								<label><span>*</span>Address Line 1</label>
-                                <?php echo $form->textField($customer,'userBillingAddress1');?>
+                                <?php echo $form->textField($customer,'customerAddress');?>
 							</div>
 							<div class="fieldbox">
 								<label><span>*</span>Address Line 1</label>
-								<?php echo $form->textField($customer,'userBillingAddress2');?>
+								<?php echo $form->textField($customer,'customerAddress2');?>
 							</div>
 							<div class="fieldbox">
 								<label><span>*</span>Country</label>

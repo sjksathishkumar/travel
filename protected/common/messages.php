@@ -89,6 +89,9 @@
         //ADMIN CUSTOMER MESSAGES
         define('ADD_CUSTOMER_SUCCESS','New customer created successfully.');
         define('UPDATE_CUSTOMER_SUCCESS','Customer updated successfully.');
+
+        //ADMIN CUSTOMER MESSAGES
+        define('UPDATE_MEMBER_SUCCESS','Details updated successfully.');
         
         //ADMIN COUNTRY MESSAGES
         define('ADD_COUNTRY_SUCCESS','New country added successfully.');
@@ -115,4 +118,7 @@
         define('ADD_FAQ_CATEGORY_SUCCESS', 'FAQ Category added successfully.');
         define('EDIT_FAQ_CATEGORY_SUCCESS', 'FAQ Category edited successfully.');
         define('DELETE_FAQ_CATEGORY_SUCCESS', 'FAQ Category deleted successfully.');
+
+        //ADMIN MEMBER PLAN MANAGEMENT
+        define('EDIT_MEMBER_PLAN_SUCCESS', 'Member Plan Updated successfully.');
 ?>

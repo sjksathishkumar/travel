@@ -38,16 +38,15 @@ class CheckoutController extends Controller
 						$orderModel->scenario = 'addOrder';
 						$userID = Yii::app()->user->userId;
 						$orderModel->fkCustomerID = $userID;
-						$orderModel->orderCustomerFirstName = $userModel->userFirstName;
-						$orderModel->orderCustomerLastName = $userModel->userLastName;
-						$orderModel->orderCustomerEmail = $userModel->userEmail;
-						$orderModel->orderCustomerPhone = $userModel->userPhone;
-						$orderModel->orderBillingAddress1 = $userModel->userBillingAddress1;
-						$orderModel->orderBillingAddress2 = $userModel->userBillingAddress2;
-						$orderModel->orderBillingCountry = $userModel->userBillingCountry;
-						$orderModel->orderBillingState = $userModel->userBillingState;
-						$orderModel->orderBillingCity = $userModel->userBillingCity;
-						$orderModel->orderBillingZipcode = $userModel->userBillingZip;
+						$orderModel->orderCustomerFirstName = $userModel->customerFirstName;
+						$orderModel->orderCustomerLastName = $userModel->customerLastName;
+						$orderModel->orderuserEmail = $userModel->userEmail;
+						$orderModel->orderCustomerPhone = $userModel->customerMobile;
+						$orderModel->orderBillingAddress1 = $userModel->customerAddress;
+						$orderModel->orderBillingCountry = $userModel->customerCountry;
+						$orderModel->orderBillingState = $userModel->customerState;
+						$orderModel->orderBillingCity = $userModel->customerCity;
+						$orderModel->orderBillingZipcode = $userModel->customerZip;
 						$orderModel->orderBillingPhone = $userModel->userBillingPhone;
 						$orderModel->orderShippingAddress1 = $userModel->userShippingAddress1;
 						$orderModel->orderShippingAddress2 = $userModel->userShippingAddress2;
@@ -127,8 +126,8 @@ class CheckoutController extends Controller
 					echo CHtml::errorSummary($model);
 				}
 			}else{
-				$model->billingStateOptions = CHtml::listData(State::model()->findAll('fkCountryID=:fkCountryID',array(':fkCountryID'=>$model->orderBillingCountry)),'pkStateID', 'stateName');
-				$model->billingCityOptions = CHtml::listData(City::model()->findAll('fkStateID=:fkStateID',array(':fkStateID'=>$model->orderBillingState)),'pkCityID', 'cityName');
+				$model->stateOptions = CHtml::listData(State::model()->findAll('fkCountryID=:fkCountryID',array(':fkCountryID'=>$model->orderBillingCountry)),'pkStateID', 'stateName');
+				$model->cityOptions = CHtml::listData(City::model()->findAll('fkStateID=:fkStateID',array(':fkStateID'=>$model->orderBillingState)),'pkCityID', 'cityName');
 				$model->shippingStateOptions = CHtml::listData(State::model()->findAll('fkCountryID=:fkCountryID',array(':fkCountryID'=>$model->orderShippingCountry)),'pkStateID', 'stateName');
 				$model->shippingCityOptions = CHtml::listData(City::model()->findAll('fkStateID=:fkStateID',array(':fkStateID'=>$model->orderShippingState)),'pkCityID', 'cityName');
 				$this->render('_form_edit_billing',array('model'=>$model));

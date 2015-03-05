@@ -105,10 +105,6 @@ $varBaseUrl = Yii::app()->baseUrl;
             </div>
             <div class="copyright">
                 <p>Copyright @ 2014-<?php echo date("Y"); ?> All Rights Reserved.</p>
-                <a class="fancybox" href="/images/1_b.jpg" data-fancybox-group="gallery">
-                
-                
-                </a>
             </div>
         </div>
     </div>

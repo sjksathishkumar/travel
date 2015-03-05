@@ -20,20 +20,38 @@
 			)); ?>
 		<div class="row-fluid">
 			<div class="wide form">
-				<div class="span4">
+				<div class="span6">
 					<div class="control-group">
-						<?php echo $form->label($model,'userFirstName',array('class'=>'control-label')); ?>						                           
+						<?php echo $form->label($model,'customerFirstName',array('class'=>'control-label')); ?>						                           
 						<div class="controls">
-							<?php echo $form->textField($model,'userFirstName',array('class'=>'input-large')); ?>
+							<?php echo $form->textField($model,'customerFirstName',array('class'=>'input-large')); ?>
 						</div>
 					</div>
 				</div>
-				<div class="span4">
+				<div class="span6">
 					<div class="control-group">
-						<?php echo $form->label($model,'userEmail',array('class'=>'control-label')); ?>						                           
+						<?php echo $form->label($model,'customerEmail',array('class'=>'control-label')); ?>						                           
 						<div class="controls">
-							<?php echo $form->textField($model,'userEmail',array('class'=>'input-large')); ?>
+							<?php echo $form->textField($model,'customerEmail',array('class'=>'input-large')); ?>
 						</div>
+					</div>
+				</div>
+				<div class="row-fluid">
+					<div class="span6">
+					    <div class="control-group">
+					       <?php echo $form->label($model,'customerSubscriptionPlan',array('class'=>'control-label')); ?>
+					        <div class="controls">
+					            <?php echo $form->dropDownList($model,'customerSubscriptionPlan',array(''=>'Select','1'=>'Paid','0'=>'Free'),array('class'=>'select2-me input-xlarge')); ?>
+					        </div>
+					    </div>
+					</div>
+					<div class="span6">
+					    <div class="control-group">
+					       <?php echo $form->label($model,'customerStatus',array('class'=>'control-label')); ?>
+					        <div class="controls">
+					            <?php echo $form->dropDownList($model,'customerStatus',array(''=>'Select','1'=>'Active','0'=>'Inactive'),array('class'=>'select2-me input-xlarge')); ?>
+					        </div>
+					    </div>
 					</div>
 				</div>
 				<div class="row-fluid">

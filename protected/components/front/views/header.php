@@ -20,13 +20,14 @@ $varBaseUrl = Yii::app()->baseUrl;
                             <li><?php echo CHtml::link(CHtml::image($varBaseUrl . "/images/youtube.png", "youtube", array('title' => 'youtube')),$socalLinks['configurationSocialLink4'])?></li>
                         </ul>
                     </div>
+                    <?php if(!isset(Yii::app()->user->isCustomer)){?>
                     <div class="top-login-outer">                       
                         <div class="top-login">
                             <ul>
                                 <li class="margin"><div class="member-signup" href="#">Members
                                 <span class="h-divider"><?php echo CHtml::image($varBaseUrl . "/images/h-divider.png"); ?></span></div>
                                 </li>
-                                <li><a href="#">Signup</a>
+                                <li><?php echo CHtml::link('Singup',$varBaseUrl.'/member/memberSingup',array('title'=>'Singup','alt'=>'Singup'));?>
                                 <span class="h-divider"><?php echo CHtml::image($varBaseUrl . "/images/top-divider.png"); ?></span>
                                 </li>
                                 <li><a class="fancybox" href="#member-login">Login</a></li>
@@ -41,11 +42,20 @@ $varBaseUrl = Yii::app()->baseUrl;
                                 <span class="h-divider"><?php echo CHtml::image($varBaseUrl . "/images/top-divider.png"); ?></span></a>
                                 </li>
                                 <li><a class="fancybox" href="#partner-login">Login</a>
-                                                                        
                                 </li>                                   
                             </ul>
                         </div>
                     </div>
+                    <?php }else{?>
+                        <div class="top-login-outer">
+                            <div class="top-login">
+                                <ul>
+                                    <li>Welcome <?php echo Yii::app()->user->userFirstName; ?>&nbsp;!&nbsp;&nbsp;&nbsp;</li>
+                                    <li><?php echo CHtml::link('Logout',$varBaseUrl.'/member/logout',array('title'=>'Logout','alt'=>'Logout'));?></li>                                   
+                                </ul>
+                            </div>
+                        </div>   
+                    <?php }?>
                 </div>
             </div>
         </div>

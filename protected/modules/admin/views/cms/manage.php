@@ -192,7 +192,7 @@ $('.search-form form').submit(function(){
     }
     /**
     *  Reset in Advanced Search
-    * @returns {undefined}
+    * @returns {undefined} 
     */
    $('#resetVal').live('click', function(e){
         $(':input','#_search-form').not(':button,:submit,:hidden,.btn').val('');

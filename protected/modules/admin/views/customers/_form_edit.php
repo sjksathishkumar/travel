@@ -55,24 +55,31 @@
 							</li>
 						</ul>
 						<div class="control-group">
-							<?php echo $form->labelEx($model,'userFirstName',array('class'=>'control-label','for'=>'textfield')); ?>
+							<?php echo $form->labelEx($model,'customerFirstName',array('class'=>'control-label','for'=>'textfield')); ?>
 							<div class="controls">
-								<?php echo $form->textField($model,'userFirstName',array('class'=>'input-xlarge','data-rule-required'=>'true')); ?>	
-								<?php echo $form->error($model, 'userFirstName'); ?>
+								<?php echo $form->textField($model,'customerFirstName',array('class'=>'input-xlarge','data-rule-required'=>'true')); ?>	
+								<?php echo $form->error($model, 'customerFirstName'); ?>
 							</div>
 						</div>
 						<div class="control-group">
-							<?php echo $form->labelEx($model,'userLastName',array('class'=>'control-label','for'=>'textfield')); ?>
+							<?php echo $form->labelEx($model,'customerLastName',array('class'=>'control-label','for'=>'textfield')); ?>
 							<div class="controls">
-								<?php echo $form->textField($model,'userLastName',array('class'=>'input-xlarge','data-rule-required'=>'true')); ?>	
-								<?php echo $form->error($model, 'userLastName'); ?>
+								<?php echo $form->textField($model,'customerLastName',array('class'=>'input-xlarge','data-rule-required'=>'true')); ?>	
+								<?php echo $form->error($model, 'customerLastName'); ?>
 							</div>
 						</div>
 						<div class="control-group">
-							<?php echo $form->labelEx($model,'userEmail',array('class'=>'control-label','for'=>'textfield')); ?>
+							<?php echo $form->labelEx($model,'customerUserName',array('class'=>'control-label','for'=>'textfield')); ?>
 							<div class="controls">
-								<?php echo $form->textField($model,'userEmail',array('class'=>'input-xlarge','data-rule-required'=>'true','data-rule-email'=>'true')); ?>	
-								<?php echo $form->error($model, 'userEmail'); ?>
+								<?php echo $form->textField($model,'customerUserName',array('class'=>'input-xlarge','data-rule-required'=>'true')); ?>	
+								<?php echo $form->error($model, 'customerUserName'); ?>
+							</div>
+						</div>
+						<div class="control-group">
+							<?php echo $form->labelEx($model,'customerEmail',array('class'=>'control-label','for'=>'textfield')); ?>
+							<div class="controls">
+								<?php echo $form->textField($model,'customerEmail',array('class'=>'input-xlarge','data-rule-required'=>'true','data-rule-email'=>'true')); ?>	
+								<?php echo $form->error($model, 'customerEmail'); ?>
 							</div>
 						</div>
 						<div class="control-group">
@@ -90,31 +97,38 @@
 							</div>
 						</div>
 						<div class="control-group">
-							<?php echo $form->labelEx($model,'userPhone',array('class'=>'control-label','for'=>'textfield')); ?>
+							<?php echo $form->labelEx($model,'customerMobile',array('class'=>'control-label','for'=>'textfield')); ?>
 							<div class="controls">
-								<?php echo $form->textField($model,'userPhone',array('class'=>'input-xlarge','data-rule-required'=>'true')); ?>	
-								<?php echo $form->error($model, 'userPhone'); ?>
+								<?php echo $form->textField($model,'customerMobile',array('class'=>'input-xlarge','data-rule-required'=>'true')); ?>	
+								<?php echo $form->error($model, 'customerMobile'); ?>
 							</div>
 						</div>
 						<div class="control-group">
-							<?php echo $form->labelEx($model,'userDateOfBirth',array('class'=>'control-label','for'=>'textfield')); ?>
+							<?php echo $form->labelEx($model,'customerDateOfBirth',array('class'=>'control-label','for'=>'textfield')); ?>
 							<div class="controls">
-								<?php echo $form->textField($model,'userDateOfBirth',array('class'=>'input-xlarge datepick','data-rule-required'=>'true')); ?>	
-								<?php echo $form->error($model, 'userDateOfBirth'); ?>
+								<?php echo $form->textField($model,'customerDateOfBirth',array('class'=>'input-xlarge datepick','data-rule-required'=>'true')); ?>	
+								<?php echo $form->error($model, 'customerDateOfBirth'); ?>
 							</div>
 						</div>
 						<div class="control-group">
-							<?php echo $form->labelEx($model,'userGender',array('class'=>'control-label','for'=>'textfield')); ?>
+							<?php echo $form->labelEx($model,'customerGender',array('class'=>'control-label','for'=>'textfield')); ?>
 							<div class="controls">
-								<?php echo $form->dropDownList($model,'userGender',array('Male'=>'Male','Female'=>'Female'),array('empty'=>'- Select Gender -','class'=>'input-xlarge select2-me','data-rule-required'=>'true')); ?>	
-								<?php echo $form->error($model, 'userGender'); ?>
+								<?php echo $form->dropDownList($model,'customerGender',array('Male'=>'Male','Female'=>'Female'),array('empty'=>'- Select Gender -','class'=>'input-xlarge select2-me','data-rule-required'=>'true')); ?>	
+								<?php echo $form->error($model, 'customerGender'); ?>
 							</div>
 						</div>
 						<div class="control-group">
-							<?php echo $form->labelEx($model,'userStatus',array('class'=>'control-label','for'=>'textfield')); ?>
+							<?php echo $form->labelEx($model,'customerStatus',array('class'=>'control-label','for'=>'textfield')); ?>
 							<div class="controls">
-								<?php echo $form->dropDownList($model,'userStatus',array('0'=>'Inactive','1'=>'Active'),array('empty'=>'- Select Status -','class'=>'input-xlarge select2-me','data-rule-required'=>'true')); ?>	
-								<?php echo $form->error($model, 'userStatus'); ?>
+								<?php echo $form->dropDownList($model,'customerStatus',array('0'=>'Inactive','1'=>'Active'),array('empty'=>'- Select Status -','class'=>'input-xlarge select2-me','data-rule-required'=>'true')); ?>	
+								<?php echo $form->error($model, 'customerStatus'); ?>
+							</div>
+						</div>
+						<div class="control-group">
+							<?php echo $form->labelEx($model,'customerSubscriptionPlan',array('class'=>'control-label','for'=>'textfield')); ?>
+							<div class="controls">
+								<?php echo $form->dropDownList($model,'customerSubscriptionPlan',array('0'=>'Free','1'=>'Paid'),array('empty'=>'- Select Status -','class'=>'input-xlarge select2-me','data-rule-required'=>'true')); ?>	
+								<?php echo $form->error($model, 'customerSubscriptionPlan'); ?>
 							</div>
 						</div>
 					</div>
@@ -126,7 +140,7 @@
 									<span class="circle">
 									</span>
 									<span class="description">
-										Personal Information
+										Personal Informations
 									</span>
 								</div>
 							</li>
@@ -138,34 +152,27 @@
 										<span class="active"></span>
 									</span>
 									<span class="description">
-										Billing & Shipping Address
+										Other Informations
 									</span>
 								</div>
 							</li>
 						</ul>
 						<div class="box-title">
 							<h3 style="line-height:12px;font-size:14px;">
-								Billing Information
+								Address Information
 							</h3>
 						</div>
 						<div class="control-group">
-							<?php echo $form->labelEx($model,'userBillingAddress1',array('class'=>'control-label','for'=>'textfield')); ?>
+							<?php echo $form->labelEx($model,'customerAddress',array('class'=>'control-label','for'=>'textfield')); ?>
 							<div class="controls">
-								<?php echo $form->textField($model,'userBillingAddress1',array('class'=>'input-xlarge','data-rule-required'=>'true')); ?>	
-								<?php echo $form->error($model, 'userBillingAddress1'); ?>
+								<?php echo $form->textField($model,'customerAddress',array('class'=>'input-xlarge','data-rule-required'=>'true')); ?>	
+								<?php echo $form->error($model, 'customerAddress'); ?>
 							</div>
 						</div>
 						<div class="control-group">
-							<?php echo $form->labelEx($model,'userBillingAddress2',array('class'=>'control-label','for'=>'textfield')); ?>
+							<?php echo $form->labelEx($model,'customerCountry',array('class'=>'control-label','for'=>'textfield')); ?>
 							<div class="controls">
-								<?php echo $form->textField($model,'userBillingAddress2',array('class'=>'input-xlarge','data-rule-required'=>'true')); ?>	
-								<?php echo $form->error($model, 'userBillingAddress2'); ?>
-							</div>
-						</div>
-						<div class="control-group">
-							<?php echo $form->labelEx($model,'userBillingCountry',array('class'=>'control-label','for'=>'textfield')); ?>
-							<div class="controls">
-								<?php echo $form->dropDownList($model, 'userBillingCountry',CHtml::listData(Country::model()->findAll(), 'pkCountryID', 'countryName'),
+								<?php echo $form->dropDownList($model, 'customerCountry',CHtml::listData(Country::model()->findAll(), 'pkCountryID', 'countryName'),
 																		array(
 																			'empty'=>'- Select Country -',
 																			'class'=>'input-xlarge select2-me',
@@ -175,142 +182,63 @@
 					                                                            'url' => CController::createUrl('dynamicstates'),
 					                                                            'data'=> array('country'=>'js:this.value'),
 					                                                            'success'=> 'function(data){       
-																				                $("#userbillingstate").html(data);
-																				                $("#userbillingstate").select2("val","");
+																				                $("#customerState").html(data);
+																				                $("#customerState").select2("val","");
 																				            }', 
 					                                                        )
 																		)
 																); ?>	
-								<?php echo $form->error($model, 'userBillingCountry'); ?>
+								<?php echo $form->error($model, 'customerCountry'); ?>
 							</div>
 						</div>
 						<div class="control-group">
-							<?php echo $form->labelEx($model,'userBillingState',array('class'=>'control-label','for'=>'textfield')); ?>
+							<?php echo $form->labelEx($model,'customerState',array('class'=>'control-label','for'=>'textfield')); ?>
 							<div class="controls">
-								<?php echo $form->dropDownList($model,'userBillingState',$model->billingStateOptions,
+								<?php echo $form->dropDownList($model,'customerState',$model->stateOptions,
 																	array(
 																		'empty'=>'- Select State -',
 																		'class'=>'input-xlarge select2-me',
 																		'data-rule-required'=>'true',
-																		'id'=>'userbillingstate',
+																		'id'=>'customerState',
 																		 'ajax'=>array(
 					                                                        'type'=>'POST',
 					                                                        'url' => CController::createUrl('dynamiccities'),
 					                                                        'data'=> array('state'=>'js:this.value'),
 					                                                        'success'=> 'function(data){       
-																				                $("#userbillingcity").html(data);
-																				                $("#userbillingcity").select2("val","");
+																				                $("#customerCity").html(data);
+																				                $("#customerCity").select2("val","");
 																				            }', 
 					                                                     )
 																	)); ?>	
-								<?php echo $form->error($model, 'userBillingState'); ?>
+								<?php echo $form->error($model, 'customerState'); ?>
 							</div>
 						</div>
 						<div class="control-group">
-							<?php echo $form->labelEx($model,'userBillingCity',array('class'=>'control-label','for'=>'textfield')); ?>
+							<?php echo $form->labelEx($model,'customerCity',array('class'=>'control-label','for'=>'textfield')); ?>
 							<div class="controls">
-								<?php echo $form->dropDownList($model,'userBillingCity',$model->billingCityOptions,array('empty'=>'- Select City -','class'=>'input-xlarge select2-me','data-rule-required'=>'true','id'=>'userbillingcity')); ?>	
-								<?php echo $form->error($model, 'userBillingCity'); ?>
+								<?php echo $form->dropDownList($model,'customerCity',$model->cityOptions,array('empty'=>'- Select City -','class'=>'input-xlarge select2-me','data-rule-required'=>'true','id'=>'customerCity')); ?>	
+								<?php echo $form->error($model, 'customerCity'); ?>
 							</div>
 						</div>
 						<div class="control-group">
-							<?php echo $form->labelEx($model,'userBillingZip',array('class'=>'control-label','for'=>'textfield')); ?>
+							<?php echo $form->labelEx($model,'customerZip',array('class'=>'control-label','for'=>'textfield')); ?>
 							<div class="controls">
-								<?php echo $form->textField($model,'userBillingZip',array('class'=>'input-xlarge','data-rule-required'=>'true')); ?>	
-								<?php echo $form->error($model, 'userBillingZip'); ?>
+								<?php echo $form->textField($model,'customerZip',array('class'=>'input-xlarge','data-rule-required'=>'true')); ?>	
+								<?php echo $form->error($model, 'customerZip'); ?>
 							</div>
 						</div>
 						<div class="control-group">
-							<?php echo $form->labelEx($model,'userBillingPhone',array('class'=>'control-label','for'=>'textfield')); ?>
+							<?php echo $form->labelEx($model,'eWalletBalance',array('class'=>'control-label','for'=>'textfield')); ?>
 							<div class="controls">
-								<?php echo $form->textField($model,'userBillingPhone',array('class'=>'input-xlarge','data-rule-required'=>'true')); ?>	
-								<?php echo $form->error($model, 'userBillingPhone'); ?>
-							</div>
-						</div>
-						
-
-						<div class="box-title">
-							<h3 style="line-height:12px;font-size:14px;">
-								Shipping Information
-							</h3>
-						</div>
-						<div class="control-group">
-							<?php echo $form->labelEx($model,'userShippingAddress1',array('class'=>'control-label','for'=>'textfield')); ?>
-							<div class="controls">
-								<?php echo $form->textField($model,'userShippingAddress1',array('class'=>'input-xlarge','data-rule-required'=>'true')); ?>	
-								<?php echo $form->error($model, 'userShippingAddress1'); ?>
+								<?php echo $form->textField($model,'eWalletBalance',array('class'=>'input-xlarge','data-rule-required'=>'true')); ?>	
+								<?php echo $form->error($model, 'eWalletBalance'); ?>
 							</div>
 						</div>
 						<div class="control-group">
-							<?php echo $form->labelEx($model,'userShippingAddress2',array('class'=>'control-label','for'=>'textfield')); ?>
+							<?php echo $form->labelEx($model,'wishginiBalance',array('class'=>'control-label','for'=>'textfield')); ?>
 							<div class="controls">
-								<?php echo $form->textField($model,'userShippingAddress2',array('class'=>'input-xlarge','data-rule-required'=>'true')); ?>	
-								<?php echo $form->error($model, 'userShippingAddress2'); ?>
-							</div>
-						</div>
-						<div class="control-group">
-							<?php echo $form->labelEx($model,'userShippingCountry',array('class'=>'control-label','for'=>'textfield')); ?>
-							<div class="controls">
-								<?php echo $form->dropDownList($model, 'userShippingCountry',CHtml::listData(Country::model()->findAll(), 'pkCountryID', 'countryName'),
-																		array(
-																			'empty'=>'- Select Country -',
-																			'class'=>'input-xlarge select2-me',
-																			'data-rule-required'=>'true',
-																			'ajax'=>array(
-					                                                            'type'=>'POST',
-					                                                            'url' => CController::createUrl('dynamicstates'),
-					                                                            'data'=> array('country'=>'js:this.value'),
-					                                                            'success'=> 'function(data){       
-																				                $("#usershippingstate").html(data);
-																				                $("#usershippingstate").select2("val","");
-																				            }', 
-					                                                        )
-																		)
-																); ?>	
-								<?php echo $form->error($model, 'userShippingCountry'); ?>
-							</div>
-						</div>
-						<div class="control-group">
-							<?php echo $form->labelEx($model,'userShippingState',array('class'=>'control-label','for'=>'textfield')); ?>
-							<div class="controls">
-								<?php echo $form->dropDownList($model,'userShippingState',$model->shippingStateOptions,
-																	array(
-																		'empty'=>'- Select State -',
-																		'class'=>'input-xlarge select2-me',
-																		'data-rule-required'=>'true',
-																		'id'=>'usershippingstate',
-																		 'ajax'=>array(
-					                                                        'type'=>'POST',
-					                                                        'url' => CController::createUrl('dynamiccities'),
-					                                                        'data'=> array('state'=>'js:this.value'),
-					                                                        'success'=> 'function(data){       
-																				                $("#usershippingcity").html(data);
-																				                $("#usershippingcity").select2("val","");
-																				            }', 
-					                                                     )
-																	)); ?>	
-								<?php echo $form->error($model, 'userShippingState'); ?>
-							</div>
-						</div>
-						<div class="control-group">
-							<?php echo $form->labelEx($model,'userShippingCity',array('class'=>'control-label','for'=>'textfield')); ?>
-							<div class="controls">
-								<?php echo $form->dropDownList($model,'userShippingCity',$model->shippingCityOptions,array('empty'=>'- Select City -','class'=>'input-xlarge select2-me','data-rule-required'=>'true','id'=>'usershippingcity')); ?>	
-								<?php echo $form->error($model, 'userShippingCity'); ?>
-							</div>
-						</div>
-						<div class="control-group">
-							<?php echo $form->labelEx($model,'userShippingZip',array('class'=>'control-label','for'=>'textfield')); ?>
-							<div class="controls">
-								<?php echo $form->textField($model,'userShippingZip',array('class'=>'input-xlarge','data-rule-required'=>'true')); ?>	
-								<?php echo $form->error($model, 'userShippingZip'); ?>
-							</div>
-						</div>
-						<div class="control-group">
-							<?php echo $form->labelEx($model,'userShippingPhone',array('class'=>'control-label','for'=>'textfield')); ?>
-							<div class="controls">
-								<?php echo $form->textField($model,'userShippingPhone',array('class'=>'input-xlarge','data-rule-required'=>'true')); ?>	
-								<?php echo $form->error($model, 'userShippingPhone'); ?>
+								<?php echo $form->textField($model,'wishginiBalance',array('class'=>'input-xlarge','data-rule-required'=>'true')); ?>	
+								<?php echo $form->error($model, 'wishginiBalance'); ?>
 							</div>
 						</div>
 					</div>

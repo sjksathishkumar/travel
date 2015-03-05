@@ -96,7 +96,7 @@ $cs->registerCssFile($baseUrl . '/assets/backend/fck_editor/css/sample.css');
 	                                <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
 	                            </span>
 	                        </div>
-	                        <?php echo '<span><b>Hint :  Please add .jpg, .gif, .jpeg, .png, .doc, .docx, .pdf, .txt Only !</span>';?>
+	                        <?php echo '<span><b>Hint :  Please add only .jpg, .gif, .jpeg, .png, .doc, .docx, .pdf, .txt !</span>';?>
 	                        <?php echo $form->error($model, 'faqAttachment'); ?>
 	                    </div>
                 	</div>

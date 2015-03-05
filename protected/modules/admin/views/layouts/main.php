@@ -162,7 +162,7 @@
                             <?php echo CHtml::link('<span>Manage Users</span> <span class="caret"></span>', 'javascript:void(0);', array('data-toggle' => 'dropdown', 'class' => 'dropdown-toggle')); ?>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <?php echo CHtml::link('Members',array('/admin/cms'), array()); ?>
+                                    <?php echo CHtml::link('Customers',array('/admin/customers'), array()); ?>
                                 </li>
                                 <li class='dropdown-submenu'>
                                     <?php echo CHtml::link('Partners', 'javascript:void(0);', array()); ?>
@@ -214,7 +214,7 @@
                                     <?php echo CHtml::link('CMS', array('/admin/cms'), array()); ?>
                                 </li>
                                 <li>
-                                    <?php echo CHtml::link('Membership Plan',array('/admin/emailTemplate'), array()); ?>
+                                    <?php echo CHtml::link('Membership Plan',array('/admin/membershipPlans'), array()); ?>
                                 </li>
                                 <li>
                                     <?php echo CHtml::link('FAQ\'s',array('/admin/faqs/index'), array()); ?>

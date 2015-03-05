@@ -1,15 +1,15 @@
-var emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-$(document).ready(function() {
-    $(".mobile_menu a").click(function () {
+//var emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+//$(document).ready(function() {
+    /*$(".mobile_menu a").click(function () {
         $(".menu").slideToggle();
         $(".mobile_menu a").toggleClass("active");
         return false;
-    }); 
-    $('.select-cat').sSelect();
+    });*/ 
+    //$('.select-cat').sSelect();
     //$('#select-city').sSelect();
-    $('.bxslider').bxSlider({auto:true});
+   // $('.bxslider').bxSlider({auto:true});
             
-    var owl = $(".owl-carousel");
+    /*var owl = $(".owl-carousel");
     owl.owlCarousel({        
         itemsCustom : [
         [320, 1],
@@ -24,9 +24,9 @@ $(document).ready(function() {
         navigation : true,
         pagination : false,
         navigationText : ["<img src='images/owl-prev.png'>","<img src='images/owl-next.png'>"]
-    });
-    $(".gotop").hide();
-    $(function () {
+    });*/
+    //$(".gotop").hide();
+    /*$(function () {
         $(window).scroll(function () {
             if ($(this).scrollTop() > 200) {
                 $('.gotop').fadeIn();
@@ -40,15 +40,15 @@ $(document).ready(function() {
             }, 800);
             return false;
         });
-    });
-    $('.box-style .item').hover(function() {
+    });*/
+    /*$('.box-style .item').hover(function() {
         $(this).find('.hover-eff').stop(true,true).fadeIn('slow');
     }, function() {
         $(this).find('.hover-eff').fadeOut('slow');
-    });
-});
+    });*/
+//});
 
-function timer(time,update,complete) {
+/*function timer(time,update,complete) {
     var start = new Date().getTime();
     var interval = setInterval(function() {
         var now = time-(new Date().getTime()-start);
@@ -58,9 +58,9 @@ function timer(time,update,complete) {
         }
         else update(Math.floor(now/1000));
     },1000); // the smaller this number, the more accurate the timer will be
-}
+}*/
 
-$(document).ready(function(){
+/*$(document).ready(function(){
     $('.tab_container').hide();
     $('.tab_container:first').show();
     $('ul.tab li:first').addClass('active');
@@ -71,13 +71,13 @@ $(document).ready(function(){
         $('.tab_container').hide();
         $(currentTab).show();
         return false;
-    });
+    });*/
 
     
 
 
     /*Main Search JS Start Here*/
-    $('.category-search').hide();
+    /*$('.category-search').hide();
     $('.category-search').attr('disabled',true);
     $('.location-search').attr('disabled',false);
     $('.outlet-search').attr('disabled',true);
@@ -85,22 +85,22 @@ $(document).ready(function(){
         $('.location-search').show();
         $('.location-search').attr('disabled',false);
         $('.category-search').hide();
-        $('.category-search').attr('disabled',true);
+        $('.category-search').attr('disabled',true);*/
         /*Main Search Tabbing*/
-        $('#mainSearchForm > a').removeClass('current');
+  /*      $('#mainSearchForm > a').removeClass('current');
         $(this).addClass('current');
     });
     $('.cat-btn').click(function(){
         $('.location-search').hide();
         $('.location-search').attr('disabled',true);
         $('.category-search').show();
-        $('.category-search').attr('disabled',false);
+        $('.category-search').attr('disabled',false);*/
         /*Main Search Tabbing*/
-        $('#mainSearchForm > a').removeClass('current');
+       /* $('#mainSearchForm > a').removeClass('current');
         $(this).addClass('current');
-    });
+    });*/
 
-    $('#mainSearchForm').submit(function(){
+    /*$('#mainSearchForm').submit(function(){
         if($('.location-search').css('display') != 'none' && $('.location-search').val() == 'Search By Location'){
             return false
         }
@@ -108,11 +108,11 @@ $(document).ready(function(){
             return false
         }
         return true;
-    });
+    });*/
     /********************************/
 
     /*Search Result page JS Start Here*/
-    $('.sortBy').change(function(){
+  /*  $('.sortBy').change(function(){
         loader();
         $.post(document.URL,{'sortBy':$(this).val(),'perPage':$('.perPage').val(),'filterByCategory':$('#filterByCategory').val(),'filterBySubCategory':$('#filterBySubCategory').val(),'filterByDiscount':$('#filterByDiscount').val()},function(data){
             resultedDeals(data);
@@ -153,173 +153,45 @@ $(document).ready(function(){
                 $('#filterBySubCategory').sSelect();
                 subCategoryEvent();
         }
-    });
-    subCategoryEvent();
-    paginationEvent();
-    $('#filterByDiscount').change(function(){
-        loader();
-        $.post(document.URL,{'sortBy':$('.sortBy').val(),'perPage':$('.perPage').val(),'filterByCategory':$('#filterByCategory').val(),'filterBySubCategory':$('#filterBySubCategory').val(),'filterByDiscount':$(this).val()},function(data){
-            resultedDeals(data);
-            paginationEvent(data);
-            callTimer();
-            $(".loader-holder").hide();
-        });
-    });
-    callTimer();
+    });*/
+    //subCategoryEvent();
+    //paginationEvent();
+  
 
-    $('#showInMap').click(function(){
-        viewInMap();
-    });
 
-    /*Script for load More deals in category-deal page*/
-    $('#category-deals').on('click','#view_more',function(){
-        var totalItem = $('.item_outer').length;
-        loader();
-        $.post(document.URL,{itemPlus:totalItem},function(data){
-            if($(data).find('.item_outer').length){
-                $('.view_more_outer').remove()
-                $('#category-deals').append($(data).find('#category-deals').html());
-            }
-            if($('.item_outer').length==totalItem){
-                $('.view_more_outer').hide();
-            }
-            callTimer();
-            $(".loader-holder").hide();
-        });
-    });
     /*Deal Details page*/
-    $('#carousel').flexslider({
-        animation: "slide",
-        controlNav: false,
-        animationLoop: false,
-        slideshow: false,
-        itemWidth: 80,
-        itemMargin: 0,
-        asNavFor: '#slider'
-    });
+    // $('#carousel').flexslider({
+    //     animation: "slide",
+    //     controlNav: false,
+    //     animationLoop: false,
+    //     slideshow: false,
+    //     itemWidth: 80,
+    //     itemMargin: 0,
+    //     asNavFor: '#slider'
+    // });
 
-    $('#slider').flexslider({
-        animation: "slide",
-        controlNav: false,
-        animationLoop: false,
-        slideshow: false,
-        sync: "#carousel",
-        start: function(slider){
-            $('body').removeClass('loading');
-        }
-    });
+    // $('#slider').flexslider({
+    //     animation: "slide",
+    //     controlNav: false,
+    //     animationLoop: false,
+    //     slideshow: false,
+    //     sync: "#carousel",
+    //     start: function(slider){
+    //         $('body').removeClass('loading');
+    //     }
+    // });
 
-    /*footer Mailchimp form*/
-    $('#mc-embedded-subscribe-form').submit(function(){
-        if($('#mce-EMAIL').val() == '' || $('#mce-EMAIL').val() == 'Enter your Email Address'){
-            $('#mce-error-response').text('Please enter an Email Address.').css({"color":'#FF1919'});
-            $('#mce-error-response').show();
-            $('#mce-success-response').hide();
-            $('#mce-error-response').fadeOut(5000);
-            return false;
-        }else if(!emailRegex.test($('#mce-EMAIL').val())){
-            $('#mce-error-response').text('Please enter a valid Email Address.').css({"color":'#FF1919'});
-            $('#mce-error-response').show();
-            $('#mce-success-response').hide();
-            $('#mce-error-response').fadeOut(5000);
-            return false;
-        }
-    });
 
-    /*Top City Dropdown*/
-    $('#city').change(function(){
-        if($(this).val()){
-            window.location = SITE_ROOT_URL+'/category/city/'+$(this).val()
-        }
-    });
 
-    /*Fancybox popup*/
-    $('.fancybox').fancybox();
 
     /*Product Hover Effect*/
-    $('.box-style .item').hover(function(){
+    /*$('.box-style .item').hover(function(){
         $(this).find('.hover-eff').show();
-    });
+    });*/
 
-    /***Shopping Cart JS***/
-    //Remove
-    $('#shopping-cart-form').on('click','.remove-from-cart',function(e){
-        e.preventDefault();
-        loader();
-        $.post($(this).attr('href'),{},function(data){
-            $('#shopping-cart-form').html($(data).find('#shopping-cart-form').html());
-            $(".loader-holder").hide();
-            $('.shopping-cart-error').fadeOut(5000);
-        })
-    });
-    //Update
-    $('#shopping-cart-form').on('click','#update-cart-button',function(e){
-        e.preventDefault();
-        loader();
-        $.post($(this).attr('href'),$('#shopping-cart-form').serialize(),function(data){
-            $('#shopping-cart-form').html($(data).find('#shopping-cart-form').html());
-            $(".loader-holder").hide();
-            $('.shopping-cart-error').fadeOut(5000);
-        });
-    });
-    //Apply Coupon Code
-    $('#shopping-cart-form').on('click','#applyCouponCode',function(e){
-        e.preventDefault();
-        if($('#couponCode').val() != '' && $('#couponCode').val()!= 'Enter Coupon Code'){
-            loader();
-            $.post(SITE_ROOT_URL+'/shoppingcart/applyCoupon',{couponCode:$('#couponCode').val()},function(data){
-                $('#shopping-cart-form').html($(data).find('#shopping-cart-form').html());
-                $(".loader-holder").hide();
-                $('.shopping-cart-error').fadeOut(5000);
-            });
-        }else{
-            $('#couponCode').css({'border-color':'red','color':'red'});
-            $('#couponCode').keyup(function(){
-                if($(this).val() != '' && $('#couponCode').val()!='Enter Coupon Code'){
-                    $('#couponCode').css({'border-color':'#DFDFDF','color':'#6A737E'});
-                }
-            });
-        }
-    });
-
-
-    //Toggle in the frontend customer dashboard
-
-    $('#info').click(function() {
-        var s = $("#infotext");
-        $('.accountinfo_box').slideToggle('fast', function(){
-            s.html(s.text() == '+' ? '-' : '+');
-        });
-        return false;
-    });
-
-    $('#order').click(function() {
-        var s = $("#ordertext");
-        $('.myorder_box').slideToggle('fast', function(){
-            s.html(s.text() == '+' ? '-' : '+');
-        });
-        return false;
-    });
-
-    $('#reward').click(function() {
-        var s = $("#rewardtext");
-        $('.myreward_box').slideToggle('fast', function(){
-            s.html(s.text() == '+' ? '-' : '+');
-        });
-        return false;
-    });
-
-    $('#wallet').click(function() {
-        var s = $("#wallettext");
-        $('.mywalletbox').slideToggle('fast', function(){
-            s.html(s.text() == '+' ? '-' : '+');
-        });
-        return false;
-    });
-
-
+ 
     //Allow Numeric
-    $('#content').on('keydown','.numeric-10',function (event) {
+  /*  $('#content').on('keydown','.numeric-10',function (event) {
 
 
         if (event.shiftKey == true) {
@@ -341,9 +213,9 @@ $(document).ready(function(){
 
     });
 
-});
+});*/
 
-function subCategoryEvent() {
+/*function subCategoryEvent() {
     $('#filterBySubCategory').change(function(){
         loader();
         $.post(document.URL,{'sortBy':$('.sortBy').val(),'perPage':$('.perPage').val(),'filterByCategory':$('#filterByCategory').val(),'filterBySubCategory':$(this).val(),'filterByDiscount':$('#filterByDiscount').val()},function(data){
@@ -353,8 +225,8 @@ function subCategoryEvent() {
             $(".loader-holder").hide();
         });
     });
-}
-function paginationEvent(data){
+}*/
+/*function paginationEvent(data){
     if($(data).find('.pager-outer').html() != undefined){
         if($(data).find('.pagination').html() != undefined){
             $('.pager-outer').html($(data).find('.pager-outer').html());
@@ -385,19 +257,11 @@ function paginationEvent(data){
             });
         });
     }
-}
+}*/
 
-function resultedDeals(data)
-{
-    if($(data).find('#deal-items').html().trim()){
-        $('#deal-items').html($(data).find('#deal-items').html());
-    }else{
-        $('#deal-items').html('<p class="no-record">No records found.</p>');
-    }
-}
 //**************************************//
 
-function callTimer()
+/*function callTimer()
 {
     $('.item .txt-box .clck-ico,.hours_icon').each(function(i){
         var obj = $(this);
@@ -419,7 +283,7 @@ function callTimer()
             );
         }
     });
-}
+}*/
 
 function getInternetExplorerVersion()
 {
@@ -449,34 +313,9 @@ function loader() {
     }
 }
 
-function viewInMap()
-    {
-     var address = $('#dealAddress').text();
-     $.post('http://maps.googleapis.com/maps/api/geocode/json?address='+address+'&sensor=false',{},function(data){
-        $('#map_canvas').hide();
-        $('#map_canvas').html('');
-        var obj = data;
-        if(obj.status == "OK"){
-          $('#map_canvas').show();
-          $('#map1').css({"padding-top":"0px"});
-          var lat = obj.results[0].geometry.location.lat;
-          var lng = obj.results[0].geometry.location.lng;
-          initialize(address,lat,lng);
-        }else{
-            $('#map1').text('Address not found on the map.');
-            $('#map1').attr('style',"padding-top:110px");
-        }
-      },"json");
-
-    $('#map').show();
-
-    $("#close").click(function(){
-        $("#map").hide();
-    });
-}
 
 /*For MAP*/
-function initialize(loc,lat,lng)
+/*function initialize(loc,lat,lng)
 {
     var var1 = [loc,lat,lng];
     var markers = [ var1 ];
@@ -503,62 +342,19 @@ function initialize(loc,lat,lng)
         })(marker, i));
     }
 }
-
-/*For User Registration*/
-function fireUserRegistrationEvent(form){
-    $.post(
-        $(form).attr('action'), 
-        $(form).serialize() , 
-        function(data){
-            if(data == 'Success'){
-                $('.fancybox-inner').html('<div id="inline1" class="user-reg-popup" style="display: block;">We have just sent you a verification mail. Please check your email and complete the registration.</div>');
-                setTimeout(function(){window.location = SITE_ROOT_URL;},5000);
-            }else{
-                $('.validation_errors').html(data);
-            }
-        }
-    );
-}
-
-/*For User Review Submitting*/
-function fireUserReviewEvent(form){
-    $.post(
-        $(form).attr('action'), 
-        $(form).serialize() , 
-        function(data){
-            if(data == 'Success'){
-                form.reset();
-                $(form).find('.success_msg').html('Your review has been submitted successfully.');
-                $("html, body").animate({scrollTop: $("#deals-review-form .success_msg").offset().top + 10},500); 
-                $('.success_msg').fadeOut(5000);
-            }else if(data == 'LoginPlease'){
-                $("#loginuser").trigger('click');
-                $("#user-login-form").append('<input type="hidden" name="isReviewForm" value="yes"/>')
-
-            }else if(data == 'AlreadyReviewed'){
-                $(form).find('.validation_errors').html('You have already given review to this deal.');
-                $("html, body").animate({scrollTop: $("#deals-review-form .validation_errors").offset().top + 10},500); 
-                $('.validation_errors').fadeOut(5000);
-            }else{
-                $('.validation_errors').html(data);
-                $("html, body").animate({scrollTop: $("#deals-review-form .validation_errors").offset().top + 10},500); 
-                $('.validation_errors').fadeOut(5000);
-            }
-        }
-    );
-}
+*/
 
 /*This function is used to ajax login*/
-function fireUserLoginEvent(form){
-     $('#deals-review-form .success_msg').focus();
+function fireMemberLoginEvent(form){
+     //$('#deals-review-form .success_msg').focus();
     $.post($(form).attr('action'),$(form).serialize(),function(data){
         if(data == 'Success'){
-            if(form.isReviewForm){
+            /*if(form.isReviewForm){
                 $('#deals-review-form').submit();
                 $.fancybox.close();
-            }else{
-                window.location = SITE_ROOT_URL+'/customer/dashboard'
-            }
+            }else{*/
+                window.location = SITE_ROOT_URL+'/member/dashboard'
+            //}
         }else{
             $(form).find('.validation_errors').html(data);
         }
@@ -569,17 +365,19 @@ function fireUserLoginEvent(form){
 
 function getBstate(bstate){
     var country=bstate;
-    $("#userBillingCity").resetSS();
+    $("#customerCity").trigger("chosen:updated");
     $.ajax({
         type: "POST",
-        url: "../customer/dynamicstates",
+        url: "../member/dynamicstates",
         data: {
             country: country
         },
         success: function(result){
-            $("#userBillingState").html(result);
-            $("#userBillingState").resetSS();
-            //$("#userBillingCity").resetSS();
+            $("#customerState").html(result);
+            $("#customerState").trigger("chosen:updated");
+            //$("#customerCity").trigger("chosen:updated");
+            //$("#customerState").resetSS();
+            //$("#customerCity").resetSS();
         }
     });
 }
@@ -590,13 +388,14 @@ function getBcity(bcity){
     var state=bcity;
     $.ajax({
         type: "POST",
-        url: "../customer/dynamiccities",
+        url: "../member/dynamiccities",
         data: {
             state: state
         },
         success: function(result){
-            $("#userBillingCity").html(result);
-            $("#userBillingCity").resetSS();
+            $("#customerCity").html(result);
+            $("#customerCity").trigger("chosen:updated");
+            //$("#customerCity").resetSS();
         }
     });
 }
@@ -620,7 +419,7 @@ function getSstate(bstate,event){
         },
         complete:function(){
             if(event == 'complete'){
-                var state     = $("#userBillingState option:selected").val();
+                var state     = $("#customerState option:selected").val();
                 $('#userShippingState').val(state).change();
                 //$("#userShippingState option[value='"+state+"']").attr('selected', 'selected');
                 //$("#userShippingState").data('ssOpts',options);
@@ -646,8 +445,8 @@ function getScity(bcity,event){
         },
         complete:function(){
             if(event == 'complete'){
-                var city     = $("#userBillingCity option:selected").val();
-                //$('#userShippingCity').val($('#userBillingCity').val()).change();
+                var city     = $("#customerCity option:selected").val();
+                //$('#userShippingCity').val($('#customerCity').val()).change();
                 $('#userShippingCity').val(city).change();
             }
         }
@@ -672,17 +471,105 @@ function shipSameAsBill()
         }
         else
         {
-            $('#userShippingAddress1').val($('#userBillingAddress1').val());
-            $('#userShippingAddress2').val($('#userBillingAddress2').val());
-            $('#userShippingCountry').val($('#userBillingCountry').val()).change();
-            getSstate($('#userBillingCountry').val(),'complete');
-            getScity($('#userBillingState').val(),'complete');
+            $('#userShippingAddress1').val($('#customerAddress').val());
+            $('#userShippingCountry').val($('#customerCountry').val()).change();
+            getSstate($('#customerCountry').val(),'complete');
+            getScity($('#customerState').val(),'complete');
             $('#userShippingPhone').val($('#userBillingPhone').val());
-            $('#userShippingZip').val($('#userBillingZip').val());
+            $('#userShippingZip').val($('#customerZip').val());
         }
       }
 }
 
+/* Front end Js Contents */
 
+$(document).ready(function(){
+ $("#top-slider").owlCarousel({
+      navigation : false,
+      slideSpeed : 300,
+      paginationSpeed : 400,
+      singleItem : true,
+      autoPlay:3000,
+      loop:true
+      });
+      
+      /* Top Slider End Here*/
+      
+      var owl = $("#special-deals-slider"),
+          status = $("#owlStatus");       
+
+      owl.owlCarousel({
+        items: 3,
+        itemsDesktop: [1400, 3],
+        itemsDesktopSmall: [1100, 3],
+        itemsTablet: [700, 2],
+        itemsMobile: [500, 1],
+        navigation : true,
+        autoPlay:3000,
+        stopOnHover:true,
+        afterAction : afterAction
+      });
+
+      function updateResult(pos,value){
+        status.find(pos).find(".result").text(value);
+      }
+
+      function afterAction(){
+        updateResult(".owlItems", this.owl.owlItems.length);
+        updateResult(".currentItem", this.owl.currentItem);
+        updateResult(".prevItem", this.prevItem);
+        updateResult(".visibleItems", this.owl.visibleItems);
+        updateResult(".dragDirection", this.owl.dragDirection);
+      }
+        /* Body Container Slider End Here*/
+        
+      /* Choosen start here*/   
+      var config = {
+      '.chosen-select'           : {},
+      '.chosen-select-deselect'  : {allow_single_deselect:true},
+      '.chosen-select-no-single' : {disable_search_threshold:10},
+      '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+      '.chosen-select-width'     : {width:"95%"}
+    }
+    for (var selector in config) {
+      $(selector).chosen(config[selector]);
+    }
+      
+      /*  Fancybox Member sign up goes here */
+     $('.fancybox').fancybox(); 
+     
+     
+     
+     /* Stylish Checkbox and Radio Buttons */   
+            $('input.radio').checkradios();
+            
+              
+    /*  Partners Register Tabing Start Here  */
+    
+    $(".register-form-outer .register-form-inner").hide();
+    $(".register-form-outer .register-form-inner").eq(0).show();
+    $(".partner-name").eq(0).addClass("active");
+    $(".partner-name").click(function(){
+    var a = $(this).index();
+    $(".partner-name").removeClass("active");
+    $(this).addClass("active");
+    $(".register-form-outer").find(".register-form-inner").hide();
+    $(".register-form-outer .register-form-inner").eq(a).show();    
+    });
+    /*  Datepicker Start Here  */
+        
+    /*$(function() {
+    $( "#datepicker" ).datepicker();
+    });
+        $( ".selector" ).datepicker({
+      dateFormat: "dd-mm-yy"
+    });*/
+    
+    /*  Stylish select drop down  */
+
+     $('.my-dropdown').sSelect();
+
+
+});
 
 

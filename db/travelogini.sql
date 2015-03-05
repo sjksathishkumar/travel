@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 22, 2015 at 06:00 PM
--- Server version: 5.5.40-0ubuntu0.14.04.1
+-- Generation Time: Mar 05, 2015 at 04:43 PM
+-- Server version: 5.5.41-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -34,43 +34,37 @@ CREATE TABLE IF NOT EXISTS `tbl_admin_access_log` (
   `adminAccessLogoutTime` datetime NOT NULL,
   PRIMARY KEY (`pkAdminAccessID`),
   KEY `fkAdminID` (`fkAdminID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=155 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=264 ;
 
 --
 -- Dumping data for table `tbl_admin_access_log`
 --
 
 INSERT INTO `tbl_admin_access_log` (`pkAdminAccessID`, `fkAdminID`, `adminAccessLoginIP`, `adminAccessLoginTime`, `adminAccessLogoutTime`) VALUES
-(125, 3, '127.0.0.1', '2014-12-19 17:50:23', '0000-00-00 00:00:00'),
-(126, 3, '127.0.0.1', '2014-12-22 11:06:48', '0000-00-00 00:00:00'),
-(127, 3, '127.0.0.1', '2014-12-24 11:53:23', '0000-00-00 00:00:00'),
-(128, 3, '127.0.0.1', '2015-01-05 16:02:50', '0000-00-00 00:00:00'),
-(129, 3, '127.0.0.1', '2015-01-06 11:28:43', '0000-00-00 00:00:00'),
-(130, 3, '127.0.0.1', '2015-01-06 17:26:29', '0000-00-00 00:00:00'),
-(131, 3, '127.0.0.1', '2015-01-07 12:20:56', '0000-00-00 00:00:00'),
-(132, 3, '127.0.0.1', '2015-01-07 14:42:00', '0000-00-00 00:00:00'),
-(133, 3, '127.0.0.1', '2015-01-09 12:54:35', '0000-00-00 00:00:00'),
-(134, 3, '127.0.0.1', '2015-01-09 13:13:20', '0000-00-00 00:00:00'),
-(135, 3, '127.0.0.1', '2015-01-09 14:13:12', '0000-00-00 00:00:00'),
-(136, 3, '127.0.0.1', '2015-01-09 15:14:17', '0000-00-00 00:00:00'),
-(137, 3, '127.0.0.1', '2015-01-09 15:40:45', '0000-00-00 00:00:00'),
-(138, 3, '127.0.0.1', '2015-01-10 10:24:53', '0000-00-00 00:00:00'),
-(139, 3, '127.0.0.1', '2015-01-10 12:07:47', '0000-00-00 00:00:00'),
-(140, 3, '127.0.0.1', '2015-01-12 10:31:37', '0000-00-00 00:00:00'),
-(141, 3, '127.0.0.1', '2015-01-12 17:25:07', '0000-00-00 00:00:00'),
-(142, 3, '127.0.0.1', '2015-01-13 10:05:35', '0000-00-00 00:00:00'),
-(143, 3, '127.0.0.1', '2015-01-13 10:40:05', '0000-00-00 00:00:00'),
-(144, 3, '127.0.0.1', '2015-01-13 12:32:19', '0000-00-00 00:00:00'),
-(145, 3, '127.0.0.1', '2015-01-14 10:42:07', '0000-00-00 00:00:00'),
-(146, 3, '127.0.0.1', '2015-01-14 17:29:37', '0000-00-00 00:00:00'),
-(147, 3, '127.0.0.1', '2015-01-15 12:40:46', '0000-00-00 00:00:00'),
-(148, 3, '127.0.0.1', '2015-01-15 15:29:23', '0000-00-00 00:00:00'),
-(149, 3, '127.0.0.1', '2015-01-21 16:35:19', '0000-00-00 00:00:00'),
-(150, 3, '127.0.0.1', '2015-01-21 16:41:16', '0000-00-00 00:00:00'),
-(151, 3, '127.0.0.1', '2015-01-21 17:20:52', '2015-01-21 18:51:10'),
-(152, 3, '127.0.0.1', '2015-01-22 10:31:31', '0000-00-00 00:00:00'),
-(153, 3, '127.0.0.1', '2015-01-22 14:30:38', '2015-01-22 17:45:33'),
-(154, 3, '127.0.0.1', '2015-01-22 17:53:09', '0000-00-00 00:00:00');
+(240, 4, '127.0.0.1', '2015-02-23 16:12:34', '0000-00-00 00:00:00'),
+(241, 4, '127.0.0.1', '2015-02-23 17:01:01', '0000-00-00 00:00:00'),
+(242, 4, '127.0.0.1', '2015-02-24 10:36:54', '2015-02-24 10:37:25'),
+(243, 4, '127.0.0.1', '2015-02-24 10:37:33', '0000-00-00 00:00:00'),
+(244, 4, '127.0.0.1', '2015-02-24 11:17:08', '0000-00-00 00:00:00'),
+(245, 4, '127.0.0.1', '2015-02-24 12:10:45', '0000-00-00 00:00:00'),
+(246, 4, '127.0.0.1', '2015-02-24 14:19:45', '0000-00-00 00:00:00'),
+(247, 4, '127.0.0.1', '2015-02-24 18:01:36', '0000-00-00 00:00:00'),
+(248, 4, '127.0.0.1', '2015-02-25 10:31:17', '0000-00-00 00:00:00'),
+(249, 4, '127.0.0.1', '2015-02-25 11:02:15', '0000-00-00 00:00:00'),
+(250, 4, '127.0.0.1', '2015-02-25 13:43:25', '0000-00-00 00:00:00'),
+(251, 4, '127.0.0.1', '2015-02-25 18:26:39', '0000-00-00 00:00:00'),
+(252, 4, '127.0.0.1', '2015-02-25 18:55:18', '0000-00-00 00:00:00'),
+(253, 4, '127.0.0.1', '2015-02-26 10:10:17', '0000-00-00 00:00:00'),
+(254, 4, '127.0.0.1', '2015-02-27 12:58:35', '0000-00-00 00:00:00'),
+(255, 4, '127.0.0.1', '2015-03-02 14:36:51', '0000-00-00 00:00:00'),
+(256, 4, '127.0.0.1', '2015-03-02 16:16:32', '0000-00-00 00:00:00'),
+(257, 4, '127.0.0.1', '2015-03-02 17:33:23', '0000-00-00 00:00:00'),
+(258, 4, '127.0.0.1', '2015-03-03 11:47:04', '0000-00-00 00:00:00'),
+(259, 4, '127.0.0.1', '2015-03-03 14:37:27', '0000-00-00 00:00:00'),
+(260, 4, '127.0.0.1', '2015-03-04 11:41:59', '0000-00-00 00:00:00'),
+(261, 4, '127.0.0.1', '2015-03-04 14:20:51', '0000-00-00 00:00:00'),
+(262, 4, '127.0.0.1', '2015-03-04 14:28:11', '0000-00-00 00:00:00'),
+(263, 4, '127.0.0.1', '2015-03-05 11:12:03', '2015-03-05 11:24:41');
 
 -- --------------------------------------------------------
 
@@ -85,22 +79,19 @@ CREATE TABLE IF NOT EXISTS `tbl_banner_slider` (
   `bannerImage` varchar(255) NOT NULL,
   `bannerAltTag` varchar(100) NOT NULL,
   `bannerOrder` int(10) NOT NULL,
-  `fkCmsID` int(11) NOT NULL,
   `bannerStatus` enum('0','1') NOT NULL,
   `bannerDateAdded` datetime NOT NULL,
   `bannerDateModified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`pkBannerID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=36 ;
 
 --
 -- Dumping data for table `tbl_banner_slider`
 --
 
-INSERT INTO `tbl_banner_slider` (`pkBannerID`, `bannerTitle`, `bannerTagLine`, `bannerImage`, `bannerAltTag`, `bannerOrder`, `fkCmsID`, `bannerStatus`, `bannerDateAdded`, `bannerDateModified`) VALUES
-(4, 'Deal Banner2', '', 'banner.jpg', 'Deal Banner2', 1, 1, '1', '2014-08-26 11:20:16', '2014-09-09 08:47:48'),
-(5, 'Deal Banner Title 3', '', 'banner.jpg', 'Deal Banner Alt3', 2, 1, '1', '2014-08-26 11:20:42', '2014-09-09 08:47:48'),
-(6, 'Banner3', '', 'banner.jpg', 'Banner3', 4, 1, '1', '2014-08-27 20:22:18', '2014-09-09 08:47:48'),
-(7, 'Search Page Banner', '', 'search-page-banner.png', 'Search Page Banner', 3, 8, '1', '2014-08-28 14:59:50', '2014-09-09 08:47:48');
+INSERT INTO `tbl_banner_slider` (`pkBannerID`, `bannerTitle`, `bannerTagLine`, `bannerImage`, `bannerAltTag`, `bannerOrder`, `bannerStatus`, `bannerDateAdded`, `bannerDateModified`) VALUES
+(32, 'Home Banner', 'Plan Your Travel to India', 'slider1-1423748183.jpg', 'Home Banner', 1, '1', '2015-02-12 19:06:23', '2015-02-13 06:32:37'),
+(35, 'About Dubai', 'Happy Journey and Happy Ending ', 'slider2-1423749024.jpg', 'About Dubai', 2, '1', '2015-02-12 19:20:24', '2015-02-13 05:29:17');
 
 -- --------------------------------------------------------
 
@@ -183,29 +174,23 @@ CREATE TABLE IF NOT EXISTS `tbl_cms` (
   `cmsMetaTitle` varchar(255) NOT NULL,
   `cmsMetaKeywords` text NOT NULL,
   `cmsMetaDescription` text NOT NULL,
-  `cmsContentAvailable` enum('0','1') NOT NULL COMMENT '''0''=>No, ''1''=>Yes',
-  `cmsBannerAvailable` enum('0','1') NOT NULL COMMENT '''0''=>No, ''1''=>Yes',
-  `cmsIsPage` enum('0','1') NOT NULL,
   `cmsStatus` enum('0','1') NOT NULL COMMENT '0=Inactive | 1=Active',
   `cmsDateAdded` datetime NOT NULL,
   `cmsDateModified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`pkCmsID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `tbl_cms`
 --
 
-INSERT INTO `tbl_cms` (`pkCmsID`, `cmsDisplayTitle`, `cmsPageTitle`, `cmsSlug`, `cmsContent`, `cmsMetaTitle`, `cmsMetaKeywords`, `cmsMetaDescription`, `cmsContentAvailable`, `cmsBannerAvailable`, `cmsIsPage`, `cmsStatus`, `cmsDateAdded`, `cmsDateModified`) VALUES
-(1, 'Home', 'Home', 'home', 'Home', 'Home', 'Home', 'Home', '0', '1', '0', '1', '2014-08-28 00:00:00', '2014-09-08 13:02:52'),
-(2, 'About Us', 'About Us', 'about-us', '<p>\r\n	About Us</p>\r\n', 'About Us', 'About Us', 'About Us', '1', '0', '1', '1', '2014-06-11 15:33:46', '2015-01-22 09:10:52'),
-(3, 'Terms & Conditions', 'Terms & Conditions', 'terms-conditions', '<p>\r\n    Terms &amp; Conditions</p>\r\n', 'Terms & Conditions', 'Terms & Conditions', 'Terms & Conditions', '1', '0', '1', '1', '2014-06-11 17:59:58', '2014-09-08 13:02:52'),
-(4, 'Home', 'Home', 'home', '<p>\r\n	Home page information</p>\r\n', 'home', 'home', 'home description', '1', '0', '1', '1', '2014-06-11 18:02:50', '2015-01-22 07:00:22'),
-(5, 'Privacy Policy', 'Privacy Policy', 'privacy-policy', '<p>\r\n	Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nam cursus. Morbi ut mi. Nullam enim leo, egestas id, condimentum at, laoreet mattis, massa. Sed eleifend nonummy diam. Praesent mauris ante, elementum et, bibendum at, posuere sit amet, nibh. Duis tincidunt lectus quis dui viverra vestibulum. Suspendisse vulputate aliquam dui. Nulla elementum dui ut augue. Aliquam vehicula mi at mauris. Maecenas placerat, nisl at consequat rhoncus, sem nunc gravida justo, quis eleifend arcu velit quis lacus. Morbi magna magna, tincidunt a, mattis non, imperdiet vitae, tellus. Sed odio est, auctor ac, sollicitudin in, consequat vitae, orci. Fusce id felis. Vivamus sollicitudin metus eget eros.</p>\r\n<h4 class="cms_heading">\r\n	Information we collect</h4>\r\n<p>\r\n	Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nam cursus. Morbi ut mi. Nullam enim leo, egestas id, condimentum at, laoreet mattis, massa. Sed eleifend nonummy diam. Praesent mauris ante, elementum et, bibendum at, posuere sit amet, nibh. Duis tincidunt lectus quis dui viverra vestibulum. Suspendisse vulputate aliquam dui. Nulla elementum dui ut augue. Aliquam vehicula mi at mauris. Maecenas placerat, nisl at consequat rhoncus, sem nunc gravida justo, quis eleifend arcu velit quis lacus. Morbi magna magna, tincidunt a, mattis non, imperdiet vitae, tellus. Sed odio est, auctor ac, sollicitudin in, consequat vitae, orci. Fusce id felis. Vivamus sollicitudin metus eget eros. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nam cursus. Morbi ut mi. Nullam enim leo, egestas id, condimentum at, laoreet mattis, massa. Sed eleifend nonummy diam. Praesent mauris ante, elementum et, bibendum at, posuere sit amet, nibh. Duis tincidunt lectus quis dui viverra vestibulum. Suspendisse vulputate aliquam dui. Nulla elementum dui ut augue. Aliquam vehicula mi at mauris.</p>\r\n<h4 class="cms_heading">\r\n	Personally Identifiable Information</h4>\r\n<p>\r\n	Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nam cursus. Morbi ut mi. Nullam enim leo, egestas id, condimentum at, laoreet mattis, massa. Sed eleifend nonummy diam. Praesent mauris ante, elementum et, bibendum at, posuere sit amet, nibh. Duis tincidunt lectus quis dui viverra vestibulum. Suspendisse vulputate aliquam dui. Nulla elementum dui ut augue. Aliquam vehicula mi at mauris.</p>\r\n', 'Privacy Policy', 'Privacy Policy', 'Privacy Policy', '1', '0', '1', '1', '2014-08-28 00:00:00', '2015-01-22 06:54:17'),
-(6, 'Sitemap', 'Sitemap', 'sitemap', '<p>\r\n Sitemap</p>\r\n', 'Sitemap', 'Sitemap', 'Sitemap', '1', '0', '1', '1', '2014-08-28 00:00:00', '2015-01-22 06:54:17'),
-(7, 'Contact Us', 'Contact Us', 'contact-us', '<ul class="contact_inner">\r\n	<li>\r\n		<figure><img alt="" src="http://dev.iworklab.com/promosol/images/contact_img1.jpg" /> </figure>\r\n		<div class="contact_detail">\r\n			<h3>\r\n				Customer Service &amp; Support:</h3>\r\n			<p>\r\n				Email us at <a class="mailto" href="mailto:support@xxxxxxx.com">support@xxxxxxx.com</a> or Call us at 07877321321 (Monday - Friday), 10am to 6pm</p>\r\n		</div>\r\n	</li>\r\n	<li>\r\n		<figure><img alt="" src="http://dev.iworklab.com/promosol/images/contact_img2.jpg" /> </figure>\r\n		<div class="contact_detail">\r\n			<h3>\r\n				Business Opportunities &amp; Sales Enquiries:</h3>\r\n			<p>\r\n				Do get in touch with us at <a class="mailto" href="mailto:support@xxxxxxx.com">sales@xxxxxxx.com</a> Our representatives will contact you shortly to help you through.</p>\r\n		</div>\r\n	</li>\r\n	<li class="last">\r\n		<figure><img alt="" src="http://dev.iworklab.com/promosol/images/contact_img3.jpg" /> </figure>\r\n		<div class="contact_detail">\r\n			<h3>\r\n				Our Official Coordinates:</h3>\r\n			<p>\r\n				Plot No. 426, Brokslow - Phase 3, Lagos, Nigeria</p>\r\n			<p>\r\n				Tel: XXXXXXXXXX</p>\r\n			<p>\r\n				E-mail : <a class="mailto" href="mailto:support@xxxxxxx.com">support@xxxxxxx.com</a></p>\r\n		</div>\r\n	</li>\r\n</ul>\r\n', 'Contact Us', 'Contact Us', 'Contact Us', '1', '0', '1', '0', '2014-08-28 00:00:00', '2015-01-22 06:42:56'),
-(8, 'Search Page', 'Search Page', 'search', 'Fashion industry is always looking for the latest trend to absorb it and then spread it to the rest of the world. This behaviour is also common in web design. So, when the worlds of fashion and Internet collide, we can expect to see websites that blend together the latest visual and technological trends. ', 'Search Page', 'Search Page', 'Search Page', '1', '1', '0', '1', '2014-08-29 00:00:00', '2014-09-08 13:02:52'),
-(9, 'Home', 'Home', 'home', '', 'home', 'home\r\n\r\n', 'home', '0', '0', '0', '1', '2015-01-22 12:28:58', '2015-01-22 06:58:58');
+INSERT INTO `tbl_cms` (`pkCmsID`, `cmsDisplayTitle`, `cmsPageTitle`, `cmsSlug`, `cmsContent`, `cmsMetaTitle`, `cmsMetaKeywords`, `cmsMetaDescription`, `cmsStatus`, `cmsDateAdded`, `cmsDateModified`) VALUES
+(1, 'Home', 'About Travelogini', 'home', '<p style="text-align:center">Delhi (/?d?li/, Hindustani pronunciation: [d??lli?] Dilli ), officially known<br />\r\nas the National Capital Territory of Delhi, is the capital territory of India.[3]<br />\r\nIt has a population of about 11 million and a metropolitan population of about 16.3 million, making it the second most populous city and second most populous urban agglomeration in India.[2][4] Such is the nature of urban expansion in Delhi that its<br />\r\ngrowth has expanded beyond the NCT to incorporate towns in neighbouring states and at its<br />\r\nlargest extent can count a population of about 25 million residents as of 2014.[5]<br />\r\n<br />\r\nThe NCT and its urban region have been given the special status of National Capital Region (NCR) under the Constitution of India&#39;s 69th amendment act of 1991. The NCR includes the neighbouring cities of Gurgaon, Noida, Ghaziabad, Faridabad, Neharpar (Greater Faridabad), Greater Noida, Sonepat, Panipat, Karnal, Rohtak, Bhiwani, Rewari, Baghpat, Meerut, Alwar, Bharatpur and other nearby towns. A union territory, the political administration of the NCT of Delhi today more closely resembles that of a state of India, with its own legislature, high court and an executive council of ministers headed by a Chief Minister. New Delhi is jointly administered by the federal government of India and the local government of Delhi, and is the capital of the NCT of Delhi.</p>\r\n', 'Home meta title', 'Home meta keyword', 'Home meta description', '1', '2014-08-28 00:00:00', '2015-02-25 13:11:00'),
+(2, 'About Us', 'About Travelogini', 'about-us', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et mauris eu tellus venenatis dapibus vel a turpis. Nulla facilisi. Donec ac purus sit amet est commodo vulputate. Maecenas sodales, felis a feugiat blandit, leo nulla maximus sapien, fringilla consequat nisl ligula eu metus. Nunc lobortis tincidunt tellus ac tempus. Duis sit amet accumsan tellus. Donec maximus lacus et egestas condimentum. Praesent tincidunt, neque nec tincidunt mollis,<br />\r\n<br />\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et mauris eu tellus venenatis dapibus vel a turpis. Nulla facilisi. Donec ac purus sit amet est commodo vulputate. Maecenas sodales, felis a feugiat blandit, leo nulla maximus sapien, fringilla consequat nisl<br />\r\n<br />\r\nWhat we do?<br />\r\n<br />\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et mauris eu tellus venenatis dapibus vel a turpis. Nulla facilisi. Donec ac purus sit amet est commodo vulputate. Maecenas sodales, felis a feugiat blandit, leo nulla maximus sapien, fringilla consequat nisl ligula eu metus. Nunc lobortis tincidunt tellus ac tempus. Duis sit amet accumsan tellus. Donec maximus lacus et egestas condimentum. Praesent tincidunt, neque nec tincidunt mollis, mi sapien hendrerit diam, ac egestas odio sapien vel turpis. Ut ac sapien nulla.<br />\r\n<br />\r\nOur History<br />\r\n<br />\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et mauris eu tellus venenatis dapibus vel a turpis. Nulla facilisi. Donec ac purus sit amet est commodo vulputate. Maecenas sodales, felis a feugiat blandit, leo nulla maximus sapien, fringilla consequat nisl ligula eu metus. Nunc lobortis tincidunt tellus ac tempus. Duis sit amet accumsan tellus. Donec maximus lacus et egestas condimentum. Praesent tincidunt, neque nec tincidunt mollis, mi sapien hendrerit diam, ac egestas odio sapien vel turpis. Ut ac sapien nulla.<br />\r\n<br />\r\nOur Investors<br />\r\n<br />\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et mauris eu tellus venenatis dapibus vel a turpis. Nulla facilisi. Donec ac purus sit amet est commodo vulputate. Maecenas sodales, felis a feugiat blandit, leo nulla maximus sapien, fringilla consequat nisl ligula eu metus. Nunc lobortis tincidunt tellus ac tempus. Duis sit amet accumsan tellus. Donec maximus lacus et egestas condimentum. Praesent tincidunt, neque nec tincidunt mollis, mi sapien hendrerit diam, ac egestas odio sapien vel turpis. Ut ac sapien nulla.<br />\r\n<br />\r\nYou can also follow Yatra.com on:<br />\r\n<br />\r\nhttp://www.facebook.com/travelogini<br />\r\nhttp://twitter.com/#!/travelogini</p>\r\n', 'About Us meta title', 'About Us meta keywords', 'About Us descritption', '1', '2014-06-11 15:33:46', '2015-02-25 12:57:26'),
+(3, 'Terms & Conditions', 'Terms & Conditions', 'terms-conditions', '<p>\r\n    Terms &amp; Conditions</p>\r\n', 'Terms & Conditions', 'Terms & Conditions', 'Terms & Conditions', '1', '2014-06-11 17:59:58', '2015-02-16 08:15:11'),
+(4, 'Privacy Policy', 'Privacy Policy', 'privacy-policy', '<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nam cursus. Morbi ut mi. Nullam enim leo, egestas id, condimentum at, laoreet mattis, massa. Sed eleifend nonummy diam. Praesent mauris ante, elementum et, bibendum at, posuere sit amet, nibh. Duis tincidunt lectus quis dui viverra vestibulum. Suspendisse vulputate aliquam dui. Nulla elementum dui ut augue. Aliquam vehicula mi at mauris. Maecenas placerat, nisl at consequat rhoncus, sem nunc gravida justo, quis eleifend arcu velit quis lacus. Morbi magna magna, tincidunt a, mattis non, imperdiet vitae, tellus. Sed odio est, auctor ac, sollicitudin in, consequat vitae, orci. Fusce id felis. Vivamus sollicitudin metus eget eros.</p>\r\n\r\n<h4>Information we collect</h4>\r\n\r\n<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nam cursus. Morbi ut mi. Nullam enim leo, egestas id, condimentum at, laoreet mattis, massa. Sed eleifend nonummy diam. Praesent mauris ante, elementum et, bibendum at, posuere sit amet, nibh. Duis tincidunt lectus quis dui viverra vestibulum. Suspendisse vulputate aliquam dui. Nulla elementum dui ut augue. Aliquam vehicula mi at mauris. Maecenas placerat, nisl at consequat rhoncus, sem nunc gravida justo, quis eleifend arcu velit quis lacus. Morbi magna magna, tincidunt a, mattis non, imperdiet vitae, tellus. Sed odio est, auctor ac, sollicitudin in, consequat vitae, orci. Fusce id felis. Vivamus sollicitudin metus eget eros. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nam cursus. Morbi ut mi. Nullam enim leo, egestas id, condimentum at, laoreet mattis, massa. Sed eleifend nonummy diam. Praesent mauris ante, elementum et, bibendum at, posuere sit amet, nibh. Duis tincidunt lectus quis dui viverra vestibulum. Suspendisse vulputate aliquam dui. Nulla elementum dui ut augue. Aliquam vehicula mi at mauris.</p>\r\n\r\n<h4>Personally Identifiable Information</h4>\r\n\r\n<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nam cursus. Morbi ut mi. Nullam enim leo, egestas id, condimentum at, laoreet mattis, massa. Sed eleifend nonummy diam. Praesent mauris ante, elementum et, bibendum at, posuere sit amet, nibh. Duis tincidunt lectus quis dui viverra vestibulum. Suspendisse vulputate aliquam dui. Nulla elementum dui ut augue. Aliquam vehicula mi at mauris.</p>\r\n', 'Privacy Policy', 'Privacy Policy', 'Privacy Policy', '1', '2014-08-28 00:00:00', '2015-02-16 11:10:16'),
+(5, 'Sitemap', 'Sitemap', 'sitemap', '<p>\r\n Sitemap</p>\r\n', 'Sitemap', 'Sitemap', 'Sitemap', '1', '2014-08-28 00:00:00', '2015-02-16 08:15:11'),
+(6, 'Contact Us', 'Contact Us', 'contact-us', '<ul class="contact_inner">\r\n	<li>\r\n		<figure><img alt="" src="http://dev.iworklab.com/promosol/images/contact_img1.jpg" /> </figure>\r\n		<div class="contact_detail">\r\n			<h3>\r\n				Customer Service &amp; Support:</h3>\r\n			<p>\r\n				Email us at <a class="mailto" href="mailto:support@xxxxxxx.com">support@xxxxxxx.com</a> or Call us at 07877321321 (Monday - Friday), 10am to 6pm</p>\r\n		</div>\r\n	</li>\r\n	<li>\r\n		<figure><img alt="" src="http://dev.iworklab.com/promosol/images/contact_img2.jpg" /> </figure>\r\n		<div class="contact_detail">\r\n			<h3>\r\n				Business Opportunities &amp; Sales Enquiries:</h3>\r\n			<p>\r\n				Do get in touch with us at <a class="mailto" href="mailto:support@xxxxxxx.com">sales@xxxxxxx.com</a> Our representatives will contact you shortly to help you through.</p>\r\n		</div>\r\n	</li>\r\n	<li class="last">\r\n		<figure><img alt="" src="http://dev.iworklab.com/promosol/images/contact_img3.jpg" /> </figure>\r\n		<div class="contact_detail">\r\n			<h3>\r\n				Our Official Coordinates:</h3>\r\n			<p>\r\n				Plot No. 426, Brokslow - Phase 3, Lagos, Nigeria</p>\r\n			<p>\r\n				Tel: XXXXXXXXXX</p>\r\n			<p>\r\n				E-mail : <a class="mailto" href="mailto:support@xxxxxxx.com">support@xxxxxxx.com</a></p>\r\n		</div>\r\n	</li>\r\n</ul>\r\n', 'Contact Us', 'Contact Us', 'Contact Us', '0', '2014-08-28 00:00:00', '2015-02-16 08:17:59');
 
 -- --------------------------------------------------------
 
@@ -219,10 +204,10 @@ CREATE TABLE IF NOT EXISTS `tbl_configurations` (
   `configurationEmail` varchar(255) NOT NULL,
   `configurationSocialLink1` varchar(255) NOT NULL COMMENT 'Facebook Link',
   `configurationSocialLink2` varchar(255) NOT NULL COMMENT 'Twitter Link',
-  `configurationSocialLink3` varchar(255) NOT NULL COMMENT 'Linkedin Link',
-  `configurationSocialLink4` varchar(255) NOT NULL COMMENT 'Google+ Link',
-  `configurationSocialLink5` varchar(255) NOT NULL COMMENT 'Pinterest Link',
-  `configurationSocialLink6` varchar(255) NOT NULL COMMENT 'Skype Link',
+  `configurationSocialLink3` varchar(255) NOT NULL COMMENT 'Google Plus',
+  `configurationSocialLink4` varchar(255) NOT NULL COMMENT 'Youtube',
+  `logoImage` varchar(250) NOT NULL,
+  `logoAltTag` varchar(250) NOT NULL,
   `configurationPageLimit` int(11) NOT NULL COMMENT 'Admin Paging Limit',
   `configurationDateModified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`pkConfigurationID`)
@@ -232,8 +217,8 @@ CREATE TABLE IF NOT EXISTS `tbl_configurations` (
 -- Dumping data for table `tbl_configurations`
 --
 
-INSERT INTO `tbl_configurations` (`pkConfigurationID`, `configurationContact`, `configurationEmail`, `configurationSocialLink1`, `configurationSocialLink2`, `configurationSocialLink3`, `configurationSocialLink4`, `configurationSocialLink5`, `configurationSocialLink6`, `configurationPageLimit`, `configurationDateModified`) VALUES
-(1, '+01 888 (000) 1234', 'awoofde@gmail.com', 'http://www.facebook.com', 'http://www.twitter.com', 'http://www.linkedin.com', 'http://plus.google.com', 'http://www.pinterest.com', 'http://skype.com', 5, '2014-09-09 07:30:39');
+INSERT INTO `tbl_configurations` (`pkConfigurationID`, `configurationContact`, `configurationEmail`, `configurationSocialLink1`, `configurationSocialLink2`, `configurationSocialLink3`, `configurationSocialLink4`, `logoImage`, `logoAltTag`, `configurationPageLimit`, `configurationDateModified`) VALUES
+(1, '+01 888 (000) 1234', 'admin@travelogini.com', 'http://www.facebook.com/test', 'http://www.twitter.com/test', 'http://www.plus.google.com/test', 'http://www.youtube.com/test', 'logo1.png', 'travelogini', 10, '2015-01-28 05:39:21');
 
 -- --------------------------------------------------------
 
@@ -292,6 +277,51 @@ CREATE TABLE IF NOT EXISTS `tbl_coupons` (
 
 INSERT INTO `tbl_coupons` (`pkCouponID`, `couponName`, `couponCode`, `couponType`, `couponDiscountVariable`, `couponMinimumPurchaseAmount`, `couponStartDate`, `couponEndDate`, `couponStatus`, `couponAddDate`, `couponModifyDate`) VALUES
 (2, 'discount of 50', '121', 'Percentage', 10.00, 60.00, '2014-10-01', '2014-11-06', '1', 1414752271, 1415176451);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_customers`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_customers` (
+  `pkCustomerID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `fkUserLoginID` int(11) NOT NULL,
+  `customerUniqueID` varchar(255) NOT NULL,
+  `customerFirstName` varchar(255) NOT NULL,
+  `customerLastName` varchar(255) NOT NULL,
+  `customerUserName` varchar(255) NOT NULL,
+  `customerEmail` varchar(255) NOT NULL,
+  `customerMobile` varchar(255) NOT NULL,
+  `customerGender` enum('Male','Female') NOT NULL,
+  `customerDateOfBirth` datetime NOT NULL,
+  `customerStatus` enum('0','1') NOT NULL,
+  `customerSubscriptionPlan` enum('0','1') NOT NULL DEFAULT '0' COMMENT '0 => Free   1 => Paid',
+  `customerSpecialOfferSubscription` enum('0','1') NOT NULL,
+  `customerAddress` varchar(255) NOT NULL,
+  `customerCity` int(11) NOT NULL,
+  `customerState` int(11) NOT NULL,
+  `customerCountry` int(11) NOT NULL,
+  `customerZip` int(8) NOT NULL,
+  `eWalletBalance` int(50) NOT NULL DEFAULT '0',
+  `wishginiBalance` int(50) NOT NULL DEFAULT '0',
+  `customerAccountActivationToken` varchar(255) NOT NULL,
+  `customerDateAdded` datetime NOT NULL,
+  `customerDateModified` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`pkCustomerID`),
+  UNIQUE KEY `customerUserName` (`customerUserName`),
+  UNIQUE KEY `customerUniqueID` (`customerUniqueID`),
+  KEY `fkUserLoginID` (`fkUserLoginID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=62 ;
+
+--
+-- Dumping data for table `tbl_customers`
+--
+
+INSERT INTO `tbl_customers` (`pkCustomerID`, `fkUserLoginID`, `customerUniqueID`, `customerFirstName`, `customerLastName`, `customerUserName`, `customerEmail`, `customerMobile`, `customerGender`, `customerDateOfBirth`, `customerStatus`, `customerSubscriptionPlan`, `customerSpecialOfferSubscription`, `customerAddress`, `customerCity`, `customerState`, `customerCountry`, `customerZip`, `eWalletBalance`, `wishginiBalance`, `customerAccountActivationToken`, `customerDateAdded`, `customerDateModified`) VALUES
+(29, 4, '1', 'SathishKumar', 'S', 'sathishkumar', 'sathish.kumar1@mail.vinove.com', '9994788682', 'Male', '1990-11-14 00:00:00', '1', '1', '0', 'No.31256', 2, 2, 1, 34324324, 500, 520, '', '2014-10-09 10:55:53', '2015-03-05 05:42:54'),
+(60, 27, 'CUS150223041549', 'vinove', 'software', 'php', 'php@mail.com', '8888888899', 'Male', '1992-05-14 00:00:00', '1', '0', '1', 'F2 udyog nagar, New Delhi', 1, 2, 1, 11004, 0, 0, '', '2015-02-23 16:15:49', '2015-03-05 06:19:56'),
+(61, 28, 'CUS150302053440', 'delhi ', 'vala', 'delhivala', 'delhi@vala.com', '9847653214', 'Male', '1970-01-01 00:00:00', '1', '1', '0', 'delhivala', 3, 3, 1, 0, 0, 0, '', '2015-03-02 17:34:40', '2015-03-03 05:22:28');
 
 -- --------------------------------------------------------
 
@@ -424,7 +454,65 @@ INSERT INTO `tbl_email_templates` (`pkEmailID`, `emailTitle`, `emailFromName`, `
 (6, 'Payment Confirmation', 'Travelogini-Payments', 'info@travelogini.com', 'Payment Confirmation', '<p>\r\n	Dear {to_name},<br />\r\n	Your account has been created successfully.<br />\r\n	Website Link: <a href="{site_url}">{site_url}</a><br />\r\n	Your login email address: {login_email}<br />\r\n	Your login password: {login_password}<br />\r\n	<br />\r\n	Regards<br />\r\n	Travelogini</p>\r\n', '2015-01-22 15:15:01', '2015-01-22 09:44:08'),
 (7, 'Booking Confirmation', 'Admin', 'info@travelogini.com', 'Booking Confirmation', '<p>\n	Dear {to_name},<br />\n	Your account has been activated successfully.<br />\n	Website Link: <a href="{site_url}">{site_url}</a><br />\n	<br />\n	Regards<br />\n	Travelogini</p>\n', '2015-01-22 15:18:44', '2015-01-22 09:49:17'),
 (8, 'Special Offers', 'Special Offers', 'info@travelogini.com', 'Special Offers', '<p>\r\n	Dear {to_name},<br />\r\n	Your account has been activated successfully.<br />\r\n	Website Link: <a href="{site_url}">{site_url}</a><br />\r\n	<br />\r\n	Regards<br />\r\n	Travelogini</p>\r\n', '2015-01-22 15:19:48', '2015-01-22 09:49:48'),
-(9, 'Gift Card', 'Gift Card', 'info@travelogini.com', 'Gift Card', '<p>\r\n	Dear {to_name},<br />\r\n	To activating your account please click on the below link.<br />\r\n	<a href="{account_activation_link}" target="_blank">{account_activation_link}</a><br />\r\n	<br />\r\n	Regards</p>\r\n<p>\r\n	Travelogini</p>\r\n', '2015-01-22 15:20:39', '2015-01-22 09:50:39');
+(9, 'Gift Card', 'Gift Card', 'info@travelogini.com', 'Gift Card', '<p>\r\n	Dear {to_name},<br />\r\n	To activating your account please click on the below link.<br />\r\n	<a href="{account_activation_link}" target="_blank">{account_activation_link}</a><br />\r\n	<br />\r\n	Regards</p>\r\n<p>\r\n	Travelogini</p>\r\n', '2015-01-28 17:02:31', '2015-01-28 11:33:19');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_faqs`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_faqs` (
+  `pkFaqID` int(11) NOT NULL AUTO_INCREMENT,
+  `faqQuestion` text NOT NULL,
+  `faqAnswer` text NOT NULL,
+  `faqDisplayOrder` int(5) NOT NULL,
+  `fkCategoryID` int(25) NOT NULL,
+  `faqAttachment` varchar(255) NOT NULL,
+  `faqHelpTopics` varchar(255) NOT NULL,
+  `faqStatus` enum('0','1') NOT NULL DEFAULT '1' COMMENT '0=Inactive 1=Active',
+  `faqDateAdded` datetime NOT NULL,
+  `faqDateModified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`pkFaqID`),
+  UNIQUE KEY `faqDisplayOrder` (`faqDisplayOrder`),
+  KEY `fkTopicID` (`fkCategoryID`),
+  KEY `fkTopicID_2` (`fkCategoryID`),
+  KEY `fkCategoryID` (`fkCategoryID`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
+
+--
+-- Dumping data for table `tbl_faqs`
+--
+
+INSERT INTO `tbl_faqs` (`pkFaqID`, `faqQuestion`, `faqAnswer`, `faqDisplayOrder`, `fkCategoryID`, `faqAttachment`, `faqHelpTopics`, `faqStatus`, `faqDateAdded`, `faqDateModified`) VALUES
+(26, 'Test question?', '<p>answer</p>\r\n', 10, 12, 'Selection_007-1424773379.png', '25', '1', '2015-02-24 15:36:23', '2015-02-24 10:23:11'),
+(27, 'Vinove data?', '<p>vinove</p>\r\n', 12, 13, '', '', '1', '2015-02-24 15:53:50', '2015-02-24 10:23:50'),
+(25, 'What is travel?', '<p>travel</p>\r\n', 56, 13, '', '', '1', '2015-02-17 15:30:54', '2015-02-17 12:43:16');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_faqs_categories`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_faqs_categories` (
+  `pkCategoryID` int(25) NOT NULL AUTO_INCREMENT,
+  `faqCategoryName` varchar(255) NOT NULL,
+  `faqCategoryStatus` enum('1','0') NOT NULL DEFAULT '1',
+  `faqCategoryIsMount` enum('0','1') NOT NULL DEFAULT '0',
+  `faqCategoryDateAdded` datetime NOT NULL,
+  `faqCategoryDateModified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`pkCategoryID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+
+--
+-- Dumping data for table `tbl_faqs_categories`
+--
+
+INSERT INTO `tbl_faqs_categories` (`pkCategoryID`, `faqCategoryName`, `faqCategoryStatus`, `faqCategoryIsMount`, `faqCategoryDateAdded`, `faqCategoryDateModified`) VALUES
+(2, 'sathish', '0', '1', '0000-00-00 00:00:00', '2015-02-16 12:40:11'),
+(12, 'TEST', '1', '1', '2015-01-30 11:20:21', '2015-01-30 13:13:51'),
+(13, 'FAQ', '1', '1', '2015-02-17 15:09:06', '2015-02-17 09:39:06');
 
 -- --------------------------------------------------------
 
@@ -440,6 +528,60 @@ CREATE TABLE IF NOT EXISTS `tbl_locations` (
   `locationAddDate` datetime NOT NULL,
   PRIMARY KEY (`pklocationID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_mascots`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_mascots` (
+  `mascotID` int(25) NOT NULL AUTO_INCREMENT,
+  `mascotName` varchar(250) NOT NULL,
+  `mascotImage` varchar(250) NOT NULL,
+  `mascotAltTag` varchar(250) NOT NULL,
+  `mascotStatus` enum('0','1') NOT NULL,
+  `mascotDateAdded` datetime NOT NULL,
+  `mascotDateModified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`mascotID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `tbl_mascots`
+--
+
+INSERT INTO `tbl_mascots` (`mascotID`, `mascotName`, `mascotImage`, `mascotAltTag`, `mascotStatus`, `mascotDateAdded`, `mascotDateModified`) VALUES
+(1, 'Flights', 'flights-1423821020.png', 'Flights', '1', '2015-01-23 10:26:35', '2015-02-13 12:28:21'),
+(2, 'Hotels', 'hotels-1423819713.png', 'Hotels', '1', '2015-01-23 07:40:38', '2015-02-13 09:28:33'),
+(3, 'Rooms', 'rooms-1423819731.png', 'Rooms', '1', '2015-02-13 11:33:44', '2015-02-13 09:28:51'),
+(4, 'In Your City', 'inyour-city-1423819749.png', 'In Your City', '1', '2015-02-13 15:33:25', '2015-02-13 09:29:09'),
+(5, 'Wish Gini', 'wishgini-1423820273.png', 'Wish Gini', '1', '2015-02-13 15:23:42', '2015-02-13 09:37:53');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_membership_plans`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_membership_plans` (
+  `pkPlanID` int(250) NOT NULL AUTO_INCREMENT,
+  `planName` varchar(255) NOT NULL,
+  `membershipFee` int(250) NOT NULL,
+  `accessBooking` enum('0','1') NOT NULL COMMENT '0 => Inactive  1=>Active',
+  `addToWishgini` enum('0','1') NOT NULL COMMENT '0=>Inactive 1=>Active',
+  `receiveCoupons` enum('0','1') NOT NULL COMMENT '0 => Inactive  1=>Active',
+  `planAddedDate` datetime NOT NULL,
+  `planModifiedDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`pkPlanID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `tbl_membership_plans`
+--
+
+INSERT INTO `tbl_membership_plans` (`pkPlanID`, `planName`, `membershipFee`, `accessBooking`, `addToWishgini`, `receiveCoupons`, `planAddedDate`, `planModifiedDate`) VALUES
+(1, 'Free', 0, '1', '1', '1', '0000-00-00 00:00:00', '2015-02-25 10:41:34'),
+(2, 'Paid', 12386, '1', '1', '1', '0000-00-00 00:00:00', '2015-02-25 10:41:37');
 
 -- --------------------------------------------------------
 
@@ -586,28 +728,7 @@ CREATE TABLE IF NOT EXISTS `tbl_password_reset` (
 --
 
 INSERT INTO `tbl_password_reset` (`pkPassResetID`, `fkUserID`, `passResetToken`, `passResetCreated`, `passResetExpires`, `passResetStatus`, `passResetDateAdded`) VALUES
-(1, 3, '0U1UM7E35L1421928949', 1421928949, 0, '1', '2015-01-22 17:45:49');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_reviews`
---
-
-CREATE TABLE IF NOT EXISTS `tbl_reviews` (
-  `pkReviewID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `fkDealID` bigint(20) NOT NULL,
-  `fkUserID` bigint(20) NOT NULL,
-  `nickname` varchar(255) NOT NULL,
-  `reviewSubject` varchar(255) NOT NULL,
-  `reviewContent` text NOT NULL,
-  `reviewStatus` enum('0','1') NOT NULL COMMENT '0=>Approved, 1=>Unapproved',
-  `reviewAddDate` int(20) NOT NULL,
-  `reviewActionDate` int(20) NOT NULL,
-  PRIMARY KEY (`pkReviewID`),
-  KEY `fkDealID` (`fkDealID`),
-  KEY `fkUserID` (`fkUserID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+(1, 4, 'WEQYI41TWX1425474032', 1425474032, 0, '1', '2015-03-04 18:30:32');
 
 -- --------------------------------------------------------
 
@@ -660,71 +781,28 @@ INSERT INTO `tbl_state` (`pkStateID`, `stateName`, `fkCountryID`, `stateStatus`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_users`
---
-
-CREATE TABLE IF NOT EXISTS `tbl_users` (
-  `pkUserID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `fkUserLoginID` int(11) NOT NULL,
-  `userFirstName` varchar(255) NOT NULL,
-  `userLastName` varchar(255) NOT NULL,
-  `userEmail` varchar(255) NOT NULL,
-  `userPhone` varchar(255) NOT NULL,
-  `userGender` enum('Male','Female') NOT NULL,
-  `userDateOfBirth` datetime NOT NULL,
-  `userStatus` enum('0','1') NOT NULL,
-  `userBillingAddress1` varchar(255) NOT NULL,
-  `userBillingAddress2` varchar(255) NOT NULL,
-  `userBillingCity` int(11) NOT NULL,
-  `userBillingState` int(11) NOT NULL,
-  `userBillingCountry` int(11) NOT NULL,
-  `userBillingZip` int(8) NOT NULL,
-  `userShippingAddress1` varchar(255) NOT NULL,
-  `userShippingAddress2` varchar(255) NOT NULL,
-  `userShippingCity` int(11) NOT NULL,
-  `userShippingState` int(11) NOT NULL,
-  `userShippingCountry` int(11) NOT NULL,
-  `userShippingZip` int(8) NOT NULL,
-  `userBillingPhone` varchar(255) NOT NULL,
-  `userShippingPhone` varchar(255) NOT NULL,
-  `userAccountActivationToken` varchar(255) NOT NULL,
-  `userDateAdded` datetime NOT NULL,
-  `userDateModified` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`pkUserID`),
-  KEY `fkUserLoginID` (`fkUserLoginID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
-
---
--- Dumping data for table `tbl_users`
---
-
-INSERT INTO `tbl_users` (`pkUserID`, `fkUserLoginID`, `userFirstName`, `userLastName`, `userEmail`, `userPhone`, `userGender`, `userDateOfBirth`, `userStatus`, `userBillingAddress1`, `userBillingAddress2`, `userBillingCity`, `userBillingState`, `userBillingCountry`, `userBillingZip`, `userShippingAddress1`, `userShippingAddress2`, `userShippingCity`, `userShippingState`, `userShippingCountry`, `userShippingZip`, `userBillingPhone`, `userShippingPhone`, `userAccountActivationToken`, `userDateAdded`, `userDateModified`) VALUES
-(29, 4, 'SathishKumar', 'S', 'test@test.com', '9994788682', 'Male', '1990-11-14 00:00:00', '1', 'No.31256', 'Old Rangpuri', 6, 5, 2, 34324324, 'No.312', 'Old Rangpuri road', 3, 3, 1, 34324324, '987655623222', '9876554321', '', '2014-10-09 10:55:53', '2015-01-15 06:39:05'),
-(33, 5, 'Sathish', 'Kumar', 'sathish.kumar1@mail.vinove.com', '9997845652', 'Male', '2014-11-12 00:00:00', '1', 'Mahipalpur', 'Delhi', 1, 2, 1, 110037, 'Mahipalpur', 'Delhi', 1, 2, 1, 110037, '9994788682', '9994788682', 'MC4zNDI4MzMwMCAxNDIwNDM2NzQxNTRhYTI1MDU1M2I4Mw==', '0000-00-00 00:00:00', '2015-01-15 13:29:47');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `tbl_users_login`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_users_login` (
   `pkUserLoginID` int(11) NOT NULL AUTO_INCREMENT,
   `userEmail` varchar(255) NOT NULL,
+  `userName` varchar(250) NOT NULL,
   `userPassword` varchar(255) NOT NULL,
   `userType` enum('A','C','M') NOT NULL COMMENT 'A=Admin C=Customer M=Merchant',
   `userDateModified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`pkUserLoginID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+  PRIMARY KEY (`pkUserLoginID`),
+  UNIQUE KEY `userName` (`userName`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
 
 --
 -- Dumping data for table `tbl_users_login`
 --
 
-INSERT INTO `tbl_users_login` (`pkUserLoginID`, `userEmail`, `userPassword`, `userType`, `userDateModified`) VALUES
-(3, 'sathish.kumar1@mail.vinove.com', 'f654fb63f75721ac69cd01f7bd14aaa6', 'A', '2014-12-24 06:23:15'),
-(4, 'test@test.com', 'f654fb63f75721ac69cd01f7bd14aaa6', 'C', '2014-12-16 11:33:00'),
-(5, 'sathish.kumar1@mail.vinove.com', 'f654fb63f75721ac69cd01f7bd14aaa6', 'C', '2015-01-05 05:45:41');
+INSERT INTO `tbl_users_login` (`pkUserLoginID`, `userEmail`, `userName`, `userPassword`, `userType`, `userDateModified`) VALUES
+(4, 'sathish.kumar1@mail.vinove.com', 'sathish', 'f654fb63f75721ac69cd01f7bd14aaa6', 'A', '2015-02-27 04:53:14'),
+(27, 'php@mail.com', 'kumar', 'f654fb63f75721ac69cd01f7bd14aaa6', 'C', '2015-02-27 04:53:19'),
+(28, 'delhi@vala.com', '', 'f654fb63f75721ac69cd01f7bd14aaa6', 'C', '2015-03-03 05:21:53');
 
 --
 -- Constraints for dumped tables
@@ -743,29 +821,22 @@ ALTER TABLE `tbl_cities`
   ADD CONSTRAINT `tbl_cities_ibfk_1` FOREIGN KEY (`fkStateID`) REFERENCES `tbl_state` (`pkStateID`) ON DELETE CASCADE;
 
 --
+-- Constraints for table `tbl_customers`
+--
+ALTER TABLE `tbl_customers`
+  ADD CONSTRAINT `tbl_customers_ibfk_1` FOREIGN KEY (`fkUserLoginID`) REFERENCES `tbl_users_login` (`pkUserLoginID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `tbl_password_reset`
 --
 ALTER TABLE `tbl_password_reset`
   ADD CONSTRAINT `tbl_password_reset_ibfk_1` FOREIGN KEY (`fkUserID`) REFERENCES `tbl_users_login` (`pkUserLoginID`) ON DELETE CASCADE;
 
 --
--- Constraints for table `tbl_reviews`
---
-ALTER TABLE `tbl_reviews`
-  ADD CONSTRAINT `tbl_reviews_ibfk_1` FOREIGN KEY (`fkUserID`) REFERENCES `tbl_users` (`pkUserID`) ON DELETE CASCADE,
-  ADD CONSTRAINT `tbl_reviews_ibfk_2` FOREIGN KEY (`fkDealID`) REFERENCES `tbl_deals` (`pkDealID`) ON DELETE CASCADE;
-
---
 -- Constraints for table `tbl_state`
 --
 ALTER TABLE `tbl_state`
   ADD CONSTRAINT `tbl_state_ibfk_1` FOREIGN KEY (`fkCountryID`) REFERENCES `tbl_country` (`pkCountryID`) ON DELETE CASCADE;
-
---
--- Constraints for table `tbl_users`
---
-ALTER TABLE `tbl_users`
-  ADD CONSTRAINT `tbl_users_ibfk_1` FOREIGN KEY (`fkUserLoginID`) REFERENCES `tbl_users_login` (`pkUserLoginID`) ON DELETE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

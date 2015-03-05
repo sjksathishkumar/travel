@@ -18,17 +18,17 @@ Done By Vipin Tomar On 09-10-2014
 ALTER TABLE `tbl_users` DROP `userAddDate` ,
 DROP `userModifyDate` ;
 
-ALTER TABLE `tbl_users` CHANGE `userDateOfBirth` `userDateOfBirth` DATETIME NOT NULL ,
-CHANGE `userDateAdded` `userDateAdded` DATETIME NOT NULL ,
-CHANGE `userDateModified` `userDateModified` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ;
+ALTER TABLE `tbl_users` CHANGE `customerDateOfBirth` `customerDateOfBirth` DATETIME NOT NULL ,
+CHANGE `customerDateAdded` `customerDateAdded` DATETIME NOT NULL ,
+CHANGE `customerDateModified` `customerDateModified` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ;
 
 
-ALTER TABLE `tbl_users` CHANGE `userDateModified` `userDateModified` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+ALTER TABLE `tbl_users` CHANGE `customerDateModified` `customerDateModified` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 ALTER TABLE `tbl_reviews` ENGINE = InnoDB;
 ALTER TABLE `tbl_reviews` ADD INDEX ( `fkDealID` ) ;
 ALTER TABLE `tbl_reviews` ADD INDEX ( `fkUserID` ) ;
 ALTER TABLE `tbl_reviews` ADD FOREIGN KEY ( `fkUserID` ) REFERENCES `tbl_users` (
-`pkUserID`
+`pkCustomerID`
 ) ON DELETE CASCADE ;
 ALTER TABLE `tbl_deals` ENGINE = InnoDB;
 ALTER TABLE `tbl_reviews` ADD FOREIGN KEY ( `fkDealID` ) REFERENCES `tbl_deals` (
@@ -84,9 +84,9 @@ VALUES (
 '5', 'Customer Account Created By Admin', 'Admin', 'admin@admin.com', 'Your account created successfully.', 'Dear {to_name},<br /> Your account has been created successfully.<br /> Website Link: <a href=''{site_url}''>{site_url}</a><br/> Your login email address: {login_email}<br/> Your login password: {login_password}<br/> <br /> Regards<br /> Promosol', '2014-10-06 12:06:16',
 CURRENT_TIMESTAMP
 );
-ALTER TABLE `tbl_users` ADD `userDateAdded` DATETIME NOT NULL AFTER `userAccountActivationToken`;
-ALTER TABLE `tbl_users` CHANGE `userDateAdded` `userDateAdded` TIMESTAMP NOT NULL;
-ALTER TABLE `tbl_users` ADD `userDateModified` DATETIME NOT NULL AFTER `userDateAdded`;
+ALTER TABLE `tbl_users` ADD `customerDateAdded` DATETIME NOT NULL AFTER `customerAccountActivationToken`;
+ALTER TABLE `tbl_users` CHANGE `customerDateAdded` `customerDateAdded` TIMESTAMP NOT NULL;
+ALTER TABLE `tbl_users` ADD `customerDateModified` DATETIME NOT NULL AFTER `customerDateAdded`;
    
 Done By Vipin On 23-09-2014
 ALTER TABLE `tbl_reviews` CHANGE `reviewStatus` `reviewStatus` ENUM( '0', '1' ) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL COMMENT '0=>Approved, 1=>Unapproved';

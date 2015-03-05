@@ -58,7 +58,7 @@ class PrintController extends Controller
     {
         if (isset($_POST['deals-grid_c1']))
         {
-            $arrDealsRecord = array_reverse(Deals::model()->with(array('category' => array('select' => 'categoryName')), array('user' => array('select' => 'userFirstName')),array('city' => array('select' => 'cityName')))->findAllByPk($_POST['deals-grid_c1']));
+            $arrDealsRecord = array_reverse(Deals::model()->with(array('category' => array('select' => 'categoryName')), array('user' => array('select' => 'customerFirstName')),array('city' => array('select' => 'cityName')))->findAllByPk($_POST['deals-grid_c1']));
             foreach ($arrDealsRecord as $record)
             {
                 $record->dealStatus = $record->dealStatus == 1 ? 'Active' : 'Inactive';
@@ -75,7 +75,7 @@ class PrintController extends Controller
                     'Deals ID' => 'pkDealID',
                     'Deals Name' => 'dealName',
                     'Category Name' => 'category->categoryName',
-                    'Deal posted by' => 'user->userFirstName',
+                    'Deal posted by' => 'user->customerFirstName',
                     'Deal Address' => 'dealAddress',
                     'City Name' => 'city->cityName',
                     'Usage Timings' => 'dealUsageTimings',
@@ -131,7 +131,7 @@ class PrintController extends Controller
                     $rowArr1[$j++] = $dealRecord->pkDealID;
                     $rowArr1[$j++] = $dealRecord->dealName;
                     $rowArr1[$j++] = $dealRecord->category?$dealRecord->category->categoryName:'';
-                    $rowArr1[$j++] = $dealRecord->user?$dealRecord->user->userFirstName:'';
+                    $rowArr1[$j++] = $dealRecord->user?$dealRecord->user->customerFirstName:'';
                     $rowArr1[$j++] = $dealRecord->dealAddress;
                     $rowArr1[$j++] = $dealRecord->city?$dealRecord->city->cityName:'';
                     $rowArr1[$j++] = $dealRecord->dealUsageTimings;
@@ -221,25 +221,25 @@ class PrintController extends Controller
                                         )->findAllByPk($_POST['customers-grid_c1']));
             foreach ($arrCustomersRecord as $record)
             {
-                $record->userStatus = $record->userStatus == 1 ? 'Active' : 'Inactive';
-                $record->userDateOfBirth = date('Y-m-d',strtotime($record->userDateOfBirth));
+                $record->customerStatus = $record->customerStatus == 1 ? 'Active' : 'Inactive';
+                $record->customerDateOfBirth = date('Y-m-d',strtotime($record->customerDateOfBirth));
             }
             if (isset($_POST['csv_export']))
             {
                 CsvExport::export($arrCustomersRecord, array(
-                    'Customer ID' => 'pkUserID',
-                    'First Name' => 'userFirstName',
-                    'Last Name' => 'userLastName',
+                    'Customer ID' => 'pkCustomerID',
+                    'First Name' => 'customerFirstName',
+                    'Last Name' => 'customerLastName',
                     'Email Address' => 'userEmail',
-                    'Phone Number' =>'userPhone',
-                    'Gender'=>'userGender',
-                    'Date Of Birth'=>'userDateOfBirth',
-                    'Billing Address1'=>'userBillingAddress1',
-                    'Billing Address2'=>'userBillingAddress2',
+                    'Phone Number' =>'customerMobile',
+                    'Gender'=>'customerGender',
+                    'Date Of Birth'=>'customerDateOfBirth',
+                    'Billing Address1'=>'customerAddress',
+                    'Billing Address2'=>'customerAddress2',
                     'Billing Country'=>'billingCountry->countryName',
                     'Billing State'=>'billingState->stateName',
                     'Billing City'=>'billingCity->cityName',
-                    'Billing Zipcode'=>'userBillingZip',
+                    'Billing Zipcode'=>'customerZip',
                     'Billing Phone'=>'userBillingPhone',
                     'Shipping Address1'=>'userShippingAddress1',
                     'Shipping Address2'=>'userShippingAddress2',
@@ -248,9 +248,9 @@ class PrintController extends Controller
                     'Shipping City'=>'shippingCity->cityName',
                     'Shipping Zipcode'=>'userShippingZip',
                     'Shipping Phone'=>'userShippingPhone',
-                    'Status' => 'userStatus',
-                    'Date Added' => 'userDateAdded',
-                    'Date Modified' => 'userDateModified',
+                    'Status' => 'customerStatus',
+                    'Date Added' => 'customerDateAdded',
+                    'Date Modified' => 'customerDateModified',
                         ), true, 'customers-reports.csv');
             }
             else if (isset($_POST['excel_export']))
@@ -287,19 +287,19 @@ class PrintController extends Controller
                 
                 foreach($arrCustomersRecord AS $customerRecord){
                     $j=0;
-                    $rowArr1[$j++] = $customerRecord->pkUserID;
-                    $rowArr1[$j++] = $customerRecord->userFirstName;
-                    $rowArr1[$j++] = $customerRecord->userLastName;
+                    $rowArr1[$j++] = $customerRecord->pkCustomerID;
+                    $rowArr1[$j++] = $customerRecord->customerFirstName;
+                    $rowArr1[$j++] = $customerRecord->customerLastName;
                     $rowArr1[$j++] = $customerRecord->userEmail;
-                    $rowArr1[$j++] = $customerRecord->userPhone;
-                    $rowArr1[$j++] = $customerRecord->userGender;
-                    $rowArr1[$j++] = $customerRecord->userDateOfBirth;
-                    $rowArr1[$j++] = $customerRecord->userBillingAddress1;
-                    $rowArr1[$j++] = $customerRecord->userBillingAddress2;
+                    $rowArr1[$j++] = $customerRecord->customerMobile;
+                    $rowArr1[$j++] = $customerRecord->customerGender;
+                    $rowArr1[$j++] = $customerRecord->customerDateOfBirth;
+                    $rowArr1[$j++] = $customerRecord->customerAddress;
+                    $rowArr1[$j++] = $customerRecord->customerAddress2;
                     $rowArr1[$j++] = $customerRecord->billingCountry->countryName;
                     $rowArr1[$j++] = $customerRecord->billingState->stateName;
                     $rowArr1[$j++] = $customerRecord->billingCity->cityName;
-                    $rowArr1[$j++] = $customerRecord->userBillingZip;
+                    $rowArr1[$j++] = $customerRecord->customerZip;
                     $rowArr1[$j++] = $customerRecord->userBillingPhone;
                     $rowArr1[$j++] = $customerRecord->userShippingAddress1;
                     $rowArr1[$j++] = $customerRecord->userShippingAddress2;
@@ -308,9 +308,9 @@ class PrintController extends Controller
                     $rowArr1[$j++] = $customerRecord->shippingCity->cityName;
                     $rowArr1[$j++] = $customerRecord->userShippingZip;
                     $rowArr1[$j++] = $customerRecord->userShippingPhone;
-                    $rowArr1[$j++] = $customerRecord->userStatus;
-                    $rowArr1[$j++] = $customerRecord->userDateAdded;
-                    $rowArr1[$j++] = $customerRecord->userDateModified;
+                    $rowArr1[$j++] = $customerRecord->customerStatus;
+                    $rowArr1[$j++] = $customerRecord->customerDateAdded;
+                    $rowArr1[$j++] = $customerRecord->customerDateModified;
                     
                     $rowArr[$i++] = $rowArr1;
                 }
@@ -418,7 +418,7 @@ class PrintController extends Controller
                     'Order ID' => 'pkOrderID',
                     'Customer First Name' => 'orderCustomerFirstName',
                     'Customer Last Name' => 'orderCustomerLastName',
-                    'Customer Email Address' => 'orderCustomerEmail',
+                    'Customer Email Address' => 'orderuserEmail',
                     'Customer Phone Number' => 'orderCustomerPhone',
                     'Customer Billing Address1' => 'orderBillingAddress1',
                     'Customer Billing Address2' => 'orderBillingAddress2',
@@ -470,7 +470,7 @@ class PrintController extends Controller
                     $rowArr1[$j++] = $orderRecord->pkOrderID;
                     $rowArr1[$j++] = $orderRecord->orderCustomerFirstName;
                     $rowArr1[$j++] = $orderRecord->orderCustomerLastName;
-                    $rowArr1[$j++] = $orderRecord->orderCustomerEmail;
+                    $rowArr1[$j++] = $orderRecord->orderuserEmail;
                     $rowArr1[$j++] = $orderRecord->orderCustomerPhone;
                     $rowArr1[$j++] = $orderRecord->orderBillingAddress1;
                     $rowArr1[$j++] = $orderRecord->orderBillingAddress2;

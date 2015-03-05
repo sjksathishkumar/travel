@@ -86,21 +86,26 @@
 								'headerHtmlOptions'=>array('class'=>'with-checkbox'),
 								'htmlOptions'=>array('class'=>'with-checkbox','style'=>'text-align:center'),					                              
 							 ),							
-							array('name'=>'userFirstName',								
+							array('name'=>'customerFirstName',								
 								'htmlOptions'=>array('style'=>'text-align:center'),
 							),	
-							array('name'=>'userLastName',								
+							array('name'=>'customerLastName',								
 								'htmlOptions'=>array('style'=>'text-align:center'),
 							),							
-							array('name'=>'userEmail',								
+							array('name'=>'customerEmail',								
 								'htmlOptions'=>array('style'=>'text-align:center'),
 							),							
-							array('name'=>'userPhone',								
+							array('name'=>'customerMobile',								
 								'htmlOptions'=>array('style'=>'text-align:center'),
 							),	
-							array('name'=>'userStatus',
+							array('name'=>'customerSubscriptionPlan',
 								'type' => 'raw',
-								'value'=>'CommonFunctions::statusFurmate($data->userStatus)',
+								'value'=>'CommonFunctions::subscriptionPlan($data->customerSubscriptionPlan)',
+								'htmlOptions'=>array('style'=>'text-align:center'),
+							),
+							array('name'=>'customerStatus',
+								'type' => 'raw',
+								'value'=>'CommonFunctions::statusFurmate($data->customerStatus)',
 								'htmlOptions'=>array('style'=>'text-align:center'),
 							),
 							array(
@@ -145,10 +150,6 @@
 							<option value="2">Delete</option>
 						</select>
 					</div>
-					<div style="padding-left: 1%; float: right; width: 240px;">
-                        <?php echo CHtml::submitButton('Export To CSV', array('class' => 'btn btn-warning pull-left', 'style' => 'margin-right:1%;margin-bottom:1%', 'name' => 'csv_export')); ?>
-                        <?php echo CHtml::submitButton('Export To Excel', array('class' => 'btn btn-satblue pull-left', 'style' => 'margin-right:1%;margin-bottom:1%', 'name' => 'excel_export')); ?>
-                    </div>
 				</form>
 			</div>
 		</div>

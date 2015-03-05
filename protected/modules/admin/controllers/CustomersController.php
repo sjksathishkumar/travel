@@ -7,7 +7,7 @@ class CustomersController extends Controller
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
 	public $layout='main';
-	public $varAction='customer';		//variable to make menu as active in layout
+	public $varAction='users';		//variable to make menu as active in layout
 	
 
 	/**
@@ -59,6 +59,8 @@ class CustomersController extends Controller
 	public function actionView($id)
 	{
 		$model = $this->loadModel($id);
+		$model->customerStatus = CommonFunctions::statusName($model->customerStatus);
+		$model->customerSubscriptionPlan = CommonFunctions::subscriptionPlan($model->customerSubscriptionPlan);
 		$loginModel = UsersLogin::model()->findByPk($model->fkUserLoginID);
 		$this->render('view',array(
 			'model'=>$model,
@@ -79,36 +81,44 @@ class CustomersController extends Controller
 		if (isset($_POST['Users']))
         {
         	$model->attributes = $_POST['Users'];
+        	//echo "<pre>";
+        	//print_r($model->attributes); die();
         	$loginModel->attributes = $_POST['UsersLogin'];
-        	$loginModel->userEmail = $model->userEmail;
+        	$loginModel->userEmail = $model->customerEmail;
 			$loginModel->userType = 'C';
-			$loginModel->userDateModified = date('Y-m-d H:i:s');
-			
+			$model->customerUniqueID = CommonFunctions::uniqueIDGenerator('CUS');
+			//$loginModel->userDateModified = date('Y-m-d H:i:s');
+			/*echo "<pre>";
+			print_r($model->attributes); die();*/
         	if($model->validate() & $loginModel->validate()){
+        		//echo "validation complete"; die();
         		$transaction=$model->dbConnection->beginTransaction();
         		$password = $loginModel->userPassword;
         		$loginModel->userPassword = md5($loginModel->userPassword);
         		try{
         			$loginModel->save(false);
         			$model->fkUserLoginID = $loginModel->primaryKey;
-        			$model->userStatus = '1';
-        			$model->userDateAdded = date('Y-m-d H:i:s');
-        			$model->userDateModified = date('Y-m-d H:i:s');
+        			$model->customerStatus = '1';
+        			//$model->customerUniqueID = CommonFunctions::uniqueIDGenerator('CUS');
+        			//echo $model->customerUniqueID; die();
+        			$model->customerDateAdded = date('Y-m-d H:i:s');
+        			//$model->customerDateModified = date('Y-m-d H:i:s');
         			$model->save();
         			$transaction->commit();
         			Yii::app()->user->setFlash('addCustomerSuccess',true);
         			/* generate and send Email */
-	                $varMailTo = trim($model->userEmail);
-	                //$activationLink = $url=Yii::app()->params['siteURL']."customer/activateAccount?userID=".base64_encode($model->pkUserID)."&token=".$model->userAccountActivationToken;
+	                $varMailTo = trim($model->customerEmail);
+	                //$activationLink = $url=Yii::app()->params['siteURL']."customer/activateAccount?userID=".base64_encode($model->pkCustomerID)."&token=".$model->customerAccountActivationToken;
 	                $varKeywordContent = array('{to_name}','{site_url}','{login_email}','{login_password}');
-	                $varKeywordValueContent = array(ucfirst($model->userFirstName),Yii::app()->params['siteURL'],$model->userEmail,$password);
+	                $varKeywordValueContent = array(ucfirst($model->customerFirstName),Yii::app()->params['siteURL'],$model->customerEmail,$password);
 	                CommonFunctions::sendMail('5',$varMailTo,$varKeywordContent,$varKeywordValueContent,'','','','');
         			$this->redirect(array('index'));
         		}catch(Exception $e){
         			 $transaction->rollBack();
         		}
 
-        	}  
+        	} 
+        	//echo "validation faild"; die(); 
         }
         $this->render('create',array(
 									'model'=>$model,
@@ -126,15 +136,15 @@ class CustomersController extends Controller
 	{
 		$model = $this->loadModel($id);
 		$loginModel = UsersLogin::model()->findByPk($model->fkUserLoginID);
-		$model->userDateOfBirth = date('m/d/Y',strtotime($model->userDateOfBirth));
+		$model->customerDateOfBirth = date('m/d/Y',strtotime($model->customerDateOfBirth));
 		$oldPassword = $loginModel->userPassword;
 		$model->scenario = 'update_user_from_admin';
 		if(isset($_POST['Users']) && isset($_POST['UsersLogin'])){
 			$model->attributes = $_POST['Users'];
-			$model->userDateOfBirth = date('Y-m-d',strtotime($model->userDateOfBirth));
-			echo "<pre>";
-			print_r($model->userDateOfBirth); die();
-			$model->userDateModified = date('Y-m-d H:i:s');
+			$model->customerDateOfBirth = date('Y-m-d',strtotime($model->customerDateOfBirth));
+			/*echo "<pre>";
+			print_r($model->customerDateOfBirth); die();*/
+			$model->customerDateModified = date('Y-m-d H:i:s');
 			$loginModel->attributes = $_POST['UsersLogin'];
 			if($model->validate() & $loginModel->validate()){
 				$model->update(false);
@@ -143,21 +153,17 @@ class CustomersController extends Controller
 				}else{
 					$loginModel->userPassword = $oldPassword;
 				}
-				$loginModel->userEmail = $model->userEmail;
+				$loginModel->userEmail = $model->customerEmail;
 				$loginModel->update(false);
 				Yii::app()->user->setFlash('updateCustomerSuccess',true);
     			$this->redirect(array('index'));
 			}else{
-					$model->billingStateOptions = CHtml::listData(State::model()->findAll('fkCountryID=:fkCountryID',array(':fkCountryID'=>(int) $_POST['Users']['userBillingCountry'])),'pkStateID', 'stateName');
-					$model->billingCityOptions = CHtml::listData(City::model()->findAll('fkStateID=:fkStateID',array(':fkStateID'=>(int) $_POST['Users']['userBillingState'])),'pkCityID', 'cityName');
-					$model->shippingStateOptions = CHtml::listData(State::model()->findAll('fkCountryID=:fkCountryID',array(':fkCountryID'=>(int) $_POST['Users']['userShippingCountry'])),'pkStateID', 'stateName');
-					$model->shippingCityOptions = CHtml::listData(City::model()->findAll('fkStateID=:fkStateID',array(':fkStateID'=>(int) $_POST['Users']['userShippingState'])),'pkCityID', 'cityName');
+					$model->stateOptions = CHtml::listData(State::model()->findAll('fkCountryID=:fkCountryID',array(':fkCountryID'=>(int) $_POST['Users']['customerCountry'])),'pkStateID', 'stateName');
+					$model->cityOptions = CHtml::listData(City::model()->findAll('fkStateID=:fkStateID',array(':fkStateID'=>(int) $_POST['Users']['customerState'])),'pkCityID', 'cityName');
 			} 
 		}else{
-			$model->billingStateOptions = CHtml::listData(State::model()->findAll('fkCountryID=:fkCountryID',array(':fkCountryID'=>$model->userBillingCountry)),'pkStateID', 'stateName');
-			$model->billingCityOptions = CHtml::listData(City::model()->findAll('fkStateID=:fkStateID',array(':fkStateID'=>$model->userBillingState)),'pkCityID', 'cityName');
-			$model->shippingStateOptions = CHtml::listData(State::model()->findAll('fkCountryID=:fkCountryID',array(':fkCountryID'=>$model->userShippingCountry)),'pkStateID', 'stateName');
-			$model->shippingCityOptions = CHtml::listData(City::model()->findAll('fkStateID=:fkStateID',array(':fkStateID'=>$model->userShippingState)),'pkCityID', 'cityName');
+			$model->stateOptions = CHtml::listData(State::model()->findAll('fkCountryID=:fkCountryID',array(':fkCountryID'=>$model->customerCountry)),'pkStateID', 'stateName');
+			$model->cityOptions = CHtml::listData(City::model()->findAll('fkStateID=:fkStateID',array(':fkStateID'=>$model->customerState)),'pkCityID', 'cityName');
 			$loginModel->userPassword = '';
 		}
 		$this->render('_form_edit',array(
@@ -173,7 +179,9 @@ class CustomersController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+		$logID = $this->loadModel($id);
+		$loginModel = UsersLogin::model()->findByPk($logID->fkUserLoginID);
+		$loginModel->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
@@ -189,6 +197,8 @@ class CustomersController extends Controller
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Users'])){	
 			$model->attributes=$_GET['Users'];
+			/*echo "<pre>";
+			print_r($model->attributes); die();*/
 		}
 
 		$this->render('index',array(
@@ -256,16 +266,19 @@ class CustomersController extends Controller
 	 */
 	public function actionChangeStatus(){
 		if(isset($_POST['customers-status']) && $_POST['customers-status']==1){
-			$row = Users::model()->updateByPk($_POST['customers-grid_c1'], array('userStatus' =>1,'userDateModified'=>date('Y-m-d H:i:s')));
+			$row = Users::model()->updateByPk($_POST['customers-grid_c1'], array('customerStatus' =>1,'customerDateModified'=>date('Y-m-d H:i:s')));
 			echo "activated";
 		}else if(isset($_POST['customers-status']) && $_POST['customers-status']==0){
-			$row = Users::model()->updateByPk($_POST['customers-grid_c1'], array('userStatus' =>0,'userDateModified'=>date('Y-m-d H:i:s')));
+			$row = Users::model()->updateByPk($_POST['customers-grid_c1'], array('customerStatus' =>0,'customerDateModified'=>date('Y-m-d H:i:s')));
 			echo "inactivated";
 		}else if(isset($_POST['customers-status']) && $_POST['customers-status']==2){
-			foreach ($_POST['customers-grid_c1'] as $pkUserID){
-				$fkUserLoginID = Users::model()->findByPk($pkUserID)->fkUserLoginID;
-				UsersLogin::model()->deleteByPk($fkUserLoginID);
-				//Users::model()->deleteByPk($pkUserID);
+			foreach ($_POST['customers-grid_c1'] as $pkCustomerID){
+				$fkUserLoginID = Users::model()->findByPk($pkCustomerID)->fkUserLoginID;
+				$loginModel = UsersLogin::model()->findByPk($fkUserLoginID);
+				$loginModel->delete();
+				//echo $fkUserLoginID;
+				//UsersLogin::model()->deleteByPk($fkUserLoginID);
+				//Users::model()->deleteByPk($pkCustomerID);
 			}
 			echo "deleted";
 		}
