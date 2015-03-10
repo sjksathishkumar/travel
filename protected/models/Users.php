@@ -28,10 +28,11 @@ class Users extends CActiveRecord
 			//array('customerFirstName,customerLastName,customerEmail,customerGender', 'required','on'=>'front_end_user_registration'),
 			/*Adding new customer from admin*/
 			array('customerFirstName,customerLastName,customerUserName,customerEmail,customerGender,customerMobile,customerSubscriptionPlan,eWalletBalance,wishginiBalance', 'required','on'=>'update_user_from_admin'),
+			array('customerFirstName,customerLastName,customerUserName,customerEmail,customerGender,customerMobile', 'required','on'=>'front_end_user_registration'),
 			array('customerFirstName,customerLastName,customerEmail,customerGender,customerMobile', 'required','on'=>'update_user_front_end'),
 			array('customerDateOfBirth,customerStatus,customerSubscriptionPlan,customerAddress,customerCity,customerState,customerCountry,customerZip,eWalletBalance,wishginiBalance', 'required','on'=>'update_user_from_admin'),
 			array('customerEmail','unique', 'message'=>'This email address already exists.','on'=>'front_end_user_registration, front_end_user_registration_ajax,update_user_from_admin'),
-			array('customerUserName','unique', 'message'=>'This Username already exists.','on'=>'update_user_from_admin'),
+			array('customerUserName','unique', 'message'=>'This Username already exists.','on'=>'update_user_from_admin, front_end_user_registration'),
 			array('customerEmail', 'email'),
 			array('customerZip', 'numerical', 'integerOnly' => true, 'min' => 0, 'message' => 'ZIP must be nummeric'),
 			array('customerMobile', 'numerical', 'integerOnly' => true, 'min' => 0, 'message' => 'Mobile must be nummeric'),

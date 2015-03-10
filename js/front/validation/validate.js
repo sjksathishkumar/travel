@@ -13,8 +13,8 @@
                 case 'member-signin-form':
                     fireMemberLoginEvent(form);
                     break;
-                case 'deals-review-form':
-                    fireUserReviewEvent(form);
+                case 'member-free-signup-form':
+                    fireMemberFreeSignupEvent(form);
                     break;
                 case 'user-login-form':
                     fireUserLoginEvent(form);

@@ -345,6 +345,7 @@ function loader() {
 */
 
 /*This function is used to ajax login*/
+
 function fireMemberLoginEvent(form){
      //$('#deals-review-form .success_msg').focus();
     $.post($(form).attr('action'),$(form).serialize(),function(data){
@@ -360,6 +361,35 @@ function fireMemberLoginEvent(form){
         }
     })
 }
+
+/* This function is used to Member Free Signup form   */
+
+function fireMemberFreeSignupEvent(frm)
+{
+if ($('#terms').is(':checked')) {
+                frm.submit();
+            }
+            else{
+                $(".terms-error").show().delay(5000).fadeOut();
+                $( ".terms-error" ).html("Please accept Terms and Condions");
+                return false;
+            }
+}
+
+/* This function is used to Member Paid Signup form   */
+
+function fireMemberPaidSignupEvent(frm)
+{
+if ($('#terms').is(':checked')) {
+                frm.submit();
+            }
+            else{
+                $(".terms-error").show().delay(5000).fadeOut();
+                $( ".terms-error" ).html("Please accept Terms and Condions");
+                return false;
+            }
+}
+
 
 // Function for load State to Custom dropdown in Customer Update 
 
@@ -571,5 +601,21 @@ $(document).ready(function(){
 
 
 });
+
+/* For checking Terms and condions on Registration  */
+
+/* $(document).ready(function(){
+        $('.register').click(function(){
+            if ($('#terms').is(':checked')) {
+                return true;
+            }
+            else{
+                alert("Checkbox is unchecked.");
+                //$(".terms-error").show().delay(1000).fadeOut();
+                //$( ".terms-error" ).html("Please accept Terms and Condions");
+                return false;
+            }
+        });
+    });*/
 
 

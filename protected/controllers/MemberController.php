@@ -35,12 +35,12 @@ class MemberController extends Controller {
 
 
 	/**
-	 * This is the default 'signin' action that is invoked
+	 * This is the default 'signin' action that is invoked 
 	 * when an action is not explicitly requested by users.
 	 */
 
-	public function actionMemberSingup() {
-		$this->render('memberSingup');
+	public function actionMemberSignup() {
+		$this->render('memberSignup');
 		
 		/*$model = new Users;
 		$modelUsersLogin = new UsersLogin;
@@ -49,6 +49,7 @@ class MemberController extends Controller {
 		    if (count($customerDetails) > 0) {
 		        $customerDetails->login($userType = 'C');
 		        $this->redirect(array('dashboard'));
+
 		    } else {
 		    	//die('login faild');
 		        //Yii::app()->user->setFlash('login_error', AJAX_LOGIN_FAILED);
@@ -56,6 +57,107 @@ class MemberController extends Controller {
 		        //$this->render('homepage/index', array('model' => $model, 'loginModel' => $modelUsersLogin));
 		    }
 		}*/
+	}
+
+
+	/**
+	 * This is the default 'signin' action that is invoked 
+	 * when an action is not explicitly requested by users.
+	 */
+
+	public function actionMemberFreeSignup() {
+		$model = new Users;
+		$modelUsersLogin = new UsersLogin;
+		$model->scenario = 'front_end_user_registration';
+		$modelUsersLogin->scenario = 'create_user_front';
+		if(isset($_POST['Users']) && isset($_POST['UsersLogin'])){
+			$model->attributes = $_POST['Users'];
+			$model->customerUserName = $_POST['Users']['customerUserName'];
+			//$model->customerStatus = '0';
+        	$modelUsersLogin->attributes = $_POST['UsersLogin'];
+        	$modelUsersLogin->userEmail = $model->customerEmail;
+        	$modelUsersLogin->userName = $model->customerUserName;
+			$modelUsersLogin->userType = 'C';
+			$model->customerUniqueID = CommonFunctions::uniqueIDGenerator('CUS');
+			if($model->validate() & $modelUsersLogin->validate()){
+        		$transaction=$model->dbConnection->beginTransaction();
+        		$password = $modelUsersLogin->userPassword;
+        		$modelUsersLogin->userPassword = md5($modelUsersLogin->userPassword);
+        		try{
+        			$modelUsersLogin->save(false);
+        			$model->fkUserLoginID = $modelUsersLogin->primaryKey;
+        			//$model->customerStatus = '0';
+        			$model->customerDateAdded = date('Y-m-d H:i:s');
+        			//$model->customerDateModified = date('Y-m-d H:i:s');
+        			$model->customerAccountActivationToken = base64_encode(uniqid(microtime()));
+        			$model->save();
+        			$transaction->commit();
+        			Yii::app()->user->setFlash('addCustomerSuccess',true);
+        			
+	                $varMailTo = trim($model->customerEmail);
+	                $activationLink = Yii::app()->getBaseUrl(true)."/member/activateAccount?userID=".base64_encode($model->pkCustomerID)."&token=".$model->customerAccountActivationToken;
+	                $varKeywordContent = array('{to_name}','{site_url}','{login_email}','{login_password}');
+	                $varKeywordValueContent = array(ucfirst($model->customerFirstName),$activationLink,$model->customerEmail,$password);
+	                CommonFunctions::sendMail('5',$varMailTo,$varKeywordContent,$varKeywordValueContent,'','','','');
+	                $this->redirect(array('pageLanding','message'=>'mail-success'));
+					//$message=CHttpRequest::getParam('message');
+        			//$this->redirect(array('pageLanding'), array('message'=>'mail-success'));
+        			//$this->createUrl('pageLanding',array('message'=>'mail-success'));
+        			//$this->redirect('pageLanding',array('message' => 'mail-success'));
+        		}catch(Exception $e){
+        			 $transaction->rollBack();
+        		}
+        	}
+		}
+		$this->render('memberFreeSignup', array('model' => $model,'loginModel'=>$modelUsersLogin));
+	}
+
+	/**
+	 * This is the default 'signin' action that is invoked 
+	 * when an action is not explicitly requested by users.
+	 */
+
+	public function actionMemberPaidSignup() {
+		$model = new Users;
+		$modelUsersLogin = new UsersLogin;
+		$model->scenario = 'front_end_user_registration';
+		$modelUsersLogin->scenario = 'create_user_front';
+		if(isset($_POST['Users']) && isset($_POST['UsersLogin'])){
+			$model->attributes = $_POST['Users'];
+			$model->customerUserName = $_POST['Users']['customerUserName'];
+			//$model->customerStatus = '0';
+        	$modelUsersLogin->attributes = $_POST['UsersLogin'];
+        	$modelUsersLogin->userEmail = $model->customerEmail;
+        	$modelUsersLogin->userName = $model->customerUserName;
+			$modelUsersLogin->userType = 'C';
+			$model->customerUniqueID = CommonFunctions::uniqueIDGenerator('CUS');
+			if($model->validate() & $modelUsersLogin->validate()){
+        		$transaction=$model->dbConnection->beginTransaction();
+        		$password = $modelUsersLogin->userPassword;
+        		$modelUsersLogin->userPassword = md5($modelUsersLogin->userPassword);
+        		try{
+        			$modelUsersLogin->save(false);
+        			$model->fkUserLoginID = $modelUsersLogin->primaryKey;
+        			//$model->customerStatus = '0';
+        			$model->customerDateAdded = date('Y-m-d H:i:s');
+        			//$model->customerDateModified = date('Y-m-d H:i:s');
+        			$model->customerAccountActivationToken = base64_encode(uniqid(microtime()));
+        			$model->save();
+        			$transaction->commit();
+        			Yii::app()->user->setFlash('addCustomerSuccess',true);
+        			
+	                $varMailTo = trim($model->customerEmail);
+	                $activationLink = Yii::app()->getBaseUrl(true)."/member/activateAccount?userID=".base64_encode($model->pkCustomerID)."&token=".$model->customerAccountActivationToken;
+	                $varKeywordContent = array('{to_name}','{site_url}','{login_email}','{login_password}');
+	                $varKeywordValueContent = array(ucfirst($model->customerFirstName),$activationLink,$model->customerEmail,$password);
+	                CommonFunctions::sendMail('5',$varMailTo,$varKeywordContent,$varKeywordValueContent,'','','','');
+        			$this->redirect('pageLanding', array('message' => 'mail-success'));
+        		}catch(Exception $e){
+        			 $transaction->rollBack();
+        		}
+        	}
+		}
+		$this->render('memberPaidSignup', array('model' => $model,'loginModel'=>$modelUsersLogin));
 	}
 
 
@@ -92,10 +194,6 @@ class MemberController extends Controller {
 				$model->attributes = $_POST['Users'];
 				$model->customerDateOfBirth = date('Y-m-d',strtotime($_POST['Users']['customerDateOfBirth']));
 				$model->customerDateModified = date('Y-m-d H:i:s');
-				/*echo "<pre>";
-				print_r($_POST); 
-				echo "<pre>";
-				print_r($model->attributes); die();*/
 				if(isset($_POST['offer']))
 				{
 					$model->customerSpecialOfferSubscription = '1';
@@ -134,6 +232,25 @@ class MemberController extends Controller {
 	    }
 	}
 
+	public function actionPageLanding()
+	{	
+		$message=CHttpRequest::getParam('message');
+		echo $message; die();
+		echo "Test";
+		echo "<pre>";
+		print_r($_REQUEST);
+		echo "<pre>";
+		print_r($_GET);
+		die();
+		/*echo "<pre>";
+		print_r($_GET); die();
+		$message = $_GET['message'];*/
+		$message = CHttpRequest::getParam('message');
+		echo $message; die();
+		$this->render('pageLanding', array('message' => $message));
+
+	}
+
 	/*
 	 * This action is used to logout to user.
 	 */
@@ -142,6 +259,30 @@ class MemberController extends Controller {
 	    Yii::app()->user->logout();
 	    $this->redirect(array('homepage/index'));
 	}
+
+
+	/*
+     * This action is used to activate the user account.
+     */
+
+    public function actionActivateAccount() {
+        if (isset($_GET['userID']) && isset($_GET['token'])) {
+            $userModel = Users::model()->findByAttributes(array('pkCustomerID' => base64_decode($_GET['userID']),'customerAccountActivationToken' => $_GET['token'], 'customerStatus' => '0'));
+            if ($userModel) {
+                $userModel->customerStatus = 1;
+                $userModel->save();
+                /* generate and send Email */
+                $varMailTo = trim($userModel->customerEmail);
+                $varSiteUrl = Yii::app()->params['siteURL'];
+                $varKeywordContent = array('{to_name}', '{site_url}');
+                $varKeywordValueContent = array(ucfirst($userModel->customerFirstName), $varSiteUrl);
+                CommonFunctions::sendMail('4', $varMailTo, $varKeywordContent, $varKeywordValueContent, '', '', '', '');
+                $this->render('pageLanding', array('message' => 'success'));
+            } else {
+                $this->render('pageLanding', array('message' => 'faild'));
+            }
+        }
+    }
 
 
 	/**

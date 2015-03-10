@@ -31,10 +31,11 @@ class UsersLogin extends CActiveRecord
         // will receive user inputs.
         return array(
             array('userEmail,userType', 'required','except'=>'user-update-password-profile-form'),
-            array('userPassword,repassword', 'required','on'=>'create_user_from_admin'),
+            array('userPassword,repassword', 'required','on'=>'create_user_from_admin, create_user_front'),
             array('userPassword', 'compare', 'compareAttribute'=>'repassword','except'=>'user-update-password-profile-form'),
             array('pkUserLoginID,userEmail, userPassword, repassword,userType,customerDateModified', 'safe'),
             array('userPassword', 'compare', 'compareAttribute'=>'repeatPassword','on'=>'user-update-password-profile-form', 'message'=>"Passwords don't match"),     
+            array('userPassword', 'compare', 'compareAttribute'=>'repassword','on'=>'create_user_front', 'message'=>"Passwords don't match"),     
         );
     }
 

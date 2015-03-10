@@ -1378,6 +1378,7 @@ float:left;
 .full-box{
 width:100%;
 float:left;
+min-height: 525px;
 }
 .full-box  .left-box-services{
 width:17%;
@@ -1786,4 +1787,29 @@ color:#fdc292;
 font-size:14px;
 font-family: 'Lato', sans-serif;
 margin:0;
+}
+
+
+.activated{
+width:100%;
+float:left;
+border:1px solid #c9c9c9;
+box-sizing:border-box;
+-moz-box-sizing:border-box;
+-webkit-box-sizing:border-box;
+-ms-box-sizing:border-box;
+-o-box-sizing:border-box;
+padding:100px 20px;
+margin-top:20px;
+}
+.activated p{
+width:100%;
+float:left;
+padding-bottom:20px;
+font-size:16px;
+font-family:lato;
+}
+.activated p a{
+text-decoration:none;
+display:inline-block;
 }

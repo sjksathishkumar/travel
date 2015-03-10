@@ -27,7 +27,7 @@ $varBaseUrl = Yii::app()->baseUrl;
                                 <li class="margin"><div class="member-signup" href="#">Members
                                 <span class="h-divider"><?php echo CHtml::image($varBaseUrl . "/images/h-divider.png"); ?></span></div>
                                 </li>
-                                <li><?php echo CHtml::link('Singup',$varBaseUrl.'/member/memberSingup',array('title'=>'Singup','alt'=>'Singup'));?>
+                                <li><?php echo CHtml::link('Signup',$varBaseUrl.'/member/memberSignup',array('title'=>'Singup','alt'=>'Singup'));?>
                                 <span class="h-divider"><?php echo CHtml::image($varBaseUrl . "/images/top-divider.png"); ?></span>
                                 </li>
                                 <li><a class="fancybox" href="#member-login">Login</a></li>
