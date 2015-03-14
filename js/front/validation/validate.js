@@ -7,17 +7,21 @@
 });*/
 
 // For Non Ajax Forms
+
     $.validator.setDefaults({
         submitHandler: function(form) {
             switch($(form).attr('id')){
                 case 'member-signin-form':
                     fireMemberLoginEvent(form);
                     break;
+                case 'member-forgot-form':
+                    fireMemberForgotEvent(form);
+                    break;
                 case 'member-free-signup-form':
                     fireMemberFreeSignupEvent(form);
                     break;
-                case 'user-login-form':
-                    fireUserLoginEvent(form);
+                case 'member-paid-signup-form':
+                    fireMemberPaidSignupEvent(form);
                     break;
                 default:
                     form.submit();
@@ -107,7 +111,7 @@ $(function() {
             }
         },
         errorClass: "validate-error-msg", errorElement: "div",
-        ignore: ":hidden(#ytMerchantImages_imageName)"
+        //ignore: ":hidden(#gender_chosen)"
     });
     });
 

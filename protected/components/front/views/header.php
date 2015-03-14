@@ -50,7 +50,8 @@ $varBaseUrl = Yii::app()->baseUrl;
                         <div class="top-login-outer">
                             <div class="top-login">
                                 <ul>
-                                    <li>Welcome <?php echo Yii::app()->user->userFirstName; ?>&nbsp;!&nbsp;&nbsp;&nbsp;</li>
+                                    <li>Welcome <?php echo Yii::app()->user->userFirstName; ?>&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                                    <li><?php echo CHtml::link('My Account',$varBaseUrl.'/member/dashboard',array('title'=>'My Account','alt'=>'My Account'));?>&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;</li>
                                     <li><?php echo CHtml::link('Logout',$varBaseUrl.'/member/logout',array('title'=>'Logout','alt'=>'Logout'));?></li>                                   
                                 </ul>
                             </div>

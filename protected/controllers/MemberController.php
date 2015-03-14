@@ -28,7 +28,7 @@ class MemberController extends Controller {
 				}
 		        echo "Success";
 		    } else {
-		        echo "error";
+		        echo "Username and Password Invalid !";
 		    }
 		}
 	}
@@ -41,22 +41,6 @@ class MemberController extends Controller {
 
 	public function actionMemberSignup() {
 		$this->render('memberSignup');
-		
-		/*$model = new Users;
-		$modelUsersLogin = new UsersLogin;
-		if (isset($_POST['memberEmail']) && isset($_POST['memberPassword'])) {
-		    $customerDetails = $modelUsersLogin->getMemberDetails($_POST);
-		    if (count($customerDetails) > 0) {
-		        $customerDetails->login($userType = 'C');
-		        $this->redirect(array('dashboard'));
-
-		    } else {
-		    	//die('login faild');
-		        //Yii::app()->user->setFlash('login_error', AJAX_LOGIN_FAILED);
-		        $this->redirect(Yii::app()->baseUrl);
-		        //$this->render('homepage/index', array('model' => $model, 'loginModel' => $modelUsersLogin));
-		    }
-		}*/
 	}
 
 
@@ -72,8 +56,8 @@ class MemberController extends Controller {
 		$modelUsersLogin->scenario = 'create_user_front';
 		if(isset($_POST['Users']) && isset($_POST['UsersLogin'])){
 			$model->attributes = $_POST['Users'];
-			$model->customerUserName = $_POST['Users']['customerUserName'];
-			//$model->customerStatus = '0';
+			$model->customerEmail = $_POST['UsersLogin']['userEmail'];
+			$model->customerUserName = $_POST['UsersLogin']['userName'];
         	$modelUsersLogin->attributes = $_POST['UsersLogin'];
         	$modelUsersLogin->userEmail = $model->customerEmail;
         	$modelUsersLogin->userName = $model->customerUserName;
@@ -95,15 +79,12 @@ class MemberController extends Controller {
         			Yii::app()->user->setFlash('addCustomerSuccess',true);
         			
 	                $varMailTo = trim($model->customerEmail);
-	                $activationLink = Yii::app()->getBaseUrl(true)."/member/activateAccount?userID=".base64_encode($model->pkCustomerID)."&token=".$model->customerAccountActivationToken;
+	                $activationLink = Yii::app()->getBaseUrl(true)."/member/activateAccount?userID=".base64_encode($model->pkCustomerID)."&token=".$model->customerAccountActivationToken."&type=".base64_encode('free');
 	                $varKeywordContent = array('{to_name}','{site_url}','{login_email}','{login_password}');
 	                $varKeywordValueContent = array(ucfirst($model->customerFirstName),$activationLink,$model->customerEmail,$password);
 	                CommonFunctions::sendMail('5',$varMailTo,$varKeywordContent,$varKeywordValueContent,'','','','');
-	                $this->redirect(array('pageLanding','message'=>'mail-success'));
-					//$message=CHttpRequest::getParam('message');
-        			//$this->redirect(array('pageLanding'), array('message'=>'mail-success'));
-        			//$this->createUrl('pageLanding',array('message'=>'mail-success'));
-        			//$this->redirect('pageLanding',array('message' => 'mail-success'));
+	                Yii::app()->user->setState("message","mail-success");
+        			$this->redirect('pageLanding');
         		}catch(Exception $e){
         			 $transaction->rollBack();
         		}
@@ -124,8 +105,8 @@ class MemberController extends Controller {
 		$modelUsersLogin->scenario = 'create_user_front';
 		if(isset($_POST['Users']) && isset($_POST['UsersLogin'])){
 			$model->attributes = $_POST['Users'];
-			$model->customerUserName = $_POST['Users']['customerUserName'];
-			//$model->customerStatus = '0';
+			$model->customerEmail = $_POST['UsersLogin']['userEmail'];
+			$model->customerUserName = $_POST['UsersLogin']['userName'];
         	$modelUsersLogin->attributes = $_POST['UsersLogin'];
         	$modelUsersLogin->userEmail = $model->customerEmail;
         	$modelUsersLogin->userName = $model->customerUserName;
@@ -147,11 +128,13 @@ class MemberController extends Controller {
         			Yii::app()->user->setFlash('addCustomerSuccess',true);
         			
 	                $varMailTo = trim($model->customerEmail);
-	                $activationLink = Yii::app()->getBaseUrl(true)."/member/activateAccount?userID=".base64_encode($model->pkCustomerID)."&token=".$model->customerAccountActivationToken;
+	                $activationLink = Yii::app()->getBaseUrl(true)."/member/activateAccount?userID=".base64_encode($model->pkCustomerID)."&token=".$model->customerAccountActivationToken."&type=".base64_encode('paid');
 	                $varKeywordContent = array('{to_name}','{site_url}','{login_email}','{login_password}');
 	                $varKeywordValueContent = array(ucfirst($model->customerFirstName),$activationLink,$model->customerEmail,$password);
 	                CommonFunctions::sendMail('5',$varMailTo,$varKeywordContent,$varKeywordValueContent,'','','','');
-        			$this->redirect('pageLanding', array('message' => 'mail-success'));
+  					Yii::app()->user->setState("message","mail-success");
+  					//Yii::app()->user->setState("signup","paid");
+        			$this->redirect('pageLanding');
         		}catch(Exception $e){
         			 $transaction->rollBack();
         		}
@@ -189,7 +172,7 @@ class MemberController extends Controller {
 			$loginModel = UsersLogin::model()->findByPk($model->fkUserLoginID);
 			$model->customerDateOfBirth = date('m/d/Y',strtotime($model->customerDateOfBirth));
 			$oldPassword = $loginModel->userPassword;
-			$model->scenario = 'update_user_from_admin';
+			$model->scenario = 'update_user_front_end';
 			if(isset($_POST['Users']) && isset($_POST['UsersLogin'])){
 				$model->attributes = $_POST['Users'];
 				$model->customerDateOfBirth = date('Y-m-d',strtotime($_POST['Users']['customerDateOfBirth']));
@@ -232,25 +215,25 @@ class MemberController extends Controller {
 	    }
 	}
 
+	/*
+	 * This action is used to show information.
+	 */
+
 	public function actionPageLanding()
 	{	
-		$message=CHttpRequest::getParam('message');
-		echo $message; die();
-		echo "Test";
-		echo "<pre>";
-		print_r($_REQUEST);
-		echo "<pre>";
-		print_r($_GET);
-		die();
-		/*echo "<pre>";
-		print_r($_GET); die();
-		$message = $_GET['message'];*/
-		$message = CHttpRequest::getParam('message');
-		echo $message; die();
-		$this->render('pageLanding', array('message' => $message));
-
+		if(Yii::app()->user->hasState("message"))
+		{
+			$message = Yii::app()->user->getState("message");
+			$this->render('pageLanding', array('message' => $message));
+			unset(Yii::app()->session['message']);
+		}
+		else
+		{
+			$this->render('pageLanding', array('message' => 'default-error'));	
+		}
 	}
 
+	
 	/*
 	 * This action is used to logout to user.
 	 */
@@ -261,29 +244,192 @@ class MemberController extends Controller {
 	}
 
 
+	/**
+	* Section that will recover password for customer.
+	*/
+	public function actionRecovery()
+	{
+		$model = new UsersLogin();
+		$model->unsetAttributes();  // clear any default values
+		if (isset($_POST['forgotEmail'])) {
+			$email =trim($_POST['forgotEmail']);
+			$arrRecord =$model->findByAttributes(array('userEmail'=>$email, 'userType'=>'C'));
+				if(count($arrRecord) >0 )
+				{
+					$varTokenCreated = time();
+					$varTokenCode = CommonFunctions::generateRandomAlphaNumericCode(10).$varTokenCreated; // calling common functions calss
+					$TBL_ResetPasswordToken = new ResetPassword;
+					$TBL_ResetPasswordToken->fkUserID = $arrRecord['pkUserLoginID'];
+					$TBL_ResetPasswordToken->passResetToken = $varTokenCode;
+					$TBL_ResetPasswordToken->passResetCreated = $varTokenCreated;
+					$TBL_ResetPasswordToken->passResetStatus = '1';
+					$TBL_ResetPasswordToken->passResetDateAdded = date('Y-m-d H:i:s');
+					$TBL_ResetPasswordToken->save();					
+					$varMailTo = trim($arrRecord['userEmail']);
+					$resetLink = Yii::app()->getBaseUrl(true)."/member/resetPassword?tokenID=".base64_encode($arrRecord['pkUserLoginID'])."&token=".base64_encode($varTokenCode);
+					$varKeywordContent = array('{to_name}','{password_reset_link}');
+					$varKeywordValueContent = array(ucfirst($arrRecord['userEmail']),$resetLink);
+					CommonFunctions::sendMail('1',$varMailTo,$varKeywordContent,$varKeywordValueContent,'','','','');
+					echo "Success";
+				}else{
+					echo "email-invalid";
+				}
+		}
+		else{
+			echo "error";
+		}
+	}
+
+
+	/**
+	 * Function : actionResetPassword
+	 * reset password action perform
+	 * @access public
+	 */
+	public function actionResetPassword()
+	{			
+		if(isset($_GET['tokenID']) && $_GET['tokenID'] != '' && isset($_GET['token']) && $_GET['token'] != ''){
+			$token = base64_decode($_GET['token']);
+			$customerID = base64_decode($_GET['tokenID']);
+			$model = new UsersLogin();
+			$model->scenario = 'reset_password_front';
+			$TBL_ResetPasswordToken = new ResetPassword;	
+
+			$checkValidToken =$TBL_ResetPasswordToken->findByAttributes(array('passResetToken'=>$token, 'passResetStatus'=>'1'));
+
+			if($checkValidToken)
+			{
+				//echo "first time reset"; die();
+			
+			if(isset($_POST['UsersLogin']))
+				{						
+					// getting records from reset password token
+					//$TBL_ResetPasswordToken = new ResetPassword;	
+					$arrResetTokenVal = UsersLogin::model()->with('resetPassTokenTable')->findAll(array('condition'=>'userType=:userType AND fkUserID=:userID AND passResetToken=:userTokenNum AND passResetExpires=:userTokenExpiry AND 
+					passResetStatus<>:userTokenStatus', 'params'=>array(':userType'=>'C',':userID'=>$customerID,':userTokenNum'=>$token, ':userTokenExpiry'=>'0', ':userTokenStatus'=>'0')));					
+					if(count($arrResetTokenVal) > 0){							
+						$model->attributes=$_POST['UsersLogin'];						
+						$password = md5($_POST['UsersLogin']['userPassword']);
+						$repassword = md5($_POST['UsersLogin']['repassword']);
+						//$model->scenario = 'reset_password_front';
+						$varTokenExpiry = time();
+						if($model->validate()){	
+							if(UsersLogin::model()->updateByPk($customerID,array('userPassword'=>$password,'customerDateModified'=>date('Y-m-d H:i:s')))) //updating member password
+							{									
+								$TBL_ResetPasswordToken->updateAll(array('passResetExpires'=>$varTokenExpiry,'passResetStatus'=>'0'),'fkUserID='.$customerID.' AND passResetExpires=0');
+								$varMailTo = trim($arrResetTokenVal[0]->userEmail);
+								$varKeywordContent = array('{to_name}','{new_password}');
+								$varKeywordValueContent = array(ucfirst($arrResetTokenVal[0]->userEmail),$_POST['UsersLogin']['userPassword']);
+								CommonFunctions::sendMail('2',$varMailTo,$varKeywordContent,$varKeywordValueContent,'','','','');
+								Yii::app()->user->setState("message","password-reset-success");
+			        			$this->redirect('pageLanding');
+							}else{
+								Yii::app()->user->setState("message","password-reset-faild");
+			        			$this->redirect('pageLanding');
+							}
+						}
+						else
+						{
+							Yii::app()->user->setState("message","password-reset-faild");
+			        		$this->redirect('pageLanding');
+						}
+					}else{
+						Yii::app()->user->setState("message","password-reset-faild");
+			        	$this->redirect('pageLanding');
+					} 
+				}
+				$this->render('resetPassword',array('model'=>$model));
+				}
+			else
+			{
+				Yii::app()->user->setState("message","password-reset-link-used");
+			    $this->redirect('pageLanding');
+			}
+		}
+		else{
+			Yii::app()->user->setState("message","password-reset-link-invalid");
+			$this->redirect('pageLanding');
+		}
+	}
+
+
 	/*
      * This action is used to activate the user account.
      */
 
     public function actionActivateAccount() {
-        if (isset($_GET['userID']) && isset($_GET['token'])) {
-            $userModel = Users::model()->findByAttributes(array('pkCustomerID' => base64_decode($_GET['userID']),'customerAccountActivationToken' => $_GET['token'], 'customerStatus' => '0'));
-            if ($userModel) {
-                $userModel->customerStatus = 1;
-                $userModel->save();
-                /* generate and send Email */
-                $varMailTo = trim($userModel->customerEmail);
-                $varSiteUrl = Yii::app()->params['siteURL'];
-                $varKeywordContent = array('{to_name}', '{site_url}');
-                $varKeywordValueContent = array(ucfirst($userModel->customerFirstName), $varSiteUrl);
-                CommonFunctions::sendMail('4', $varMailTo, $varKeywordContent, $varKeywordValueContent, '', '', '', '');
-                $this->render('pageLanding', array('message' => 'success'));
-            } else {
-                $this->render('pageLanding', array('message' => 'faild'));
-            }
-        }
-    }
+		if (isset($_GET['userID']) && isset($_GET['token']) && isset($_GET['type'])) {
+			$type = base64_decode($_GET['type']);
+			if($type == 'paid')
+			{
+				$customerID = base64_decode($_GET['userID']);
+				$userModel = Users::model()->findByAttributes(array('pkCustomerID' => base64_decode($_GET['userID']),'customerAccountActivationToken' => $_GET['token'], 'customerStatus' => '0'));
+				$userModelNonPaid = Users::model()->findByAttributes(array('pkCustomerID' => base64_decode($_GET['userID']),'customerAccountActivationToken' => $_GET['token'], 'customerStatus' => '1','customerFeePaid' => '0'));
+	            $userAlreadyActivated = Users::model()->findByAttributes(array('pkCustomerID' => base64_decode($_GET['userID']),'customerAccountActivationToken' => $_GET['token'], 'customerStatus' => '1','customerFeePaid' => '1'));
+	            if ($userModel) {
+	                $userModel->customerStatus = 1;
+	                $userModel->save();
+	                
+	                $varMailTo = trim($userModel->customerEmail);
+	                $varSiteUrl = Yii::app()->getBaseUrl(true);
+	                $varKeywordContent = array('{to_name}', '{site_url}');
+	                $varKeywordValueContent = array(ucfirst($userModel->customerFirstName), $varSiteUrl);
+	                CommonFunctions::sendMail('4', $varMailTo, $varKeywordContent, $varKeywordValueContent, '', '', '', '');
+	                $this->render('/payment/paymentPage', array('pkCustomerID' => $customerID));
+	            } 
+	            elseif ($userModelNonPaid) {
+	                $this->render('/payment/paymentPage', array('pkCustomerID' => $customerID));
+	            }
+	            elseif ($userAlreadyActivated) {
+	            	$this->render('pageLanding', array('message' => 'already-active'));
+	            }
+	            else {
+	                $this->render('pageLanding', array('message' => 'faild'));
+	            }
+			}
+			else{
+	            $userModel = Users::model()->findByAttributes(array('pkCustomerID' => base64_decode($_GET['userID']),'customerAccountActivationToken' => $_GET['token'], 'customerStatus' => '0'));
+	            $userAlreadyActivated = Users::model()->findByAttributes(array('pkCustomerID' => base64_decode($_GET['userID']),'customerAccountActivationToken' => $_GET['token'], 'customerStatus' => '1'));
+	            if ($userModel) {
+	                $userModel->customerStatus = 1;
+	                $userModel->save();
+	                $varMailTo = trim($userModel->customerEmail);
+	                $varSiteUrl = Yii::app()->getBaseUrl(true);
+	                $varKeywordContent = array('{to_name}', '{site_url}');
+	                $varKeywordValueContent = array(ucfirst($userModel->customerFirstName), $varSiteUrl);
+	                CommonFunctions::sendMail('4', $varMailTo, $varKeywordContent, $varKeywordValueContent, '', '', '', '');
+	                $this->render('pageLanding', array('message' => 'success'));
+	            } 
+	            elseif ($userAlreadyActivated) {
+	            	$this->render('pageLanding', array('message' => 'already-active'));
+	            }
+	            else {
+	                $this->render('pageLanding', array('message' => 'faild'));
+	            }
+        	}
+    	}
+	}
 
+
+	/*
+     * This action is used to process for paid member.
+     */
+
+	public function actionPaymentProcess()
+	{
+		$memberID = $_GET['id'];
+		$status = $_GET['status'];
+		$model = Users::model()->findByPK($memberID);
+		$model->customerSubscriptionPlan = '1';
+		$model->customerFeePaid = '1';
+		if($model->save()){
+			$this->render('pageLanding', array('message' => 'payment-success'));
+		}
+		else
+		{
+			$this->render('pageLanding', array('message' => 'payment-faild'));
+		}
+	}
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.

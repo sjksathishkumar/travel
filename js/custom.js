@@ -274,6 +274,7 @@
                     minutes = Math.floor(timeleft / 60);
                     seconds = timeleft % 60;
                     obj.html(hours+" Hours  "+minutes+" Mins  "+seconds+" Secs");
+                   atha na annake kandu pidichten... ne mattum tha m
                 },
                 function() { // what to do after
                     obj.html('Time Out');
@@ -339,6 +340,7 @@ function loader() {
                 infowindow.setContent('<div class="mapSec"><div class="toolTip" style="overflow:auto" >'+markers[i][0]+'</div></div>');
                 infowindow.open(map, marker);
             }
+            
         })(marker, i));
     }
 }
@@ -350,14 +352,35 @@ function fireMemberLoginEvent(form){
      //$('#deals-review-form .success_msg').focus();
     $.post($(form).attr('action'),$(form).serialize(),function(data){
         if(data == 'Success'){
-            /*if(form.isReviewForm){
-                $('#deals-review-form').submit();
-                $.fancybox.close();
-            }else{*/
                 window.location = SITE_ROOT_URL+'/member/dashboard'
-            //}
         }else{
             $(form).find('.validation_errors').html(data);
+            $('#member-login').find('input:text').val('');
+            $(form).find('.validation_errors').val('');
+        }
+    })
+}
+
+/*This function is used to ajax forgot password*/
+
+function fireMemberForgotEvent(form){
+     //$('#deals-review-form .success_msg').focus();
+     $('.validation_errors').html('');
+    $.post($(form).attr('action'),$(form).serialize(),function(data){
+        if(data == 'Success'){
+                //window.location = SITE_ROOT_URL+'/member/dashboard'
+                //$(".acc-login").fadeOut();
+                //$('.success-msg').text("Reset Password Link send Successfully to your Email !");
+            $(form).find('.validation_errors').text("Reset Password Link send Successfully to your Email !");
+            $('#forgot-pass').find('input:text').val('');
+        }else if(data == 'email-invalid'){
+            $(form).find('.validation_errors').text("Email is Not registered with Us ! Please Signup New Account !");
+            $('#forgot-pass').find('input:text').val('');
+        }
+        else{
+            $(".acc-login").fadeOut();
+            $(form).find('.validation_errors').text("Invalid Operation !");
+            $('#forgot-pass').find('input:text').val('');
         }
     })
 }
@@ -405,7 +428,7 @@ function getBstate(bstate){
         success: function(result){
             $("#customerState").html(result);
             $("#customerState").trigger("chosen:updated");
-            //$("#customerCity").trigger("chosen:updated");
+            $('#customerCity').val('').trigger('chosen:updated');
             //$("#customerState").resetSS();
             //$("#customerCity").resetSS();
         }

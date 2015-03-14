@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 10, 2015 at 08:49 PM
+-- Generation Time: Mar 14, 2015 at 08:54 PM
 -- Server version: 5.5.41-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.5
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `tbl_admin_access_log` (
   `adminAccessLogoutTime` datetime NOT NULL,
   PRIMARY KEY (`pkAdminAccessID`),
   KEY `fkAdminID` (`fkAdminID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=264 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=271 ;
 
 --
 -- Dumping data for table `tbl_admin_access_log`
@@ -64,7 +64,14 @@ INSERT INTO `tbl_admin_access_log` (`pkAdminAccessID`, `fkAdminID`, `adminAccess
 (260, 4, '127.0.0.1', '2015-03-04 11:41:59', '0000-00-00 00:00:00'),
 (261, 4, '127.0.0.1', '2015-03-04 14:20:51', '0000-00-00 00:00:00'),
 (262, 4, '127.0.0.1', '2015-03-04 14:28:11', '0000-00-00 00:00:00'),
-(263, 4, '127.0.0.1', '2015-03-05 11:12:03', '2015-03-05 11:24:41');
+(263, 4, '127.0.0.1', '2015-03-05 11:12:03', '2015-03-05 11:24:41'),
+(264, 4, '127.0.0.1', '2015-03-11 20:12:52', '0000-00-00 00:00:00'),
+(265, 4, '127.0.0.1', '2015-03-12 12:23:21', '0000-00-00 00:00:00'),
+(266, 4, '127.0.0.1', '2015-03-13 14:32:42', '0000-00-00 00:00:00'),
+(267, 4, '127.0.0.1', '2015-03-14 10:37:42', '0000-00-00 00:00:00'),
+(268, 4, '127.0.0.1', '2015-03-14 12:40:40', '0000-00-00 00:00:00'),
+(269, 4, '127.0.0.1', '2015-03-14 14:27:20', '0000-00-00 00:00:00'),
+(270, 4, '127.0.0.1', '2015-03-14 17:01:54', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -158,6 +165,76 @@ INSERT INTO `tbl_cities` (`pkCityID`, `cityName`, `fkStateID`, `cityStatus`, `ci
 (5, 'Chapra', 4, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (6, 'Texta', 5, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (7, 'Teadh', 5, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_city_partners`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_city_partners` (
+  `pkCityPartnerID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `fkUserLoginID` int(11) NOT NULL,
+  `cityPartnerUniqueID` varchar(255) NOT NULL,
+  `cityPartnerFirstName` varchar(255) NOT NULL,
+  `cityPartnerLastName` varchar(255) NOT NULL,
+  `cityPartnerUserName` varchar(255) NOT NULL,
+  `cityPartnerEmail` varchar(255) NOT NULL,
+  `cityPartnerMobile` varchar(255) NOT NULL,
+  `cityPartnerBusinessName` varchar(255) NOT NULL,
+  `cityPartnerWebsite` varchar(255) NOT NULL,
+  `cityPartnerContactMethod` enum('1','2','3') NOT NULL DEFAULT '1' COMMENT '1 => Mobile, 2 => Email, 3 => Both',
+  `cityPartnerSubscriptionPlan` enum('1','2','3') NOT NULL DEFAULT '1' COMMENT '1 => Free, 2 => Basic, 3 => Pro',
+  `cityPartnerStatus` enum('0','1') NOT NULL,
+  `cityPartnerFeePaid` enum('0','1') NOT NULL DEFAULT '0' COMMENT '0 => Not Paid, 1 => Paid',
+  `cityPartnerAddress` varchar(255) NOT NULL,
+  `cityPartnerCity` int(11) NOT NULL,
+  `cityPartnerState` int(11) NOT NULL,
+  `cityPartnerCountry` int(11) NOT NULL,
+  `cityPartnerOperationCity` int(11) NOT NULL,
+  `cityPartnerOperationState` int(11) NOT NULL,
+  `cityPartnerOperationCountry` int(11) NOT NULL,
+  `cityPartnerOperationArea` varchar(255) NOT NULL,
+  `cityPartnerZip` int(8) NOT NULL,
+  `eWalletBalance` int(50) NOT NULL DEFAULT '0',
+  `wishginiBalance` int(50) NOT NULL DEFAULT '0',
+  `cityPartnerAccountActivationToken` varchar(255) NOT NULL,
+  `cityPartnerDateAdded` datetime NOT NULL,
+  `cityPartnerDateModified` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`pkCityPartnerID`),
+  UNIQUE KEY `cityPartnerUserName` (`cityPartnerUserName`),
+  UNIQUE KEY `cityPartnerUniqueID` (`cityPartnerUniqueID`),
+  KEY `fkUserLoginID` (`fkUserLoginID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=126 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_city_partner_plans`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_city_partner_plans` (
+  `pkPlanID` int(250) NOT NULL AUTO_INCREMENT,
+  `planName` varchar(255) NOT NULL,
+  `membershipFee` int(250) NOT NULL,
+  `daysValidity` int(250) NOT NULL,
+  `numberOfListing` int(250) NOT NULL,
+  `accessBooking` enum('0','1') NOT NULL COMMENT '0 => Inactive  1=>Active',
+  `addToWishgini` enum('0','1') NOT NULL COMMENT '0=>Inactive 1=>Active',
+  `receiveCoupons` enum('0','1') NOT NULL COMMENT '0 => Inactive  1=>Active',
+  `planAddedDate` datetime NOT NULL,
+  `planModifiedDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`pkPlanID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `tbl_city_partner_plans`
+--
+
+INSERT INTO `tbl_city_partner_plans` (`pkPlanID`, `planName`, `membershipFee`, `daysValidity`, `numberOfListing`, `accessBooking`, `addToWishgini`, `receiveCoupons`, `planAddedDate`, `planModifiedDate`) VALUES
+(1, 'Free', 0, 30, 5, '1', '0', '1', '0000-00-00 00:00:00', '2015-02-25 10:41:34'),
+(2, 'Basic', 12386, 60, 20, '0', '1', '1', '0000-00-00 00:00:00', '2015-02-25 10:41:37'),
+(3, 'Pro', 1231256, 90, 100, '0', '1', '1', '0000-00-00 00:00:00', '2015-02-25 10:41:37');
 
 -- --------------------------------------------------------
 
@@ -297,6 +374,7 @@ CREATE TABLE IF NOT EXISTS `tbl_customers` (
   `customerDateOfBirth` datetime NOT NULL,
   `customerStatus` enum('0','1') NOT NULL,
   `customerSubscriptionPlan` enum('0','1') NOT NULL DEFAULT '0' COMMENT '0 => Free   1 => Paid',
+  `customerFeePaid` enum('0','1') NOT NULL DEFAULT '0' COMMENT '0 => Not Paid, 1 => Paid',
   `customerSpecialOfferSubscription` enum('0','1') NOT NULL,
   `customerAddress` varchar(255) NOT NULL,
   `customerCity` int(11) NOT NULL,
@@ -312,17 +390,16 @@ CREATE TABLE IF NOT EXISTS `tbl_customers` (
   UNIQUE KEY `customerUserName` (`customerUserName`),
   UNIQUE KEY `customerUniqueID` (`customerUniqueID`),
   KEY `fkUserLoginID` (`fkUserLoginID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=97 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=126 ;
 
 --
 -- Dumping data for table `tbl_customers`
 --
 
-INSERT INTO `tbl_customers` (`pkCustomerID`, `fkUserLoginID`, `customerUniqueID`, `customerFirstName`, `customerLastName`, `customerUserName`, `customerEmail`, `customerMobile`, `customerGender`, `customerDateOfBirth`, `customerStatus`, `customerSubscriptionPlan`, `customerSpecialOfferSubscription`, `customerAddress`, `customerCity`, `customerState`, `customerCountry`, `customerZip`, `eWalletBalance`, `wishginiBalance`, `customerAccountActivationToken`, `customerDateAdded`, `customerDateModified`) VALUES
-(29, 4, '1', 'SathishKumar', 'S', 'sathishkumar', 'sathish.kumar@mail.vinove.com', '9994788682', 'Male', '1990-11-14 00:00:00', '1', '1', '0', 'No.31256', 2, 2, 1, 34324324, 500, 520, '', '2014-10-09 10:55:53', '2015-03-10 12:53:56'),
-(60, 27, 'CUS150223041549', 'vinove', 'software', 'php', 'php@mail.com', '8888888899', 'Male', '1999-05-14 00:00:00', '1', '0', '1', 'test address', 1, 2, 1, 12325, 0, 0, '', '2015-02-23 16:15:49', '2015-03-10 06:37:38'),
-(61, 28, 'CUS150302053440', 'delhi ', 'vala', 'sath', 'delhi@vala.com', '9847653214', 'Male', '1970-01-01 00:00:00', '1', '1', '0', 'delhivala', 3, 3, 1, 0, 0, 0, '', '2015-03-02 17:34:40', '2015-03-10 12:54:20'),
-(96, 63, 'CUS150310073719', 'sathish', 'kumar', 'sathishkumar1', 'sathish.kumar1@mail.vinove.com', '9994125235', 'Male', '0000-00-00 00:00:00', '0', '0', '0', '', 0, 0, 0, 0, 0, 0, 'MC45Mjg3NjYwMCAxNDI1OTk2NDM5NTRmZWZhOTdlMmM0NQ==', '2015-03-10 19:37:19', '0000-00-00 00:00:00');
+INSERT INTO `tbl_customers` (`pkCustomerID`, `fkUserLoginID`, `customerUniqueID`, `customerFirstName`, `customerLastName`, `customerUserName`, `customerEmail`, `customerMobile`, `customerGender`, `customerDateOfBirth`, `customerStatus`, `customerSubscriptionPlan`, `customerFeePaid`, `customerSpecialOfferSubscription`, `customerAddress`, `customerCity`, `customerState`, `customerCountry`, `customerZip`, `eWalletBalance`, `wishginiBalance`, `customerAccountActivationToken`, `customerDateAdded`, `customerDateModified`) VALUES
+(29, 4, '1', 'Dont Delete', 'Dont Delete', 'admin', 'admin@mail.vinove.com', '9994788682', 'Male', '1990-11-14 00:00:00', '1', '1', '0', '0', 'admin', 2, 2, 1, 34324324, 500, 520, '', '2014-10-09 10:55:53', '2015-03-14 10:30:08'),
+(124, 93, 'CUS150314035842', 'test', 'test', 'test', 'test@mail.com', '9856232536', 'Male', '0000-00-00 00:00:00', '1', '0', '0', '0', '', 0, 0, 0, 0, 0, 0, '', '2015-03-14 15:58:42', '0000-00-00 00:00:00'),
+(125, 94, 'CUS150314035925', 'sathish', 'kumar', 'sathish', 'sathish@mail.com', '9856232536', 'Male', '0000-00-00 00:00:00', '1', '0', '0', '0', '', 0, 0, 0, 0, 0, 0, '', '2015-03-14 15:59:25', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -581,8 +658,8 @@ CREATE TABLE IF NOT EXISTS `tbl_membership_plans` (
 --
 
 INSERT INTO `tbl_membership_plans` (`pkPlanID`, `planName`, `membershipFee`, `accessBooking`, `addToWishgini`, `receiveCoupons`, `planAddedDate`, `planModifiedDate`) VALUES
-(1, 'Free', 0, '1', '1', '1', '0000-00-00 00:00:00', '2015-02-25 10:41:34'),
-(2, 'Paid', 12386, '1', '1', '1', '0000-00-00 00:00:00', '2015-02-25 10:41:37');
+(1, 'Free', 0, '1', '0', '1', '0000-00-00 00:00:00', '2015-02-25 10:41:34'),
+(2, 'Paid', 12386, '0', '1', '1', '0000-00-00 00:00:00', '2015-02-25 10:41:37');
 
 -- --------------------------------------------------------
 
@@ -729,7 +806,74 @@ CREATE TABLE IF NOT EXISTS `tbl_password_reset` (
 --
 
 INSERT INTO `tbl_password_reset` (`pkPassResetID`, `fkUserID`, `passResetToken`, `passResetCreated`, `passResetExpires`, `passResetStatus`, `passResetDateAdded`) VALUES
-(1, 4, 'WEQYI41TWX1425474032', 1425474032, 0, '1', '2015-03-04 18:30:32');
+(1, 4, 'TVVSNG8GQR1426309619', 1426309619, 1426309650, '0', '2015-03-14 10:36:59');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_property_partners`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_property_partners` (
+  `pkPropertyPartnerID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `fkUserLoginID` int(11) NOT NULL,
+  `propertyPartnerUniqueID` varchar(255) NOT NULL,
+  `propertyPartnerFirstName` varchar(255) NOT NULL,
+  `propertyPartnerLastName` varchar(255) NOT NULL,
+  `propertyPartnerUserName` varchar(255) NOT NULL,
+  `propertyPartnerEmail` varchar(255) NOT NULL,
+  `propertyPartnerMobile` varchar(255) NOT NULL,
+  `propertyPartnerBusinessName` varchar(255) NOT NULL,
+  `propertyPartnerWebsite` varchar(255) NOT NULL,
+  `propertyPartnerContactMethod` enum('1','2','3') NOT NULL DEFAULT '1' COMMENT '1 => Mobile, 2 => Email, 3 => Both',
+  `propertyPartnerSubscriptionPlan` enum('1','2','3') NOT NULL DEFAULT '1' COMMENT '1 => Free, 2 => Basic, 3 => Pro',
+  `propertyPartnerStatus` enum('0','1') NOT NULL,
+  `propertyPartnerFeePaid` enum('0','1') NOT NULL DEFAULT '0' COMMENT '0 => Not Paid, 1 => Paid',
+  `propertyPartnerAddress` varchar(255) NOT NULL,
+  `propertyPartnerCity` int(11) NOT NULL,
+  `propertyPartnerState` int(11) NOT NULL,
+  `propertyPartnerCountry` int(11) NOT NULL,
+  `propertyPartnerZip` int(8) NOT NULL,
+  `eWalletBalance` int(50) NOT NULL DEFAULT '0',
+  `wishginiBalance` int(50) NOT NULL DEFAULT '0',
+  `propertyPartnerAccountActivationToken` varchar(255) NOT NULL,
+  `propertyPartnerDateAdded` datetime NOT NULL,
+  `propertyPartnerDateModified` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`pkPropertyPartnerID`),
+  UNIQUE KEY `propertyPartnerUserName` (`propertyPartnerUserName`),
+  UNIQUE KEY `propertyPartnerUniqueID` (`propertyPartnerUniqueID`),
+  UNIQUE KEY `propertyPartnerEmail` (`propertyPartnerEmail`),
+  KEY `fkUserLoginID` (`fkUserLoginID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=126 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_propery_partner_plans`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_propery_partner_plans` (
+  `pkPlanID` int(250) NOT NULL AUTO_INCREMENT,
+  `planName` varchar(255) NOT NULL,
+  `membershipFee` int(250) NOT NULL,
+  `daysValidity` int(250) NOT NULL,
+  `numberOfListing` int(250) NOT NULL,
+  `accessBooking` enum('0','1') NOT NULL COMMENT '0 => Inactive  1=>Active',
+  `addToWishgini` enum('0','1') NOT NULL COMMENT '0=>Inactive 1=>Active',
+  `receiveCoupons` enum('0','1') NOT NULL COMMENT '0 => Inactive  1=>Active',
+  `planAddedDate` datetime NOT NULL,
+  `planModifiedDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`pkPlanID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `tbl_propery_partner_plans`
+--
+
+INSERT INTO `tbl_propery_partner_plans` (`pkPlanID`, `planName`, `membershipFee`, `daysValidity`, `numberOfListing`, `accessBooking`, `addToWishgini`, `receiveCoupons`, `planAddedDate`, `planModifiedDate`) VALUES
+(1, 'Free', 0, 30, 5, '1', '0', '1', '0000-00-00 00:00:00', '2015-02-25 05:11:34'),
+(2, 'Basic', 12386, 60, 20, '0', '1', '1', '0000-00-00 00:00:00', '2015-03-14 12:15:47'),
+(3, 'Pro', 125000, 50, 100, '1', '1', '1', '0000-00-00 00:00:00', '2015-03-14 12:17:25');
 
 -- --------------------------------------------------------
 
@@ -793,18 +937,18 @@ CREATE TABLE IF NOT EXISTS `tbl_users_login` (
   `userType` enum('A','C','M') NOT NULL COMMENT 'A=Admin C=Customer M=Merchant',
   `userDateModified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`pkUserLoginID`),
-  UNIQUE KEY `userName` (`userName`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=64 ;
+  UNIQUE KEY `userName` (`userName`),
+  UNIQUE KEY `userEmail` (`userEmail`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=95 ;
 
 --
 -- Dumping data for table `tbl_users_login`
 --
 
 INSERT INTO `tbl_users_login` (`pkUserLoginID`, `userEmail`, `userName`, `userPassword`, `userType`, `userDateModified`) VALUES
-(4, 'sathish.kumar@mail.vinove.com', 'sathish', 'f654fb63f75721ac69cd01f7bd14aaa6', 'A', '2015-03-10 12:53:47'),
-(27, 'php@mail.com', 'kumar', 'f654fb63f75721ac69cd01f7bd14aaa6', 'C', '2015-02-27 04:53:19'),
-(28, 'delhi@vala.com', '', 'f654fb63f75721ac69cd01f7bd14aaa6', 'C', '2015-03-03 05:21:53'),
-(63, 'sathish.kumar1@mail.vinove.com', 'sathishkumar1', 'e120ea280aa50693d5568d0071456460', 'C', '2015-03-10 14:07:19');
+(4, 'admin@mail.vinove.com', 'admin', '87817c5310da5cfff85df962e906fff5', 'A', '2015-03-14 09:07:34'),
+(93, 'test@mail.com', 'test', '098f6bcd4621d373cade4e832627b4f6', 'C', '2015-03-14 10:28:42'),
+(94, 'sathish@mail.com', 'sathish', '078dc595e3663750846941f646f06a2d', 'C', '2015-03-14 10:29:25');
 
 --
 -- Constraints for dumped tables

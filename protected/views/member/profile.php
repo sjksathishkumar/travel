@@ -76,26 +76,14 @@
 				<div class="travelogini-heading">My Account</div>
 				<div class="about-right"><?php echo CHtml::image($varBaseUrl . "/images/design-right.png"); ?> </div>
 			</div>	
-
-			<!-- Setting up flash success/error message -->
-			<div class="clear"></div>
-			<div class="breadcrumbs" id="breadcrumbs-msg">
-				<?php  if( (Yii::app()->User->hasFlash('updateMemberSuccess')) || (Yii::app()->User->hasFlash('updateCustomerSuccess')) || (Yii::app()->User->hasFlash('deleteCustomerSuccess'))){ ?>
-					<ul>
-						<?php
-							if(Yii::app()->User->getFlash('updateMemberSuccess'))
-							{
-								echo '<li><span class="readcrum_without_link_success">'.UPDATE_MEMBER_SUCCESS.'</li>';
-							}else if(Yii::app()->User->getFlash('updateCustomerSuccess'))
-							{
-								echo '<li><span class="readcrum_without_link_success">'.UPDATE_CUSTOMER_SUCCESS.'</li>';
-							}
-						?>						
-				      </ul>
-				<?php } ?>
-			</div>
-			<!-- End of Setting up flash success/error message -->
-
+				<?php  
+					if( Yii::app()->User->hasFlash('updateMemberSuccess')){ 
+						if(Yii::app()->User->getFlash('updateMemberSuccess'))
+						{
+							echo '<div class="suc-msg">'.UPDATE_MEMBER_SUCCESS.'</div>';
+						}
+				 	} 
+				?>
 			<div class="dashboard-outer">
 				<div class="dashboard-menu">
 						<ul><?php if((Yii::app()->user->userPlan) == '0'){ ?>
@@ -121,7 +109,8 @@
 					<?php if((Yii::app()->user->userPlan) == '0'){ ?>
 					<div class="membership-plan-upgrade border-bottom-outer">
 						<div class="city-membership-plan">
-						<a href="#" class="upfrade-plan-btn">Upgrade Membership Plan</a>
+							<?php echo CHtml::link('Upgrade Membership Plan', array('/payment/paymentPage', 'memberID'=>$model->pkCustomerID),array('class' => 'upfrade-plan-btn')); ?>
+						<!-- <a href="#" class="upfrade-plan-btn">Upgrade Membership Plan</a> -->
 							Current Membership Plan  - <span class="dashboard-plan-type">Free</span>									
 						</div>
 					</div>
@@ -142,12 +131,18 @@
                 				));
                 		?> 
 						<li>
-							<?php echo $form->textField($model,'customerFirstName',array('class'=>'half-input requiredField','placeholder'=>'First Name')); ?>	
-							<?php echo $form->error($model, 'customerFirstName'); ?>
-							<?php echo $form->textField($model,'customerLastName',array('class'=>'half-input requiredField','placeholder'=>'Last Name')); ?>	
-							<?php echo $form->error($model, 'customerLastName'); ?>
-							<?php echo $form->textField($model,'customerMobile',array('class'=>'half-input margin0 requiredField phoneField','placeholder'=>'Mobile')); ?>	
-							<?php echo $form->error($model, 'customerMobile'); ?>
+							<div class="half-input">
+								<?php echo $form->textField($model,'customerFirstName',array('class'=>'requiredField','placeholder'=>'First Name')); ?>	
+								<?php echo $form->error($model, 'customerFirstName'); ?>
+							</div>
+							<div class="half-input">
+								<?php echo $form->textField($model,'customerLastName',array('class'=>'requiredField','placeholder'=>'Last Name')); ?>	
+								<?php echo $form->error($model, 'customerLastName'); ?>
+							</div>
+							<div class="half-input margin0">	
+								<?php echo $form->textField($model,'customerMobile',array('class'=>'requiredField phoneField','placeholder'=>'Mobile')); ?>	
+								<?php echo $form->error($model, 'customerMobile'); ?>
+							</div>
 						</li>
 						<li>
 						<div class="half-input date-cal">
@@ -157,8 +152,13 @@
 								    'attribute' => 'customerDateOfBirth',
 								    'options'=>array(
 								        //'showAnim'=>'slide',//'slide','fold','slideDown','fadeIn','blind','bounce','clip','drop'
-								        'showOtherMonths'=>true,// Show Other month in jquery
-								        'selectOtherMonths'=>true,// Select Other month in jquery
+								        'showAnim' => 'fold',
+								        //'showOtherMonths'=>'true',// Show Other month in jquery
+								        //'selectOtherMonths'=>'true',// Select Other month in jquery
+								        'changeMonth' =>  'true',
+								        'changeYear' =>  'true',
+								        'yearRange'=>'1900:2099',
+								        'maxDate' => 'today',
 								    ),
 								    'htmlOptions' => array(
 								        'size' => '10',         // textField size
@@ -168,15 +168,18 @@
 								        //'changeYear' =>  'true',
 								    ),
 								));
+								 echo $form->error($model, 'customerDateOfBirth');
 								?>
 						</div>
-						<?php echo $form->textField($model,'customerAddress',array('class'=>'onesecond-input margin0 requiredField','placeholder'=>'Address')); ?>	
+						<div class="onesecond-input margin0">
+							<?php echo $form->textField($model,'customerAddress',array('class'=>'requiredField','placeholder'=>'Address')); ?>	
+							<?php echo $form->error($model, 'customerAddress'); ?>
+						</div>
 						</li>
 						<li>
 						<div class="half-input">
 							<div class="slecet-country">
-								  <div class="half-half-input">
-								<?php echo $form->error($model, 'customerCountry'); ?>
+								  <div class="half-half-input">								
 								  	<?php echo $form->dropDownList($model, 'customerCountry',CHtml::listData(Country::model()->findAll(), 'pkCountryID', 'countryName'),
 																								array(
 																									'empty'=>'- Select Country -',
@@ -185,7 +188,8 @@
 																									//'data-rule-required'=>'true',
 																									'onchange' => 'getBstate(this.value)',
 																								)
-																							); ?>	
+																							); ?>
+																							<?php echo $form->error($model, 'customerCountry'); ?>	
 								  </div>
 								  <div class="half-half-input margin0">
 								  	<?php echo $form->dropDownList($model,'customerState',$model->stateOptions,
@@ -217,12 +221,16 @@
 						<div class="form-heading">
 						Change Password
 						</div>
-						</li>
+						</li>	
 						<li>
-							<?php echo $form->passwordField($loginModel,'userPassword',array('class'=>'half-input passField','id'=>'passField','placeholder'=>'New Password')); ?>	
+							<div class="half-input">
+								<?php echo $form->passwordField($loginModel,'userPassword',array('class'=>'passField','id'=>'passField','placeholder'=>'New Password')); ?>	
 								<?php echo $form->error($loginModel, 'userPassword'); ?>
-							<?php echo $form->passwordField($loginModel,'repassword',array('class'=>'half-input margin0 passField','placeholder'=>'Confirm Password','equalTo'=>'#passField')); ?>	
+							</div>
+							<div class="half-input margin0">
+								<?php echo $form->passwordField($loginModel,'repassword',array('class'=>'passField','placeholder'=>'Confirm Password','equalTo'=>'#passField')); ?>	
 								<?php echo $form->error($loginModel, 'repassword'); ?>
+							</div>
 						</li>
 						<li>
 							<?php echo CHtml::checkBox('offer',($model->customerSpecialOfferSubscription)?true:false,array('class'=>'radio','value' => 1)); ?>
@@ -244,3 +252,6 @@
 	</div>
 </div>
 <!-- Create Account Part End Here -->
+<script type="text/javascript">
+$(".suc-msg").fadeOut(6000);
+</script>

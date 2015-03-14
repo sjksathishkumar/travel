@@ -28,6 +28,40 @@ padding:10px;
 border:1px solid #d1d1d1;
 box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;-ms-box-sizing:border-box;-o-box-sizing:border-box;
 }
+.suc-msg{
+width:100%;
+float: left;
+font-family: lato;
+font-size: 15px;
+color: green;
+line-height: 50px;
+background: #DFF2DC;
+padding: 0 10px;
+margin-bottom: 10px;
+box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;-ms-box-sizing:border-box;-o-box-sizing:border-box;
+}
+.validate-error-msg{
+	color: #f00;
+	font-family: lato;
+    font-size: 14px;
+}
+.validation_errors{
+    color: #f00;
+    font-family: lato;
+    font-size: 14px;   
+}
+.terms-error
+{
+	color: #f00;
+	font-family: lato;
+    font-size: 14px;	
+}
+.errorMessage
+{
+	color: #f00;
+	font-family: lato;
+    font-size: 14px;	
+}
 .container{
 max-width:1140px;
 margin:0 auto;
@@ -227,7 +261,7 @@ box-sizing:border-box;-ms-box-sizing:border-box;-webkit-box-sizing:border-box;-o
 .date-cal{
 width:100%;
 float:left;
-background:#f0f0f0;
+background:none;
 }
 .date-cal input[type=text] {
 width:100%;
@@ -285,6 +319,7 @@ line-height: 40px;
 text-align:center;
 border:none;
 cursor:pointer;
+line-height:44px;
 }
 
 .login-btn input[type=button] {
@@ -717,7 +752,7 @@ box-sizing:border-box;-ms-box-sizing:border-box;-webkit-box-sizing:border-box;-o
 
 /* Member Create Account css start here */
 .member-create-account{
-width:81.89%;
+width:82.89%;
 float:right;
 }
 /*.member-create-account .form-heading{
@@ -781,6 +816,7 @@ float:left;
 }
 .onesecond-input{
 width:65.9% !important;
+float: left;
 }
 .half-half-input{
 width:46% !important;
@@ -802,6 +838,21 @@ width:100%;
 float:left;
 text-align:center;
 }
+
+.simple-btn{
+    background: none repeat scroll 0 0 #ff7200;
+    border: medium none;
+    color: #fff;
+    cursor: pointer;
+    float: left;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 44px;
+    text-align: center;
+    width: 100%;
+    text-decoration:none;
+}
+
 .submit-btn{
 width:205px !important;
 text-align:center;
@@ -978,7 +1029,7 @@ min-height:35px;
 .plan-outer-box{
 width:29%;
 float:left;
-margin-left:8px;
+margin-left:9px;
 background:#fff;
 }
 .plan-type-outer{
@@ -1075,6 +1126,7 @@ font-weight:300;
 font-family: 'proxima_nova_ltlight';
 display:inline-block;
 }
+
 .dashboard-menu-outerbox .dashboard-menu ul li a{
 padding:0 26px;
 }
@@ -1094,7 +1146,7 @@ cursor:pointer;
 color:#fff;
 }
 .dashboard-menu ul li:last-child{
-float:right;
+float:left;
 }
 .dashboard-menu ul li:last-child a{
 }
@@ -1789,6 +1841,126 @@ font-family: 'Lato', sans-serif;
 margin:0;
 }
 
+/* Payment page CSS Start from here  */
+
+.payment-box{
+width:100%;
+float:left;
+margin-top:50px;
+border:1px solid #d2d2d2;
+padding:10px 2%;
+box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;-webkit-box-sizing:border-box;-o-box-sizing:border-box;
+}
+.payment-left-box{
+width:50%;
+float:left;
+}
+.payment-right-box{
+width:50%;
+float:left;
+}
+h5{
+width:100%;
+float:left;
+font-weight:600;
+color:000;
+margin-bottom:35px;
+font-size:16px;
+font-family:lato;
+}
+span.required{
+display:inline-block;
+color:#f00;
+}
+.fullbox{
+width:100%;
+float:left;
+}
+.fullbox label{
+width:100%;
+float:left;
+min-height:30px;
+color:#333333;
+font-size:16px;
+font-weight:600;
+font-family:lato;
+}
+.radioUI{
+width:100%;
+float:left;
+}
+.radioUI ul{
+width:100%;
+float:left;
+margin:0;
+padding:0;
+}
+.radioUI li{
+width:100%;
+float:left;
+list-style:none;
+}
+.radioBox{
+float:left;
+min-width:115px;
+font-family:lato;
+}
+.payimg{
+display:inline-block;
+}
+.inputbox{
+float:left;
+min-width:35px;
+}
+.fullbox{
+width:100%;
+float:left;
+margin-bottom:15px;
+}
+.fullbox .checkradios-checkbox, .fullbox .checkradios-radio{
+vertical-align:middle;
+}
+.fullbox .half-input{
+width:49% !important;
+}
+.payment-box .acc-login li input[type="text"]{
+/*border-radius:5px;*/
+background:#f0f0f0;
+margin-bottom:10px;
+}
+.payment-box .submit-btn{
+width:125px !important;
+}
+/*.payment-box .login-btn input[type="submit"]{
+border-radius:5px;
+}*/
+
+.payment-box .acc-login li:first-child{
+margin-top:0px;
+}
+.payment-box .member-create-account{
+width:100%;
+float:left;
+}
+/*.payment-box .chosen-container{
+border-radius:5px;
+}*/
+.payment-box .acc-login li{
+padding:0;
+margin:0;
+}
+.text-center{
+width:100%;
+float:left;
+text-align:center;
+}
+.m0{
+margin-left:0 !important;
+}
+.text-left{
+text-align:left !important;
+float:left;
+}
 
 .activated{
 width:100%;

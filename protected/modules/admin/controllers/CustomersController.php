@@ -81,17 +81,13 @@ class CustomersController extends Controller
 		if (isset($_POST['Users']))
         {
         	$model->attributes = $_POST['Users'];
-        	//echo "<pre>";
-        	//print_r($model->attributes); die();
         	$loginModel->attributes = $_POST['UsersLogin'];
+        	$model->customerEmail = $loginModel->userEmail; 
+        	$model->customerUserName = $loginModel->userName; 
         	$loginModel->userEmail = $model->customerEmail;
 			$loginModel->userType = 'C';
 			$model->customerUniqueID = CommonFunctions::uniqueIDGenerator('CUS');
-			//$loginModel->userDateModified = date('Y-m-d H:i:s');
-			/*echo "<pre>";
-			print_r($model->attributes); die();*/
         	if($model->validate() & $loginModel->validate()){
-        		//echo "validation complete"; die();
         		$transaction=$model->dbConnection->beginTransaction();
         		$password = $loginModel->userPassword;
         		$loginModel->userPassword = md5($loginModel->userPassword);
@@ -99,26 +95,15 @@ class CustomersController extends Controller
         			$loginModel->save(false);
         			$model->fkUserLoginID = $loginModel->primaryKey;
         			$model->customerStatus = '1';
-        			//$model->customerUniqueID = CommonFunctions::uniqueIDGenerator('CUS');
-        			//echo $model->customerUniqueID; die();
         			$model->customerDateAdded = date('Y-m-d H:i:s');
-        			//$model->customerDateModified = date('Y-m-d H:i:s');
         			$model->save();
         			$transaction->commit();
         			Yii::app()->user->setFlash('addCustomerSuccess',true);
-        			/* generate and send Email */
-	                $varMailTo = trim($model->customerEmail);
-	                //$activationLink = $url=Yii::app()->params['siteURL']."customer/activateAccount?userID=".base64_encode($model->pkCustomerID)."&token=".$model->customerAccountActivationToken;
-	                $varKeywordContent = array('{to_name}','{site_url}','{login_email}','{login_password}');
-	                $varKeywordValueContent = array(ucfirst($model->customerFirstName),Yii::app()->params['siteURL'],$model->customerEmail,$password);
-	                CommonFunctions::sendMail('5',$varMailTo,$varKeywordContent,$varKeywordValueContent,'','','','');
         			$this->redirect(array('index'));
         		}catch(Exception $e){
-        			 $transaction->rollBack();
+        			$transaction->rollBack();
         		}
-
         	} 
-        	//echo "validation faild"; die(); 
         }
         $this->render('create',array(
 									'model'=>$model,
@@ -137,23 +122,35 @@ class CustomersController extends Controller
 		$model = $this->loadModel($id);
 		$loginModel = UsersLogin::model()->findByPk($model->fkUserLoginID);
 		$model->customerDateOfBirth = date('m/d/Y',strtotime($model->customerDateOfBirth));
+		$oldUserName = $loginModel->userName;
+		$oldEmail = $loginModel->userEmail;
 		$oldPassword = $loginModel->userPassword;
 		$model->scenario = 'update_user_from_admin';
+		$loginModel->scenario = 'update_user_login_from_admin';
 		if(isset($_POST['Users']) && isset($_POST['UsersLogin'])){
 			$model->attributes = $_POST['Users'];
 			$model->customerDateOfBirth = date('Y-m-d',strtotime($model->customerDateOfBirth));
-			/*echo "<pre>";
-			print_r($model->customerDateOfBirth); die();*/
 			$model->customerDateModified = date('Y-m-d H:i:s');
 			$loginModel->attributes = $_POST['UsersLogin'];
 			if($model->validate() & $loginModel->validate()){
-				$model->update(false);
+				$model->customerEmail = $loginModel->userEmail;
+				$model->customerUserName = $loginModel->userName;
 				if(!empty($loginModel->userPassword)){
 					$loginModel->userPassword = md5($loginModel->userPassword);
 				}else{
 					$loginModel->userPassword = $oldPassword;
 				}
-				$loginModel->userEmail = $model->customerEmail;
+				if(empty($loginModel->userEmail))
+				{
+					$loginModel->userEmail = $oldEmail;
+					$model->customerEmail = $loginModel->userEmail;
+				}
+				if(empty($loginModel->userName))
+				{
+					$loginModel->userName = $oldUserName;
+					$model->customerUserName = $loginModel->userName;
+				}
+				$model->update(false);
 				$loginModel->update(false);
 				Yii::app()->user->setFlash('updateCustomerSuccess',true);
     			$this->redirect(array('index'));

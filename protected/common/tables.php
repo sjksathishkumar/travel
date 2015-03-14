@@ -24,4 +24,8 @@ define('TABLE_COUPONS','tbl_coupons');
 define('TABLE_FAQS', 'tbl_faqs');
 define('TABLE_FAQS_CATEGORIES', 'tbl_faqs_categories');
 define('TABLE_MEMBERSHIP_PLANS', 'tbl_membership_plans');
+define('TABLE_PROPERTY_PARTNER_PLANS', 'tbl_propery_partner_plans');
+define('TABLE_CITY_PARTNER_PLANS', 'tbl_city_partner_plans');
+define('TABLE_PROPERTY_PARTNERS', 'tbl_property_partners');
+define('TABLE_CITY_PARTNERS', 'tbl_city_partners');
 ?>

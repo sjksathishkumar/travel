@@ -38,10 +38,17 @@
 					</div>
 				</div>
 				<div class="control-group">
-					<?php echo $form->labelEx($model,'customerEmail',array('class'=>'control-label','for'=>'textfield')); ?>
+					<?php echo $form->labelEx($loginModel,'userEmail',array('class'=>'control-label','for'=>'textfield')); ?>
 					<div class="controls">
-						<?php echo $form->textField($model,'customerEmail',array('class'=>'input-xlarge','data-rule-required'=>'true','data-rule-email'=>'true')); ?>	
-						<?php echo $form->error($model, 'customerEmail'); ?>
+						<?php echo $form->textField($loginModel,'userEmail',array('class'=>'input-xlarge','data-rule-required'=>'true','data-rule-email'=>'true')); ?>	
+						<?php echo $form->error($loginModel, 'userEmail'); ?>
+					</div>
+				</div>
+				<div class="control-group">
+					<?php echo $form->labelEx($loginModel,'userName',array('class'=>'control-label','for'=>'textfield')); ?>
+					<div class="controls">
+						<?php echo $form->textField($loginModel,'userName',array('class'=>'input-xlarge','data-rule-required'=>'true')); ?>	
+						<?php echo $form->error($loginModel, 'userName'); ?>
 					</div>
 				</div>
 				<div class="control-group">

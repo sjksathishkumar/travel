@@ -4,7 +4,8 @@
     $data['mascots'] = Mascots::model()->findAllByAttributes(array('mascotStatus'=>'1'));
 ?>
 <!-- Create Account Part Start From Here -->
-	<div class="container">
+<div class="container">
+	<div class="full-box">
 		<div class="membership-plan-outer">
 			<div class="left-box-services">
 				<div class="services-outer">
@@ -169,4 +170,5 @@
 			</div>
 		</div>
 	</div>
+</div>
 	<!-- Create Account Part End Here -->

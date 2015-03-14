@@ -28,6 +28,7 @@
     <ul class="acc-login">
         <li>
             <p>Members ID<span class="required">*</span></p>
+            <div class="validation_errors"></div>
             <?php echo CHtml::textField('memberEmail',$varUsername,array('class'=>'input-box requiredField','placeholder'=>'Email / Username'));?>
             
         </li>
@@ -38,7 +39,6 @@
             <?php echo CHtml::checkBox('remember',($varRemember)?true:false,array('class'=>'radio','value' => 1)); ?>
             <label for="remember">Remember Me</label>
             <div class="forgotpass"><input type="button" name="forgotpassword" value="" /><span class="fancybox" href="#forgot-pass">Forgot Password</span></div>
-            <div class="validation_errors"></div>
         </li>
         <li>
             <div class="login-btn">
@@ -69,12 +69,31 @@
     <div class="login-heading"> Forgot Password </div>
         <p>Please enter your email ID below. We will send you a link to reset your password.</p>
     <ul class="acc-login">
-            <li><p>Email<span class="required">*</span></p><input type="text" name="email" value="" placeholder="example@example.com" /></li>
+        <?php $this->beginWidget('CActiveForm', array(
+                            'id' => 'member-forgot-form',
+                            'action'=>Yii::app()->createUrl('/member/recovery'),
+                            'enableAjaxValidation' => false,
+                            'method'=>'post',
+                            'htmlOptions' => array(
+                                'novalidate' => 'novalidate',
+                                'class' => 'validate-form',
+                                //'enctype' => 'multipart/form-data',
+                            )
+                        )); ?>
+            <li><p>Email<span class="required">*</span></p>
+                <?php echo CHtml::textField('forgotEmail',$varUsername,array('class'=>'input-box emailField requiredField','placeholder'=>'Enter Email'));?>
+                <!-- <input type="text" name="email" value="" placeholder="example@example.com" /> -->
+                
+            </li>
             
             <li>
                 <div class="login-btn">
-                    <input type="submit" name="submit" value="Send Email" />
+                    <?php echo CHtml::submitButton('Send Email');?>
+                    <!-- <input type="submit" name="submit" value="Send Email" /> -->
+                <div class="validation_errors" id="forgot-pass-error"></div>
+
                 </div>
             </li>
-        </ul>
+        <?php $this->endWidget();?>    
+    </ul>
 </div>

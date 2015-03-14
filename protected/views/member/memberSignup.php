@@ -107,7 +107,7 @@
 							</li>
 							<li>
 								<div class="login-btn">
-									<?php echo CHtml::link('Sign Up', array('memberPaidSignup')); ?>
+									<?php echo CHtml::link('Sign Up', array('memberPaidSignup'),array('class' => 'simple-btn')); ?>
 									<!-- <input type="submit" value="Sign Up" name="submit"> -->
 								</div>
 							</li>
@@ -159,7 +159,7 @@
 							<li>
 								<div class="login-btn">
 									<?php //echo CHtml::submitButton('Sign Up', array('dasboard')); ?>
-									<?php echo CHtml::link('Sign Up', array('memberFreeSignup')); ?>
+									<?php echo CHtml::link('Sign Up', array('memberFreeSignup'),array('class' => 'simple-btn')); ?>
 									<?php //echo CHtml::submitButton('Sign Up', array('member/freeSingup'));  ?>
 									<!-- <input type="submit" value="Sign Up" name="submit"> -->
 								</div>

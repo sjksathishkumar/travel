@@ -89,7 +89,7 @@
 							array('name'=>'customerFirstName',								
 								'htmlOptions'=>array('style'=>'text-align:center'),
 							),	
-							array('name'=>'customerLastName',								
+							array('name'=>'customerUserName',								
 								'htmlOptions'=>array('style'=>'text-align:center'),
 							),							
 							array('name'=>'customerEmail',								
@@ -173,7 +173,7 @@
 	*/
 	function fun_deleteMsg(){	    
 		$("#breadcrumbs-msg").show();
-		$("#breadcrumbs-msg").html("<ul><li><span class='readcrum_without_link_success'><?php echo DELETE_BANNER_SUCCESS;?></span></li></ul>"); 
+		$("#breadcrumbs-msg").html("<ul><li><span class='readcrum_without_link_success'><?php echo DELETE_CUSTOMER_SUCCESS;?></span></li></ul>"); 
 		setTimeout(function () {
 			    $("#breadcrumbs-msg").fadeOut('slow');
 			    }, 5000);

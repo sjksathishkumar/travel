@@ -30,12 +30,17 @@ class UsersLogin extends CActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('userEmail,userType', 'required','except'=>'user-update-password-profile-form'),
-            array('userPassword,repassword', 'required','on'=>'create_user_from_admin, create_user_front'),
+            array('userEmail,userType', 'required','except'=>'user-update-password-profile-form, reset_password_front,update_user_login_from_admin'),
+            //array('userEmail,userName,userPassword', 'safe','on'=>'update_user_login_from_admin'),
+            array('userName', 'required','on'=>'create_user_from_admin'),
+            array('userPassword,repassword', 'required','on'=>'create_user_from_admin, create_user_front, reset_password_front'),
             array('userPassword', 'compare', 'compareAttribute'=>'repassword','except'=>'user-update-password-profile-form'),
             array('pkUserLoginID,userEmail, userPassword, repassword,userType,customerDateModified', 'safe'),
+            array('pkUserLoginID,userEmail, userPassword, customerDateModified', 'safe', 'on'=>'search'),
+            array('userEmail','unique', 'message'=>'This email address already exists.','on'=>'create_user_front,create_user_from_admin,update_user_login_from_admin'),
+            array('userName','unique', 'message'=>'User name already exists.','on'=>'create_user_front,create_user_from_admin,update_user_login_from_admin'),
             array('userPassword', 'compare', 'compareAttribute'=>'repeatPassword','on'=>'user-update-password-profile-form', 'message'=>"Passwords don't match"),     
-            array('userPassword', 'compare', 'compareAttribute'=>'repassword','on'=>'create_user_front', 'message'=>"Passwords don't match"),     
+            array('userPassword', 'compare', 'compareAttribute'=>'repassword','on'=>'create_user_front, update_user_login_from_admin reset_password_front', 'message'=>"Passwords don't match"),     
         );
     }
 
@@ -47,6 +52,7 @@ class UsersLogin extends CActiveRecord
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
+            'resetPassTokenTable'=>array(self::HAS_MANY, 'ResetPassword', 'fkUserID'),
         );
     }
 
@@ -58,6 +64,7 @@ class UsersLogin extends CActiveRecord
         return array(
             'pkUserLoginID' => 'User ID',
             'userEmail' => 'Email Address',
+            'userName'  => 'User Name',
             'userPassword' => 'Password',
             'userType' => 'User Type',
             'customerDateModified' => 'Date Modified',

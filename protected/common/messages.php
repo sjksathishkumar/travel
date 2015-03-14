@@ -89,6 +89,7 @@
         //ADMIN CUSTOMER MESSAGES
         define('ADD_CUSTOMER_SUCCESS','New customer created successfully.');
         define('UPDATE_CUSTOMER_SUCCESS','Customer updated successfully.');
+        define('DELETE_CUSTOMER_SUCCESS','Customer deleted successfully.');
 
         //ADMIN CUSTOMER MESSAGES
         define('UPDATE_MEMBER_SUCCESS','Details updated successfully.');

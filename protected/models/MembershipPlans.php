@@ -104,7 +104,7 @@ class MembershipPlans extends CActiveRecord
                     'criteria' => $criteria,
                     'sort' => array(
                         'defaultOrder' => array(
-                            'cmsDateAdded' => true,
+                            'pkPlanID' => true,
                         ),
                     ),
                     'pagination' => array(

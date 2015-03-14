@@ -41,8 +41,11 @@ class SiteController extends Controller
 		{
 			if(Yii::app()->request->isAjaxRequest)
 				echo $error['message'];
-			else
-				$this->render('error', $error);
+			else{
+				//Yii::app()->user->setState("message","undefind-page");
+        		//$this->redirect('member/pageLanding');
+				$this->render('error');
+			}
 		}
 	}
 
