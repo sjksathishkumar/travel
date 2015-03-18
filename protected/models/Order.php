@@ -38,9 +38,9 @@ class Order extends CActiveRecord {
         // class name for the relations automatically generated below.
         return array(
             'customer'=>array(self::BELONGS_TO, 'Users','fkCustomerID'),
-            'billingCountry'=>array(self::BELONGS_TO, 'Country','orderBillingCountry'),
-            'billingState'=>array(self::BELONGS_TO, 'State','orderBillingState'),
-            'billingCity'=>array(self::BELONGS_TO, 'City','orderBillingCity'),
+            'country'=>array(self::BELONGS_TO, 'Country','orderBillingCountry'),
+            'state'=>array(self::BELONGS_TO, 'State','orderBillingState'),
+            'city'=>array(self::BELONGS_TO, 'City','orderBillingCity'),
             'shippingCountry'=>array(self::BELONGS_TO, 'Country','orderShippingCountry'),
             'shippingState'=>array(self::BELONGS_TO, 'State','orderShippingState'),
             'shippingCity'=>array(self::BELONGS_TO, 'City','orderShippingCity'),
@@ -96,7 +96,7 @@ class Order extends CActiveRecord {
         // @todo Please modify the following code to remove attributes that should not be searched.
 
         $criteria = new CDbCriteria;
-        $criteria->with = array('billingCountry','billingState','billingCity','shippingCountry','shippingState',
+        $criteria->with = array('country','state','city','shippingCountry','shippingState',
                                 'shippingCity',
                                 'customer',
                                 'orderItem'=>array('select'=>'sum(orderItemTotalPrice) AS totalPrice','group' => 'pkOrderID'));

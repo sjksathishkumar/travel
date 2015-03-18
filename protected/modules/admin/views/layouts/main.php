@@ -168,10 +168,10 @@
                                     <?php echo CHtml::link('Partners', 'javascript:void(0);', array()); ?>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <?php echo CHtml::link('City Partners', array('/admin/banner')); ?>
+                                            <?php echo CHtml::link('City Partners', array('/admin/cityPartners/index')); ?>
                                         </li>
                                         <li>
-                                            <?php echo CHtml::link('Property Partners', array('/admin/banner/add')); ?>
+                                            <?php echo CHtml::link('Property Partners', array('/admin/propertyPartners/index')); ?>
                                         </li>
                                     </ul>
                                 </li>

@@ -58,7 +58,7 @@ class OrderController extends Controller
      */
     public function actionView($id = 0)
     {
-        $model = $this->loadModel($id)->with(array('customer','billingCountry','billingState','billingCity','shippingCountry','shippingState','shippingCity','orderItem'));
+        $model = $this->loadModel($id)->with(array('customer','country','state','city','shippingCountry','shippingState','shippingCity','orderItem'));
         $this->render('view', array(
             'model' => $model,
         ));

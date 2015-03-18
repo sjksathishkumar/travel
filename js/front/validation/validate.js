@@ -23,6 +23,9 @@
                 case 'member-paid-signup-form':
                     fireMemberPaidSignupEvent(form);
                     break;
+                case 'partner-signin-form':
+                    firePartnerLoginEvent(form);
+                    break;
                 default:
                     form.submit();
                     break;

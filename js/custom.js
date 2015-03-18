@@ -361,6 +361,25 @@ function fireMemberLoginEvent(form){
     })
 }
 
+/*This function is used to ajax login*/
+
+function firePartnerLoginEvent(form){
+     //$('#deals-review-form .success_msg').focus();
+    $.post($(form).attr('action'),$(form).serialize(),function(data){
+        if(data == 'city-success'){
+                window.location = SITE_ROOT_URL+'/cityPartner/dashboard/index'
+        }
+        else if(data == 'property-success'){
+            window.location = SITE_ROOT_URL+'/propertyPartner/dashboard/index'
+        }
+        else{
+            $(form).find('.validation_errors').html(data);
+            $('#member-login').find('input:text').val('');
+            $(form).find('.validation_errors').val('');
+        }
+    })
+}
+
 /*This function is used to ajax forgot password*/
 
 function fireMemberForgotEvent(form){
@@ -453,86 +472,47 @@ function getBcity(bcity){
     });
 }
 
-//-------------Shipping address same as billing address------------------------------
 
-// Function for getStates by calling getStates event in Controller
+// Function for load State to Custom dropdown in Property Partner Update 
 
-function getSstate(bstate,event){
+function getPstate(bstate){
     var country=bstate;
-    event = event || "none";
+    $("#customerCity").trigger("chosen:updated");
     $.ajax({
         type: "POST",
-        url: "../customer/dynamicstates",
+        url: "../../member/dynamicstates",
         data: {
             country: country
         },
         success: function(result){
-            $("#userShippingState").html(result);
-            $("#userShippingState").resetSS();
-        },
-        complete:function(){
-            if(event == 'complete'){
-                var state     = $("#customerState option:selected").val();
-                $('#userShippingState').val(state).change();
-                //$("#userShippingState option[value='"+state+"']").attr('selected', 'selected');
-                //$("#userShippingState").data('ssOpts',options);
-            }
+            $("#partnerState").html(result);
+            $("#partnerState").trigger("chosen:updated");
+            $('#partnerCity').val('').trigger('chosen:updated');
+            //$("#customerState").resetSS();
+            //$("#customerCity").resetSS();
         }
     });
 }
 
-// Function for getCitys by calling getCites event in Controller
+// Function for load city to Custom dropdown in Property Partner Update 
 
-function getScity(bcity,event){
+function getPcity(bcity){
     var state=bcity;
-    event = event || "none";
     $.ajax({
         type: "POST",
-        url: "../customer/dynamiccities",
+        url: "../../member/dynamiccities",
         data: {
             state: state
         },
         success: function(result){
-            $("#userShippingCity").html(result);
-            $("#userShippingCity").resetSS();
-        },
-        complete:function(){
-            if(event == 'complete'){
-                var city     = $("#customerCity option:selected").val();
-                //$('#userShippingCity').val($('#customerCity').val()).change();
-                $('#userShippingCity').val(city).change();
-            }
+            $("#partnerCity").html(result);
+            $("#partnerCity").trigger("chosen:updated");
+            //$("#customerCity").resetSS();
         }
     });
 }
 
-// Funtion for copy same Address
 
-function shipSameAsBill()
-{
-    if(copyAddress.checked){
-        var value = $("input:checkbox[name='copyAddress']:checked").val();
-        if(typeof(value)=='undefined')
-        {
-            $('#userShippingAddress1').val('');
-            $('#userShippingAddress2').val('');
-            $('#userShippingCountry').val('');
-            $('#userShippingState').val('');
-            $('#userShippingCity').val('');
-            $('#userShippingZip').val('');
-            $('#userShippingPhone').val('');       
-        }
-        else
-        {
-            $('#userShippingAddress1').val($('#customerAddress').val());
-            $('#userShippingCountry').val($('#customerCountry').val()).change();
-            getSstate($('#customerCountry').val(),'complete');
-            getScity($('#customerState').val(),'complete');
-            $('#userShippingPhone').val($('#userBillingPhone').val());
-            $('#userShippingZip').val($('#customerZip').val());
-        }
-      }
-}
 
 /* Front end Js Contents */
 

@@ -79,6 +79,12 @@ return array(
         'admin' => array(
             'defaultController' => 'admin',
         ),
+        'cityPartner' => array(
+            'defaultController' => '',
+        ),
+        'propertyPartner' => array(
+            'defaultController' => '',
+        ),
     ),
     // application components
     'components' => array(

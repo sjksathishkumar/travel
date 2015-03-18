@@ -55,14 +55,16 @@ class CityPartners extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('fkUserLoginID, cityPartnerUniqueID, cityPartnerFirstName, cityPartnerLastName, cityPartnerUserName, cityPartnerEmail, cityPartnerMobile, cityPartnerBusinessName, cityPartnerWebsite, cityPartnerStatus, cityPartnerAddress, cityPartnerCity, cityPartnerState, cityPartnerCountry, cityPartnerOperationCity, cityPartnerOperationState, cityPartnerOperationCountry, cityPartnerOperationArea, cityPartnerZip, cityPartnerAccountActivationToken, cityPartnerDateAdded', 'required'),
+			//array('fkUserLoginID, cityPartnerUniqueID, cityPartnerFirstName, cityPartnerLastName, cityPartnerUserName, cityPartnerEmail, cityPartnerMobile, cityPartnerBusinessName, cityPartnerWebsite, cityPartnerStatus, cityPartnerAddress, cityPartnerCity, cityPartnerState, cityPartnerCountry, cityPartnerOperationCity, cityPartnerOperationState, cityPartnerOperationCountry, cityPartnerOperationArea, cityPartnerZip, cityPartnerAccountActivationToken, cityPartnerDateAdded', 'required'),
+			array('cityPartnerFirstName, cityPartnerLastName, cityPartnerMobile, cityPartnerBusinessName, cityPartnerWebsite, cityPartnerContactMethod, cityPartnerSubscriptionPlan, cityPartnerStatus, cityPartnerAddress, cityPartnerCity, cityPartnerState, cityPartnerCountry, cityPartnerOperationCity, cityPartnerOperationState, cityPartnerOperationCountry, cityPartnerOperationArea, cityPartnerZip, eWalletBalance, wishginiBalance', 'required', 'on'=>'city_partner_update_admin'),
+			array('cityPartnerFirstName, cityPartnerLastName, cityPartnerMobile, cityPartnerBusinessName, cityPartnerWebsite, cityPartnerContactMethod, cityPartnerSubscriptionPlan', 'required', 'on'=>'new_city_partner_admin'),
 			array('fkUserLoginID, cityPartnerCity, cityPartnerState, cityPartnerCountry, cityPartnerOperationCity, cityPartnerOperationState, cityPartnerOperationCountry, cityPartnerZip, eWalletBalance, wishginiBalance', 'numerical', 'integerOnly'=>true),
 			array('cityPartnerUniqueID, cityPartnerFirstName, cityPartnerLastName, cityPartnerUserName, cityPartnerEmail, cityPartnerMobile, cityPartnerBusinessName, cityPartnerWebsite, cityPartnerAddress, cityPartnerOperationArea, cityPartnerAccountActivationToken', 'length', 'max'=>255),
 			array('cityPartnerContactMethod, cityPartnerSubscriptionPlan, cityPartnerStatus, cityPartnerFeePaid', 'length', 'max'=>1),
 			array('cityPartnerDateModified', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('pkCityPartnerID, fkUserLoginID, cityPartnerUniqueID, cityPartnerFirstName, cityPartnerLastName, cityPartnerUserName, cityPartnerEmail, cityPartnerMobile, cityPartnerBusinessName, cityPartnerWebsite, cityPartnerContactMethod, cityPartnerSubscriptionPlan, cityPartnerStatus, cityPartnerFeePaid, cityPartnerAddress, cityPartnerCity, cityPartnerState, cityPartnerCountry, cityPartnerOperationCity, cityPartnerOperationState, cityPartnerOperationCountry, cityPartnerOperationArea, cityPartnerZip, eWalletBalance, wishginiBalance, cityPartnerAccountActivationToken, cityPartnerDateAdded, cityPartnerDateModified', 'safe', 'on'=>'search'),
+			array('cityPartnerFirstName, cityPartnerLastName, cityPartnerUserName, cityPartnerEmail, cityPartnerMobile, cityPartnerBusinessName, cityPartnerWebsite, cityPartnerContactMethod, cityPartnerSubscriptionPlan, cityPartnerStatus, cityPartnerFeePaid, cityPartnerAddress, cityPartnerCity, cityPartnerState, cityPartnerCountry, cityPartnerOperationCity, cityPartnerOperationState, cityPartnerOperationCountry, cityPartnerOperationArea, cityPartnerZip, eWalletBalance, wishginiBalance, cityPartnerAccountActivationToken, cityPartnerDateAdded, cityPartnerDateModified', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -74,6 +76,10 @@ class CityPartners extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'country'=>array(self::BELONGS_TO, 'Country','cityPartnerCountry'),
+			'state'=>array(self::BELONGS_TO, 'State','cityPartnerState'),
+			'city'=>array(self::BELONGS_TO, 'City','cityPartnerCity'),
+            'userLogin'=>array(self::BELONGS_TO, 'User','fkUserLoginID'),
 		);
 	}
 
@@ -131,7 +137,7 @@ class CityPartners extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
-
+		$criteria->with = array('country','state','city');
 		$criteria->compare('pkCityPartnerID',$this->pkCityPartnerID,true);
 		$criteria->compare('fkUserLoginID',$this->fkUserLoginID);
 		$criteria->compare('cityPartnerUniqueID',$this->cityPartnerUniqueID,true);
@@ -190,15 +196,17 @@ class CityPartners extends CActiveRecord
             return $this->customerFirstName.' '.$this->customerLastName;
     }
 
-    public function getUserDetails($userID){
+
+    public function getCityPartnerDetails($partnerID){
     	$criteria=new CDbCriteria;
 
-    	$criteria->with=array('billingCountry','billingState','billingCity');
+    	$criteria->with=array('country','state','city');
 
-    	$criteria->condition='pkCustomerID= "'. $userID.'"';
+    	$criteria->condition='fkUserLoginID= "'. $partnerID.'"';
         
-        $customerDetails = Users::model()->find($criteria);
+        $cityPartnerDetails = CityPartners::model()->find($criteria);
 
-        return $customerDetails;
+        return $cityPartnerDetails;
     }
+
 }

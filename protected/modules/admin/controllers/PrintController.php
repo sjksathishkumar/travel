@@ -212,9 +212,9 @@ class PrintController extends Controller
         if (isset($_POST['customers-grid_c1']))
         {
             $arrCustomersRecord = array_reverse(Users::model()->with(
-                                            array('billingCountry' => array('select' => 'countryName')), 
-                                            array('billingState' => array('select' => 'stateName')),
-                                            array('billingCity' => array('select' => 'cityName')),
+                                            array('country' => array('select' => 'countryName')), 
+                                            array('state' => array('select' => 'stateName')),
+                                            array('city' => array('select' => 'cityName')),
                                             array('shippingCountry' => array('select' => 'countryName')), 
                                             array('shippingState' => array('select' => 'stateName')),
                                             array('shippingCity' => array('select' => 'cityName'))
@@ -236,9 +236,9 @@ class PrintController extends Controller
                     'Date Of Birth'=>'customerDateOfBirth',
                     'Billing Address1'=>'customerAddress',
                     'Billing Address2'=>'customerAddress2',
-                    'Billing Country'=>'billingCountry->countryName',
-                    'Billing State'=>'billingState->stateName',
-                    'Billing City'=>'billingCity->cityName',
+                    'Billing Country'=>'country->countryName',
+                    'Billing State'=>'state->stateName',
+                    'Billing City'=>'city->cityName',
                     'Billing Zipcode'=>'customerZip',
                     'Billing Phone'=>'userBillingPhone',
                     'Shipping Address1'=>'userShippingAddress1',
@@ -296,9 +296,9 @@ class PrintController extends Controller
                     $rowArr1[$j++] = $customerRecord->customerDateOfBirth;
                     $rowArr1[$j++] = $customerRecord->customerAddress;
                     $rowArr1[$j++] = $customerRecord->customerAddress2;
-                    $rowArr1[$j++] = $customerRecord->billingCountry->countryName;
-                    $rowArr1[$j++] = $customerRecord->billingState->stateName;
-                    $rowArr1[$j++] = $customerRecord->billingCity->cityName;
+                    $rowArr1[$j++] = $customerRecord->country->countryName;
+                    $rowArr1[$j++] = $customerRecord->state->stateName;
+                    $rowArr1[$j++] = $customerRecord->city->cityName;
                     $rowArr1[$j++] = $customerRecord->customerZip;
                     $rowArr1[$j++] = $customerRecord->userBillingPhone;
                     $rowArr1[$j++] = $customerRecord->userShippingAddress1;
@@ -404,9 +404,9 @@ class PrintController extends Controller
         {
             $arrOrderRecord = array_reverse(Order::model()->with(
                                             array(
-                                                array('billingCountry' => array('select' => 'countryName')), 
-                                                array('billingState' => array('select' => 'stateName')), 
-                                                array('billingCity' => array('select' => 'cityName')), 
+                                                array('country' => array('select' => 'countryName')), 
+                                                array('state' => array('select' => 'stateName')), 
+                                                array('city' => array('select' => 'cityName')), 
                                                 array('shippingCountry' => array('select' => 'countryName')), 
                                                 array('shippingState' => array('select' => 'stateName')), 
                                                 array('shippingCity' => array('select' => 'cityName')), 
@@ -422,9 +422,9 @@ class PrintController extends Controller
                     'Customer Phone Number' => 'orderCustomerPhone',
                     'Customer Billing Address1' => 'orderBillingAddress1',
                     'Customer Billing Address2' => 'orderBillingAddress2',
-                    'Customer Billing Country' => 'billingCountry->countryName',
-                    'Customer Billing State' => 'billingState->stateName',
-                    'Customer Billing City' => 'billingCity->cityName',
+                    'Customer Billing Country' => 'country->countryName',
+                    'Customer Billing State' => 'state->stateName',
+                    'Customer Billing City' => 'city->cityName',
                     'Customer Billing Zipcode' => 'orderBillingZipcode',
                     'Customer Billing Phone' => 'orderBillingPhone',
                     'Customer Shipping Address1' => 'orderShippingAddress1',
@@ -474,9 +474,9 @@ class PrintController extends Controller
                     $rowArr1[$j++] = $orderRecord->orderCustomerPhone;
                     $rowArr1[$j++] = $orderRecord->orderBillingAddress1;
                     $rowArr1[$j++] = $orderRecord->orderBillingAddress2;
-                    $rowArr1[$j++] = $orderRecord->billingCountry->countryName;
-                    $rowArr1[$j++] = $orderRecord->billingState->stateName;
-                    $rowArr1[$j++] = $orderRecord->billingCity->cityName;
+                    $rowArr1[$j++] = $orderRecord->country->countryName;
+                    $rowArr1[$j++] = $orderRecord->state->stateName;
+                    $rowArr1[$j++] = $orderRecord->city->cityName;
                     $rowArr1[$j++] = $orderRecord->orderBillingZipcode;
                     $rowArr1[$j++] = $orderRecord->orderBillingPhone;
                     $rowArr1[$j++] = $orderRecord->orderShippingAddress1;

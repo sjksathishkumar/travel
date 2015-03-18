@@ -52,9 +52,9 @@ class Users extends CActiveRecord
 	public function relations()
 	{
 		return array(
-			'billingCountry'=>array(self::BELONGS_TO, 'Country','customerCountry'),
-			'billingState'=>array(self::BELONGS_TO, 'State','customerState'),
-			'billingCity'=>array(self::BELONGS_TO, 'City','customerCity'),
+			'country'=>array(self::BELONGS_TO, 'Country','customerCountry'),
+			'state'=>array(self::BELONGS_TO, 'State','customerState'),
+			'city'=>array(self::BELONGS_TO, 'City','customerCity'),
             'userLogin'=>array(self::BELONGS_TO, 'User','fkUserLoginID'),
 		);
 	}
@@ -105,7 +105,7 @@ class Users extends CActiveRecord
 	{
 		// @todo Please modify the following code to remove attributes that should not be searched.
 		$criteria=new CDbCriteria;
-		$criteria->with = array('billingCountry','billingState','billingCity');
+		$criteria->with = array('country','state','city');
 		$criteria->compare('pkCustomerID',$this->pkCustomerID);
 		$criteria->compare('fkUserLoginID',$this->fkUserLoginID,true);
 		$criteria->compare('customerFirstName',$this->customerFirstName,true);
@@ -147,7 +147,7 @@ class Users extends CActiveRecord
     public function getUserDetails($userID){
     	$criteria=new CDbCriteria;
 
-    	$criteria->with=array('billingCountry','billingState','billingCity');
+    	$criteria->with=array('country','state','city');
 
     	$criteria->condition='pkCustomerID= "'. $userID.'"';
         

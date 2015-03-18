@@ -44,6 +44,56 @@ class UserIdentity extends CUserIdentity
 			}
 			return $this->errorCode==self::ERROR_NONE;
 		}
+		if($this->userType=='CP') // This is front city partner login
+		{
+			// check if login details exists in database
+			$record=UsersLogin::model()->findByAttributes(array('userEmail'=>$this->username,'userPassword'=>$this->password,'userType'=>'CP')); 
+			if($record===null)
+			{ 
+			    $this->errorCode=self::ERROR_USERNAME_INVALID;
+			}
+			else if($record->userPassword!==$this->password)            // here I compare db password with password field
+			{ 
+			    $this->errorCode=self::ERROR_PASSWORD_INVALID;
+			}
+			else
+			{  
+				$userModel = CityPartners::model()->findByAttributes(array('fkUserLoginID'=>$record->pkUserLoginID));
+				$this->setState('isCityPartner',1);
+			    $this->setState('userLoginId',$record->pkUserLoginID);
+			    $this->setState('userEmail', $record->userEmail);
+			    $this->setState('pkCityPartnerID',$userModel->pkCityPartnerID);
+			    $this->setState('cityPartnerFirstName',$userModel->cityPartnerFirstName);
+			    $this->setState('cityPartnerSubscriptionPlan',$userModel->cityPartnerSubscriptionPlan);
+			    $this->errorCode=self::ERROR_NONE;
+			}
+			return $this->errorCode==self::ERROR_NONE;
+		}
+		if($this->userType=='PP') // This is front property partner login
+		{
+			// check if login details exists in database
+			$record=UsersLogin::model()->findByAttributes(array('userEmail'=>$this->username,'userPassword'=>$this->password,'userType'=>'PP')); 
+			if($record===null)
+			{ 
+			    $this->errorCode=self::ERROR_USERNAME_INVALID;
+			}
+			else if($record->userPassword!==$this->password)            // here I compare db password with password field
+			{ 
+			    $this->errorCode=self::ERROR_PASSWORD_INVALID;
+			}
+			else
+			{  
+				$userModel = PropertyPartners::model()->findByAttributes(array('fkUserLoginID'=>$record->pkUserLoginID));
+				$this->setState('isPropertyPartner',1);
+			    $this->setState('userLoginId',$record->pkUserLoginID);
+			    $this->setState('userEmail', $record->userEmail);
+			    $this->setState('pkPropertyPartnerID',$userModel->pkPropertyPartnerID);
+			    $this->setState('propertyPartnerFirstName',$userModel->propertyPartnerFirstName);
+			    $this->setState('propertyPartnerSubscriptionPlan',$userModel->propertyPartnerSubscriptionPlan);
+			    $this->errorCode=self::ERROR_NONE;
+			}
+			return $this->errorCode==self::ERROR_NONE;
+		}
 		if($this->userType=='A')// This is admin login
 		{
 			

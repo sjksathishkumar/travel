@@ -125,6 +125,30 @@ class UsersLogin extends CActiveRecord
         return $customerDetails;
     }
 
+    /*
+    * This method is used to get the partner details.
+    */
+    public function getPartnerDetails($arrPost = array())
+    {
+        if(strpos($arrPost['partnerEmail'], '@') !== false){
+            $loginField = 't.userName= "'.$arrPost['partnerEmail'];
+        }else{
+           //Otherwise we search using the username
+            $loginField = 't.userName= "'.$arrPost['partnerEmail'];
+        }
+        $criteria=new CDbCriteria;
+        //$criteria->join='LEFT JOIN '.TABLE_CUSTOMERS.' AS U ON t.pkUserLoginID=U.fkUserLoginID';
+        //$criteria = new CDbCriteria();
+        //$criteria->select = 'id, username';
+        //$criteria->condition = 'email=:email AND pass=:pass';
+        //$criteria->params = array(':email'=>$email, ':pass'=>$pass);
+        //$model = User::model()->find($criteria);
+        //$criteria->select = 't.userName, t.userName';
+        $criteria->condition=$loginField.'" AND t.userPassword = "'.md5($arrPost['partnerPassword']).'"';
+        $partnerDetails = $this->find($criteria);
+        return $partnerDetails;
+    }
+
     public function login($userType=null)
     {
         Yii::app()->user->logout(false);

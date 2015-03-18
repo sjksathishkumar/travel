@@ -20,7 +20,37 @@ $varBaseUrl = Yii::app()->baseUrl;
                             <li><?php echo CHtml::link(CHtml::image($varBaseUrl . "/images/youtube.png", "youtube", array('title' => 'youtube')),$socalLinks['configurationSocialLink4'])?></li>
                         </ul>
                     </div>
-                    <?php if(!isset(Yii::app()->user->isCustomer)){?>
+                    <?php if(isset(Yii::app()->user->isCustomer)){?>
+                     <div class="top-login-outer">
+                            <div class="top-login">
+                                <ul>
+                                    <li>Welcome <?php echo Yii::app()->user->userFirstName; ?>&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                                    <li><?php echo CHtml::link('My Account',$varBaseUrl.'/member/dashboard',array('title'=>'My Account','alt'=>'My Account'));?>&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                                    <li><?php echo CHtml::link('Logout',$varBaseUrl.'/member/logout',array('title'=>'Logout','alt'=>'Logout'));?></li>                                   
+                                </ul>
+                            </div>
+                    </div>
+                    <?php } elseif (isset(Yii::app()->user->isCityPartner)) { ?>
+                    <div class="top-login-outer">
+                            <div class="top-login">
+                                <ul>
+                                    <li>Welcome <?php echo Yii::app()->user->cityPartnerFirstName; ?>&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                                    <li><?php echo CHtml::link('My Account',$varBaseUrl.'/cityPartner/dashboard/index',array('title'=>'My Account','alt'=>'My Account'));?>&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                                    <li><?php echo CHtml::link('Logout',$varBaseUrl.'/propertyPartner/basic/logout',array('title'=>'Logout','alt'=>'Logout'));?></li>                                   
+                                </ul>
+                            </div>
+                    </div>
+                    <?php } elseif (isset(Yii::app()->user->isPropertyPartner)) { ?>
+                    <div class="top-login-outer">
+                            <div class="top-login">
+                                <ul>
+                                    <li>Welcome <?php echo Yii::app()->user->propertyPartnerFirstName; ?>&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                                    <li><?php echo CHtml::link('My Account',$varBaseUrl.'/propertyPartner/dashboard/index',array('title'=>'My Account','alt'=>'My Account'));?>&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                                    <li><?php echo CHtml::link('Logout',$varBaseUrl.'/propertyPartner/basic/logout',array('title'=>'Logout','alt'=>'Logout'));?></li>                                   
+                                </ul>
+                            </div>
+                    </div>
+                    <?php }else{?>
                     <div class="top-login-outer">                       
                         <div class="top-login">
                             <ul>
@@ -46,16 +76,7 @@ $varBaseUrl = Yii::app()->baseUrl;
                             </ul>
                         </div>
                     </div>
-                    <?php }else{?>
-                        <div class="top-login-outer">
-                            <div class="top-login">
-                                <ul>
-                                    <li>Welcome <?php echo Yii::app()->user->userFirstName; ?>&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;</li>
-                                    <li><?php echo CHtml::link('My Account',$varBaseUrl.'/member/dashboard',array('title'=>'My Account','alt'=>'My Account'));?>&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;</li>
-                                    <li><?php echo CHtml::link('Logout',$varBaseUrl.'/member/logout',array('title'=>'Logout','alt'=>'Logout'));?></li>                                   
-                                </ul>
-                            </div>
-                        </div>   
+                                             
                     <?php }?>
                 </div>
             </div>

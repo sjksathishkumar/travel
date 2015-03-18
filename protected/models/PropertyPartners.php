@@ -50,10 +50,13 @@ class PropertyPartners extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('fkUserLoginID, propertyPartnerUniqueID, propertyPartnerFirstName, propertyPartnerLastName, propertyPartnerUserName, propertyPartnerEmail, propertyPartnerMobile, propertyPartnerBusinessName, propertyPartnerWebsite, propertyPartnerStatus, propertyPartnerAddress, propertyPartnerCity, propertyPartnerState, propertyPartnerCountry, propertyPartnerZip, propertyPartnerAccountActivationToken, propertyPartnerDateAdded', 'required'),
+			//array('fkUserLoginID, propertyPartnerUniqueID, propertyPartnerFirstName, propertyPartnerLastName, propertyPartnerUserName, propertyPartnerEmail, propertyPartnerMobile, propertyPartnerBusinessName, propertyPartnerWebsite, propertyPartnerStatus, propertyPartnerAddress, propertyPartnerCity, propertyPartnerState, propertyPartnerCountry, propertyPartnerZip, propertyPartnerAccountActivationToken, propertyPartnerDateAdded', 'required'),
+			array('propertyPartnerFirstName, propertyPartnerLastName, propertyPartnerMobile, propertyPartnerBusinessName, propertyPartnerWebsite, propertyPartnerStatus, propertyPartnerAddress, propertyPartnerCity, propertyPartnerState, propertyPartnerCountry, propertyPartnerZip', 'required', 'on'=>'property_partner_update_admin'),
+			array('propertyPartnerFirstName, propertyPartnerLastName, propertyPartnerMobile, propertyPartnerBusinessName, propertyPartnerWebsite, propertyPartnerContactMethod, propertyPartnerSubscriptionPlan', 'required', 'on'=>'new_property_partner_admin'),
+			array('propertyPartnerFirstName, propertyPartnerLastName, propertyPartnerMobile, propertyPartnerDateOfBirth, propertyPartnerBusinessName, propertyPartnerWebsite, propertyPartnerAddress, propertyPartnerCity, propertyPartnerState, propertyPartnerCountry, propertyPartnerZip, propertyPartnerContactMethod', 'required', 'on'=>'property_partner_update_front'),
 			array('fkUserLoginID, propertyPartnerCity, propertyPartnerState, propertyPartnerCountry, propertyPartnerZip, eWalletBalance, wishginiBalance', 'numerical', 'integerOnly'=>true),
 			array('propertyPartnerUniqueID, propertyPartnerFirstName, propertyPartnerLastName, propertyPartnerUserName, propertyPartnerEmail, propertyPartnerMobile, propertyPartnerBusinessName, propertyPartnerWebsite, propertyPartnerAddress, propertyPartnerAccountActivationToken', 'length', 'max'=>255),
-			array('propertyPartnerContactMethod, propertyPartnerSubscriptionPlan, propertyPartnerStatus, propertyPartnerFeePaid', 'length', 'max'=>1),
+			array('propertyPartnerSubscriptionPlan, propertyPartnerStatus, propertyPartnerFeePaid', 'length', 'max'=>1),
 			array('propertyPartnerDateModified', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -69,6 +72,10 @@ class PropertyPartners extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'country'=>array(self::BELONGS_TO, 'Country','propertyPartnerCountry'),
+			'state'=>array(self::BELONGS_TO, 'State','propertyPartnerState'),
+			'city'=>array(self::BELONGS_TO, 'City','propertyPartnerCity'),
+            'userLogin'=>array(self::BELONGS_TO, 'User','fkUserLoginID'),
 		);
 	}
 
@@ -122,7 +129,7 @@ class PropertyPartners extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
-
+		$criteria->with = array('country','state','city');
 		$criteria->compare('pkPropertyPartnerID',$this->pkPropertyPartnerID,true);
 		$criteria->compare('fkUserLoginID',$this->fkUserLoginID);
 		$criteria->compare('propertyPartnerUniqueID',$this->propertyPartnerUniqueID,true);
@@ -177,15 +184,15 @@ class PropertyPartners extends CActiveRecord
             return $this->customerFirstName.' '.$this->customerLastName;
     }
 
-    public function getUserDetails($userID){
+    public function getProperyPartnerDetails($partnerID){
     	$criteria=new CDbCriteria;
 
-    	$criteria->with=array('billingCountry','billingState','billingCity');
+    	$criteria->with=array('country','state','city');
 
-    	$criteria->condition='pkCustomerID= "'. $userID.'"';
+    	$criteria->condition='fkUserLoginID= "'. $partnerID.'"';
         
-        $customerDetails = Users::model()->find($criteria);
+        $propertyPartnerDetails = PropertyPartners::model()->find($criteria);
 
-        return $customerDetails;
+        return $propertyPartnerDetails;
     }
 }

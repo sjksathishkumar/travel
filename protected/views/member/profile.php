@@ -213,6 +213,7 @@
 								  </div>
 								  <div class="half-half-input margin0">
 								  	<?php echo $form->textField($model,'customerZip',array('class'=>'requiredField zipField','data-rule-required'=>'true','placeholder'=>'Zip')); ?>	
+								  	<?php echo $form->error($model, 'customerZip'); ?>
 								  </div>
 							  </div>
 						</div>

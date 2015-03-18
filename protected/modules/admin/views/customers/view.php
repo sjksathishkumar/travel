@@ -68,15 +68,15 @@
 						'customerAddress',
 						array(
 							'name'=>'customerCountry',
-							'value'=>$model->billingCountry->countryName,
+							'value'=>$model->country->countryName,
 						),
 						array(
 							'name'=>'customerState',
-							'value'=>$model->billingState->stateName,
+							'value'=>$model->state->stateName,
 						),
 						array(
 							'name'=>'customerCity',
-							'value'=>$model->billingCity->cityName,
+							'value'=>$model->city->cityName,
 						),
 						'customerZip',
 						'eWalletBalance',

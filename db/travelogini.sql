@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 14, 2015 at 08:54 PM
+-- Generation Time: Mar 18, 2015 at 08:39 PM
 -- Server version: 5.5.41-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.5
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `tbl_admin_access_log` (
   `adminAccessLogoutTime` datetime NOT NULL,
   PRIMARY KEY (`pkAdminAccessID`),
   KEY `fkAdminID` (`fkAdminID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=271 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=275 ;
 
 --
 -- Dumping data for table `tbl_admin_access_log`
@@ -71,7 +71,11 @@ INSERT INTO `tbl_admin_access_log` (`pkAdminAccessID`, `fkAdminID`, `adminAccess
 (267, 4, '127.0.0.1', '2015-03-14 10:37:42', '0000-00-00 00:00:00'),
 (268, 4, '127.0.0.1', '2015-03-14 12:40:40', '0000-00-00 00:00:00'),
 (269, 4, '127.0.0.1', '2015-03-14 14:27:20', '0000-00-00 00:00:00'),
-(270, 4, '127.0.0.1', '2015-03-14 17:01:54', '0000-00-00 00:00:00');
+(270, 4, '127.0.0.1', '2015-03-14 17:01:54', '0000-00-00 00:00:00'),
+(271, 4, '127.0.0.1', '2015-03-16 10:38:23', '0000-00-00 00:00:00'),
+(272, 4, '127.0.0.1', '2015-03-16 14:35:08', '0000-00-00 00:00:00'),
+(273, 4, '127.0.0.1', '2015-03-17 09:54:07', '0000-00-00 00:00:00'),
+(274, 4, '127.0.0.1', '2015-03-18 14:46:48', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -181,6 +185,7 @@ CREATE TABLE IF NOT EXISTS `tbl_city_partners` (
   `cityPartnerUserName` varchar(255) NOT NULL,
   `cityPartnerEmail` varchar(255) NOT NULL,
   `cityPartnerMobile` varchar(255) NOT NULL,
+  `cityPartnerDateOfBirth` datetime NOT NULL,
   `cityPartnerBusinessName` varchar(255) NOT NULL,
   `cityPartnerWebsite` varchar(255) NOT NULL,
   `cityPartnerContactMethod` enum('1','2','3') NOT NULL DEFAULT '1' COMMENT '1 => Mobile, 2 => Email, 3 => Both',
@@ -205,7 +210,14 @@ CREATE TABLE IF NOT EXISTS `tbl_city_partners` (
   UNIQUE KEY `cityPartnerUserName` (`cityPartnerUserName`),
   UNIQUE KEY `cityPartnerUniqueID` (`cityPartnerUniqueID`),
   KEY `fkUserLoginID` (`fkUserLoginID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=126 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `tbl_city_partners`
+--
+
+INSERT INTO `tbl_city_partners` (`pkCityPartnerID`, `fkUserLoginID`, `cityPartnerUniqueID`, `cityPartnerFirstName`, `cityPartnerLastName`, `cityPartnerUserName`, `cityPartnerEmail`, `cityPartnerMobile`, `cityPartnerDateOfBirth`, `cityPartnerBusinessName`, `cityPartnerWebsite`, `cityPartnerContactMethod`, `cityPartnerSubscriptionPlan`, `cityPartnerStatus`, `cityPartnerFeePaid`, `cityPartnerAddress`, `cityPartnerCity`, `cityPartnerState`, `cityPartnerCountry`, `cityPartnerOperationCity`, `cityPartnerOperationState`, `cityPartnerOperationCountry`, `cityPartnerOperationArea`, `cityPartnerZip`, `eWalletBalance`, `wishginiBalance`, `cityPartnerAccountActivationToken`, `cityPartnerDateAdded`, `cityPartnerDateModified`) VALUES
+(2, 99, 'P150317024900', 'city', 'city', 'city', 'city@mail.com', '9947586958', '2005-01-19 00:00:00', 'city', 'city.com', '1', '1', '1', '0', 'address', 5, 4, 1, 3, 3, 1, 'delhi', 45621, 0, 0, '', '2015-03-17 14:49:00', '2015-03-18 14:45:06');
 
 -- --------------------------------------------------------
 
@@ -397,7 +409,6 @@ CREATE TABLE IF NOT EXISTS `tbl_customers` (
 --
 
 INSERT INTO `tbl_customers` (`pkCustomerID`, `fkUserLoginID`, `customerUniqueID`, `customerFirstName`, `customerLastName`, `customerUserName`, `customerEmail`, `customerMobile`, `customerGender`, `customerDateOfBirth`, `customerStatus`, `customerSubscriptionPlan`, `customerFeePaid`, `customerSpecialOfferSubscription`, `customerAddress`, `customerCity`, `customerState`, `customerCountry`, `customerZip`, `eWalletBalance`, `wishginiBalance`, `customerAccountActivationToken`, `customerDateAdded`, `customerDateModified`) VALUES
-(29, 4, '1', 'Dont Delete', 'Dont Delete', 'admin', 'admin@mail.vinove.com', '9994788682', 'Male', '1990-11-14 00:00:00', '1', '1', '0', '0', 'admin', 2, 2, 1, 34324324, 500, 520, '', '2014-10-09 10:55:53', '2015-03-14 10:30:08'),
 (124, 93, 'CUS150314035842', 'test', 'test', 'test', 'test@mail.com', '9856232536', 'Male', '0000-00-00 00:00:00', '1', '0', '0', '0', '', 0, 0, 0, 0, 0, 0, '', '2015-03-14 15:58:42', '0000-00-00 00:00:00'),
 (125, 94, 'CUS150314035925', 'sathish', 'kumar', 'sathish', 'sathish@mail.com', '9856232536', 'Male', '0000-00-00 00:00:00', '1', '0', '0', '0', '', 0, 0, 0, 0, 0, 0, '', '2015-03-14 15:59:25', '0000-00-00 00:00:00');
 
@@ -823,6 +834,7 @@ CREATE TABLE IF NOT EXISTS `tbl_property_partners` (
   `propertyPartnerUserName` varchar(255) NOT NULL,
   `propertyPartnerEmail` varchar(255) NOT NULL,
   `propertyPartnerMobile` varchar(255) NOT NULL,
+  `propertyPartnerDateOfBirth` datetime NOT NULL,
   `propertyPartnerBusinessName` varchar(255) NOT NULL,
   `propertyPartnerWebsite` varchar(255) NOT NULL,
   `propertyPartnerContactMethod` enum('1','2','3') NOT NULL DEFAULT '1' COMMENT '1 => Mobile, 2 => Email, 3 => Both',
@@ -844,7 +856,14 @@ CREATE TABLE IF NOT EXISTS `tbl_property_partners` (
   UNIQUE KEY `propertyPartnerUniqueID` (`propertyPartnerUniqueID`),
   UNIQUE KEY `propertyPartnerEmail` (`propertyPartnerEmail`),
   KEY `fkUserLoginID` (`fkUserLoginID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=126 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `tbl_property_partners`
+--
+
+INSERT INTO `tbl_property_partners` (`pkPropertyPartnerID`, `fkUserLoginID`, `propertyPartnerUniqueID`, `propertyPartnerFirstName`, `propertyPartnerLastName`, `propertyPartnerUserName`, `propertyPartnerEmail`, `propertyPartnerMobile`, `propertyPartnerDateOfBirth`, `propertyPartnerBusinessName`, `propertyPartnerWebsite`, `propertyPartnerContactMethod`, `propertyPartnerSubscriptionPlan`, `propertyPartnerStatus`, `propertyPartnerFeePaid`, `propertyPartnerAddress`, `propertyPartnerCity`, `propertyPartnerState`, `propertyPartnerCountry`, `propertyPartnerZip`, `eWalletBalance`, `wishginiBalance`, `propertyPartnerAccountActivationToken`, `propertyPartnerDateAdded`, `propertyPartnerDateModified`) VALUES
+(1, 95, 'PART00123', 'propertysathish', 'propertykumar', 'propertysathishkumar', 'propertysathishkumar@mail.com', '14257458963', '2009-12-10 00:00:00', 'propertyBusiness', 'www.property.com', '1', '2', '1', '0', 'propertysathish', 1, 2, 1, 12345, 0, 0, '', '2015-03-16 06:24:39', '2015-03-18 14:19:23');
 
 -- --------------------------------------------------------
 
@@ -864,7 +883,7 @@ CREATE TABLE IF NOT EXISTS `tbl_propery_partner_plans` (
   `planAddedDate` datetime NOT NULL,
   `planModifiedDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`pkPlanID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `tbl_propery_partner_plans`
@@ -934,12 +953,12 @@ CREATE TABLE IF NOT EXISTS `tbl_users_login` (
   `userEmail` varchar(255) NOT NULL,
   `userName` varchar(250) NOT NULL,
   `userPassword` varchar(255) NOT NULL,
-  `userType` enum('A','C','M') NOT NULL COMMENT 'A=Admin C=Customer M=Merchant',
+  `userType` enum('A','C','PP','CP') NOT NULL COMMENT 'A=Admin C=Customer M=Merchant',
   `userDateModified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`pkUserLoginID`),
   UNIQUE KEY `userName` (`userName`),
   UNIQUE KEY `userEmail` (`userEmail`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=95 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=100 ;
 
 --
 -- Dumping data for table `tbl_users_login`
@@ -948,7 +967,9 @@ CREATE TABLE IF NOT EXISTS `tbl_users_login` (
 INSERT INTO `tbl_users_login` (`pkUserLoginID`, `userEmail`, `userName`, `userPassword`, `userType`, `userDateModified`) VALUES
 (4, 'admin@mail.vinove.com', 'admin', '87817c5310da5cfff85df962e906fff5', 'A', '2015-03-14 09:07:34'),
 (93, 'test@mail.com', 'test', '098f6bcd4621d373cade4e832627b4f6', 'C', '2015-03-14 10:28:42'),
-(94, 'sathish@mail.com', 'sathish', '078dc595e3663750846941f646f06a2d', 'C', '2015-03-14 10:29:25');
+(94, 'sathish@mail.com', 'sathish', '87817c5310da5cfff85df962e906fff5', 'C', '2015-03-17 15:33:26'),
+(95, 'propertysathishkumar@mail.com', 'property', '87817c5310da5cfff85df962e906fff5', 'PP', '2015-03-18 13:36:50'),
+(99, 'city@mail.com', 'city', '08b64106d977b1e32174bebba9113d55', 'CP', '2015-03-17 15:33:41');
 
 --
 -- Constraints for dumped tables
@@ -967,6 +988,12 @@ ALTER TABLE `tbl_cities`
   ADD CONSTRAINT `tbl_cities_ibfk_1` FOREIGN KEY (`fkStateID`) REFERENCES `tbl_state` (`pkStateID`) ON DELETE CASCADE;
 
 --
+-- Constraints for table `tbl_city_partners`
+--
+ALTER TABLE `tbl_city_partners`
+  ADD CONSTRAINT `tbl_city_partners_ibfk_1` FOREIGN KEY (`fkUserLoginID`) REFERENCES `tbl_users_login` (`pkUserLoginID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `tbl_customers`
 --
 ALTER TABLE `tbl_customers`
@@ -977,6 +1004,12 @@ ALTER TABLE `tbl_customers`
 --
 ALTER TABLE `tbl_password_reset`
   ADD CONSTRAINT `tbl_password_reset_ibfk_1` FOREIGN KEY (`fkUserID`) REFERENCES `tbl_users_login` (`pkUserLoginID`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `tbl_property_partners`
+--
+ALTER TABLE `tbl_property_partners`
+  ADD CONSTRAINT `tbl_property_partners_ibfk_1` FOREIGN KEY (`fkUserLoginID`) REFERENCES `tbl_users_login` (`pkUserLoginID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tbl_state`

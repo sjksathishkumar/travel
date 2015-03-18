@@ -54,13 +54,13 @@
 							<h3><a href="#" class="texth">Billing Address</a><span class="editbutton fancybox" id="edit-billing" href="#edit-billing-address">Edit</span></h3>
 						</div>
 						<div class="pdeatails_box billing-address">
-							<?php if(!empty($order->billingCity->cityName)){ ?>
+							<?php if(!empty($order->city->cityName)){ ?>
 								<ul class="addresses">
 									<li><?php echo $order->orderBillingAddress1;?></li>
 									<li><?php echo $order->orderBillingAddress2;?></li>
-									<li><?php echo $order->billingCity->cityName;?></li>
-									<li><?php echo $order->billingState->stateName;?></li>
-									<li><?php echo $order->billingCountry->countryName;?></li>
+									<li><?php echo $order->city->cityName;?></li>
+									<li><?php echo $order->state->stateName;?></li>
+									<li><?php echo $order->country->countryName;?></li>
 									<li><?php echo $order->orderBillingZipcode;?></li>
 									<li>Tel: <?php echo $order->orderBillingPhone;?></li>
 								</ul>

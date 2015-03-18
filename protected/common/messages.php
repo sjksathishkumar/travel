@@ -91,6 +91,11 @@
         define('UPDATE_CUSTOMER_SUCCESS','Customer updated successfully.');
         define('DELETE_CUSTOMER_SUCCESS','Customer deleted successfully.');
 
+        //ADMIN PARTNER MESSAGES
+        define('ADD_PARTNER_SUCCESS','New partner created successfully.');
+        define('UPDATE_PARTNER_SUCCESS','Partner Details updated successfully.');
+        define('DELETE_PARTNER_SUCCESS','Partner deleted successfully.');
+
         //ADMIN CUSTOMER MESSAGES
         define('UPDATE_MEMBER_SUCCESS','Details updated successfully.');
         

@@ -197,6 +197,27 @@ class CommonFunctions
     }
 
     /**
+     *  return subscription plan for partner
+     */
+    public function partnerSubscriptionPlan($status)
+    {
+        $returnVal = "";
+        if ($status == 1)
+        {
+            $returnVal = "Free";
+        }
+        else if ($status == 2)
+        {
+            $returnVal = "Basic";
+        }
+        else
+        {
+            $returnVal = "Pro";
+        }
+        return $returnVal;
+    }
+
+    /**
      *  Unique ID Generator for customers and partners
      */
     public function uniqueIDGenerator($string)
@@ -205,6 +226,27 @@ class CommonFunctions
 
         $returnVal = $string.date("ymdhis");
 
+        return $returnVal;
+    }
+
+      /**
+     *  return contact mode
+     */
+    public function contactMode($mode)
+    {
+        $returnVal = "";
+        if ($mode == 1)
+        {
+            $returnVal = "Mobile";
+        }
+        else if ($mode == 2)
+        {
+            $returnVal = "E-mail";
+        }
+        else
+        {
+            $returnVal = "Both";
+        }
         return $returnVal;
     }
 

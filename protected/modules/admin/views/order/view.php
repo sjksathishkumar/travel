@@ -68,9 +68,9 @@
 								<table id="yw0" class="detail-view">
 									<tr class="odd"><th>Address1:</th><td><?php echo $model->orderBillingAddress1;?></td></tr>
 									<tr class="even"><th>Address2:</th><td><?php echo $model->orderBillingAddress2;?></td></tr>
-									<tr class="odd"><th>Country:</th><td><?php echo $model->billingCountry->countryName;?></td></tr>
-									<tr class="even"><th>State:</th><td><?php echo $model->billingState->stateName;?></td></tr>
-									<tr class="odd"><th>City:</th><td><?php echo $model->billingCity->cityName;?></td></tr>
+									<tr class="odd"><th>Country:</th><td><?php echo $model->country->countryName;?></td></tr>
+									<tr class="even"><th>State:</th><td><?php echo $model->state->stateName;?></td></tr>
+									<tr class="odd"><th>City:</th><td><?php echo $model->city->cityName;?></td></tr>
 									<tr class="even"><th>Zipcode:</th><td><?php echo $model->orderBillingZipcode;?></td></tr>
 									<tr class="odd"><th>Phone:</th><td><?php echo $model->orderBillingPhone;?></td></tr>
 								</table>

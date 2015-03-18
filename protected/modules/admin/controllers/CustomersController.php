@@ -86,7 +86,7 @@ class CustomersController extends Controller
         	$model->customerUserName = $loginModel->userName; 
         	$loginModel->userEmail = $model->customerEmail;
 			$loginModel->userType = 'C';
-			$model->customerUniqueID = CommonFunctions::uniqueIDGenerator('CUS');
+			$model->customerUniqueID = CommonFunctions::uniqueIDGenerator('C');
         	if($model->validate() & $loginModel->validate()){
         		$transaction=$model->dbConnection->beginTransaction();
         		$password = $loginModel->userPassword;

@@ -1,166 +1,113 @@
 <?php
-/* @var $this PropertyPartnersController */
-/* @var $model PropertyPartners */
+/* @var $this BannerController */
+/* @var $model Banner */
 /* @var $form CActiveForm */
 ?>
-
 <div class="form">
-
-<?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'property-partners-form',
-	// Please note: When you enable ajax validation, make sure the corresponding
-	// controller action is handling ajax validation correctly.
-	// There is a call to performAjaxValidation() commented in generated controller code.
-	// See class documentation of CActiveForm for details on this.
-	'enableAjaxValidation'=>false,
-)); ?>
-
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
-
-	<?php echo $form->errorSummary($model); ?>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'fkUserLoginID'); ?>
-		<?php echo $form->textField($model,'fkUserLoginID'); ?>
-		<?php echo $form->error($model,'fkUserLoginID'); ?>
+	<div class="span12">
+		<div class="box box-color box-bordered">
+			<div class="box-title">
+				<h3>
+					<i class="icon-table"></i>
+					<?php if(isset($type)):?>Edit Property Partner<?php else:?>Create New Property Partner<?php endif;?>
+				</h3>
+			</div>
+			<div class="box-content nopadding">
+				<?php $form=$this->beginWidget('CActiveForm', array(
+										'id'=>'new-property-partner-form',
+										'enableAjaxValidation'=>false,
+										'htmlOptions'=>array(
+											'class'=>'form-horizontal form-bordered form-validate',
+											'enctype' => 'multipart/form-data',
+										),										
+								));
+				?>
+				<?php echo $form->errorSummary($model); ?>
+				<div class="control-group">
+					<?php echo $form->labelEx($model,'propertyPartnerFirstName',array('class'=>'control-label','for'=>'textfield')); ?>
+					<div class="controls">
+						<?php echo $form->textField($model,'propertyPartnerFirstName',array('class'=>'input-xlarge','data-rule-required'=>'true')); ?>	
+						<?php echo $form->error($model, 'propertyPartnerFirstName'); ?>
+					</div>
+				</div>
+				<div class="control-group">
+					<?php echo $form->labelEx($model,'propertyPartnerLastName',array('class'=>'control-label','for'=>'textfield')); ?>
+					<div class="controls">
+						<?php echo $form->textField($model,'propertyPartnerLastName',array('class'=>'input-xlarge','data-rule-required'=>'true')); ?>	
+						<?php echo $form->error($model, 'propertyPartnerLastName'); ?>
+					</div>
+				</div>
+				<div class="control-group">
+					<?php echo $form->labelEx($loginModel,'userEmail',array('class'=>'control-label','for'=>'textfield')); ?>
+					<div class="controls">
+						<?php echo $form->textField($loginModel,'userEmail',array('class'=>'input-xlarge','data-rule-required'=>'true','data-rule-email'=>'true')); ?>	
+						<?php echo $form->error($loginModel, 'userEmail'); ?>
+					</div>
+				</div>
+				<div class="control-group">
+					<?php echo $form->labelEx($loginModel,'userName',array('class'=>'control-label','for'=>'textfield')); ?>
+					<div class="controls">
+						<?php echo $form->textField($loginModel,'userName',array('class'=>'input-xlarge','data-rule-required'=>'true')); ?>	
+						<?php echo $form->error($loginModel, 'userName'); ?>
+					</div>
+				</div>
+				<div class="control-group">
+					<?php echo $form->labelEx($loginModel,'userPassword',array('class'=>'control-label','for'=>'textfield')); ?>
+					<div class="controls">
+						<?php echo $form->passwordField($loginModel,'userPassword',array('class'=>'input-xlarge','data-rule-required'=>'true')); ?>	
+						<?php echo $form->error($loginModel, 'userPassword'); ?>
+					</div>
+				</div>
+				<div class="control-group">
+					<?php echo $form->labelEx($loginModel,'repassword',array('class'=>'control-label','for'=>'textfield')); ?>
+					<div class="controls">
+						<?php echo $form->passwordField($loginModel,'repassword',array('class'=>'input-xlarge','data-rule-required'=>'true')); ?>	
+						<?php echo $form->error($loginModel, 'repassword'); ?>
+					</div>
+				</div>
+				<div class="control-group">
+					<?php echo $form->labelEx($model,'propertyPartnerMobile',array('class'=>'control-label','for'=>'textfield')); ?>
+					<div class="controls">
+						<?php echo $form->textField($model,'propertyPartnerMobile',array('class'=>'input-xlarge','data-rule-required'=>'true')); ?>	
+						<?php echo $form->error($model, 'propertyPartnerMobile'); ?>
+					</div>
+				</div>
+				<div class="control-group">
+					<?php echo $form->labelEx($model,'propertyPartnerContactMethod',array('class'=>'control-label','for'=>'textfield')); ?>
+					<div class="controls">
+						<?php echo $form->dropDownList($model,'propertyPartnerContactMethod',array('1'=>'Mobile','2'=>'E-Mail','3'=>'Both'),array('empty'=>'- Select Mode -','class'=>'select2-me input-large','data-rule-required'=>'true')); ?>	
+						<?php echo $form->error($model, 'propertyPartnerContactMethod'); ?>
+					</div>
+				</div>
+				<div class="control-group">
+					<?php echo $form->labelEx($model,'propertyPartnerSubscriptionPlan',array('class'=>'control-label','for'=>'textfield')); ?>
+					<div class="controls">
+						<?php echo $form->dropDownList($model,'propertyPartnerSubscriptionPlan',array('1'=>'Free','2'=>'Basic','3'=>'Pro'),array('empty'=>'- Select Plan -','class'=>'select2-me input-large','data-rule-required'=>'true')); ?>	
+						<?php echo $form->error($model, 'propertyPartnerSubscriptionPlan'); ?>
+					</div>
+				</div>
+				<div class="control-group">
+					<?php echo $form->labelEx($model,'propertyPartnerBusinessName',array('class'=>'control-label','for'=>'textfield')); ?>
+					<div class="controls">
+						<?php echo $form->textField($model,'propertyPartnerBusinessName',array('class'=>'input-xlarge','data-rule-required'=>'true')); ?>	
+						<?php echo $form->error($model, 'propertyPartnerBusinessName'); ?>
+					</div>
+				</div>
+				<div class="control-group">
+					<?php echo $form->labelEx($model,'propertyPartnerWebsite',array('class'=>'control-label','for'=>'textfield')); ?>
+					<div class="controls">
+						<?php echo $form->textField($model,'propertyPartnerWebsite',array('class'=>'input-xlarge','data-rule-required'=>'true')); ?>	
+						<?php echo $form->error($model, 'propertyPartnerWebsite'); ?>
+					</div>
+				</div>
+				<div class="note"><strong>Note :</strong> <span class="required">*</span> Indicates mandatory fields.</div>
+					<div class="form-actions">  
+						<?php echo CHtml::submitButton('Submit',array('class'=>'btn btn-primary','title'=>'Submit','alt'=>'Submit')); ?>
+						<?php echo CHtml::link('Cancel',array('/admin/PropertyPartners'),array('class'=>'btn','title'=>'Cancel','alt'=>'Cancel')); ?>  
+					</div>
+				<?php $this->endWidget(); ?>
+			</div><!-- form -->
+		</div>
 	</div>
+</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'propertyPartnerUniqueID'); ?>
-		<?php echo $form->textField($model,'propertyPartnerUniqueID',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'propertyPartnerUniqueID'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'propertyPartnerFirstName'); ?>
-		<?php echo $form->textField($model,'propertyPartnerFirstName',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'propertyPartnerFirstName'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'propertyPartnerLastName'); ?>
-		<?php echo $form->textField($model,'propertyPartnerLastName',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'propertyPartnerLastName'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'propertyPartnerUserName'); ?>
-		<?php echo $form->textField($model,'propertyPartnerUserName',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'propertyPartnerUserName'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'propertyPartnerEmail'); ?>
-		<?php echo $form->textField($model,'propertyPartnerEmail',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'propertyPartnerEmail'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'propertyPartnerMobile'); ?>
-		<?php echo $form->textField($model,'propertyPartnerMobile',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'propertyPartnerMobile'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'propertyPartnerBusinessName'); ?>
-		<?php echo $form->textField($model,'propertyPartnerBusinessName',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'propertyPartnerBusinessName'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'propertyPartnerWebsite'); ?>
-		<?php echo $form->textField($model,'propertyPartnerWebsite',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'propertyPartnerWebsite'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'propertyPartnerContactMethod'); ?>
-		<?php echo $form->textField($model,'propertyPartnerContactMethod',array('size'=>1,'maxlength'=>1)); ?>
-		<?php echo $form->error($model,'propertyPartnerContactMethod'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'propertyPartnerSubscriptionPlan'); ?>
-		<?php echo $form->textField($model,'propertyPartnerSubscriptionPlan',array('size'=>1,'maxlength'=>1)); ?>
-		<?php echo $form->error($model,'propertyPartnerSubscriptionPlan'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'propertyPartnerStatus'); ?>
-		<?php echo $form->textField($model,'propertyPartnerStatus',array('size'=>1,'maxlength'=>1)); ?>
-		<?php echo $form->error($model,'propertyPartnerStatus'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'propertyPartnerFeePaid'); ?>
-		<?php echo $form->textField($model,'propertyPartnerFeePaid',array('size'=>1,'maxlength'=>1)); ?>
-		<?php echo $form->error($model,'propertyPartnerFeePaid'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'propertyPartnerAddress'); ?>
-		<?php echo $form->textField($model,'propertyPartnerAddress',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'propertyPartnerAddress'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'propertyPartnerCity'); ?>
-		<?php echo $form->textField($model,'propertyPartnerCity'); ?>
-		<?php echo $form->error($model,'propertyPartnerCity'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'propertyPartnerState'); ?>
-		<?php echo $form->textField($model,'propertyPartnerState'); ?>
-		<?php echo $form->error($model,'propertyPartnerState'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'propertyPartnerCountry'); ?>
-		<?php echo $form->textField($model,'propertyPartnerCountry'); ?>
-		<?php echo $form->error($model,'propertyPartnerCountry'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'propertyPartnerZip'); ?>
-		<?php echo $form->textField($model,'propertyPartnerZip'); ?>
-		<?php echo $form->error($model,'propertyPartnerZip'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'eWalletBalance'); ?>
-		<?php echo $form->textField($model,'eWalletBalance'); ?>
-		<?php echo $form->error($model,'eWalletBalance'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'wishginiBalance'); ?>
-		<?php echo $form->textField($model,'wishginiBalance'); ?>
-		<?php echo $form->error($model,'wishginiBalance'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'propertyPartnerAccountActivationToken'); ?>
-		<?php echo $form->textField($model,'propertyPartnerAccountActivationToken',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'propertyPartnerAccountActivationToken'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'propertyPartnerDateAdded'); ?>
-		<?php echo $form->textField($model,'propertyPartnerDateAdded'); ?>
-		<?php echo $form->error($model,'propertyPartnerDateAdded'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'propertyPartnerDateModified'); ?>
-		<?php echo $form->textField($model,'propertyPartnerDateModified'); ?>
-		<?php echo $form->error($model,'propertyPartnerDateModified'); ?>
-	</div>
-
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
-	</div>
-
-<?php $this->endWidget(); ?>
-
-</div><!-- form -->

@@ -1,140 +1,74 @@
 <?php
-/* @var $this PropertyPartnersController */
-/* @var $model PropertyPartners */
+/* @var $this BannerController */
+/* @var $model Banner */
 /* @var $form CActiveForm */
 ?>
 
 <div class="wide form">
-
-<?php $form=$this->beginWidget('CActiveForm', array(
-	'action'=>Yii::app()->createUrl($this->route),
-	'method'=>'get',
-)); ?>
-
-	<div class="row">
-		<?php echo $form->label($model,'pkPropertyPartnerID'); ?>
-		<?php echo $form->textField($model,'pkPropertyPartnerID',array('size'=>20,'maxlength'=>20)); ?>
+	<div class="box box-color box-bordered">
+		<div class="box-title">
+			<h3>Search  </h3>
+		</div>
+		
 	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'fkUserLoginID'); ?>
-		<?php echo $form->textField($model,'fkUserLoginID'); ?>
+	<div class="box-content nopadding">
+		<?php $form=$this->beginWidget('CActiveForm', array(
+					'action'=>Yii::app()->createUrl($this->route),
+					'method'=>'get',
+				       'id'=>'_search-form',
+					'htmlOptions'=>array('class'=>'form-horizontal form-bordered')
+			)); ?>
+		<div class="row-fluid">
+			<div class="wide form">
+				<div class="span6">
+					<div class="control-group">
+						<?php echo $form->label($model,'propertyPartnerBusinessName',array('class'=>'control-label')); ?>						                           
+						<div class="controls">
+							<?php echo $form->textField($model,'propertyPartnerBusinessName',array('class'=>'input-large')); ?>
+						</div>
+					</div>
+				</div>
+				<div class="span6">
+					<div class="control-group">
+						<?php echo $form->label($model,'propertyPartnerEmail',array('class'=>'control-label')); ?>						                           
+						<div class="controls">
+							<?php echo $form->textField($model,'propertyPartnerEmail',array('class'=>'input-large')); ?>
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid">
+					<div class="span6">
+					    <div class="control-group">
+					       <?php echo $form->label($model,'propertyPartnerSubscriptionPlan',array('class'=>'control-label')); ?>
+					        <div class="controls">
+					            <?php echo $form->dropDownList($model,'propertyPartnerSubscriptionPlan',array(''=>'Select','1'=>'Free','2'=>'Basic','3'=>'Pro'),array('class'=>'select2-me input-xlarge')); ?>
+					        </div>
+					    </div>
+					</div>
+					<div class="span6">
+					    <div class="control-group">
+					       <?php echo $form->label($model,'propertyPartnerStatus',array('class'=>'control-label')); ?>
+					        <div class="controls">
+					            <?php echo $form->dropDownList($model,'propertyPartnerStatus',array(''=>'Select','1'=>'Active','0'=>'Inactive'),array('class'=>'select2-me input-xlarge')); ?>
+					        </div>
+					    </div>
+					</div>
+				</div>
+				<div class="row-fluid">
+					<div class="form-actions span12  search">
+						<?php echo CHtml::submitButton('Search',array('class'=>'btn btn-primary','title'=>'Search','alt'=>'Search')); ?>
+						<?php echo CHtml::resetButton('Reset',array('id'=>'resetVal','class'=>'btn','title'=>'Reset','alt'=>'Reset')); ?>
+					</div>
+				</div>
+			</div>
+		</div>
+		<?php $this->endWidget(); ?>
+		<!-- search-form -->
 	</div>
+</div>
 
-	<div class="row">
-		<?php echo $form->label($model,'propertyPartnerUniqueID'); ?>
-		<?php echo $form->textField($model,'propertyPartnerUniqueID',array('size'=>60,'maxlength'=>255)); ?>
-	</div>
 
-	<div class="row">
-		<?php echo $form->label($model,'propertyPartnerFirstName'); ?>
-		<?php echo $form->textField($model,'propertyPartnerFirstName',array('size'=>60,'maxlength'=>255)); ?>
-	</div>
 
-	<div class="row">
-		<?php echo $form->label($model,'propertyPartnerLastName'); ?>
-		<?php echo $form->textField($model,'propertyPartnerLastName',array('size'=>60,'maxlength'=>255)); ?>
-	</div>
 
-	<div class="row">
-		<?php echo $form->label($model,'propertyPartnerUserName'); ?>
-		<?php echo $form->textField($model,'propertyPartnerUserName',array('size'=>60,'maxlength'=>255)); ?>
-	</div>
 
-	<div class="row">
-		<?php echo $form->label($model,'propertyPartnerEmail'); ?>
-		<?php echo $form->textField($model,'propertyPartnerEmail',array('size'=>60,'maxlength'=>255)); ?>
-	</div>
 
-	<div class="row">
-		<?php echo $form->label($model,'propertyPartnerMobile'); ?>
-		<?php echo $form->textField($model,'propertyPartnerMobile',array('size'=>60,'maxlength'=>255)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'propertyPartnerBusinessName'); ?>
-		<?php echo $form->textField($model,'propertyPartnerBusinessName',array('size'=>60,'maxlength'=>255)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'propertyPartnerWebsite'); ?>
-		<?php echo $form->textField($model,'propertyPartnerWebsite',array('size'=>60,'maxlength'=>255)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'propertyPartnerContactMethod'); ?>
-		<?php echo $form->textField($model,'propertyPartnerContactMethod',array('size'=>1,'maxlength'=>1)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'propertyPartnerSubscriptionPlan'); ?>
-		<?php echo $form->textField($model,'propertyPartnerSubscriptionPlan',array('size'=>1,'maxlength'=>1)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'propertyPartnerStatus'); ?>
-		<?php echo $form->textField($model,'propertyPartnerStatus',array('size'=>1,'maxlength'=>1)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'propertyPartnerFeePaid'); ?>
-		<?php echo $form->textField($model,'propertyPartnerFeePaid',array('size'=>1,'maxlength'=>1)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'propertyPartnerAddress'); ?>
-		<?php echo $form->textField($model,'propertyPartnerAddress',array('size'=>60,'maxlength'=>255)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'propertyPartnerCity'); ?>
-		<?php echo $form->textField($model,'propertyPartnerCity'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'propertyPartnerState'); ?>
-		<?php echo $form->textField($model,'propertyPartnerState'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'propertyPartnerCountry'); ?>
-		<?php echo $form->textField($model,'propertyPartnerCountry'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'propertyPartnerZip'); ?>
-		<?php echo $form->textField($model,'propertyPartnerZip'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'eWalletBalance'); ?>
-		<?php echo $form->textField($model,'eWalletBalance'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'wishginiBalance'); ?>
-		<?php echo $form->textField($model,'wishginiBalance'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'propertyPartnerAccountActivationToken'); ?>
-		<?php echo $form->textField($model,'propertyPartnerAccountActivationToken',array('size'=>60,'maxlength'=>255)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'propertyPartnerDateAdded'); ?>
-		<?php echo $form->textField($model,'propertyPartnerDateAdded'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'propertyPartnerDateModified'); ?>
-		<?php echo $form->textField($model,'propertyPartnerDateModified'); ?>
-	</div>
-
-	<div class="row buttons">
-		<?php echo CHtml::submitButton('Search'); ?>
-	</div>
-
-<?php $this->endWidget(); ?>
-
-</div><!-- search-form -->

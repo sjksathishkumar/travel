@@ -93,13 +93,13 @@
 									<?php echo $data['customersDetails']->customerAddress2;?>
 								</p>
 								<p>
-									<?php echo $data['customersDetails']->billingCity->cityName;?>
+									<?php echo $data['customersDetails']->city->cityName;?>
 								</p>
 								<p>
-									<?php echo $data['customersDetails']->billingState->stateName;?>
+									<?php echo $data['customersDetails']->state->stateName;?>
 								</p>
 								<p>
-									<?php echo $data['customersDetails']->billingCountry->countryName;?>
+									<?php echo $data['customersDetails']->country->countryName;?>
 								</p>
 								<p>
 									<?php echo $data['customersDetails']->customerZip;?>
