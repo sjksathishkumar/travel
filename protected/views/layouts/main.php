@@ -49,7 +49,8 @@ $varObjRegisterJsCss = Yii::app()->getClientScript();
     $varObjRegisterJsCss->registerScriptFile($varBaseUrl . "/js/front/jquery.checkradios.js");
     $varObjRegisterJsCss->registerScriptFile($varBaseUrl . "/js/front/validation/jquery.validate.min.js");
     $varObjRegisterJsCss->registerScriptFile($varBaseUrl . "/js/front/validation/validate.js"); 
-    $varObjRegisterJsCss->registerScriptFile($varBaseUrl . "/js/front/validation/messages.js");   
+    $varObjRegisterJsCss->registerScriptFile($varBaseUrl . "/js/front/validation/messages.js"); 
+    $varObjRegisterJsCss->registerScriptFile($varBaseUrl . "/js/plugins/fileupload/bootstrap-fileupload.min.js"); 
     ?>
 </body>
 </html>

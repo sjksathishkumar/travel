@@ -432,6 +432,20 @@ if ($('#terms').is(':checked')) {
             }
 }
 
+/* This function is used to City Partnet Free Signup form   */
+
+function fireCityPartnerFreeSignupEvent(frm)
+{
+if ($('#terms').is(':checked')) {
+                frm.submit();
+            }
+            else{
+                $(".terms-error").show().delay(5000).fadeOut();
+                $( ".terms-error" ).html("Please accept Terms and Condions");
+                return false;
+            }
+}
+
 
 // Function for load State to Custom dropdown in Customer Update 
 
@@ -472,6 +486,44 @@ function getBcity(bcity){
     });
 }
 
+// Function for load State to Custom dropdown in Operational area of partner creat 
+
+function getOstate(bstate){
+    var country=bstate;
+    $("#operationCity").trigger("chosen:updated");
+    $.ajax({
+        type: "POST",
+        url: "../member/dynamicstates",
+        data: {
+            country: country
+        },
+        success: function(result){
+            $("#opertationState").html(result);
+            $("#opertationState").trigger("chosen:updated");
+            $('#operationCity').val('').trigger('chosen:updated');
+            //$("#customerState").resetSS();
+            //$("#customerCity").resetSS();
+        }
+    });
+}
+
+// Function for load city to Custom dropdown in Operational area of partner creat 
+
+function getOcity(bcity){
+    var state=bcity;
+    $.ajax({
+        type: "POST",
+        url: "../member/dynamiccities",
+        data: {
+            state: state
+        },
+        success: function(result){
+            $("#operationCity").html(result);
+            $("#operationCity").trigger("chosen:updated");
+            //$("#customerCity").resetSS();
+        }
+    });
+}
 
 // Function for load State to Custom dropdown in Property Partner Update 
 

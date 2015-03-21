@@ -106,7 +106,7 @@ class Faqs extends CActiveRecord
 			'criteria'=>$criteria,
 			'sort' => array(
 			    'defaultOrder' => array(
-			        'cmsDateAdded' => true,
+			        'faqDisplayOrder' => true,
 			    ),
 			),
 			'pagination' => array(
@@ -124,6 +124,28 @@ class Faqs extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+
+	public function getAllFaq()
+	{
+		$criteria=new CDbCriteria();
+    	$criteria->condition = 'faqStatus = :status';
+    	$criteria->order = 'faqDisplayOrder ASC';
+    	$criteria->params = array('status' => '1');
+	    $count=Faqs::model()->count($criteria);
+	    $pages=new CPagination($count);
+
+	    // results per page
+	    $pages->pageSize=2;
+	    $pages->applyLimit($criteria);
+	    $models=Faqs::model()->findAll($criteria);
+
+	    return $data($this, array(
+	    	'pages' => $pages,
+	    	'models' => $models,
+	    	)); 
+
+
 	}
 
 

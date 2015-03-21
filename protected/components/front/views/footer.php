@@ -100,7 +100,7 @@ $varBaseUrl = Yii::app()->baseUrl;
                     <li><a href="">in your city </a></li>
                     <li><a href="">FAQ </a></li>
                     <li><a href="">Help</a></li>
-                    <li><a href="">Contact</a></li>
+                    <li><?php echo CHtml::link('Contact', $varBaseUrl .'/contact/index') ?></li>
                 </ul>
             </div>
             <div class="copyright">

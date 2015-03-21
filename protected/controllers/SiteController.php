@@ -109,4 +109,23 @@ class SiteController extends Controller
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
 	}
+
+	/*
+	 * This action is used to show information.
+	 */
+
+	public function actionNotification()
+	{	
+		if(Yii::app()->user->hasState("message"))
+		{
+			$message = Yii::app()->user->getState("message");
+			$this->render('pageLanding', array('message' => $message));
+			unset(Yii::app()->session['message']);
+		}
+		else
+		{
+			$this->render('pageLanding', array('message' => 'default-error'));	
+		}
+	}
+
 }

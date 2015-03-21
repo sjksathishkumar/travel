@@ -57,7 +57,7 @@ $varBaseUrl = Yii::app()->baseUrl;
                                 <li class="margin"><div class="member-signup" href="#">Members
                                 <span class="h-divider"><?php echo CHtml::image($varBaseUrl . "/images/h-divider.png"); ?></span></div>
                                 </li>
-                                <li><?php echo CHtml::link('Signup',$varBaseUrl.'/member/memberSignup',array('title'=>'Singup','alt'=>'Singup'));?>
+                                <li><?php echo CHtml::link('Signup',$varBaseUrl.'/member/memberSignup',array('title'=>'Signup','alt'=>'Signup'));?>
                                 <span class="h-divider"><?php echo CHtml::image($varBaseUrl . "/images/top-divider.png"); ?></span>
                                 </li>
                                 <li><a class="fancybox" href="#member-login">Login</a></li>
@@ -68,7 +68,7 @@ $varBaseUrl = Yii::app()->baseUrl;
                                 <li><div class="partner-signup" href="#">Partners
                                 <span class="h-divider"><?php echo CHtml::image($varBaseUrl . "/images/h-divider.png"); ?></span></div>
                                 </li>
-                                <li><a href="#">Signup
+                                <li><?php echo CHtml::link('Signup',$varBaseUrl.'/partner/signup',array('title'=>'Signup','alt'=>'Signup'));?>
                                 <span class="h-divider"><?php echo CHtml::image($varBaseUrl . "/images/top-divider.png"); ?></span></a>
                                 </li>
                                 <li><a class="fancybox" href="#partner-login">Login</a>

@@ -26,6 +26,9 @@
                 case 'partner-signin-form':
                     firePartnerLoginEvent(form);
                     break;
+                case 'city-partner-free-signup-form':
+                    fireCityPartnerFreeSignupEvent(form);
+                    break;
                 default:
                     form.submit();
                     break;

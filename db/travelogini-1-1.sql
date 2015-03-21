@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 18, 2015 at 08:39 PM
+-- Generation Time: Mar 21, 2015 at 08:12 PM
 -- Server version: 5.5.41-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.5
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `tbl_admin_access_log` (
   `adminAccessLogoutTime` datetime NOT NULL,
   PRIMARY KEY (`pkAdminAccessID`),
   KEY `fkAdminID` (`fkAdminID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=275 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=279 ;
 
 --
 -- Dumping data for table `tbl_admin_access_log`
@@ -75,7 +75,11 @@ INSERT INTO `tbl_admin_access_log` (`pkAdminAccessID`, `fkAdminID`, `adminAccess
 (271, 4, '127.0.0.1', '2015-03-16 10:38:23', '0000-00-00 00:00:00'),
 (272, 4, '127.0.0.1', '2015-03-16 14:35:08', '0000-00-00 00:00:00'),
 (273, 4, '127.0.0.1', '2015-03-17 09:54:07', '0000-00-00 00:00:00'),
-(274, 4, '127.0.0.1', '2015-03-18 14:46:48', '0000-00-00 00:00:00');
+(274, 4, '127.0.0.1', '2015-03-18 14:46:48', '0000-00-00 00:00:00'),
+(275, 4, '127.0.0.1', '2015-03-20 11:41:41', '0000-00-00 00:00:00'),
+(276, 4, '127.0.0.1', '2015-03-20 20:23:24', '0000-00-00 00:00:00'),
+(277, 4, '127.0.0.1', '2015-03-21 11:02:04', '0000-00-00 00:00:00'),
+(278, 4, '127.0.0.1', '2015-03-21 16:05:55', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -307,7 +311,7 @@ CREATE TABLE IF NOT EXISTS `tbl_configurations` (
 --
 
 INSERT INTO `tbl_configurations` (`pkConfigurationID`, `configurationContact`, `configurationEmail`, `configurationSocialLink1`, `configurationSocialLink2`, `configurationSocialLink3`, `configurationSocialLink4`, `logoImage`, `logoAltTag`, `configurationPageLimit`, `configurationDateModified`) VALUES
-(1, '+01 888 (000) 1234', 'admin@travelogini.com', 'http://www.facebook.com/test', 'http://www.twitter.com/test', 'http://www.plus.google.com/test', 'http://www.youtube.com/test', 'logo1.png', 'travelogini', 10, '2015-01-28 05:39:21');
+(1, '+01 888 (000) 1234', 'sathish.kumar1@mail.vinove.com', 'http://www.facebook.com/test', 'http://www.twitter.com/test', 'http://www.plus.google.com/test', 'http://www.youtube.com/test', 'logo1.png', 'travelogini', 10, '2015-01-28 05:39:21');
 
 -- --------------------------------------------------------
 
@@ -567,16 +571,18 @@ CREATE TABLE IF NOT EXISTS `tbl_faqs` (
   KEY `fkTopicID` (`fkCategoryID`),
   KEY `fkTopicID_2` (`fkCategoryID`),
   KEY `fkCategoryID` (`fkCategoryID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
 
 --
 -- Dumping data for table `tbl_faqs`
 --
 
 INSERT INTO `tbl_faqs` (`pkFaqID`, `faqQuestion`, `faqAnswer`, `faqDisplayOrder`, `fkCategoryID`, `faqAttachment`, `faqHelpTopics`, `faqStatus`, `faqDateAdded`, `faqDateModified`) VALUES
-(26, 'Test question?', '<p>answer</p>\r\n', 10, 12, 'Selection_007-1424773379.png', '25', '1', '2015-02-24 15:36:23', '2015-02-24 10:23:11'),
-(27, 'Vinove data?', '<p>vinove</p>\r\n', 12, 13, '', '', '1', '2015-02-24 15:53:50', '2015-02-24 10:23:50'),
-(25, 'What is travel?', '<p>travel</p>\r\n', 56, 13, '', '', '1', '2015-02-17 15:30:54', '2015-02-17 12:43:16');
+(29, ' What is Full Payment option? 29', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et mauris eu tellus venenatis dapibus vel a turpis. Nulla facilisi. Donec ac purus sit amet est commodo vulputate. Maecenas sodales, felis a feugiat blandit, leo nulla maximus sapien, fringilla consequat nisl ligula eu metus.</p>\r\n', 22, 14, '', '', '1', '2015-03-21 11:06:02', '2015-03-21 07:54:00'),
+(28, 'What is Advance Payment option and what all products can be booked using this product? 28', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et mauris eu tellus venenatis dapibus vel a turpis. Nulla facilisi. Donec ac purus sit amet est commodo vulputate. Maecenas sodales, felis a feugiat blandit, leo nulla maximus sapien, fringilla consequat nisl ligula eu metus.</p>\r\n', 9, 14, '', '', '1', '2015-03-21 11:05:07', '2015-03-21 07:54:08'),
+(30, 'What is Full Payment option? 30', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et mauris eu tellus venenatis dapibus vel a turpis. Nulla facilisi. Donec ac purus sit amet est commodo vulputate. Maecenas sodales, felis a feugiat blandit, leo nulla maximus sapien, fringilla consequat nisl ligula eu metus.</p>\r\n', 3, 15, '', '', '0', '2015-03-21 11:07:27', '2015-03-21 08:01:43'),
+(31, 'What is Advance Payment option and what all products can be booked using this product? 31', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et mauris eu tellus venenatis dapibus vel a turpis. Nulla facilisi. Donec ac purus sit amet est commodo vulputate. Maecenas sodales, felis a feugiat blandit, leo nulla maximus sapien, fringilla consequat nisl ligula eu metus.</p>\r\n', 4, 16, '', '', '1', '2015-03-21 11:08:16', '2015-03-21 07:53:26'),
+(32, 'What is Full Payment option with file? 32', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et mauris eu tellus venenatis dapibus vel a turpis. Nulla facilisi. Donec ac purus sit amet est commodo vulputate. Maecenas sodales, felis a feugiat blandit, leo nulla maximus sapien, fringilla consequat nisl ligula eu metus.</p>\r\n', 6, 14, 'Steve-Jobs-Apple-CEO-HD-Wallpaper-inspiration-inspirational-motivation-motivational-HD-wallpapers-backgrounds-image-wide-new-2013-2014-2015-201676-1426916366.jpg', '29,28,30', '1', '2015-03-21 11:09:26', '2015-03-21 13:49:30');
 
 -- --------------------------------------------------------
 
@@ -592,16 +598,16 @@ CREATE TABLE IF NOT EXISTS `tbl_faqs_categories` (
   `faqCategoryDateAdded` datetime NOT NULL,
   `faqCategoryDateModified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`pkCategoryID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Dumping data for table `tbl_faqs_categories`
 --
 
 INSERT INTO `tbl_faqs_categories` (`pkCategoryID`, `faqCategoryName`, `faqCategoryStatus`, `faqCategoryIsMount`, `faqCategoryDateAdded`, `faqCategoryDateModified`) VALUES
-(2, 'sathish', '0', '1', '0000-00-00 00:00:00', '2015-02-16 12:40:11'),
-(12, 'TEST', '1', '1', '2015-01-30 11:20:21', '2015-01-30 13:13:51'),
-(13, 'FAQ', '1', '1', '2015-02-17 15:09:06', '2015-02-17 09:39:06');
+(14, 'Customer', '1', '1', '2015-03-21 11:03:48', '2015-03-21 05:33:48'),
+(15, 'City Partner', '1', '1', '2015-03-21 11:04:04', '2015-03-21 05:34:04'),
+(16, 'Property Partner', '1', '1', '2015-03-21 11:04:19', '2015-03-21 05:34:19');
 
 -- --------------------------------------------------------
 
@@ -856,7 +862,7 @@ CREATE TABLE IF NOT EXISTS `tbl_property_partners` (
   UNIQUE KEY `propertyPartnerUniqueID` (`propertyPartnerUniqueID`),
   UNIQUE KEY `propertyPartnerEmail` (`propertyPartnerEmail`),
   KEY `fkUserLoginID` (`fkUserLoginID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `tbl_property_partners`

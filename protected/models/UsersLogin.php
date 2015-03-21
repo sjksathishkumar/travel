@@ -31,16 +31,16 @@ class UsersLogin extends CActiveRecord
         // will receive user inputs.
         return array(
             array('userEmail,userType', 'required','except'=>'user-update-password-profile-form, reset_password_front,update_user_login_from_admin'),
-            //array('userEmail,userName,userPassword', 'safe','on'=>'update_user_login_from_admin'),
+            array('userEmail,userName,userPassword', 'required','on'=>'create_partner_front'),
             array('userName', 'required','on'=>'create_user_from_admin'),
             array('userPassword,repassword', 'required','on'=>'create_user_from_admin, create_user_front, reset_password_front'),
             array('userPassword', 'compare', 'compareAttribute'=>'repassword','except'=>'user-update-password-profile-form'),
             array('pkUserLoginID,userEmail, userPassword, repassword,userType,customerDateModified', 'safe'),
             array('pkUserLoginID,userEmail, userPassword, customerDateModified', 'safe', 'on'=>'search'),
-            array('userEmail','unique', 'message'=>'This email address already exists.','on'=>'create_user_front,create_user_from_admin,update_user_login_from_admin'),
-            array('userName','unique', 'message'=>'User name already exists.','on'=>'create_user_front,create_user_from_admin,update_user_login_from_admin'),
+            array('userEmail','unique', 'message'=>'This email address already exists.','on'=>'create_user_front,create_user_from_admin,update_user_login_from_admin,create_partner_front'),
+            array('userName','unique', 'message'=>'User name already exists.','on'=>'create_user_front,create_user_from_admin,update_user_login_from_admin,create_partner_front'),
             array('userPassword', 'compare', 'compareAttribute'=>'repeatPassword','on'=>'user-update-password-profile-form', 'message'=>"Passwords don't match"),     
-            array('userPassword', 'compare', 'compareAttribute'=>'repassword','on'=>'create_user_front, update_user_login_from_admin reset_password_front', 'message'=>"Passwords don't match"),     
+            array('userPassword', 'compare', 'compareAttribute'=>'repassword','on'=>'create_user_front, update_user_login_from_admin reset_password_front,create_partner_front', 'message'=>"Passwords don't match"),     
         );
     }
 

@@ -254,5 +254,6 @@
 </div>
 <!-- Create Account Part End Here -->
 <script type="text/javascript">
+$.validator.setDefaults({ ignore: ":hidden:not(select)" });
 $(".suc-msg").fadeOut(6000);
 </script>
