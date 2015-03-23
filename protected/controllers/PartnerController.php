@@ -25,14 +25,33 @@ class PartnerController extends Controller {
 
 		$city->scenario = 'city_partner_create_front';
 		$modelUsersLogin->scenario = 'create_partner_front';
+		/*echo "<pre>";
+		print_r($_POST); die();*/
 
-		if(isset($_POST['ajax']) && $_POST['ajax']==='city-partner-free-signup-form')
-    	{
+		/*if(Yii::app()->getRequest()->getIsAjaxRequest()) {
+			echo "inside ajax"; die();
+		echo CActiveForm::validate( array( $modelUsersLogin)); 
+		Yii::app()->end(); 
+		}*/
+
+		if(isset($_POST['ajax'])) {
+			echo "ajax call"; die();
+			  if ($_POST['ajax']=='city-partner-free-signup-form') {
+			    echo CActiveForm::validate($modelUsersLogin);
+			  }
+			  Yii::app()->end();
+			}
+			else{
+
+
+
+		/*if(isset($_POST['ajax']) && $_POST['ajax']==='city-partner-free-signup-form')
+    	{*/
 
 		//if(isset($_POST['CityPartners']) && isset($_POST['UsersLogin'])){
 			/*echo "<pre>";
 			print_r($_POST); die();*/
-			$city->attributes = $_POST['CityPartners'];
+			/*$city->attributes = $_POST['CityPartners'];
 			$city->customerEmail = $_POST['UsersLogin']['userEmail'];
 			$city->customerUserName = $_POST['UsersLogin']['userName'];
         	$modelUsersLogin->attributes = $_POST['UsersLogin'];
@@ -40,7 +59,7 @@ class PartnerController extends Controller {
         	$modelUsersLogin->userName = $model->customerUserName;
 			$modelUsersLogin->userType = 'CP';
 			$city->customerUniqueID = CommonFunctions::uniqueIDGenerator('CUS');
-			echo CActiveForm::validate(array($city,$modelUsersLogin));
+			echo CActiveForm::validate(array($city,$modelUsersLogin));*/
 			/*if($model->validate() & $modelUsersLogin->validate()){
         		$transaction=$model->dbConnection->beginTransaction();
         		$password = $modelUsersLogin->userPassword;
@@ -78,8 +97,9 @@ class PartnerController extends Controller {
                                     echo $error;
                                 Yii::app()->end();
                             }*/
-		}
+		//}
 		$this->render('free', array('property' => $property,'city' => $city,'loginModel'=>$modelUsersLogin));
+	 }
 
 		//$this->render('free', array('property' => $property,'city' => $city,'loginModel'=>$modelUsersLogin));
 	}
@@ -91,6 +111,37 @@ class PartnerController extends Controller {
 
 	public function actionPro() {
 		$this->render('pro');
+	}
+
+	public function actionCheckUserName()
+	{
+		$uname = $_POST['uname'];
+		$userLogin = new UsersLogin();
+		$userNameAvailability = $userLogin->checkUserName($uname);
+		$count = count($userNameAvailability);
+		if($count == 0)
+		{
+			echo "success";
+		}
+		else{
+			echo "error";
+		}
+	}
+
+
+	public function actionCheckUserEmail()
+	{
+		$uemail = $_POST['uemail'];
+		$userLogin = new UsersLogin();
+		$userEmailAvailability = $userLogin->checkUserEmail($uemail);
+		$count = count($userEmailAvailability);
+		if($count == 0)
+		{
+			echo "success";
+		}
+		else{
+			echo "error";
+		}
 	}
 
 

@@ -149,6 +149,31 @@ class UsersLogin extends CActiveRecord
         return $partnerDetails;
     }
 
+
+    /*
+    * This method is used to check username exists
+    */
+    public function checkUserName($uname)
+    {
+        $loginField = 't.userName= "'.$uname;
+        $criteria=new CDbCriteria;
+        $criteria->condition=$loginField.'"';
+        $userAvailableStatus = $this->find($criteria);
+        return $userAvailableStatus;
+    }
+
+    /*
+    * This method is used to check userEmail exists
+    */
+    public function checkUserEmail($uemail)
+    {
+        $loginField = 't.userEmail= "'.$uemail;
+        $criteria=new CDbCriteria;
+        $criteria->condition=$loginField.'"';
+        $userAvailableStatus = $this->find($criteria);
+        return $userAvailableStatus;
+    }
+
     public function login($userType=null)
     {
         Yii::app()->user->logout(false);

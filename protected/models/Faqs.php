@@ -115,6 +115,30 @@ class Faqs extends CActiveRecord
 		));
 	}
 
+
+	/* It is used to perform search for fontend page */
+
+	public function frontSearch()
+	{
+		
+		$criteria=new CDbCriteria;
+
+		$criteria->compare('pkFaqID',$this->pkFaqID);
+		$criteria->compare('faqQuestion',$this->faqQuestion,true);
+		$criteria->compare('faqAnswer',$this->faqAnswer,true);
+		$criteria->compare('faqDisplayOrder',$this->faqDisplayOrder);
+		$criteria->compare('fkCategoryID',$this->fkCategoryID);
+		$criteria->compare('faqAttachment',$this->faqAttachment);
+		$criteria->compare('faqHelpTopics',$this->faqHelpTopics);
+		$criteria->compare('faqStatus',$this->faqStatus,true);
+		$criteria->compare('faqDateAdded',$this->faqDateAdded,true);
+		$criteria->compare('faqDateModified',$this->faqDateModified,true);
+	    return $data = self::model()->findAll($criteria);
+
+		
+		
+	}
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!

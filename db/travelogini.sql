@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 21, 2015 at 08:12 PM
+-- Generation Time: Mar 23, 2015 at 09:39 PM
 -- Server version: 5.5.41-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.5
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `tbl_admin_access_log` (
   `adminAccessLogoutTime` datetime NOT NULL,
   PRIMARY KEY (`pkAdminAccessID`),
   KEY `fkAdminID` (`fkAdminID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=279 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=280 ;
 
 --
 -- Dumping data for table `tbl_admin_access_log`
@@ -79,7 +79,8 @@ INSERT INTO `tbl_admin_access_log` (`pkAdminAccessID`, `fkAdminID`, `adminAccess
 (275, 4, '127.0.0.1', '2015-03-20 11:41:41', '0000-00-00 00:00:00'),
 (276, 4, '127.0.0.1', '2015-03-20 20:23:24', '0000-00-00 00:00:00'),
 (277, 4, '127.0.0.1', '2015-03-21 11:02:04', '0000-00-00 00:00:00'),
-(278, 4, '127.0.0.1', '2015-03-21 16:05:55', '0000-00-00 00:00:00');
+(278, 4, '127.0.0.1', '2015-03-21 16:05:55', '0000-00-00 00:00:00'),
+(279, 4, '127.0.0.1', '2015-03-23 11:43:54', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -571,7 +572,7 @@ CREATE TABLE IF NOT EXISTS `tbl_faqs` (
   KEY `fkTopicID` (`fkCategoryID`),
   KEY `fkTopicID_2` (`fkCategoryID`),
   KEY `fkCategoryID` (`fkCategoryID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
 
 --
 -- Dumping data for table `tbl_faqs`
@@ -580,9 +581,10 @@ CREATE TABLE IF NOT EXISTS `tbl_faqs` (
 INSERT INTO `tbl_faqs` (`pkFaqID`, `faqQuestion`, `faqAnswer`, `faqDisplayOrder`, `fkCategoryID`, `faqAttachment`, `faqHelpTopics`, `faqStatus`, `faqDateAdded`, `faqDateModified`) VALUES
 (29, ' What is Full Payment option? 29', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et mauris eu tellus venenatis dapibus vel a turpis. Nulla facilisi. Donec ac purus sit amet est commodo vulputate. Maecenas sodales, felis a feugiat blandit, leo nulla maximus sapien, fringilla consequat nisl ligula eu metus.</p>\r\n', 22, 14, '', '', '1', '2015-03-21 11:06:02', '2015-03-21 07:54:00'),
 (28, 'What is Advance Payment option and what all products can be booked using this product? 28', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et mauris eu tellus venenatis dapibus vel a turpis. Nulla facilisi. Donec ac purus sit amet est commodo vulputate. Maecenas sodales, felis a feugiat blandit, leo nulla maximus sapien, fringilla consequat nisl ligula eu metus.</p>\r\n', 9, 14, '', '', '1', '2015-03-21 11:05:07', '2015-03-21 07:54:08'),
-(30, 'What is Full Payment option? 30', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et mauris eu tellus venenatis dapibus vel a turpis. Nulla facilisi. Donec ac purus sit amet est commodo vulputate. Maecenas sodales, felis a feugiat blandit, leo nulla maximus sapien, fringilla consequat nisl ligula eu metus.</p>\r\n', 3, 15, '', '', '0', '2015-03-21 11:07:27', '2015-03-21 08:01:43'),
+(30, 'What is Full Payment option? 30', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et mauris eu tellus venenatis dapibus vel a turpis. Nulla facilisi. Donec ac purus sit amet est commodo vulputate. Maecenas sodales, felis a feugiat blandit, leo nulla maximus sapien, fringilla consequat nisl ligula eu metus.</p>\r\n', 3, 15, 'Workspace 1_001-1427112645.png', '', '1', '2015-03-21 11:07:27', '2015-03-23 12:10:59'),
 (31, 'What is Advance Payment option and what all products can be booked using this product? 31', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et mauris eu tellus venenatis dapibus vel a turpis. Nulla facilisi. Donec ac purus sit amet est commodo vulputate. Maecenas sodales, felis a feugiat blandit, leo nulla maximus sapien, fringilla consequat nisl ligula eu metus.</p>\r\n', 4, 16, '', '', '1', '2015-03-21 11:08:16', '2015-03-21 07:53:26'),
-(32, 'What is Full Payment option with file? 32', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et mauris eu tellus venenatis dapibus vel a turpis. Nulla facilisi. Donec ac purus sit amet est commodo vulputate. Maecenas sodales, felis a feugiat blandit, leo nulla maximus sapien, fringilla consequat nisl ligula eu metus.</p>\r\n', 6, 14, 'Steve-Jobs-Apple-CEO-HD-Wallpaper-inspiration-inspirational-motivation-motivational-HD-wallpapers-backgrounds-image-wide-new-2013-2014-2015-201676-1426916366.jpg', '29,28,30', '1', '2015-03-21 11:09:26', '2015-03-21 13:49:30');
+(32, 'What is Full Payment option with file? 32', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et mauris eu tellus venenatis dapibus vel a turpis. Nulla facilisi. Donec ac purus sit amet est commodo vulputate. Maecenas sodales, felis a feugiat blandit, leo nulla maximus sapien, fringilla consequat nisl ligula eu metus.</p>\r\n', 6, 14, 'Steve-Jobs-Apple-CEO-HD-Wallpaper-inspiration-inspirational-motivation-motivational-HD-wallpapers-backgrounds-image-wide-new-2013-2014-2015-201676-1426916366.jpg', '29,28,30', '1', '2015-03-21 11:09:26', '2015-03-21 13:49:30'),
+(33, 'Sathish test question?', '<p>test questions ansowers.</p>\r\n', 12, 15, '', '', '1', '2015-03-23 16:09:07', '2015-03-23 10:39:07');
 
 -- --------------------------------------------------------
 

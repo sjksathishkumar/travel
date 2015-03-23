@@ -34,9 +34,12 @@
 			<?php 
 				$form = $this->beginWidget('CActiveForm', array(
                             'id' => 'city-partner-free-signup-form',
-                            'action'=>'#',
+                            //'action'=>'#',
                             'enableAjaxValidation' => true,
-                            'enableClientValidation'=>true,
+                            //'enableClientValidation'=>true,
+                            /*'clientOptions'=>array(
+						      'validateOnSubmit'=>true,
+						     ),*/
                             'method'=>'post',
                             'htmlOptions' => array(
                                 'novalidate' => 'novalidate',
@@ -209,7 +212,8 @@
 				<li>
 					<div class="cntr-btn-outer">
 						<div class="login-btn submit-btn">
-							<input type="submit" name="submit" value="Create Account" />
+							<?php echo CHtml::submitButton('Signup',array('class' => 'register'));?>
+							<!-- <input type="submit" name="submit" value="Create Account" /> -->
 						</div>						
 					</div>
 				</li>
@@ -317,4 +321,44 @@
 
 <script type="text/javascript">
 $.validator.setDefaults({ ignore: ":hidden:not(select)" });
+$("#UsersLogin_userName").blur(function(){
+	var uname = $("#UsersLogin_userName").val();
+	$.ajax({
+	    type: "POST",
+	    url: "../partner/checkUserName",
+	    data: {
+	        uname: uname
+	    },
+	    success: function(data){
+	    	if(data == 'success'){
+	    	alert('Username avaliable');
+	    	}
+	    	else
+	    	{
+	    		alert('Username Exist');
+	    	}
+	    }
+	});
+});
+
+$("#UsersLogin_userEmail").blur(function(){
+	var uemail = $("#UsersLogin_userEmail").val();
+	$.ajax({
+	    type: "POST",
+	    url: "../partner/checkUserEmail",
+	    data: {
+	        uemail: uemail
+	    },
+	    success: function(data){
+	    	if(data == 'success'){
+	    	alert('Email avaliable');
+	    	}
+	    	else
+	    	{
+	    		alert('Email Exist');
+	    	}
+	    }
+	});
+});
+
 </script>

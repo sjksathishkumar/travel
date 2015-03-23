@@ -81,53 +81,60 @@
 				<div class="faq-search-outer">
 					<div class="search-box">
 						<ul class="acc-login acc-login1">
+							<?php $form=$this->beginWidget('CActiveForm', array(
+									'action'=>Yii::app()->createUrl($this->route),
+									'method'=>'get',
+								    'id'=>'_search-form',
+							)); ?>
 							<li>
-								<input class="mid-input" type="text" name="email" value="" placeholder="Name" />
+								<?php echo $form->textField($search,'faqQuestion',array('class'=>'mid-input','placeholder'=>'Enter Questions')); ?>
 							</li>
 							<li>
 								<div class="mid-input">
-								  <select data-placeholder=".....all help topics...." class="chosen-select">
-									<option value="select"></option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-									<option value="5">6</option>
-									<option value="7">7</option>
-									<option value="8">8</option>
-									<option value="9">9</option>
-									<option value="10">10</option>
-									<option value="11">11</option>
-									<option value="12">12</option>
-									<option value="13">13</option>
-									<option value="14">14</option>
-									<option value="15">15</option>								
-								  </select>
+									<?php echo $form->dropDownList($search, 'fkCategoryID',CHtml::listData(FaqsCategories::model()->findAll(array("condition"=>"faqCategoryStatus =  1")), 'pkCategoryID', 'faqCategoryName'), array('empty'=>'- Select Categories -', 'class' => 'chosen-select')); ?>			
 							  </div>							  
 						
 							</li><li>		<div class="login-btn submit-btn">
-									<input type="submit" value="Search" name="Search">
+									<?php echo CHtml::submitButton('Search',array('title'=>'Search','alt'=>'Search')); ?>
 								</div></li>
+							<?php $this->endWidget(); ?>
 						</ul>
 					</div>
+					
 				</div>
 				<div class="faq-page">
 				<div class="about-us-outer">
-					<?php foreach($models as $model){ 
-						echo "<div class='faq-box'><div class='faq-heading'>";
-						echo CHtml::link($model->faqQuestion,array('faqs/single','id'=>$model->pkFaqID));
-						echo "</div><p>";
-						echo $model->faqAnswer;
-						echo "</p></div>";
-					 } ?>
+					<?php 
+						$models = $search->search()->getData();
+						$page = $search->search();
+	                	$count = count($models); 
+					 ?>
 				</div>
-					<?php $this->widget('CLinkPager', array('pages' => $pages,'header' => false)); ?>
+					<?php $this->widget('CLinkPager', array('pages' => $page->pagination,'header' => false)); ?>
 				</div>
-
+				<div class="faq-page">
+				<div class="about-us-outer">
+					<?php 
+						if( $count > 0) {
+							foreach($models as $model){ 
+							echo "<div class='faq-box'><div class='faq-heading'>";
+							echo CHtml::link($model->faqQuestion,array('faqs/single','id'=>$model->pkFaqID));
+							echo "</div><p>";
+							echo $model->faqAnswer;
+							echo "</p></div>";
+					 		}
+					 		$this->widget('CLinkPager', array('pages' => $page->pagination));
+					 	}
+					 	else
+					 	{
+					 		echo "No Data Found !";
+					 	}
+					  ?>
+				</div>
+				</div>
 			</div>
-			
 		</div>
 		</div>
 	</div>
 	<!-- Create Account Part End Here -->
+
