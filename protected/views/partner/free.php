@@ -34,8 +34,8 @@
 			<?php 
 				$form = $this->beginWidget('CActiveForm', array(
                             'id' => 'city-partner-free-signup-form',
-                            //'action'=>'#',
-                            'enableAjaxValidation' => true,
+                            'action'=>'../cityPartner/signup/free',
+                            'enableAjaxValidation' => false,
                             //'enableClientValidation'=>true,
                             /*'clientOptions'=>array(
 						      'validateOnSubmit'=>true,
@@ -55,11 +55,11 @@
 					<div  class="half-input"><?php echo $form->textField($city,'cityPartnerLastName',array('class'=>'requiredField','placeholder'=>'Last Name'));?>
 					<?php echo $form->error($city,'cityPartnerLastName'); ?></div>
 					<div  class="half-input margin0"><?php echo $form->textField($loginModel,'userName',array('class'=>'requiredField','placeholder'=>'Username'));?>
-					<?php echo $form->error($loginModel,'userName'); ?></div>
+					<?php echo $form->error($loginModel,'userName'); ?><div id='username'> </div></div>
 				</li>
 				<li>
 					<div  class="half-input"><?php echo $form->textField($loginModel,'userEmail',array('class'=>'requiredField emailField','placeholder'=>'Email'));?>
-					<?php echo $form->error($loginModel,'userEmail'); ?></div>
+					<?php echo $form->error($loginModel,'userEmail'); ?><div id='useremail'> </div></div>
 					<div  class="half-input"><?php echo $form->passwordField($loginModel,'userPassword',array('class'=>'passField requiredField','id'=>'passField','placeholder'=>'Password'));?>
 					<?php echo $form->error($loginModel,'userPassword'); ?></div>
 					<div  class="half-input margin0"><?php echo $form->passwordField($loginModel,'repassword',array('class'=>'passField requiredField','placeholder'=>'Conform Password','equalTo'=>'#passField'));?>
@@ -149,13 +149,10 @@
 				<li>
 					<div class="prefered-method"> Preferred Contact Method </div>
 					<div class="checkbox-outer">
-						<input type="checkbox"  class="radio">
-						<label for="remember"> Phone </label>
+						<?php echo $form->checkBoxList($city, 'cityPartnerContactMethod', array("1" => "Mobile", "2" => "Email"), array('separator' => '', 'id' => 'cityPartnerContactMethod','class'=>'radio')); ?>
+						<?php echo $form->error($city, 'cityPartnerContactMethod'); ?>
 					</div>
-					<div class="checkbox-outer">
-						<input type="checkbox"  class="radio">
-						<label for="remember"> Email </label>
-					</div>
+					<div class="contact-error"></div>
 				</li>
 				<li>
 					<div class="form-heading">Area of Operation</div>
@@ -331,11 +328,11 @@ $("#UsersLogin_userName").blur(function(){
 	    },
 	    success: function(data){
 	    	if(data == 'success'){
-	    	alert('Username avaliable');
+	    		$("#username").html('');
 	    	}
 	    	else
 	    	{
-	    		alert('Username Exist');
+	    		 $("#username").html("Username already Exist").css("color", "red").css("fontSize", "14px").show();
 	    	}
 	    }
 	});
@@ -351,11 +348,11 @@ $("#UsersLogin_userEmail").blur(function(){
 	    },
 	    success: function(data){
 	    	if(data == 'success'){
-	    	alert('Email avaliable');
+	    		$("#useremail").html('');
 	    	}
 	    	else
 	    	{
-	    		alert('Email Exist');
+	    		$("#useremail").html("Email already Exist").css("color", "red").css("fontSize", "14px").show();
 	    	}
 	    }
 	});

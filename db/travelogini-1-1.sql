@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 23, 2015 at 09:39 PM
+-- Generation Time: Mar 24, 2015 at 08:50 PM
 -- Server version: 5.5.41-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.5
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `tbl_admin_access_log` (
   `adminAccessLogoutTime` datetime NOT NULL,
   PRIMARY KEY (`pkAdminAccessID`),
   KEY `fkAdminID` (`fkAdminID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=280 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=282 ;
 
 --
 -- Dumping data for table `tbl_admin_access_log`
@@ -80,7 +80,9 @@ INSERT INTO `tbl_admin_access_log` (`pkAdminAccessID`, `fkAdminID`, `adminAccess
 (276, 4, '127.0.0.1', '2015-03-20 20:23:24', '0000-00-00 00:00:00'),
 (277, 4, '127.0.0.1', '2015-03-21 11:02:04', '0000-00-00 00:00:00'),
 (278, 4, '127.0.0.1', '2015-03-21 16:05:55', '0000-00-00 00:00:00'),
-(279, 4, '127.0.0.1', '2015-03-23 11:43:54', '0000-00-00 00:00:00');
+(279, 4, '127.0.0.1', '2015-03-23 11:43:54', '0000-00-00 00:00:00'),
+(280, 4, '127.0.0.1', '2015-03-24 16:57:45', '0000-00-00 00:00:00'),
+(281, 4, '127.0.0.1', '2015-03-24 18:18:43', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -215,14 +217,15 @@ CREATE TABLE IF NOT EXISTS `tbl_city_partners` (
   UNIQUE KEY `cityPartnerUserName` (`cityPartnerUserName`),
   UNIQUE KEY `cityPartnerUniqueID` (`cityPartnerUniqueID`),
   KEY `fkUserLoginID` (`fkUserLoginID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `tbl_city_partners`
 --
 
 INSERT INTO `tbl_city_partners` (`pkCityPartnerID`, `fkUserLoginID`, `cityPartnerUniqueID`, `cityPartnerFirstName`, `cityPartnerLastName`, `cityPartnerUserName`, `cityPartnerEmail`, `cityPartnerMobile`, `cityPartnerDateOfBirth`, `cityPartnerBusinessName`, `cityPartnerWebsite`, `cityPartnerContactMethod`, `cityPartnerSubscriptionPlan`, `cityPartnerStatus`, `cityPartnerFeePaid`, `cityPartnerAddress`, `cityPartnerCity`, `cityPartnerState`, `cityPartnerCountry`, `cityPartnerOperationCity`, `cityPartnerOperationState`, `cityPartnerOperationCountry`, `cityPartnerOperationArea`, `cityPartnerZip`, `eWalletBalance`, `wishginiBalance`, `cityPartnerAccountActivationToken`, `cityPartnerDateAdded`, `cityPartnerDateModified`) VALUES
-(2, 99, 'P150317024900', 'city', 'city', 'city', 'city@mail.com', '9947586958', '2005-01-19 00:00:00', 'city', 'city.com', '1', '1', '1', '0', 'address', 5, 4, 1, 3, 3, 1, 'delhi', 45621, 0, 0, '', '2015-03-17 14:49:00', '2015-03-18 14:45:06');
+(2, 99, 'P150317024900', 'city', 'city', 'city', 'city@mail.com', '9947586958', '2005-01-19 00:00:00', 'city', 'city.com', '1', '1', '1', '0', 'address', 5, 4, 1, 3, 3, 1, 'delhi', 45621, 0, 0, '', '2015-03-17 14:49:00', '2015-03-18 14:45:06'),
+(7, 104, 'CP150324051036', 'sathish', 'kumar', 'sathishkumar', 'sathish.kumar1@mail.vinove.com', '3698253625', '2015-03-13 00:00:00', 'kumar', 'www.partner.com', '1', '1', '1', '0', 'delhi', 2, 2, 1, 2, 2, 1, 'delhi', 25362, 0, 0, '1', '2015-03-24 17:10:36', '2015-03-24 12:55:13');
 
 -- --------------------------------------------------------
 
@@ -966,7 +969,7 @@ CREATE TABLE IF NOT EXISTS `tbl_users_login` (
   PRIMARY KEY (`pkUserLoginID`),
   UNIQUE KEY `userName` (`userName`),
   UNIQUE KEY `userEmail` (`userEmail`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=100 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=105 ;
 
 --
 -- Dumping data for table `tbl_users_login`
@@ -977,7 +980,8 @@ INSERT INTO `tbl_users_login` (`pkUserLoginID`, `userEmail`, `userName`, `userPa
 (93, 'test@mail.com', 'test', '098f6bcd4621d373cade4e832627b4f6', 'C', '2015-03-14 10:28:42'),
 (94, 'sathish@mail.com', 'sathish', '87817c5310da5cfff85df962e906fff5', 'C', '2015-03-17 15:33:26'),
 (95, 'propertysathishkumar@mail.com', 'property', '87817c5310da5cfff85df962e906fff5', 'PP', '2015-03-18 13:36:50'),
-(99, 'city@mail.com', 'city', '08b64106d977b1e32174bebba9113d55', 'CP', '2015-03-17 15:33:41');
+(99, 'city@mail.com', 'city', '08b64106d977b1e32174bebba9113d55', 'CP', '2015-03-17 15:33:41'),
+(104, 'sathish.kumar1@mail.vinove.com', 'sathishkumar', '87817c5310da5cfff85df962e906fff5', 'CP', '2015-03-24 13:05:05');
 
 --
 -- Constraints for dumped tables

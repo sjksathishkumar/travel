@@ -10,50 +10,92 @@ class SignupController extends Controller {
 	 */
 
 	
-	public function actionFree() {
-		$property = new PropertyPartners;
-		$city = new CityPartners;
+	public function actionFree() 
+	{
+		$model = new CityPartners;
 		$modelUsersLogin = new UsersLogin;
 
+		$model->scenario = 'city_partner_create_front';
+		$modelUsersLogin->scenario = 'create_partner_front';
+
 		if(isset($_POST['CityPartners']) && isset($_POST['UsersLogin'])){
-			echo "<pre>";
-			print_r($_POST); die();
-			$model->attributes = $_POST['Users'];
-			$model->customerEmail = $_POST['UsersLogin']['userEmail'];
-			$model->customerUserName = $_POST['UsersLogin']['userName'];
+			$model->attributes = $_POST['CityPartners'];
+			$model->cityPartnerEmail = $_POST['UsersLogin']['userEmail'];
+			$model->cityPartnerUserName = $_POST['UsersLogin']['userName'];
+			$model->cityPartnerDateOfBirth = date('Y-m-d',strtotime($_POST['CityPartners']['cityPartnerDateOfBirth']));//date('m/d/Y',strtotime());
         	$modelUsersLogin->attributes = $_POST['UsersLogin'];
-        	$modelUsersLogin->userEmail = $model->customerEmail;
-        	$modelUsersLogin->userName = $model->customerUserName;
-			$modelUsersLogin->userType = 'C';
-			$model->customerUniqueID = CommonFunctions::uniqueIDGenerator('CUS');
-			if($model->validate() & $modelUsersLogin->validate()){
+			$modelUsersLogin->userType = 'CP';
+			$model->cityPartnerUniqueID = CommonFunctions::uniqueIDGenerator('CP');
+			$count = sizeof($_POST['CityPartners']['cityPartnerContactMethod']);
+			if($count == 2)
+			{
+				$model->cityPartnerContactMethod = 3;
+			}
+			else{
+				$model->cityPartnerContactMethod = $_POST['CityPartners']['cityPartnerContactMethod']['0'];
+			}
+			if($model->validate() && $modelUsersLogin->validate()){
         		$transaction=$model->dbConnection->beginTransaction();
         		$password = $modelUsersLogin->userPassword;
         		$modelUsersLogin->userPassword = md5($modelUsersLogin->userPassword);
         		try{
         			$modelUsersLogin->save(false);
         			$model->fkUserLoginID = $modelUsersLogin->primaryKey;
-        			//$model->customerStatus = '0';
-        			$model->customerDateAdded = date('Y-m-d H:i:s');
-        			//$model->customerDateModified = date('Y-m-d H:i:s');
-        			$model->customerAccountActivationToken = base64_encode(uniqid(microtime()));
+        			$model->cityPartnerDateAdded = date('Y-m-d H:i:s');
+        			$model->cityPartnerAccountActivationToken = base64_encode(uniqid(microtime()));
         			$model->save();
         			$transaction->commit();
-        			Yii::app()->user->setFlash('addCustomerSuccess',true);
         			
-	                $varMailTo = trim($model->customerEmail);
-	                $activationLink = Yii::app()->getBaseUrl(true)."/member/activateAccount?userID=".base64_encode($model->pkCustomerID)."&token=".$model->customerAccountActivationToken."&type=".base64_encode('free');
+	                $varMailTo = trim($model->cityPartnerEmail);
+	                $activationLink = Yii::app()->getBaseUrl(true)."/cityPartner/signup/activateAccount?userID=".base64_encode($model->pkCityPartnerID)."&token=".$model->cityPartnerAccountActivationToken."&type=".base64_encode('free');
 	                $varKeywordContent = array('{to_name}','{site_url}','{login_email}','{login_password}');
-	                $varKeywordValueContent = array(ucfirst($model->customerFirstName),$activationLink,$model->customerEmail,$password);
+	                $varKeywordValueContent = array(ucfirst($model->cityPartnerFirstName),$activationLink,$model->cityPartnerEmail,$password);
 	                CommonFunctions::sendMail('5',$varMailTo,$varKeywordContent,$varKeywordValueContent,'','','','');
 	                Yii::app()->user->setState("message","mail-success");
-        			$this->redirect('pageLanding');
+        			$this->redirect('../../site/notification');
         		}catch(Exception $e){
         			 $transaction->rollBack();
         		}
         	}
 		}
-		$this->render('free', array('property' => $property,'city' => $city,'loginModel'=>$modelUsersLogin));
+	}
+
+
+	/*
+     * This action is used to activate the user account.
+     */
+
+    public function actionActivateAccount() {
+		if (isset($_GET['userID']) && isset($_GET['token']) && isset($_GET['type'])) {
+			$type = base64_decode($_GET['type']);
+			//echo $type; die();
+	            $userModel = CityPartners::model()->findByAttributes(array('pkCityPartnerID' => base64_decode($_GET['userID']),'cityPartnerAccountActivationToken' => $_GET['token'], 'cityPartnerStatus' => '0'));
+	            $userAlreadyActivated = CityPartners::model()->findByAttributes(array('pkCityPartnerID' => base64_decode($_GET['userID']),'cityPartnerAccountActivationToken' => '1', 'cityPartnerStatus' => '1'));
+	            $userAlreadyVerified = CityPartners::model()->findByAttributes(array('pkCityPartnerID' => base64_decode($_GET['userID']),'cityPartnerAccountActivationToken' => '1', 'cityPartnerStatus' => '0'));
+	            if ($userModel) {
+	                $userModel->cityPartnerAccountActivationToken = 1;
+	                $userModel->save();
+	                $varMailTo = trim($userModel->cityPartnerEmail);
+	                $varSiteUrl = Yii::app()->getBaseUrl(true);
+	                $varKeywordContent = array('{to_name}', '{site_url}');
+	                $varKeywordValueContent = array(ucfirst($userModel->cityPartnerFirstName), $varSiteUrl);
+	                CommonFunctions::sendMail('4', $varMailTo, $varKeywordContent, $varKeywordValueContent, '', '', '', '');
+	                Yii::app()->user->setState("message","mail-verified");
+        			$this->redirect('../../site/notification');
+	            } 
+	            elseif ($userAlreadyActivated) {
+	            	Yii::app()->user->setState("message","already-active");
+        			$this->redirect('../../site/notification');
+	            }
+	            elseif ($userAlreadyVerified) {
+	            	Yii::app()->user->setState("message","mail-already-verified");
+        			$this->redirect('../../site/notification');
+	            }
+	            else {
+	            	Yii::app()->user->setState("message","faild");
+        			$this->redirect('../../site/notification');
+	            }
+    	}
 	}
 
 

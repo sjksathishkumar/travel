@@ -56,6 +56,12 @@
 						elseif ($message == 'contact-mail-error') {
 							echo "<div class='form-heading' align='center'>Ohhps ! Problem occure while contacting...</div>";	
 						}
+						elseif ($message == 'mail-verified') {
+							echo "<div class='form-heading' align='center'>Email verified Successfully ! Waiting for Admin Approval !</div>";	
+						}
+						elseif ($message == 'mail-already-verified') {
+							echo "<div class='form-heading' align='center'>Email Already verified Successfully ! Waiting for Admin Approval !</div>";	
+						}
 						else
 						{
 							echo "<div class='form-heading' align='center'>Invalid Activaion ! Please Try Again !</div>";

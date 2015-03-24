@@ -436,7 +436,9 @@ if ($('#terms').is(':checked')) {
 
 function fireCityPartnerFreeSignupEvent(frm)
 {
-if ($('#terms').is(':checked')) {
+    if(($('input:checkbox[id^="CityPartners_cityPartnerContactMethod_"]:checked').length) > 0 )
+    {
+        if ($('#terms').is(':checked')) {
                 frm.submit();
             }
             else{
@@ -444,6 +446,12 @@ if ($('#terms').is(':checked')) {
                 $( ".terms-error" ).html("Please accept Terms and Condions");
                 return false;
             }
+    }
+    else{
+        $(".contact-error").show().delay(5000).fadeOut();
+        $( ".contact-error" ).html("Please select contact mode").css("color", "red").css("fontSize", "14px");
+        return false;
+    }
 }
 
 
