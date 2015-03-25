@@ -454,6 +454,28 @@ function fireCityPartnerFreeSignupEvent(frm)
     }
 }
 
+/* This function is used to City Partnet Free Signup form   */
+
+function firePropertyPartnerFreeSignupEvent(frm)
+{
+    if(($('input:checkbox[id^="PropertyPartners_propertyPartnerContactMethod_"]:checked').length) > 0 )
+    {
+        if ($('#terms-partner').is(':checked')) {
+                frm.submit();
+            }
+            else{
+                $(".terms-partner-error").show().delay(5000).fadeOut();
+                $( ".terms-partner-error" ).html("Please accept Terms and Condions").css("color", "red").css("fontSize", "14px");
+                return false;
+            }
+    }
+    else{
+        $(".contact-partner-error").show().delay(5000).fadeOut();
+        $( ".contact-partner-error" ).html("Please select contact mode").css("color", "red").css("fontSize", "14px");
+        return false;
+    }
+}
+
 
 // Function for load State to Custom dropdown in Customer Update 
 
@@ -489,6 +511,45 @@ function getBcity(bcity){
         success: function(result){
             $("#customerCity").html(result);
             $("#customerCity").trigger("chosen:updated");
+            //$("#customerCity").resetSS();
+        }
+    });
+}
+
+// Function for load State to Custom dropdown in New Partner Registration
+
+function getPartnerState(bstate){
+    var country=bstate;
+    $("#customerCity").trigger("chosen:updated");
+    $.ajax({
+        type: "POST",
+        url: "../member/dynamicstates",
+        data: {
+            country: country
+        },
+        success: function(result){
+            $("#partnerState").html(result);
+            $("#partnerState").trigger("chosen:updated");
+            $('#partnerCity').val('').trigger('chosen:updated');
+            //$("#customerState").resetSS();
+            //$("#customerCity").resetSS();
+        }
+    });
+}
+
+// Function for load city to Custom dropdown in New Partner Registration
+
+function getPartnerCity(bcity){
+    var state=bcity;
+    $.ajax({
+        type: "POST",
+        url: "../member/dynamiccities",
+        data: {
+            state: state
+        },
+        success: function(result){
+            $("#partnerCity").html(result);
+            $("#partnerCity").trigger("chosen:updated");
             //$("#customerCity").resetSS();
         }
     });

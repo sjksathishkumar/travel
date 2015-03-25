@@ -29,6 +29,9 @@
                 case 'city-partner-free-signup-form':
                     fireCityPartnerFreeSignupEvent(form);
                     break;
+                case 'property-partner-free-signup-form':
+                    firePropertyPartnerFreeSignupEvent(form);
+                    break;
                 default:
                     form.submit();
                     break;

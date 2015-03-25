@@ -220,94 +220,144 @@
 			
 			<div class="register-form-inner">
 			<div class="form-heading">Personal Details</div>
+			<?php 
+				$form = $this->beginWidget('CActiveForm', array(
+                            'id' => 'property-partner-free-signup-form',
+                            'action'=>'../propertyPartner/signup/free',
+                            'enableAjaxValidation' => false,
+                            //'enableClientValidation'=>true,
+                            /*'clientOptions'=>array(
+						      'validateOnSubmit'=>true,
+						     ),*/
+                            'method'=>'post',
+                            'htmlOptions' => array(
+                                'novalidate' => 'novalidate',
+                                'class' => 'validate-form',
+                                //'enctype' => 'multipart/form-data',
+                            )
+                        ));
+            ?>
 			<ul class="acc-login">
 				<li>
-					<input class="half-input" type="text" name="firstname" value="" placeholder="First name" />
-					<input class="half-input" type="text" name="lastname" value="" placeholder="Last Name" />
-					<input class="half-input margin0" type="text" name="nickname" value="" placeholder="Nick Name" />
+					<div  class="half-input"><?php echo $form->textField($property,'propertyPartnerFirstName',array('class'=>'requiredField','placeholder'=>'First Name'));?>
+					<?php echo $form->error($property,'propertyPartnerFirstName'); ?></div>
+					<div  class="half-input"><?php echo $form->textField($property,'propertyPartnerLastName',array('class'=>'requiredField','placeholder'=>'Last Name'));?>
+					<?php echo $form->error($property,'propertyPartnerLastName'); ?></div>
+					<div  class="half-input margin0"><?php echo $form->textField($loginModel,'userName',array('class'=>'requiredField','placeholder'=>'Username'));?>
+					<?php echo $form->error($loginModel,'userName'); ?><div id='username'> </div></div>
 				</li>
 				<li>
-					<input class="half-input" type="text" name="email" value="" placeholder="Email ID" />
-					<input class="half-input" type="password" name="password" value="" placeholder="Password" />
-					<input class="half-input margin0" type="password" name="confirmpass" value="" placeholder="Confirm password" />
+					<div  class="half-input"><?php echo $form->textField($loginModel,'userEmail',array('class'=>'requiredField emailField','placeholder'=>'Email'));?>
+					<?php echo $form->error($loginModel,'userEmail'); ?><div id='useremail'> </div></div>
+					<div  class="half-input"><?php echo $form->passwordField($loginModel,'userPassword',array('class'=>'passField requiredField','id'=>'passField2','placeholder'=>'Password'));?>
+					<?php echo $form->error($loginModel,'userPassword'); ?></div>
+					<div  class="half-input margin0"><?php echo $form->passwordField($loginModel,'repassword',array('class'=>'passField requiredField','placeholder'=>'Conform Password','equalTo'=>'#passField2'));?>
+					<?php echo $form->error($loginModel,'repassword'); ?></div>
 				</li>
 				<li>
 					<div class="prefered-method"> Preferred Contact Method </div>
 					<div class="checkbox-outer">
-						<input type="checkbox"  class="radio">
-						<label for="remember"> Phone </label>
+						<?php echo $form->checkBoxList($property, 'propertyPartnerContactMethod', array("1" => "Mobile", "2" => "Email"), array('separator' => '', 'id' => 'cityPartnerContactMethod','class'=>'radio')); ?>
+						<?php echo $form->error($property, 'propertyPartnerContactMethod'); ?>
 					</div>
-					<div class="checkbox-outer">
-						<input type="checkbox"  class="radio">
-						<label for="remember"> Email </label>
+					<div class="contact-partner-error"></div>
+				</li>
+				<li>
+					<div  class="half-input"><?php echo $form->textField($property,'propertyPartnerBusinessName',array('class'=>'requiredField','placeholder'=>'Business Name'));?>
+					<?php echo $form->error($property,'propertyPartnerBusinessName'); ?></div>
+					<div  class="half-input"><?php echo $form->textField($property,'propertyPartnerMobile',array('class'=>'requiredField phoneField','placeholder'=>'Mobile'));?>
+					<?php echo $form->error($property,'propertyPartnerMobile'); ?></div>
+					<!-- <input class="half-input" type="text" name="businessname" value="" placeholder="Business name" />
+					<input class="half-input" type="text" name="contactnumber" value="" placeholder="Contact Number" /> -->
+					<div class="half-input date-cal margin0">
+						<?php
+								$this->widget('zii.widgets.jui.CJuiDatePicker', array(
+								    'model' => $property,
+								    'attribute' => 'propertyPartnerDateOfBirth',
+								    'options'=>array(
+								        //'showAnim'=>'slide',//'slide','fold','slideDown','fadeIn','blind','bounce','clip','drop'
+								        'showAnim' => 'fold',
+								        //'showOtherMonths'=>'true',// Show Other month in jquery
+								        //'selectOtherMonths'=>'true',// Select Other month in jquery
+								        'changeMonth' =>  'true',
+								        'changeYear' =>  'true',
+								        'yearRange'=>'1900:2099',
+								        'maxDate' => 'today',
+								    ),
+								    'htmlOptions' => array(
+								        'size' => '10',         // textField size
+								        'maxlength' => '10',    // textField maxlength
+								        'class' => 'requiredField',
+								        'placeholder' => 'Data of Birth',
+								        //'changeMonth' =>  'true',
+								        //'changeYear' =>  'true',
+								    ),
+								));
+								 echo $form->error($property, 'propertyPartnerDateOfBirth');
+								?>
+						<!-- <input id="datepicker"  type="text" name="dob" value="" placeholder="Date Of Borth" /> -->
 					</div>
 				</li>
 				<li>
-					<input class="half-input" type="text" name="contactnumber" value="" placeholder="Contact Number" />
-					<div class="half-input date-cal">
-						<input id="datepicker"  type="text" name="dob" value="" placeholder="Date Of Borth" />
-					</div>
-					<input class="half-input margin0" type="text" name="businessname" value="" placeholder="Business Name" />
-				</li>
-				<li>
-					<input class="half-input" type="text" name="email" value="" placeholder="Website" />
+					<div  class="half-input"><?php echo $form->textField($property,'propertyPartnerAddress',array('class'=>'requiredField','placeholder'=>'Address'));?>
+					<?php echo $form->error($property,'propertyPartnerAddress'); ?></div>
 					<div class="half-input">
 						<div class="slecet-country">
-							  <div class="half-half-input">
-							  <select data-placeholder="Country" class="chosen-select half-input">
-								<option value="select"></option>
-								<option value="United States">United States</option>
-								<option value="United Kingdom">United Kingdom</option>
-								<option value="Afghanistan">Afghanistan</option>
-								<option value="Aland Islands">Aland Islands</option>											
-							  </select>
-							  </div>
+							  <div class="half-half-input">								
+								  	<?php echo $form->dropDownList($property, 'propertyPartnerCountry',CHtml::listData(Country::model()->findAll(), 'pkCountryID', 'countryName'),
+																								array(
+																									'empty'=>'- Select Country -',
+																									'id'=>'propertyPartnerCountry',
+																									'class'=>'chosen-select half-input dropdown requiredField',
+																									'data-rule-required'=>'true',
+																									'onchange' => 'getPartnerState(this.value)',
+																								)
+																							); ?>
+									<?php echo $form->error($property, 'propertyPartnerCountry'); ?>	
+								  </div>
 							  <div class="half-half-input margin0">
-							  <select data-placeholder="State" class="chosen-select half-input" >
-								<option value="select"></option>								
-								<option value="United States">United States</option>
-								<option value="United Kingdom">United Kingdom</option>
-								<option value="Afghanistan">Afghanistan</option>
-								<option value="Aland Islands">Aland Islands</option>
-							  </select>
-							  </div>
+								  	<?php echo $form->dropDownList($property,'propertyPartnerState',$property->stateOptions,
+																	array(
+																		'empty'=>'- Select State -',
+																		'class'=>'chosen-select half-input dropdown requiredField',
+																		//'data-rule-required'=>'true',
+																		'id'=>'partnerState',
+																		'onchange' => 'getPartnerCity(this.value)',
+																		 
+																	)); ?>	
+								<?php echo $form->error($property, 'propertyPartnerState'); ?>
+								</div>
 						  </div>
 					</div>
 					<div class="half-input margin0">
 						<div class="slecet-country">
 							  <div class="half-half-input">
-							  <select data-placeholder="City" class="chosen-select half-input">
-								<option value="select"></option>
-								<option value="United States">United States</option>
-								<option value="United Kingdom">United Kingdom</option>
-								<option value="Afghanistan">Afghanistan</option>
-								<option value="Aland Islands">Aland Islands</option>											
-							  </select>
+								  	<?php echo $form->dropDownList($property,'propertyPartnerCity',$property->cityOptions,array('empty'=>'- Select City -','class'=>'chosen-select half-input dropdown requiredField','id'=>'partnerCity')); ?>	
+								<?php echo $form->error($property, 'propertyPartnerCity'); ?>
 							  </div>
 							  <div class="half-half-input margin0">
-								<input type="text" name="zip" value="" placeholder="Zip" />
+									<?php echo $form->textField($property,'propertyPartnerZip',array('class'=>'requiredField zipField','data-rule-required'=>'true','placeholder'=>'Zip')); ?>	
+								  	<?php echo $form->error($property, 'propertyPartnerZip'); ?>
 							  </div>
 						  </div>
 					</div>
 				</li>
-				
 				<li>
-					<input class="half-input" type="text" name="email" value="" placeholder="Area" />
-				</li>
-				<li>
-					<input type="checkbox"  class="radio">
+					<?php echo CHtml::checkBox('terms-partner','',array('class'=>'radio', 'id'=>'terms-partner')); ?>
 					<label for="remember"> I agree to terms and conditions </label>
+					<div class="terms-partner-error"></div>
 				</li>
 				<li>
 					<div class="cntr-btn-outer">
 						<div class="btn-outer">
 							<div class="login-btn submit-btn">
-								<input type="submit" name="submit" value="Create Account" />
+								<?php echo CHtml::submitButton('Signup',array('class' => 'register'));?>
 							</div>
 						</div>
 					</div>
 				</li>
 			</ul>
+			<?php $this->endWidget();?>
 			</div>
 			</div>
 			</div>
